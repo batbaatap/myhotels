@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Booking;
-use App\Hotel;
 
-class BookingController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::get();
-        return view('admin.booking.index')->with(compact('bookings'));
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +24,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**
@@ -36,25 +33,9 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addBooking(Request $request)
+    public function store(Request $request)
     {
-        // echo 'hi';
-        if($request->isMethod('post')){
-            $data = $request->all();
-            
-            $dates = explode(' - ', $data['date_from_and_date_to']);
-            
-    		echo "<pre>"; print_r($data); die;
-        }
-
-        $hotels = Hotel::get();
-        $hotels_drop_down = "<option value='' selected> - </option>";
-        foreach($hotels as $h){
-            $hotels_drop_down .= "<option value='".$h->id."'>".$h->title."</option>";
-        }
-        
-        return view('admin.booking.add_booking')->with(compact('hotels_drop_down'));;
-       
+        //
     }
 
     /**
