@@ -27,7 +27,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
       return view('welcome');
     });
 
+    // Booking
+    Route::resource('booking', 'BookingController');
+    
+
     Route::get('dashboard', 'AdminController@dashboard');
+
     Route::get('settings', 'AdminController@settings');
     Route::get('check-pwd', 'AdminController@chkPassword');
     Route::match(['get','post'], 'update-pwd', 'AdminController@updatePassword');
