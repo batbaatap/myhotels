@@ -1,32 +1,25 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 
-<form action="">
+<form action="{{url('admin/booking/add-booking')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate">
+    {{ csrf_field() }}
 <div class="card card-default">
     <div class="card-header">
         {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem laborum ducimus numquam recusandae distinctio veniam, ratione libero doloribus, assumenda dicta totam! Nobis sed, a debitis eos beatae velit quisquam nihil. --}}
     </div>
     <div class="card-body  table-responsive ">
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зочид буудал</label>
-                    <div class="col-sm-6">
-                        <select class="form-control" name="hotel" style="width: 100%;">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-
-                            <?php echo $categories_drop_down; ?>
-                            
-                        </select>
-                    </div>
+        
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зочид буудал</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="hotel" style="width: 100%;">
+                        <?php echo $hotels_drop_down; ?>
+                    </select>
                 </div>
+        </div>
             
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Email</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Орох, Гарах өдөр</label>
                 <div class="col-sm-6">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -34,7 +27,7 @@
                       <i class="far fa-calendar-alt"></i>
                     </span>
                   </div>
-                  <input type="text" class="form-control float-right" id="reservation">
+                  <input type="text" name="date_from_and_date_to" class="form-control float-right" id="reservation">
                 </div>
                 <!-- /.input group -->
               </div>
@@ -44,35 +37,35 @@
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хоног</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="0">
+                    <input type="text" class="form-control" placeholder="0" disabled>
                 </div>
             </div>
             <!-- text input -->
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хүний тоо</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="0">
+                    <input type="text" class="form-control" placeholder="0" disabled>
                 </div>
             </div>
             <!-- text input -->
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Children</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="0">
+                    <input type="text" class="form-control" placeholder="0" disabled>
                 </div>
             </div>
             <!-- text input -->
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Discount</label>
                 <div class="col-sm-6">
-                    <input type="number" class="form-control" placeholder="0">
+                    <input type="number" class="form-control" placeholder="">
                 </div>
             </div>
             <!-- text input -->
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Down payment</label>
                 <div class="col-sm-6">
-                    <input type="number" class="form-control" placeholder="0">
+                    <input type="number" class="form-control" placeholder="">
                 </div>
             </div>
             <!-- text input -->
@@ -325,10 +318,10 @@
                 </div>
             </div>
             <!-- /.card -->
-
             
-            
+            <button type="submit">Хадгалах</button>
         </div>
 </div>
+
 </form>
 @endsection
