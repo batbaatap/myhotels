@@ -135,3 +135,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
 
 
 
+Route::namespace('Profile')->group(function () {
+  Route::resource('/orders', 'OrderController')->middleware('frontlogin');
+  Route::resource('/customer', 'Personal_InfoController');
+});
