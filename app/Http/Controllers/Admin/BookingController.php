@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Admin\Booking;
+use App\Booking;
+use App\Hotel;
 
 class BookingController extends Controller
 {
@@ -27,6 +28,16 @@ class BookingController extends Controller
     public function create()
     {
         return view('admin.booking.create');
+
+        $categories = Category::where(['parent_id' => 0])->get();
+            $categories_drop_down = "<option value='' selected disabled>Select</option>";
+            foreach($categories as $cat){
+                $categories_drop_down .= "<option value='".$cat->id."'>".$cat->name."</option>";
+                $sub_categories = Category::where(['parent_id' => $cat->id])->get();
+                foreach($sub_categories as $sub_cat){
+                    $categories_drop_down .= "<option value='".$sub_cat->id."'>&nbsp;&nbsp;--&nbsp;".$sub_cat->name."</option>";    
+                }   
+        }
     }
 
     /**

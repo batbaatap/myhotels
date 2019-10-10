@@ -8,16 +8,19 @@
     </div>
     <div class="card-body  table-responsive ">
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Email</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зочид буудал</label>
                     <div class="col-sm-6">
-                        <select class="form-control" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
+                        <select class="form-control" name="hotel" style="width: 100%;">
+                            <option selected="selected">Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+
+                            <?php echo $categories_drop_down; ?>
+                            
                         </select>
                     </div>
                 </div>

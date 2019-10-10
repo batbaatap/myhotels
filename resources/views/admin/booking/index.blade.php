@@ -13,30 +13,30 @@
             
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="example1" class="table table-bordered table-striped dataTable responsive" role="grid" aria-describedby="example1_info">
+                    <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                            <tr role="row" style="font-size:12px;">
-                                <th class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" aria-sort="descending" style="width: 10px;">#</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: 200px;">Зочид буудал</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Харилцагч</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Орох</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Гарах</th>
+                            <tr  style="font-size:12px;">
+                                <th style="width: 10px;">#</th>
+                                <th style="width: 200px;">Зочид буудал</th>
+                                <th style="width: auto;">Харилцагч</th>
+                                <th style="width: auto;">Орох</th>
+                                <th style="width: auto;">Гарах</th>
                                 
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Хоног</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Том хүн</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Хүүхэд</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Нийт</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Төлөв</th>
+                                <th style="width: auto;">Хоног</th>
+                                <th style="width: auto;">Том хүн</th>
+                                <th style="width: auto;">Хүүхэд</th>
+                                <th style="width: auto;">Нийт</th>
+                                <th style="width: auto;">Төлөв</th>
                                 
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Нэмэгдсэн</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Шинэчлэгдсэн</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="" style="width: auto;">Үйлдэл</th>
+                                <th style="width: auto;">Нэмэгдсэн</th>
+                                <th style="width: auto;">Шинэчлэгдсэн</th>
+                                <th style="width: auto;">Үйлдэл</th>
                             </tr>
                         </thead>
                         
                         <tbody>
                             @foreach ($bookings as $item)
-                            <tr role="row" class="even">
+                            <tr >
                                 <td>{{ $item->hotel_id}}</td>
                                 <td>{{ $item->hotel_id}}</td>
                                 <td>{{ $item->hotel_id}}</td>
