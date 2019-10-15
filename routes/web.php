@@ -136,3 +136,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
 
 
 
+Route::namespace('customer')->group(function () {
+  Route::resource('/', 'HomeController');
+});
