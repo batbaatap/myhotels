@@ -53,14 +53,13 @@ class BookingController extends Controller
     // Meanwhile, we save data to 'pm_booking_room' table as well.
     public function addBooking(Request $request)
     {
-        // echo 'hi';
         if($request->isMethod('post')){
             $data = $request->all();
 
             // echo "<pre>"; print_r($data); die;
             $booking = new Booking();
             
-            $booking->id_hotel = $data['hotel_booking'];
+            $booking->id_hotel = $data['id_hotel'];
             $booking->add_date = 1;
             $booking->edit_date = 1;
             
@@ -96,7 +95,7 @@ class BookingController extends Controller
             $booking->city = $data['city'];
             $booking->phone = $data['phone'];
             $booking->mobile = $data['mobile'];
-            $booking->country = $data['country'];
+            $booking->country = 'Mongolia';
             
             $booking->comments = $data['comments'];
             $booking->status = $data['status'];
@@ -106,23 +105,35 @@ class BookingController extends Controller
 
             $booking->users = 1;
             
-            $booking->save();
+            // $booking->save();
 
-            // 2
-            $gr = new BookingRoom();
-            $gr->id_room = 1;
-            $gr->id_hotel = 1;
-            $gr->title = '';
-            $gr->num = '';
-            $gr->children = $data['children_r'];
+            $lastid=Booking::create($data)->id;
 
-            $gr->adults = $data['adult_r'];
-            $gr->amount = $data['amount_r'];
-            $gr->ex_tax = 1;
-            $gr->tax_rate = $data['taxrater'];
+            if(count($request->id_hotel_sub) > 0)
+            {
+                foreach($request->id_hotel_sub as $item=>$v){
+                    
+                    $data2=array(
+                        'id_booking'=>$lastid,
+                        'id_hotel'=>$request->id_hotel_sub[$item],
+                        'id_room'=>$request->room_id_sub[$item],
+                        'title'=>null,
+                        'num'=>null,
 
-            $booking->brooms()->save($gr);
-        }
+                        'children' => null,
+                        'adults' => null,
+                        'amount' => null,
+                        'ex_tax' => null,
+                        'tax_rate' =>null,
+                    );
+
+                    BookingRoom::insert($data2);
+
+                }
+            }
+
+            }
+
      
 
         $hotels = Hotel::get();

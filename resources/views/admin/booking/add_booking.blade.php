@@ -12,7 +12,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зочид буудал</label>
                 <div class="col-sm-6">
-                    <select class="form-control" name="hotel_booking" style="width: 100%;">
+                    <select class="form-control" name="id_hotel" style="width: 100%;">
                         <?php echo $hotels_drop_down; ?>
                     </select>
                 </div>
@@ -211,7 +211,7 @@
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Payment option</label>
                 <div class="col-sm-6">
-                <select class="form-control" name="payment_option" style="width: 100%;">
+                    <select class="form-control" name="payment_option" style="width: 100%;">
                         <option selected="selected" >-</option>
                         <option value="arrival">On Arrival</option>
                         <option value="check">Check</option>
@@ -243,23 +243,25 @@
                         
                         <tbody class="room_table_body">
                             <tr class="room_table_row">
-                                    <th scope="row">1</th>
+                                    <th scope="row">
+                                        {{-- <input type="number" name="linenum[]" class="form-control" > --}}
+                                    </th>
                                     <td> 
-                                        <select class="form-control" name="hotel_room" style="width: 100%;">
+                                        <select class="form-control" name="id_hotel_sub[]" style="width: 100%;">
                                                 <?php echo $hotels_drop_down; ?>
                                         </select>
                                     </td>
                                     <td> 
-                                        <select class="form-control" name="rooms" style="width: 100%;">
+                                        <select class="form-control" name="room_id_sub[]" style="width: 100%;">
                                                 <?php echo $rooms_drop_down; ?>
                                         </select>
                                     </td>
-                                    <td><input type="text" name="description_r" class="form-control" placeholder=""></td>
-                                    <td><input type="text" name="adult_r" class="form-control" placeholder=""></td>
-                                    <td><input type="text" name="children_r" class="form-control" placeholder=""></td>
-                                    <td><input type="text" name="no_r" class="form-control" placeholder=""></td>
-                                    <td><input type="text" name="taxrater" class="form-control" placeholder=""></td>
-                                    <td><input type="text" name="amount_r" class="form-control" placeholder=""></td>
+                                    <td><input type="text" name="description_r[]" class="form-control" placeholder=""></td>
+                                    <td><input type="text" name="adult_r[]" class="form-control" placeholder=""></td>
+                                    <td><input type="text" name="children_r[]" class="form-control" placeholder=""></td>
+                                    <td><input type="text" name="no_r[]" class="form-control" placeholder=""></td>
+                                    <td><input type="text" name="taxrater[]" class="form-control" placeholder=""></td>
+                                    <td><input type="text" name="amount_r[]" class="form-control" placeholder=""></td>
                                     {{-- <td><input type="text" name="actions_r" class="form-control" placeholder=""></td> --}}
                             </tr>
                         </tbody>
