@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Destination;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -16,7 +17,10 @@ class HomeController extends Controller
     {
         //
         // return view('customer/home.index');
-        $destination = Destination::all();
+        // $destination = Destination::all();
+    
+         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
+
         return view('customer/home.index', compact('destination'));
 
     }

@@ -13,9 +13,9 @@
   {{-- @include('layouts.frontLayout.front_footer') --}}
 
 
-
 <!-- jQuery -->
 <script src="{{url('admin/assets/plugins/jquery/jquery.min.js')}}"></script>
+
 <!-- Bootstrap 4 -->
 <script src="{{url('admin/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- DataTables -->
@@ -38,5 +38,13 @@
 <script src="{{url('admin/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('admin/assets/dist/js/adminlte.min.js')}}"></script>
+{{-- custom js  --}}
+<script src="{{url('customer/custom.js')}}"></script>
+
+
+{{-- date time picker --}}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
 </body>
 </html>
