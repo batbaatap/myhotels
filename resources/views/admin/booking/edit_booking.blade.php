@@ -1,8 +1,12 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 
-<form action="{{url('admin/booking/add-booking')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate">
+<form action="{{ url('/admin/booking/edit-booking/'. $bookingDetails->id) }}" method="POST" enctype = "multipart/form-data" novalidate="novalidate">
     {{ csrf_field() }}
+
+{{-- <form class="form-horizontal" method="post" action="{{ url('admin/edit-category/'.$categoryDetails->id) }}" 
+    name="add_category" id="add_category" novalidate="novalidate"> --}}
+
 <div class="card card-default">
     <div class="card-header">
         {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem laborum ducimus numquam recusandae distinctio veniam, ratione libero doloribus, assumenda dicta totam! Nobis sed, a debitis eos beatae velit quisquam nihil. --}}
@@ -21,9 +25,6 @@
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Орох, Гарах өдөр</label>
                 <div class="col-sm-6">
-                        <div id="reportrange">
-                                <span></span>
-                            </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -32,7 +33,6 @@
                     </div>
                     <input type="text" name="date_from_and_date_to" class="form-control float-right" id="reservation">
                 </div>
-               
                 <!-- /.input group -->
                 </div>
             </div>
@@ -41,7 +41,7 @@
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хоног</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="honog" name="nights" value="0" >
+                    <input type="text" class="form-control" name="nights" value="0" >
                 </div>
             </div>
             <!-- text input -->
@@ -211,7 +211,7 @@
                     </select>
                 </div>
             </div>
-
+           
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Payment option</label>
                 <div class="col-sm-6">
@@ -274,34 +274,6 @@
                 </div>
               
             </div>
-
-                    
-{{-- 
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хэрэглэгч сонгох </label>
-        
-                <div class="col-lg-6">
-                    <div class="card card-default">
-                        <div class="card-body">
-                            <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                <select class="duallistbox" multiple="multiple">
-                                    <option selected>Batbaatar</option>
-                                    <option>Khishgee</option>
-                                </select>
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
-                            <!-- /.col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-            </div>
-            <!-- /.card --> --}}
             
         </div>
         

@@ -45,14 +45,20 @@
                                 
                                 
                                 <td>{{ $item->nights}}</td>
-                                <td>{{ $item->nights}}</td>
-                                <td>{{ $item->adults}}</td>
+                                <td>{{ $item->adults}} tom hun</td> 
                                 <td>{{ $item->children}}</td>
                                 <td>{{ $item->amount}}</td>
                                 
                                 <td>{{ $item->amount}}</td>
                                 <td>{{ $item->amount}}</td>
-                                <td>{{ $item->amount}}</td>
+
+                                <td class="center">
+                                    <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-primary">ЗАСАХ</a>
+                                    <a id="delB" class="btn btn-danger"  href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}">
+                                        УСТГАХ
+                                    </a>
+                                </td>
+
                             </tr>
                             @endforeach
                         </tbody>

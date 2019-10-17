@@ -8,12 +8,20 @@ $("#uruu_nemeh").on('click', function(){
 });
 
 // ====================
-// Өрөө нэмэх дээр дарахад сүүлийн баганы утгыг авч хэвлэнэ
+// Хоногийг бодож гаргав тооцоолов
 // ==================-=
 
-
-
-
+jQuery('#reservation').on("change", function (e) {
+        Calc();
+    });
+        function Calc(){
+        
+        var start = $('#reservation').data('daterangepicker').startDate;
+        var end = 	$('#reservation').data('daterangepicker').endDate;
+        
+        var days = Math.floor((end - start)/1000/60/60/24);
+        $('#honog').val(days);  
+    }
 
 
 // ====================

@@ -147,6 +147,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Custom JS -->
 <script src="{{url('admin/custom.js')}}"></script>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
     $(function () {
       //Initialize Select2 Elements
@@ -165,33 +168,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
       $('[data-mask]').inputmask()
   
       //Date range picker
-      $('#reservation').daterangepicker()
+      // $('#reservation').daterangepicker()
       //Date range picker with time picker
-      $('#reservationtime').daterangepicker({
-        timePicker: true,
-        timePickerIncrement: 30,
-        locale: {
-          format: 'MM/DD/YYYY hh:mm A'
-        }
-      })
+      // $('#reservationtime').daterangepicker({
+      //   timePicker: true,
+      //   timePickerIncrement: 30,
+      //   locale: {
+      //     format: 'MM/DD/YYYY hh:mm A'
+      //   }
+      // })
       //Date range as a button
-      $('#daterange-btn').daterangepicker(
+      $('#reservation').daterangepicker(
         {
-          ranges   : {
-            'Today'       : [moment(), moment()],
-            'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-            'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          startDate: moment().subtract(29, 'days'),
-          endDate  : moment()
-        },
-        function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-        }
-      )
+          // singleDatePicker: true,
+          // showDropdowns: true,
+          minYear: 1901,
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, 
+        function(start, end, label) {
+          // alert(start);
+          // alert(end);
+
+          var days = Math.floor((end - start)/1000/60/60/24);
+          $('#honog').val(days);  
+
+        });
+        // function(start, end, label) {
+        //   var years = moment().diff(start, 'years');
+        //   alert("You are " + years + " years old!");
+        // }
+        
+        // function (start, end) {
+        //   $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        // }
+      
   
       //Timepicker
       $('#timepicker').datetimepicker({

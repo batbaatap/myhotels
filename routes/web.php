@@ -28,10 +28,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     });
 
     // Booking
-    Route::match(['get', 'post'], '/booking/add-booking', 'BookingController@addBooking');
-    Route::get('/booking', 'BookingController@viewBookings');
+    Route::match(['get', 'post'], '/booking/add-booking',          'BookingController@addBooking');
+    Route::match(['get', 'post'], '/booking/edit-booking/{id}',    'BookingController@editBooking');
+    Route::get('/booking/view-bookings',                           'BookingController@viewBookings');
+    Route::get('/booking/delete-booking/{id}',                     'BookingController@deleteBooking');
 
-
+    
+    // Hotel
     Route::get('dashboard', 'AdminController@dashboard');
 
     Route::get('settings', 'AdminController@settings');
@@ -56,7 +59,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::match(['get', 'post'], '/admin/add-images/{id}','ProductController@addImages');
 
     Route::get('/admin/delete-alt-image/{id}','ProductController@deleteProductAltImage');
-
 
 
     // Category

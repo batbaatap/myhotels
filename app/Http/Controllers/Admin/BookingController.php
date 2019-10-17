@@ -19,17 +19,9 @@ class BookingController extends Controller
      */
     public function viewBookings()
     {
-        // $first = DB::table('pm_booking');
-        // $bookings = DB::table('pm_booking_room')
-        //     ->join('pm_hotel', 'pm_booking_room.id_hotel', '=', 'pm_hotel.id')
-        //     ->select('pm_booking_room.*', 'contacts.phone', 'orders.price')
-        //     ->union($first)
-        //     ->get();
-
         $bookings = DB::table('pm_booking')
-            ->join('pm_booking_room', 'pm_booking.id', '=', 'pm_booking_room.id_booking')
             ->join('pm_hotel', 'pm_booking.id_hotel', '=', 'pm_hotel.id')
-            ->select('pm_booking.*', 'pm_booking_room.*', 'pm_hotel.*')
+            ->select('pm_booking.*', 'pm_hotel.title')
             ->get();
 
         return view('admin.booking.view_bookings')->with(compact('bookings'));
@@ -133,47 +125,128 @@ class BookingController extends Controller
         return view('admin.booking.add_booking')->with(compact('hotels_drop_down', 'rooms_drop_down'));;
     } // end of ..addBooking()..
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    
+
+    // edit 
+    public function editBooking(Request $request, $id){
+        
+        // if($request->isMethod('post')){
+        //     $data = $request->all();
+
+        //     Category::where(['id'=>$id])->update(['status'=>$status,'name'=>$data['category_name'],'parent_id'=>$data['parent_id'],'description'=>$data['description']]);
+        //     return redirect()->back()->with('flash_message_success', 'Category has been updated successfully');
+        // }
+
+        // $categoryDetails = Category::where(['id'=>$id])->first();
+        // $levels = Category::where(['parent_id'=>0])->get();
+        // return view('admin.categories.edit_category')->with(compact('categoryDetails','levels'));
+
+
+        if($request->isMethod('post')){
+            
+            $data = $request->all();
+
+            Booking::where(['id'=>$id])->update([
+                'id_hotel' => $data['id_hotel'],
+                'add_date' => 1,
+                'edit_date' => 1,
+                
+                // өдрүүд daterange ашигласан учраас explode Хийсэн
+                $dates = explode(' - ', $data['date_from_and_date_to']),
+                'from_date' =>   strtotime($dates[0]),
+                'to_date' =>     strtotime($dates[1]),
+                
+                'nights' => $data['nights'],
+                'adults' => $data['adults'],
+                'children' => $data['children'],
+                'amount' => $data['tax_amount'],
+                
+                'tourist_tax' => 1,
+                'discount' => $data['discount'],
+                'ex_tax' => $data['ex_tax'],
+                'tax_amount' => $data['tax_amount'],
+                'total' => $data['total'],
+                
+                'down_payment' => $data['down_payment'],
+                'paid' => $data['paid'],
+                'balance' => $data['balance'],
+                'extra_services' => 0,
+                'id_user' => 1,
+                
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'email' => $data['email'],
+                'company' => $data['company'],
+                'address' => $data['address'],
+    
+                'postcode' => $data['postcode'],
+                'city' => $data['city'],
+                'phone' => $data['phone'],
+                'mobile' => $data['mobile'],
+                'country' => 'Mongolia',
+                
+                'comments' => $data['comments'],
+                'status' => $data['status'],
+                'trans' => 1,
+                'payment_date' => 1,
+                'payment_option' => $data['payment_option']
+    
+                ]);
+                
+                // if(count($request->id_hotel_sub) > 0)
+                // {
+                //     foreach($request->id_hotel_sub as $item=>$v)
+                //     {
+                //         BookingRoom::where(['id'=>$id])->update([
+                //             $data2=array(
+                //                 'id_booking'=>$booking->id,
+                //                 'id_hotel'=>$request->id_hotel_sub[$item],
+                //                 'id_room'=>$request->room_id_sub[$item],
+                //                 'title'=>null,
+                //                 'num'=>null,
+        
+                //                 'children' => null,
+                //                 'adults' => null,
+                //                 'amount' => null,
+                //                 'ex_tax' => null,
+                //                 'tax_rate' =>null,
+                //             )
+                //         ]);
+
+                //         BookingRoom::insert($data2);
+                //     }
+                // }
+
+
+               
+                return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
+
+            // Get Details
+        }
+        $bookingDetails = Booking::where(['id'=>$id])->first();
+
+        $hotels = Hotel::get();
+        $hotels_drop_down = "<option value='' selected> - </option>";
+        foreach($hotels as $h){
+            $hotels_drop_down .= "<option value='".$h->id."'>".$h->title."</option>";
+        }
+
+        $rooms = Room::get();
+        $rooms_drop_down = "<option value='' selected> - </option>";
+        foreach($rooms as $r){
+            $rooms_drop_down .= "<option value='".$r->id."'>".$r->title."</option>";
+        }
+
+        //    $bookingDetails = Booking::all()->toArray();
+
+        // cat dropdown end
+        return view('admin.booking.edit_booking')->with(compact('bookingDetails', 'hotels_drop_down', 'rooms_drop_down'));
+    
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    // delete
+    public function deleteBooking($id)
     {
         //
     }
