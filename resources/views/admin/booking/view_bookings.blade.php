@@ -36,12 +36,13 @@
                         
                         <tbody>
                             @foreach ($bookings as $item)
-                            <tr >
-                                <td>{{ $item->hotel_id}}</td>
-                                <td>{{ $item->hotel_id}}</td>
-                                <td>{{ $item->hotel_id}}</td>
-                                <td>{{ $item->from_date}}</td>
-                                <td>{{ $item->to_date}}</td>
+                            <tr style="font-size:12px;">
+                                <td></td>
+                                <td>{{ $item->title}}</td>
+                                <td>{{ $item->id_hotel}}</td>
+                                <td>@php echo date("Y-m-d",  ($item->from_date) ); @endphp </td>
+                                <td>@php echo date("Y-m-d",  ($item->to_date) ); @endphp</td>
+                                
                                 
                                 <td>{{ $item->nights}}</td>
                                 <td>{{ $item->nights}}</td>
