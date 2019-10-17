@@ -28,8 +28,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     });
 
     // Booking
-    // Route::resource('/booking/add-booking', 'BookingController@addBooking');
     Route::match(['get', 'post'], '/booking/add-booking', 'BookingController@addBooking');
+    Route::get('/booking', 'BookingController@viewBookings');
 
 
     Route::get('dashboard', 'AdminController@dashboard');

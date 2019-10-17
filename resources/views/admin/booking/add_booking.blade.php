@@ -237,7 +237,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Tax rate</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Actions</th>
+                            {{-- <th scope="col">Actions</th> --}}
                             </tr>
                         </thead>
                         
@@ -252,7 +252,7 @@
                                         </select>
                                     </td>
                                     <td> 
-                                        <select class="form-control" name="room_id_sub[]" style="width: 100%;">
+                                        <select class="form-control" name="room_id_sub[]" style="width: 100px;">
                                                 <?php echo $rooms_drop_down; ?>
                                         </select>
                                     </td>

@@ -8,6 +8,7 @@ use App\Booking;
 use App\Hotel;
 use App\Room;
 use App\BookingRoom;
+use DB;
 
 class BookingController extends Controller
 {
@@ -16,38 +17,24 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function viewBookings()
     {
-        $bookings = Booking::get();
-        return view('admin.booking.index')->with(compact('bookings'));
+        // $first = DB::table('pm_booking');
+        // $bookings = DB::table('pm_booking_room')
+        //     ->join('pm_hotel', 'pm_booking_room.id_hotel', '=', 'pm_hotel.id')
+        //     ->select('pm_booking_room.*', 'contacts.phone', 'orders.price')
+        //     ->union($first)
+        //     ->get();
+
+        $bookings = DB::table('pm_booking')
+            ->join('pm_booking_room', 'pm_booking.id', '=', 'pm_booking_room.id_booking')
+            ->join('pm_hotel', 'pm_booking.id_hotel', '=', 'pm_hotel.id')
+            ->select('pm_booking.*', 'pm_booking_room.*', 'pm_hotel.*')
+            ->get();
+
+        return view('admin.booking.view_bookings')->with(compact('bookings'));
     }
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-       
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    // protected $booking;
-    // protected $hotel;
-    // protected $room;
-    // public function __construct(){
-    //     $this->booking = new Booking();
-    //     $this->hotel = new Hotel();
-    //     $this->room = new Room();
-    // }
-
     // Storing data to same time
     // Below mentioned, at first we use 'addBooking' function in order to save values to 'pm_booking' table.
     // Meanwhile, we save data to 'pm_booking_room' table as well.
@@ -67,6 +54,7 @@ class BookingController extends Controller
             $dates = explode(' - ', $data['date_from_and_date_to']);
             $booking->from_date =   strtotime($dates[0]);
             $booking->to_date =     strtotime($dates[1]);
+            
 
             $booking->nights = $data['nights'];
             $booking->adults = $data['adults'];
@@ -104,17 +92,16 @@ class BookingController extends Controller
             $booking->payment_option = $data['payment_option'];
 
             $booking->users = 1;
-            
-            // $booking->save();
+            $booking->save();
 
-            $lastid=Booking::create($data)->id;
+            // $lastid=Booking::create($data)->id;
 
             if(count($request->id_hotel_sub) > 0)
             {
                 foreach($request->id_hotel_sub as $item=>$v){
                     
                     $data2=array(
-                        'id_booking'=>$lastid,
+                        'id_booking'=>$booking->id,
                         'id_hotel'=>$request->id_hotel_sub[$item],
                         'id_room'=>$request->room_id_sub[$item],
                         'title'=>null,
@@ -126,15 +113,10 @@ class BookingController extends Controller
                         'ex_tax' => null,
                         'tax_rate' =>null,
                     );
-
                     BookingRoom::insert($data2);
-
                 }
             }
-
-            }
-
-     
+        } // end of ...if($request->isMethod('post'))..
 
         $hotels = Hotel::get();
         $hotels_drop_down = "<option value='' selected> - </option>";
@@ -149,7 +131,7 @@ class BookingController extends Controller
         }
         
         return view('admin.booking.add_booking')->with(compact('hotels_drop_down', 'rooms_drop_down'));;
-    }
+    } // end of ..addBooking()..
 
     /**
      * Display the specified resource.
