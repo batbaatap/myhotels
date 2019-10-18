@@ -19,83 +19,55 @@ class HotelController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
 
+            $arr = $data['hotel_facilities'];
+            // echo implode(" ",$arr);
+            // echo json_encode($arr);
+            $i =  implode(',', $arr);
             // echo "<pre>"; print_r($data); die;
-            $booking = new Hotel();
-            
-            $booking->id_hotel = $data['id_hotel'];
-            $booking->add_date = 1;
-            $booking->edit_date = 1;
-            
-            // өдрүүд daterange ашигласан учраас explode Хийсэн
-            $dates = explode(' - ', $data['date_from_and_date_to']);
-            $booking->from_date =   strtotime($dates[0]);
-            $booking->to_date =     strtotime($dates[1]);
-            
+            $hotel = new Hotel();            
+            $hotel->lang=2;
+            $hotel->users=1;
+            $hotel->title=$data['title'];
+            $hotel->subtitle=$data['subtitle'];
+            $hotel->alias=$data['alias'];
+            $hotel->class=$data['class'];
+            $hotel->address=$data['address'];
+            $hotel->lat=$data['lat'];
+            $hotel->lng=$data['long'];
+            $hotel->email=$data['email'];
+            $hotel->phone=$data['phone'];
+            $hotel->web=$data['web'];
+            $hotel->descr=$data['description'];
+            $hotel->facilities= $i;
+          
+            // $hotel->id_destination=$data['id_destination'];
+            // $hotel->paypal_email='';
+            // $hotel->home=$data['title'];
+            // $hotel->checked=$data['title'];
+            // $hotel->rank=$data['title'];
 
-            $booking->nights = $data['nights'];
-            $booking->adults = $data['adults'];
-            $booking->children = $data['children'];
-            $booking->amount = $data['tax_amount'];
-            
-            $booking->tourist_tax = 1;
-            $booking->discount = $data['discount'];
-            $booking->ex_tax = $data['ex_tax'];
-            $booking->tax_amount = $data['tax_amount'];
-            $booking->total = $data['total'];
-            
-            $booking->down_payment = $data['down_payment'];
-            $booking->paid = $data['paid'];
-            $booking->balance = $data['balance'];
-            $booking->extra_services = 0;
-            $booking->id_user = 1;
-            
-            $booking->firstname = $data['firstname'];
-            $booking->lastname = $data['lastname'];
-            $booking->email = $data['email'];
-            $booking->company = $data['company'];
-            $booking->address = $data['address'];
+            // if(count($request->hotel_facilities) > 0)
+            // {
+            //     foreach($request->hotel_facilities as $item=>$v){
+            //         $data2=array(
+            //             'facilities'=>$hotel->hotel_facilities[$item]
+            //         );
+            //         Hotel::insert($data2);
+            //     }
+            // }
 
-            $booking->postcode = $data['postcode'];
-            $booking->city = $data['city'];
-            $booking->phone = $data['phone'];
-            $booking->mobile = $data['mobile'];
-            $booking->country = 'Mongolia';
-            
-            $booking->comments = $data['comments'];
-            $booking->status = $data['status'];
-            $booking->trans = 1;
-            $booking->payment_date = 1;
-            $booking->payment_option = $data['payment_option'];
+            $hotel->save();
 
-            $booking->users = 1;
-            $booking->save();
-
-            // $lastid=Booking::create($data)->id;
-
-            if(count($request->id_hotel_sub) > 0)
-            {
-                foreach($request->id_hotel_sub as $item=>$v){
-                    
-                    $data2=array(
-                        'id_booking'=>$booking->id,
-                        'id_hotel'=>$request->id_hotel_sub[$item],
-                        'id_room'=>$request->room_id_sub[$item],
-                        'title'=>$request->description_r[$item],
-                        'num'=>null,
-
-                        'children' => $request->children_r[$item],
-                        'adults' => $request->children_r[$item],
-                        'amount' => $request->amount_r[$item],
-                        'ex_tax' => null,
-                        'tax_rate' =>null,
-                    );
-                    BookingRoom::insert($data2);
-                }
-            }
-        } // end of ...if($request->isMethod('post'))..
+            // for ($i = 1; $i < count($request->hotel_facilities); $i++) {
+            //     $answers[] = [
+            //         'facilities' => $request->hotel_facilities[$i]
+            //     ];
+            // }
+            // Hotel::insert($answers);
+        } 
 
         $facilities = Facility::get();
-        $facilities_drop_down = "<option value='' selected> - </option>";
+        $facilities_drop_down = "";
         foreach($facilities as $h){
             $facilities_drop_down .= "<option value='".$h->id."'>".$h->name."</option>";
         }
@@ -106,6 +78,6 @@ class HotelController extends Controller
             $destinations_drop_down .= "<option value='".$r->id."'>".$r->name."</option>";
         }
         
-        return view('admin.hotel.add_hotel')->with(compact('facilities_drop_down', 'destinations_drop_down'));;
+        return view('admin.hotel.add_hotel')->with(compact('facilities_drop_down', 'destinations_drop_down'));
     }
 }

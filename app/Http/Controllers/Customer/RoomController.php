@@ -33,7 +33,8 @@ public function roomsearch(Request $request){
        
         $rooms= DB::select(DB::raw(
            
-            " 			   SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
+            
+            "SELECT `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
             FROM `pm_room`
             INNER JOIN `pm_booking_room`
             ON pm_room.id = pm_booking_room.id_room
@@ -43,39 +44,34 @@ public function roomsearch(Request $request){
             SELECT  id_room
             FROM `pm_booking_room` AS rf
             WHERE rf.id_booking IN (
-             select id  FROM `pm_booking`
+            select id  FROM `pm_booking`
             WHERE (`from_date` BETWEEN '2019-10-15' AND '2019-10-29')
             OR (`to_date` BETWEEN '2019-10-15' AND '2019-10-29')
             OR ( `from_date`<= '2019-10-15' AND `to_date`>='2019-10-29')
-              )
-                )
+            )
+            )
                 
-                GROUP BY `pm_booking_room`.id_room
-                HAVING uruunii_zuruu>=2 and `pm_room`.id_hotel=1 and max_people>=2
-                
-                UNION 
-                 SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
+            GROUP BY `pm_booking_room`.id_room
+            HAVING uruunii_zuruu>=2 and `pm_room`.id_hotel=1 and max_people>=2
+
+
+            UNION
+
+
+            SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
             from `pm_room`
             where stock>=2 and id_hotel=1 and  max_people>=2 and  id NOT in (SELECT  id_room
             FROM `pm_booking_room` AS rf
             WHERE rf.id_booking IN (
-             select id  FROM `pm_booking`
+            select id  FROM `pm_booking`
             WHERE (`from_date` BETWEEN '2019-10-15' AND '2019-10-29')
             OR (`to_date` BETWEEN '2019-10-15' AND '2019-10-29')
             OR ( `from_date`<= '2019-10-15' AND `to_date`>='2019-10-29')
-              ))
-            
-                
-                
-            
-                
-                
-            
-                
-               
-                
-            
+            ))
             "
+
+
+
             ));
 
             return view('customer/room.index', compact('rooms'));
