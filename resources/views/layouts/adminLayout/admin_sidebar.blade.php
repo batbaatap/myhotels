@@ -66,13 +66,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
+              <a href="/admin/hotel/add-hotel" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Нэмэх</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
+              <a href="/admin/hotel/view-hotels" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Бүгд</p>
               </a>

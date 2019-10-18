@@ -20,9 +20,11 @@ $("#uruu_nemeh").on('click', function(){
 $('.room_table_body_custom').on('keyup', function(){
     var adult_r = $("[name='adult_r[]']");
     var children_r = $("[name='children_r[]']");
+    var amount_r = $("[name='amount_r[]']");
     
     var ad_too=[];
     var ch_too=[];
+    var amount_too=[];
 
     for(var i = 0; i<adult_r.length; i++){
         ad_too.push(parseInt(adult_r[i].value));
@@ -32,6 +34,10 @@ $('.room_table_body_custom').on('keyup', function(){
         ch_too.push(parseInt(children_r[i].value));
     }
 
+    for(var i = 0; i<amount_r.length; i++){
+        amount_too.push(parseInt(amount_r[i].value));
+    }
+
     $("[name='adults']").val(ad_too.reduce(myFunc));
     function myFunc(total, num) {
         return total + num;
@@ -39,6 +45,11 @@ $('.room_table_body_custom').on('keyup', function(){
 
     $("[name='children']").val(ch_too.reduce(myFunc2));
     function myFunc2(total, num) {
+        return total + num;
+    }
+    
+    $("[name='total'],[name='balance']").val(amount_too.reduce(myFunc3));
+    function myFunc3(total, num) {
         return total + num;
     }
 });

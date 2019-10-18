@@ -147,8 +147,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Custom JS -->
 <script src="{{url('admin/custom.js')}}"></script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> --}}
+{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
+
+<!-- Summernote -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="{{url('admin/assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
 <script>
     $(function () {
@@ -241,6 +245,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
       });
     });
   </script>
+
+
+{{-- summernote --}}
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote({
+      height: 200
+    });
+  })
+</script>
 
 </body>
 </html>

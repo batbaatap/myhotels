@@ -35,6 +35,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
 
     
     // Hotel
+    Route::match(['get', 'post'], '/hotel/add-hotel',          'HotelController@addHotel');
+    Route::match(['get', 'post'], '/hotel/edit-hotel/{id}',    'HotelController@editHotel');
+    Route::get('/hotel/view-hotels',                           'HotelController@viewHotel');
+    Route::get('/hotel/delete-hotel/{id}',                     'HotelController@deleteHotel');
+
+
     Route::get('dashboard', 'AdminController@dashboard');
 
     Route::get('settings', 'AdminController@settings');

@@ -21,11 +21,14 @@ table.dataTable thead > tr > th.sorting_desc
     }
 }
 
-
 .form-control {
     font-size: 12px;
     letter-spacing: 0;
     padding-left: 2px;
     padding-right: 2px;
+}
+
+.bootstrap-duallistbox-container select {
+    height:200px!important;
 }
 

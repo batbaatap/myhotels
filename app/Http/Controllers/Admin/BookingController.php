@@ -96,12 +96,12 @@ class BookingController extends Controller
                         'id_booking'=>$booking->id,
                         'id_hotel'=>$request->id_hotel_sub[$item],
                         'id_room'=>$request->room_id_sub[$item],
-                        'title'=>null,
+                        'title'=>$request->description_r[$item],
                         'num'=>null,
 
-                        'children' => null,
-                        'adults' => null,
-                        'amount' => null,
+                        'children' => $request->children_r[$item],
+                        'adults' => $request->children_r[$item],
+                        'amount' => $request->amount_r[$item],
                         'ex_tax' => null,
                         'tax_rate' =>null,
                     );
