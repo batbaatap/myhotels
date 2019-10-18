@@ -1,5 +1,5 @@
 // ====================
-// Өрөө нэмэх дээр дарахад сүүлийн баганы утгыг авч хэвлэнэ
+// Clone down last row value
 // ==================-=
 $("#uruu_nemeh").on('click', function(){        
             var newRow = $('.room_table_row:last').clone().insertAfter('.room_table_body tr:last');
@@ -8,37 +8,40 @@ $("#uruu_nemeh").on('click', function(){
 });
 
 // ====================
-// Хоногийг бодож гаргав тооцоолов
+// Calculcating
 // ==================-=
 
-jQuery('#reservation').on("change", function (e) {
-        Calc();
-    });
-        function Calc(){
-        
-        var start = $('#reservation').data('daterangepicker').startDate;
-        var end = 	$('#reservation').data('daterangepicker').endDate;
-        
-        var days = Math.floor((end - start)/1000/60/60/24);
-        $('#honog').val(days);  
+
+
+// ====================
+// calculating num of people 
+// ==================-=
+
+$('.room_table_body_custom').on('keyup', function(){
+    var adult_r = $("[name='adult_r[]']");
+    var children_r = $("[name='children_r[]']");
+    
+    var ad_too=[];
+    var ch_too=[];
+
+    for(var i = 0; i<adult_r.length; i++){
+        ad_too.push(parseInt(adult_r[i].value));
     }
 
+    for(var i = 0; i<children_r.length; i++){
+        ch_too.push(parseInt(children_r[i].value));
+    }
 
-// ====================
-// Өрөө нэмэх дээр дарахад сүүлийн баганы утгыг авч хэвлэнэ
-// ==================-=
+    $("[name='adults']").val(ad_too.reduce(myFunc));
+    function myFunc(total, num) {
+        return total + num;
+    }
 
-
-
-
-
-
-// ====================
-// Өрөө нэмэх дээр дарахад сүүлийн баганы утгыг авч хэвлэнэ
-// ==================-=
-
-
-
+    $("[name='children']").val(ch_too.reduce(myFunc2));
+    function myFunc2(total, num) {
+        return total + num;
+    }
+});
 
 // ====================
 // Өрөө нэмэх дээр дарахад сүүлийн баганы утгыг авч хэвлэнэ

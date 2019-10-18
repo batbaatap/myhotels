@@ -245,7 +245,7 @@
                             </tr>
                         </thead>
                         
-                        <tbody class="room_table_body">
+                        <tbody class="room_table_body room_table_body_custom">
                             <tr class="room_table_row">
                                     <th scope="row">
                                         {{-- <input type="number" name="linenum[]" class="form-control" > --}}
