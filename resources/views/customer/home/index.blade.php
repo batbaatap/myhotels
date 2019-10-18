@@ -18,9 +18,14 @@
     </div>
 
     <div class="col">
-      calendari
+         <input type="date" name="datefrom" class="form-control float-right" >
     </div>
 
+    <div class="col">
+         <input type="date" name="dateto" class="form-control float-right" >
+    </div>
+
+     
   </div>
 </form>
 <form>
@@ -32,7 +37,7 @@
    <div class="col">
       <input type="number" class="form-control"  name="quantity" min="1" max="5" placeholder="хүний тоо">
     </div>
-<button type="submit" class="btn btn-primary">Sign in</button>
+<button type="submit" class="btn btn-primary">Хайх</button>
 
 
   </div>

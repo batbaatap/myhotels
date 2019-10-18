@@ -7,6 +7,8 @@
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{url('admin/assets/plugins/fontawesome-free/css/all.min.css')}}">
+       
+       
   <!-- DataTables -->
   <link rel="stylesheet" href="{{url('admin/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
   <!-- Theme style -->
@@ -25,4 +27,11 @@
   <link rel="stylesheet" href="{{url('admin/custom.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet')}}">
+
+{{-- date time picker --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+     
+    <link rel="stylesheet" href="/dist/plugins/daterangepicker/daterangepicker.css">
+
 </head>
