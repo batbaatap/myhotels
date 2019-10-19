@@ -19,11 +19,12 @@ class HotelController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
 
+            // echo "<pre>"; print_r($data); die;
+
             $arr = $data['hotel_facilities'];
             // echo implode(" ",$arr);
             // echo json_encode($arr);
             $i =  implode(',', $arr);
-            // echo "<pre>"; print_r($data); die;
             $hotel = new Hotel();            
             $hotel->lang=2;
             $hotel->users=1;
@@ -39,8 +40,8 @@ class HotelController extends Controller
             $hotel->web=$data['web'];
             $hotel->descr=$data['description'];
             $hotel->facilities= $i;
-          
-            // $hotel->id_destination=$data['id_destination'];
+            $hotel->id_destination=$data['id_destination'];
+
             // $hotel->paypal_email='';
             // $hotel->home=$data['title'];
             // $hotel->checked=$data['title'];
@@ -83,13 +84,12 @@ class HotelController extends Controller
 
     public function viewHotel()
     {
-      
-
         $hotels = DB::table('pm_hotel')
         ->leftJoin('pm_destination', 'pm_hotel.id_destination', '=', 'pm_destination.id')
         ->select('pm_destination.name', 'pm_hotel.id', 'pm_hotel.title',
-        'pm_hotel.subtitle', 'pm_hotel.class', 'pm_hotel.home','pm_hotel.checked', )
-            ->get();
+                 'pm_hotel.subtitle', 'pm_hotel.class', 'pm_hotel.home',
+                 'pm_hotel.checked', )
+        ->get();
 
         return view('admin.hotel.view_hotels')->with(compact('hotels'));
     }
