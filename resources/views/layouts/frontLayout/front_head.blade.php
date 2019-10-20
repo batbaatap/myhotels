@@ -5,26 +5,14 @@
 
   <title>myhotel</title>
 
-  <!-- Font Awesome Icons -->
+        <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{url('admin/assets/plugins/fontawesome-free/css/all.min.css')}}">
-       
-       
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{url('admin/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('admin/assets/dist/css/adminlte.min.css')}}">
-  <link rel="stylesheet" href="{{url('admin/assets/plugins/daterangepicker/daterangepicker.css')}}">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{url('admin/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="{{url('admin/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{url('admin/assets/plugins/select2/css/select2.min.css')}}">
-  <link rel="stylesheet" href="{{url('admin/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-  <!-- Bootstrap4 Duallistbox -->
-  <link rel="stylesheet" href="{{url('admin/assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{url('admin/custom.css')}}">
+  <!-- Font Awesome Icons -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet')}}">
 

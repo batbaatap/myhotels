@@ -17,10 +17,6 @@ $(document).ready(function () {
        sideBySide: true
         })
     }
-    if(!localStorage.getItem("localdate3")){
-      // jQuery('.room_quantity').append(room_quantity);
-      jQuery('.room_quantity').val(room_quantity);
-   }
     
 $('.datetime1').datetimepicker({
   defaultDate: dateFrom, // someVardate

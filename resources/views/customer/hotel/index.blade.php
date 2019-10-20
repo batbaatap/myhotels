@@ -96,35 +96,51 @@
 	                    <strong>{!! session('flash_message_error') !!}</strong>
 	            </div>
     		@endif   --}}
+<div  class="container">
+  <div  class="row">
 
-  @foreach ($hotel as $h)
-    <div class="jumbotron" >
-        {{ $h->title }}
-        {{-- <button>захиалах</button> --}}
-        
-        {{-- <a href="{{ url('roomsearch') }}" class="btn btn-primary" name="hotel" value="{{$h->id}}">Захиалах</a> --}}
-     {{-- <a href="{{ url('roomsearch') }}"> </a>
-      --}}
+        <div  class="col-sm-2">
+          @include('layouts.frontLayout.front_sidebar')
+        </div>
 
-      <form action="{{url('roomsearch') }}"  method="POST" enctype="multipart/form-data">
-          @csrf <!-- {{ csrf_field() }} -->
-       <input   id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
-       <input  id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
-        <input id="searchC" type="hidden" class="form-control room_quantity"  name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
-        <input id="searchD" type="hidden" class="form-control person_quantity"  name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
-       <input type="hidden" value="{{$h->id}}" name="hotel"/><button>захиалах</button>
-   </form>
+          <div  class="col-sm-10">
+                @foreach ($hotel as $h)
+                  <div class="jumbotron" >
+                    <div  class="row">
+                         <div class="col">
+                            {{-- <img src={{ $h->file }} height="42" width="42"><br/> --}}
+                            <p>end zurag bga</p>
+                        </div>
 
-    </div>
-  @endforeach
+                        <div class="col">
+                            <h5>{{ $h->title }}</h5>
+                            {{ $h->subtitle }}<br/>
+                              <i class="fa fa-map-marker" aria-hidden="true"></i> {{ $h->address }}<br/>
+                            {{ $h->descr}}<br/>
+                            {{ $h->facilities}}<br/>
+
+                          <form action="{{url('roomsearch') }}"  method="POST" enctype="multipart/form-data">
+                                  @csrf <!-- {{ csrf_field() }} -->
+                                  <input   id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
+                                  <input  id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
+                                  <input id="searchC" type="hidden" class="form-control room_quantity"  name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
+                                  <input id="searchD" type="hidden" class="form-control person_quantity"  name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
+                        </div>  
+                        <div class="col">  
+                                <p>From $8 / night</p>
+                                <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button><br/><br/>
+                                <input type="hidden" value="{{$h->id}}" name="hotel"/> <button >Захиалах</button>
+                              </div> 
+                          </form>
 
 
-          {{-- <select id="destination" name="destination" class="form-control ">
-            @foreach ($destination  as $des)
-              <option value="{{$des->id}}" >{{ $des->name }}</option>
-            @endforeach
-          </select> --}}
 
+                      </div>
+                  </div>
+                @endforeach
+            </div>
+     </div>
+   </div>
  @endsection
  
 
