@@ -17,7 +17,7 @@
                         <thead>
                             <tr  style="font-size:12px;">
                                 <th style="width: 10px;">#</th>
-                                <th style="width: 200px;">id</th>
+                                <th style="width: 10px;">id</th>
                                 <th style="width: auto;">Image</th>
                                 <th style="width: auto;">Title</th>
                                 <th style="width: auto;">Subtitle</th>
@@ -49,12 +49,16 @@
                                 <td>{{ $item->home}}</td>
                                 <td>{{ $item->checked}}</td>
 
-                                <td class="center">
-                                    <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-primary">ЗАСАХ</a>
-                                    <a id="delB" class="btn btn-danger"  href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}">
-                                        УСТГАХ
-                                    </a>
-                                </td>
+                                <td class="project-actions text-center">
+                                        <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-info btn-sm" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                        </a>
+                                        <a href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                        </a>
+                                    </td>
 
                             </tr>
                             @endforeach

@@ -17,47 +17,43 @@
                         <thead>
                             <tr  style="font-size:12px;">
                                 <th style="width: 10px;">#</th>
-                                <th style="width: 200px;">Зочид буудал</th>
-                                <th style="width: auto;">Харилцагч</th>
-                                <th style="width: auto;">Орох</th>
-                                <th style="width: auto;">Гарах</th>
+                                <th style="width: 10px;">id</th>
+                                <th style="width: auto;">Image</th>
+                                <th style="width: auto;">Title</th>
+                                <th style="width: auto;">Subtitle</th>
                                 
-                                <th style="width: auto;">Хоног</th>
-                                <th style="width: auto;">Том хүн</th>
-                                <th style="width: auto;">Хүүхэд</th>
-                                <th style="width: auto;">Нийт</th>
-                                <th style="width: auto;">Төлөв</th>
+                                <th style="width: auto;">Зочид буудал</th>
+                                <th style="width: auto;">Max хүн</th>
+                                <th style="width: auto;">Home</th>
+                                <th style="width: auto;">Status</th>
+                                <th style="width: auto;">Actions</th>
                                 
-                                <th style="width: auto;">Нэмэгдсэн</th>
-                                <th style="width: auto;">Шинэчлэгдсэн</th>
-                                <th style="width: auto;">Үйлдэл</th>
                             </tr>
                         </thead>
                         
                         <tbody>
-                            @foreach ($bookings as $item)
+                            @foreach ($rooms as $item)
                             <tr style="font-size:12px;">
                                 <td></td>
+                                <td>{{ $item->id}}</td>
+                                <td>zurag</td>
                                 <td>{{ $item->title}}</td>
-                                <td>{{ $item->id_hotel}}</td>
-                                <td>@php echo date("Y-m-d",  ($item->from_date) ); @endphp </td>
-                                <td>@php echo date("Y-m-d",  ($item->to_date) ); @endphp</td>
-                                
-                                
-                                <td>{{ $item->nights}}</td>
-                                <td>{{ $item->adults}} tom hun</td> 
-                                <td>{{ $item->children}}</td>
-                                <td>{{ $item->amount}}</td>
-                                
-                                <td>{{ $item->amount}}</td>
-                                <td>{{ $item->amount}}</td>
+                                <td>{{ $item->subtitle}}</td> 
+                                <td>{{ $item->sameTitle}}</td>
+                                <td>{{ $item->max_people}}</td>
+                                <td>{{ $item->home}}</td>
+                                <td>{{ $item->checked}}</td>
 
-                                <td class="center">
-                                    <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-primary">ЗАСАХ</a>
-                                    <a id="delB" class="btn btn-danger"  href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}">
-                                        УСТГАХ
-                                    </a>
-                                </td>
+                                <td class="project-actions text-center">
+                                        <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-info btn-sm" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                        </a>
+                                        <a href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                        </a>
+                                    </td>
 
                             </tr>
                             @endforeach

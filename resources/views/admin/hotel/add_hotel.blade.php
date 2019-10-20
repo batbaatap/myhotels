@@ -1,11 +1,27 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 
-<form action="{{url('admin/hotel/add-hotel')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate">
+
+
+<div class="col-md-6">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                <li>Талбаруудыг бүтэн бөглөнө үү</li>
+                @foreach ($errors->all() as $error)
+                    {{-- <li>{{ $error }}</li> --}}
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    </div>
+
+
+<form action="{{url('admin/hotel/add-hotel')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="add-hotel">
     {{ csrf_field() }}
 <div class="card card-default">
     <div class="card-header">
-        {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem laborum ducimus numquam recusandae distinctio veniam, ratione libero doloribus, assumenda dicta totam! Nobis sed, a debitis eos beatae velit quisquam nihil. --}}
+        Зочид буудал оруулах 
     </div>
     <div class="card-body  table-responsive ">
          
@@ -13,7 +29,7 @@
          <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Нэр</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="title" name="title" value="" >
+                <input type="text" class="form-control" id="hotel_title" name="hotel_title" value="" >
             </div>
         </div>
 
@@ -21,7 +37,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Subtitle</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="subtitle" name="subtitle" value="" >
+                <input type="text" class="form-control" id="hotel_subtitle" name="hotel_subtitle" value="" >
             </div>
         </div>
 
@@ -29,7 +45,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Alias</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="alias" name="alias" value="" >
+                <input type="text" class="form-control" id="hotel_alias" name="hotel_alias" value="" >
             </div>
         </div>
 
@@ -37,7 +53,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Description</label>
             <div class="col-sm-6">
-                <textarea class="textarea" name="description" placeholder="Place some text here"
+                <textarea class="textarea" name="hotel_description" placeholder="Place some text here"
                           style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
         </div>
@@ -51,6 +67,7 @@
                         <div class="col-12">
                             <div class="form-group">
                             <select class="duallistbox" multiple="multiple" name="hotel_facilities[]">
+
                                 <?php echo $facilities_drop_down; ?>
                             </select>
                             </div>
@@ -76,32 +93,32 @@
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Одны зэрэглэл</label>
             <div class="col-sm-6">
                 <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary1" name="class" checked="" value="0">
+                <input type="radio" id="radioPrimary1" name="hotel_class" checked="" value="0">
                 <label for="radioPrimary1">None
                 </label>
                 </div>
                 <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary2" name="class" value="1">
+                <input type="radio" id="radioPrimary2" name="hotel_class" value="1">
                 <label for="radioPrimary2">1 Од
                 </label>
                 </div>
                 <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary3" name="class" value="2">
+                <input type="radio" id="radioPrimary3" name="hotel_class" value="2">
                 <label for="radioPrimary3">2 Од
                 </label>
                 </div>
                 <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary4" name="class" value="3">
+                <input type="radio" id="radioPrimary4" name="hotel_class" value="3">
                 <label for="radioPrimary4">3 Од
                 </label>
                 </div>
                 <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary5" name="class" value="4">
+                <input type="radio" id="radioPrimary5" name="hotel_class" value="4">
                 <label for="radioPrimary5">4 Од
                 </label>
                 </div>
                 <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary6" name="class" value="5">
+                <input type="radio" id="radioPrimary6" name="hotel_class" value="5">
                 <label for="radioPrimary6">5 Од
                 </label>
                 </div>
@@ -113,7 +130,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Утас</label>
             <div class="col-sm-6">
-                <input type="number" class="form-control" id="phone" name="phone" value="" >
+                <input type="number" class="form-control" id="hotel_phone" name="hotel_phone" value="" >
             </div>
         </div>
 
@@ -121,71 +138,72 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Имэйл</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="email" name="email" value="" >
+                <input type="text" class="form-control" id="hotel_email" name="hotel_email" value="" >
             </div>
         </div>
         <!-- web -->
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Web</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="web" name="web" value="" >
+                <input type="text" class="form-control" id="hotel_web" name="hotel_web" value="" >
             </div>
         </div>
         <!-- address -->
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Address</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="address" name="address" value="" >
+                <input type="text" class="form-control" id="hotel_address" name="hotel_address" value="" >
             </div>
         </div>
         <!-- lat -->
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">lat</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="lat" name="lat" value="" >
+                <input type="text" class="form-control" id="hotel_lat" name="hotel_lat" value="" >
             </div>
         </div>
         <!-- long -->
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">long</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="long" name="long" value="" >
+                <input type="text" class="form-control" id="hotel_long" name="hotel_long" value="" >
             </div>
         </div>
         
 
-        {{-- relase --}}
+        {{-- release --}}
         <div class="form-group row">.
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Release</label>
                 
                 <div class="col-sm-6">
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub1" name="pub1" checked="" value="0">
+                        <input type="radio" id="pub1" name="hotel_pub1" checked="" value="0">
                         <label for="pub1">Published
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub2" name="pub1" value="1">
+                        <input type="radio" id="pub2" name="hotel_pub1" value="1">
                         <label for="pub2"> Not published
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub3" name="pub1" value="2">
+                        <input type="radio" id="pub3" name="hotel_pub1" value="2">
                         <label for="pub3">Awaiting
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub4" name="pub1" value="3">
+                        <input type="radio" id="pub4" name="hotel_pub1" value="3">
                         <label for="pub4">Archived
                         </label>
                     </div>
                 </div>
             </div>
 
-        {{-- relase --}}
+
+        {{-- release --}}
         <div class="form-group row">.
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Нүүр хуудас дээр гаргах</label>
                 
@@ -204,6 +222,7 @@
                 </div>
             </div>
             
+
         {{-- image --}}
         <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зураг</label>
@@ -220,7 +239,12 @@
         </div>
         
         <div class="card-footer">
-                <button type="submit">Хадгалах</button>
+                
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-4">
+                        <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
+                    </div>
+                </div>
         </div>
 </div>
 

@@ -144,8 +144,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{url('admin/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('admin/assets/dist/js/adminlte.min.js')}}"></script>
+
+<!-- Custom Plugin me  -->
+<script src="{{url('admin/cus_plugin_me/jquery.validate.js')}}"></script>
 <!-- Custom JS -->
 <script src="{{url('admin/custom.js')}}"></script>
+
 
 {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> --}}
 {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
@@ -153,6 +157,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Summernote -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="{{url('admin/assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
+
+
+{{-- swal --}}
+{{-- <script src="sweetalert2.all.min.js"></script> --}}
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+{{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> --}}
 
 <script>
     $(function () {

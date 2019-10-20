@@ -1,12 +1,28 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 
-<form action="{{url('admin/room/add-room')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate">
+
+<div class="col-md-6">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                {{-- <li>{{ $error }}</li> --}}
+                <li>Талбаруудыг бүтэн бөглөнө үү</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+</div>
+<form action="{{url('admin/room/add-room')}}" method="POST" 
+enctype = "multipart/form-data" 
+class="form-horizontal" 
+novalidate="novalidate" id="add-room">
     {{ csrf_field() }}
     
     <div class="card card-default">
     <div class="card-header">
-        Мэдээлэл оруулах
+        Өрөө оруулах
     </div>
     <div class="card-body  table-responsive ">
          
@@ -48,11 +64,12 @@
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хүүхдийн тоо:</label>
                 <div class="col-sm-6">
                     <select class="form-control" name="room_max_children" style="width: 100%;">
+                        <option value selected="selected">-</option>
                         @php
                             $children = 20;
                         @endphp
                         @for ($i = 0; $i < $children; $i++)
-                            <option value={{$i}}>{{$i}}</option>
+                            <option value={{$i}}> {{$i}}</option>
                         @endfor
                     </select>
                 </div>
@@ -63,6 +80,7 @@
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Том хүний тоо:</label>
                 <div class="col-sm-6">
                     <select class="form-control" name="room_max_adults" style="width: 100%;">
+                        <option value selected="selected">-</option>
                         @php
                             $ad = 20;
                         @endphp
@@ -78,6 +96,7 @@
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хүний тоо ихдээ:</label>
                 <div class="col-sm-6">
                     <select class="form-control" name="room_max_people" style="width: 100%;">
+                        <option value selected="selected">-</option>
                         @php
                             $maxpe = 20;
                         @endphp
@@ -93,6 +112,7 @@
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хүний тоо багадаа:</label>
                 <div class="col-sm-6">
                     <select class="form-control" name="room_min_people" style="width: 100%;">
+                        <option value selected="selected">-</option>
                         @php
                             $minpe = 20;
                         @endphp
@@ -120,7 +140,7 @@
                         <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                            <select class="duallistbox" multiple="multiple" name="room_facilities[]">
+                            <select class="duallistbox" multiple="multiple" id="room_facilities" name="room_facilities[]">
                                 <?php echo $facilities_drop_down; ?>
                             </select>
                             </div>
@@ -214,8 +234,17 @@
         </div>
         
         <div class="card-footer">
-                <button type="submit">Хадгалах</button>
+                {{-- <button id="add-room" type="submit">Хадгалах</button> --}}
+
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-4">
+                        <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
+                    </div>
+                </div>
         </div>
+
+      
+
 </div>
 
 </form>

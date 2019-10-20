@@ -23,14 +23,14 @@
                                 <th style="width: auto;">Гарах</th>
                                 
                                 <th style="width: auto;">Хоног</th>
-                                <th style="width: auto;">Том хүн</th>
+                                <th style="width: 80px;">Том хүн</th>
                                 <th style="width: auto;">Хүүхэд</th>
                                 <th style="width: auto;">Нийт</th>
                                 <th style="width: auto;">Төлөв</th>
                                 
                                 <th style="width: auto;">Нэмэгдсэн</th>
                                 <th style="width: auto;">Шинэчлэгдсэн</th>
-                                <th style="width: auto;">Үйлдэл</th>
+                                <th style="width: 100px;">Үйлдэл</th>
                             </tr>
                         </thead>
                         
@@ -49,16 +49,20 @@
                                 <td>{{ $item->children}}</td>
                                 <td>{{ $item->amount}}</td>
                                 
-                                <td>{{ $item->amount}}</td>
-                                <td>{{ $item->amount}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
-                                <td class="center">
-                                    <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-primary">ЗАСАХ</a>
-                                    <a id="delB" class="btn btn-danger"  href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}">
-                                        УСТГАХ
+                                <td class="project-actions text-center">
+                                    <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-info btn-sm" href="#">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                    </a>
+                                    <a href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
+                                        <i class="fas fa-trash">
+                                        </i>
                                     </a>
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>

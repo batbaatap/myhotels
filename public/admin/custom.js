@@ -63,7 +63,119 @@ $('.room_table_body_custom').on('keyup', function(){
 
 
 // ====================
-// Өрөө нэмэх дээр дарахад сүүлийн баганы утгыг авч хэвлэнэ
+// jquery validate form
 // ==================-=
 
+// Room
 
+$("#add-room").validate({
+    rules:{
+        room_title:{required:true,},
+        room_id_hotel:{required:true,},
+        room_alias:{required:true,},
+        room_subtitle:{required:true,},
+        room_stock:{required:true,},
+        room_price:{required:true,},
+        room_max_children: {  required:true,},
+        room_max_adults: {  required:true,},
+        room_max_people: {  required:true,},
+        room_min_people: {  required:true,},
+    },
+    messages: {
+        // room_title: "Required",
+        // lastname: "Please enter your lastname",
+    },
+
+    errorElement: "em",
+    errorPlacement: function ( error, element ) {
+        // Add the `invalid-feedback` class to the error element
+        error.addClass( "invalid-feedback" );
+
+        if ( element.prop( "type" ) === "multiple" ) {
+            error.insertAfter( element.next( "label" ) );
+        } else {
+            error.insertAfter( element );
+        }
+    },
+    highlight: function ( element, errorClass, validClass ) {
+        $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+    }
+
+});
+
+// Hotel
+$("#add-hotel").validate({
+    rules:{
+        hotel_title: {required:true},
+        hotel_alias  : {required:true},
+        hotel_address  : {required:true},
+        hotel_lat  : {required:true},
+        hotel_long  : {required:true}
+    },
+    messages: {
+        // room_title: "Required",
+        // lastname: "Please enter your lastname",
+    },
+
+    errorElement: "em",
+    errorPlacement: function ( error, element ) {
+        // Add the `invalid-feedback` class to the error element
+        error.addClass( "invalid-feedback" );
+
+        if ( element.prop( "type" ) === "multiple" ) {
+            error.insertAfter( element.next( "label" ) );
+        } else {
+            error.insertAfter( element );
+        }
+    },
+    highlight: function ( element, errorClass, validClass ) {
+        $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+    }
+
+});
+
+
+// Booking
+$("#add-booking").validate({
+    rules:{
+        id_hotel: {required:true},
+        date_from_and_date_to  : {required:true},
+        firstname  : {required:true},
+        lastname  : {required:true},
+        email  : {required:true},
+        address  : {required:true},
+        postcode  : {required:true},
+        city  : {required:true},
+        phone  : {required:true},
+        country  : {required:true},
+    },
+    messages: {
+        // room_title: "Required",
+        // lastname: "Please enter your lastname",
+    },
+
+    errorElement: "em",
+    errorPlacement: function ( error, element ) {
+        // Add the `invalid-feedback` class to the error element
+        error.addClass( "invalid-feedback" );
+
+        if ( element.prop( "type" ) === "multiple" ) {
+            error.insertAfter( element.next( "label" ) );
+        } else {
+            error.insertAfter( element );
+        }
+    },
+    highlight: function ( element, errorClass, validClass ) {
+        $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+    }
+
+});

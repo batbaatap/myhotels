@@ -8,6 +8,7 @@ use App\Room;
 use App\destination;
 use App\Facility;
 use App\Hotel;
+use DB;
 
 class RoomController extends Controller
 {
@@ -16,8 +17,21 @@ class RoomController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
 
-            // echo "<pre>"; print_r($data); die;
+            $request->validate([
+                'room_id_hotel' => 'required',
+                'room_title'=>'required',
+                'room_id_hotel'=>'required',
+                'room_alias'=>'required',
+                'room_subtitle'=>'required',
+                'room_stock'=>'required',
+                'room_price'=>'required',
+                'room_max_children'=>  'required',
+                'room_max_adults'=>  'required',
+                'room_max_people'=>  'required',
+                'room_min_people'=>  'required',
+            ]);
 
+            // echo "<pre>"; print_r($data); die;
 
             $arr = $data['room_facilities'];
             $i =  implode(',', $arr);
@@ -58,7 +72,7 @@ class RoomController extends Controller
 
 
         $facilities = Facility::get();
-        $facilities_drop_down = "";
+        $facilities_drop_down = "<option value='' selected> - </option>";
         foreach($facilities as $h){
             $facilities_drop_down .= "<option value='".$h->id."'>".$h->name."</option>";
         }
@@ -71,5 +85,17 @@ class RoomController extends Controller
         }
         
         return view('admin.room.add_room')->with(compact('hotels_drop_down', 'facilities_drop_down', 'destinations_drop_down'));
+    }
+
+    public function viewRoom()
+    {
+        $rooms = DB::table('pm_room')
+        ->leftJoin('pm_hotel', 'pm_room.id_hotel', '=', 'pm_hotel.id')
+        ->select(DB::raw('pm_hotel.title as sameTitle'),  'pm_room.max_people', 'pm_room.checked', 'pm_room.id', 'pm_room.title',
+                 'pm_room.subtitle',  'pm_room.home',
+                 'pm_room.checked' )
+        ->get();
+
+        return view('admin.room.view_rooms')->with(compact('rooms'));
     }
 }

@@ -1,22 +1,23 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 
-<form action="{{url('admin/booking/add-booking')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate">
+<form action="{{url('admin/booking/add-booking')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="add-booking">
     {{ csrf_field() }}
+
 <div class="card card-default">
     <div class="card-header">
-        {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem laborum ducimus numquam recusandae distinctio veniam, ratione libero doloribus, assumenda dicta totam! Nobis sed, a debitis eos beatae velit quisquam nihil. --}}
+        Захиалга оруулах
     </div>
     <div class="card-body  table-responsive ">
         
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зочид буудал</label>
-                <div class="col-sm-6">
-                    <select class="form-control" name="id_hotel" style="width: 100%;">
-                        <?php echo $hotels_drop_down; ?>
-                    </select>
-                </div>
-        </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зочид буудал</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="id_hotel" style="width: 100%;">
+                            <?php echo $hotels_drop_down; ?>
+                        </select>
+                    </div>
+            </div>
             
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Орох, Гарах өдөр</label>
