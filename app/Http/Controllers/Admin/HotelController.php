@@ -73,7 +73,7 @@ class HotelController extends Controller
         ->leftJoin('pm_destination', 'pm_hotel.id_destination', '=', 'pm_destination.id')
         ->select('pm_destination.name', 'pm_hotel.id', 'pm_hotel.title',
                  'pm_hotel.subtitle', 'pm_hotel.class', 'pm_hotel.home',
-                 'pm_hotel.checked', )
+                 'pm_hotel.checked')
         ->get();
 
         return view('admin.hotel.view_hotels')->with(compact('hotels'));

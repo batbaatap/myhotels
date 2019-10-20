@@ -22,9 +22,10 @@ class RoomController extends Controller
     }
     
 public function roomsearch(Request $request){
-        
-        $datefrom22 = $request->datefrom22;
-        $dateto22 = $request->dateto22;
+    
+
+        $datefrom22 =  strtotime($request->datefrom22);
+        $dateto22 =  strtotime($request->dateto22);
         $room_quantity22 = $request->room_quantity22;
         $person_quantity22 = $request->person_quantity22;
         $hotel22 = $request->hotel;

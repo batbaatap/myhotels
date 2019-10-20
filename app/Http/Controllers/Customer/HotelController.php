@@ -55,8 +55,9 @@ class HotelController extends Controller
         // {
         //     $output="";
 
-        $datefrom = $request->datefrom;
-        $dateto = $request->dateto;
+        $datefrom =  strtotime($request->datefrom);
+        $dateto =  strtotime($request->dateto);
+        // dd($datefrom,$dateto);
          $room_quantity = $request->room_quantity;
         //  if($room_quantity==0){
         //     return redirect()->back()->with('flash_message_error');
