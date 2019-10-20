@@ -22,8 +22,7 @@ class RoomController extends Controller
     }
     
 public function roomsearch(Request $request){
-        // $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
-        // if($request->get)
+        
         $datefrom22 = $request->datefrom22;
         $dateto22 = $request->dateto22;
         $room_quantity22 = $request->room_quantity22;
@@ -77,22 +76,6 @@ public function roomsearch(Request $request){
     }
 
     
-public function roomcount(Request $request){ // oroo bolgonii id -g awan user-iin zahialah bolomjit toon utgiig haruulj bgaa
-    $datefrom33 = $request->datefrom33;
-    $dateto33 = $request->dateto33;
-    $room_quantity33 = $request->room_quantity33;
-    $roome = $request->room_roome;
-    dd($request->datefrom33);
-
-    $rooms= DB::select(DB::raw(
-           
-        "
-    "
-));
-
-        return view('customer/room.index', compact('rooms'));
-
-}
 
 
     /**

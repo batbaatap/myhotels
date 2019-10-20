@@ -28,8 +28,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     });
 
     // Booking
-    Route::match(['get', 'post'], '/booking/add-booking', 'BookingController@addBooking');
-    Route::get('/booking', 'BookingController@viewBookings');
+    Route::match(['get', 'post'], '/booking/add-booking',          'BookingController@addBooking');
+    Route::match(['get', 'post'], '/booking/edit-booking/{id}',    'BookingController@editBooking');
+    Route::get('/booking/view-bookings',                           'BookingController@viewBookings');
+    Route::get('/booking/delete-booking/{id}',                     'BookingController@deleteBooking');
+
+    
+    // Hotel
+    Route::match(['get', 'post'], '/hotel/add-hotel',          'HotelController@addHotel');
+    Route::match(['get', 'post'], '/hotel/edit-hotel/{id}',    'HotelController@editHotel');
+    Route::get('/hotel/view-hotels',                           'HotelController@viewHotel');
+    Route::get('/hotel/delete-hotel/{id}',                     'HotelController@deleteHotel');
+    
+    
+    // Room
+    Route::match(['get', 'post'], '/room/add-room',          'RoomController@addRoom');
+    Route::match(['get', 'post'], '/room/edit-room/{id}',    'RoomController@editRoom');
+    Route::get('/room/view-rooms',                           'RoomController@viewRoom');
+    Route::get('/room/delete-room/{id}',                     'RoomController@deleteRoom');
 
 
     Route::get('dashboard', 'AdminController@dashboard');
@@ -56,7 +72,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::match(['get', 'post'], '/admin/add-images/{id}','ProductController@addImages');
 
     Route::get('/admin/delete-alt-image/{id}','ProductController@deleteProductAltImage');
-
 
 
     // Category

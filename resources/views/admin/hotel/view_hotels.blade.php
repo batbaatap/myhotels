@@ -17,40 +17,37 @@
                         <thead>
                             <tr  style="font-size:12px;">
                                 <th style="width: 10px;">#</th>
-                                <th style="width: 200px;">Зочид буудал</th>
-                                <th style="width: auto;">Харилцагч</th>
-                                <th style="width: auto;">Орох</th>
-                                <th style="width: auto;">Гарах</th>
+                                <th style="width: 200px;">id</th>
+                                <th style="width: auto;">Image</th>
+                                <th style="width: auto;">Title</th>
+                                <th style="width: auto;">Subtitle</th>
                                 
-                                <th style="width: auto;">Хоног</th>
-                                <th style="width: auto;">Том хүн</th>
-                                <th style="width: auto;">Хүүхэд</th>
-                                <th style="width: auto;">Нийт</th>
-                                <th style="width: auto;">Төлөв</th>
+                                <th style="width: auto;">Class</th>
+                                <th style="width: auto;">Destination</th>
+                                <th style="width: auto;">Home</th>
+                                <th style="width: auto;">Status</th>
+                                <th style="width: auto;">Actions</th>
                                 
-                                <th style="width: auto;">Нэмэгдсэн</th>
-                                <th style="width: auto;">Шинэчлэгдсэн</th>
-                                <th style="width: auto;">Үйлдэл</th>
                             </tr>
                         </thead>
                         
                         <tbody>
-                            @foreach ($bookings as $item)
+                            @foreach ($hotels as $item)
                             <tr style="font-size:12px;">
                                 <td></td>
+                                <td>{{ $item->id}}</td>
+                                <td>zurag</td>
+                                {{-- <td>@php echo date("Y-m-d",  ($item->from_date) ); @endphp </td>
+                                <td>@php echo date("Y-m-d",  ($item->to_date) ); @endphp</td> --}}
+
                                 <td>{{ $item->title}}</td>
-                                <td>{{ $item->id_hotel}}</td>
-                                <td>@php echo date("Y-m-d",  ($item->from_date) ); @endphp </td>
-                                <td>@php echo date("Y-m-d",  ($item->to_date) ); @endphp</td>
+                                <td>{{ $item->subtitle}}</td> 
+                                <td>{{ $item->class}}</td>
+                                {{-- <td>{{ $destination->id_destination}}</td> --}}
+                                <td>{{ $item->name}}</td>
                                 
-                                
-                                <td>{{ $item->nights}}</td>
-                                <td>{{ $item->adults}} tom hun</td> 
-                                <td>{{ $item->children}}</td>
-                                <td>{{ $item->amount}}</td>
-                                
-                                <td>{{ $item->amount}}</td>
-                                <td>{{ $item->amount}}</td>
+                                <td>{{ $item->home}}</td>
+                                <td>{{ $item->checked}}</td>
 
                                 <td class="center">
                                     <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-primary">ЗАСАХ</a>
