@@ -23,6 +23,7 @@ class RoomController extends Controller
     
 public function roomsearch(Request $request){
     
+    if($request->isMethod('post')){
 
         $datefrom22 =  strtotime($request->datefrom22);
         $dateto22 =  strtotime($request->dateto22);
@@ -73,7 +74,8 @@ public function roomsearch(Request $request){
             ));
 
             return view('customer/room.index', compact('rooms','hotels'));
-
+        }
+        
     }
 
     

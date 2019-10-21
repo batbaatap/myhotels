@@ -52,7 +52,7 @@
         <div class="col">
           <input id="searchD" type="number" class="form-control person_quantity"  name="person_quantity" min="1" max="5" placeholder="хүний тоо">
         </div>
-    <button type="submit" onclick="getData()" class="btn btn-primary">Хайх</button>
+    <button type="submit" onclick="getDate()" class="btn btn-primary">Хайх</button>
 
   </div>
 </form>

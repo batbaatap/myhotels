@@ -161,6 +161,6 @@ Route::namespace('customer')->group(function () {
   Route::resource('room', 'RoomController');
   Route::match(['get', 'post'],'roomsearch', 'RoomController@roomsearch');
   Route::match(['get', 'post'],'roomcount', 'RoomController@roomcount');
-  // Route::resource('booking', 'BookingController');
+  Route::resource('booking', 'BookingController');
   
 });
