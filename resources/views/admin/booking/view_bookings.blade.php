@@ -5,6 +5,13 @@
 {{-- <div class="row"> --}}
 <div class="card">
     <div class="card-header">
+            <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-4">
+                         <a href="/admin/booking/view-calendar" class="btn btn-primary btn-sm" >
+                            <i class="fas fa-calendar"></i>  &nbsp;КАЛЕНДАР
+                        </a>
+                    </div>
+                </div>
         {{-- <h3 class="card-title">DataTable with default features</h3> --}}
     </div>
     <!-- /.card-header -->

@@ -27,4 +27,5 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet')}}">
    <!-- summernote -->
    <link rel="stylesheet" href="{{url('admin/assets/plugins/summernote/summernote-bs4.css')}}">
+   <link rel="stylesheet" href="{{url('admin/cus_plugin_me/pms.css')}}">
 </head>

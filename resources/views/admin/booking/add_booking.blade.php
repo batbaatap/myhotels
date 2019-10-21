@@ -7,6 +7,8 @@
 <div class="card card-default">
     <div class="card-header">
         Захиалга оруулах
+
+        
     </div>
     <div class="card-body  table-responsive ">
         
@@ -307,7 +309,13 @@
         </div>
         
         <div class="card-footer">
-                <button type="submit">Хадгалах</button>
+                {{-- <button type="submit">Хадгалах</button> --}}
+                <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
+                        </div>
+                    </div>
+
         </div>
 </div>
 

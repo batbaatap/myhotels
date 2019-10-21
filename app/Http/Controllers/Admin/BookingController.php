@@ -125,6 +125,10 @@ class BookingController extends Controller
         return view('admin.booking.add_booking')->with(compact('hotels_drop_down', 'rooms_drop_down'));;
     } // end of ..addBooking()..
 
+    public function viewCalendar()
+    {
+        return view('admin.booking.view_calendar');
+    }
     
 
     // edit 
