@@ -54,7 +54,8 @@ class HotelController extends Controller
         // if($request->ajax())
         // {
         //     $output="";
-
+ if($request->isMethod('post')){
+     
         $datefrom =  strtotime($request->datefrom);
         $dateto =  strtotime($request->dateto);
         // dd($datefrom,$dateto);
@@ -112,24 +113,8 @@ class HotelController extends Controller
             "
             ));
 
-            // if($hotel)
-            // {
-            //     foreach ($hotel as $h) {
-            //         $output.='
-                    
-            //         <div class="jumbotron" >
-            //                  '.$h->title.'
-            //                 <button>захиалах</button>
-            //         </div>
-                 
-                    
-            //         ';
-            //     }
-            // }
-
             return view('customer/hotel.index', compact('hotel','destination'));
-            // return Response($output);
-    // }
+        }
 }
 
     

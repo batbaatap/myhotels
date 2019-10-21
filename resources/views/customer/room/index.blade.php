@@ -23,13 +23,12 @@
 
                   <div class="col">
                      <p>Өрөөний багтаамж:</p><br/>
-                     <input type="number" class="form-control"   min="1" max="{{$r->uruunii_zuruu}}" placeholder="өрөө"><br/>
+                     <input type="number" class="form-control custom-selects listen-room-too"   min="0" max="{{$r->uruunii_zuruu}}" placeholder="өрөө" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>
                       
-                     <input type="number" class="form-control"   min="1" max="{{$r->max_people}}" placeholder="хүн">
+                     <input type="number" class="form-control"   min="0" max="{{$r->max_people}}" placeholder="хүн">
                   </div>
                   <div class="col">
-                     {{$r->price}}$
-                   <p>гадаад хүн:</p>
+                     {{$r->price}}$/ night
                   </div>
 
                   <div class="col">
@@ -42,8 +41,8 @@
   @endforeach
 
 
-   <a href="hotel" class="btn btn-primary float-left" > Буцах</a>
-  <a href="#" class="btn btn-primary float-right" > Захиалах </a>
+   <a href="javascript:history.back()" class="btn btn-primary float-left" > Буцах</a>
+  <a href="/booking" onclick="getData2()"  class="btn btn-primary float-right "  > Дараах </a>
 
 
 </div>  
