@@ -56,45 +56,7 @@
   </div>
 </form>
   </div>
-{{-- <script type="text/javascript">
-       
-    $('#searchA,#searchB,#searchC,#searchD,#searchR').focus(function(event){
-        $valueA=$('#searchA').val();
-        $valueB=$('#searchB').val();
-        $valueC=$('#searchC').val();
-        $valueD=$('#searchD').val();
-        $valueR=$('#searchR').val();
-       
-        console.log($valueA,$valueB,$valueC,$valueD,$valueR);
-    $.ajax({
-        type : 'get',
-        url  : '{{URL::to('hotelsearch')}}',
-        data :{'datefrom':$valueA, 'dateto':$valueB,'datefrom':$valueC, 'room_quantity':$valueD,'person_quantity':$valueR},
-        success:function(data){
-    $('.ger-list-ajax').html(data);
-        console.log(data);
-        urgeljluulehtovch();
-    }
-    });
-    })
-    
-    </script>
-  <script type="text/javascript">
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } }); 
-    </script>--}}
-    
-        {{-- @if(Session::has('flash_message_success'))
-	            <div class="alert alert-success alert-block">
-	                <button type="button" class="close" data-dismiss="alert">×</button> 
-	                    <strong>{!! session('flash_message_success') !!}</strong>
-	            </div>
-	        @endif
-	        @if(Session::has('flash_message_error'))
-	            <div class="alert alert-error alert-block" style="background-color:#f4d2d2">
-	                <button type="button" class="close" data-dismiss="alert">×</button> 
-	                    <strong>{!! session('flash_message_error') !!}</strong>
-	            </div>
-    		@endif   --}}
+
 <div  class="container">
   <div  class="row">
 
@@ -117,7 +79,10 @@
                               <i class="fa fa-map-marker" aria-hidden="true"></i> {{ $h->address }}<br/>
                             {{ $h->descr}}<br/>
                             {{ $h->facilities}}<br/>
-
+                          
+                          {{-- form --}}
+                          {{-- form --}}
+                          {{-- form --}}
                           <form action="{{url('roomsearch') }}"  method="POST" enctype="multipart/form-data">
                                   @csrf <!-- {{ csrf_field() }} -->
                                   <input   id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
@@ -130,11 +95,15 @@
                                 <button type="button" class="btn btn-outline-primary btn-block">Дэлгэрэнгүй</button><br/>
                                 <input type="hidden" value="{{$h->id}}" name="hotel"/> <button class="btn  btn-success btn-block" >Захиалах</button>
                               </div> 
+                                  {{-- </div>  
+                                  <div class="col">  
+                                          <p>From $8 / night</p>
+                                          <button type="button" class="btn btn-outline-primary">Дэлгэрэнгүй</button><br/><br/>
+                                          <input type="hidden" value="{{$h->id}}" name="hotel"/> <button >Захиалах</button>
+                                        </div>  --}}
                           </form>
 
-
-
-                      </div>
+                        </div>
                   </div>
                 @endforeach
             </div>

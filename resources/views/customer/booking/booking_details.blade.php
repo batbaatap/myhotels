@@ -2,14 +2,16 @@
 @section('content')
 <div class="container">
 
-    <form >
 
-        {{--
-        <form method="post" action="/bookings"> --}}
-            @csrf
-            <div class="row">
+<form action="{{url('/booking/payment')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="">
+        {{ csrf_field() }}
+      
+            <div class="row mt-4">
                 <div class="col-8 border">
                     <br/>
+                    
+                    <input type="hidden" value="{{$hotelEyed}}" name="hotelId">
+
                     <div>
                         <table class="table table-bordered">
                             <thead>
@@ -29,8 +31,6 @@
                                         <input style="border:none;background: white;display:none; " type="text" name="bookingto" class="dateto11" />
                                     </td>
                                     <td class="diffrence"></td>
-
-                                    
                                 </tr>
                             </tbody>
                         </table>
@@ -54,7 +54,6 @@
                         </table>
                         <br/>
                         
-
                         {{-- <h6>ЦУЦЛАЛТЫН НӨХЦӨЛ</h6>
 
                         <table class="table table-bordered">
@@ -83,10 +82,20 @@
                 </div>
 
                 <div class="col-4 border">
-                         <h6>Хэрэглэгчийн мэдээлэл</h6>
-						<div class="form-group"><input name="lastname" type="text" class="form-control" placeholder="Овог" /></div>
-                        <div class="form-group"><input name="firstname" type="text" class="form-control" placeholder="Нэр" /></div>
-						<div class="form-group"><input name="number" type="text" class="form-control" placeholder="Утас" /></div>
+                        
+                        <h6 class="mt-3">Хэрэглэгчийн мэдээлэл</h6>
+                        
+                        <div class="form-group">
+                            <input name="lastname" type="text" class="form-control" placeholder="Нэр" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <input name="email" type="text" class="form-control" placeholder="Имэйл" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <input name="phone" type="text" class="form-control" placeholder="Утас" />
+                        </div>
 						
                         {{-- <div class="form-group" >
                             <label for="exampleFormControlTextarea1">Хүсэлт</label>
@@ -98,15 +107,8 @@
                         <span> <input type="checkbox" class="checkbox"> Үйлчилгээний нөхцөл хүлээн зөвшөөрөх </span>
                         <input class="btn btn-outline-success " onclick="localdelete()" type="submit" value="Захиалах">
                 </div>
-
             </div>
-       
-
-  
-
         </form>
-      
-
 </div>
 <style>
     .turul {

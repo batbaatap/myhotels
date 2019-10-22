@@ -35,7 +35,6 @@ $('.datetime2').datetimepicker({
 })
     
 
-
   
   
   // setting min max value :)
@@ -58,62 +57,60 @@ $('.datetime2').datetimepicker({
 //       }
 //   }
   
-  function urgeljluulehtovch(){
-  $(".listen-room-too").on("change paste keyup", function() {
-      if(this.value > 0 ){
-          $('.urgeljluuleh').prop('disabled', false);
-      }else{
-          $('.urgeljluuleh').prop('disabled', true);
-      }
-  });
+  // function urgeljluulehtovch(){
+  // $(".listen-room-too").on("change paste keyup", function() {
+  //     if(this.value > 0 ){
+  //         $('.urgeljluuleh').prop('disabled', false);
+  //     }else{
+  //         $('.urgeljluuleh').prop('disabled', true);
+  //     }
+  // });
+  // }
+  
+  
+  // START
+
+  function getData2(){
+    var arrData = [];
+      
+    $("input.custom-selects").each(function () {  
+      var selText  = $(this).val();  
+      if(selText != 0)
+      
+        $(this).closest('div.row').each(function () {
+          
+            var currentRow=$(this);
+            var idColeach = currentRow.find("div.col:eq(1)>.roome").val();
+            var col1_value=currentRow.find("div.col:eq(1)").text();
+            // var col2_value=currentRow.find("col:eq(2)").text();
+            var col2_value=currentRow.find("div.col:eq(2) > input").val();
+            var col3_value=currentRow.find("div.col:eq(3)").text();
+            // var col4_value=currentRow.find("col:eq(4) > input").val();
+            var col4_value=currentRow.find("div.col:eq(4)").text();
+
+
+            var obj={};
+                obj.col0=idColeach;
+                obj.col1=col1_value;
+                obj.col2=col2_value;
+                obj.col3=col3_value;
+                obj.col4=col4_value;
+
+            arrData.push(obj);
+        });
+    });
+    localStorage.setItem("seData", JSON.stringify(arrData));
   }
-  
-  
-  // START
-  // START
-  // START
-  // START
-  // START
-//   var arrData = [];
-  
-function getData2(){
-  var arrData = [];
-    
-  $("input.custom-selects").each(function () {  
-    var selText  = $(this).val();  
-    if(selText != 0)
-    
-      $(this).closest('div.row').each(function () {
-        
-      var currentRow=$(this);
-          var idColeach = currentRow.find("div.col:eq(1)>.rnam").attr("data-id");
-          var col1_value=currentRow.find("div.col:eq(1)").text();
-          // var col2_value=currentRow.find("col:eq(2)").text();
-          var col2_value=currentRow.find("div.col:eq(2) > input").val();
-          var col3_value=currentRow.find("div.col:eq(3)").text();
-          // var col4_value=currentRow.find("col:eq(4) > input").val();
-          var col4_value=currentRow.find("div.col:eq(4)").text();
-          var obj={};
-              obj.col0=idColeach;
-              obj.col1=col1_value;
-              obj.col2=col2_value;
-              obj.col3=col3_value;
-              obj.col4=col4_value;
-
-          arrData.push(obj);
-      });
-  });
-  localStorage.setItem("seData", JSON.stringify(arrData));
-
-}
 
 
+
+  // Assigning localstorage data to booking details inputs.. 
   (function(){
 
       var x = JSON.parse(localStorage.getItem("seData"));
       
       $.each(x, function(i, item){
-        console.log(x[i].col1);
+        // console.log(x[i].col1);
 
         $(".orderedUruu tbody").append(
           "<tr>", 
@@ -124,9 +121,8 @@ function getData2(){
         );
       
       });
+  }());    
 
-
-  }());    // getdata2 urgeljlel punkts
 
 
 
@@ -150,8 +146,6 @@ function getData2(){
   dt2 = new Date(date2);
   diff= Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24)); //difference
   localStorage.setItem("day", diff); 
-   
-   
   }
   
   
@@ -185,9 +179,9 @@ function getData2(){
   
   
   
-    function localdelete() {
-      localStorage.clear();
-    }
+    // function localdelete() {
+    //   localStorage.clear();
+    // }
   
   
   
