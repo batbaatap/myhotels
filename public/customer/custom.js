@@ -80,7 +80,7 @@ $('.datetime2').datetimepicker({
         $(this).closest('div.row').each(function () {
           
             var currentRow=$(this);
-            var idColeach = currentRow.find("div.col:eq(1)>.roome").val();
+            var idColeach = currentRow.find("div.col:eq(1) .roome").val();
             var col1_value=currentRow.find("div.col:eq(1)").text();
             // var col2_value=currentRow.find("col:eq(2)").text();
             var col2_value=currentRow.find("div.col:eq(2) > input").val();
@@ -110,7 +110,7 @@ $('.datetime2').datetimepicker({
       var x = JSON.parse(localStorage.getItem("seData"));
       
       $.each(x, function(i, item){
-        // console.log(x[i].col1);
+        console.log(x[i].col0);
 
         $(".orderedUruu tbody").append(
           "<tr>", 
@@ -146,7 +146,7 @@ $('.datetime2').datetimepicker({
   localStorage.setItem("day", diff); 
   }
   
-  
+
   
   
     (function(){

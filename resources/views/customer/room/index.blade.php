@@ -18,7 +18,7 @@
             </div>
 
             <div class="col">
-                <input type="hidden" value="{{$r->id}}" name="roome"/>{{ $r->title }} <br/>
+                <input type="hidden" value="{{$r->id}}" name="roome" class="roome"/>{{ $r->title }} <br/>
                 {{ $r->facilities }} 
             </div>
 
