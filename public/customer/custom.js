@@ -3,7 +3,7 @@ $(document).ready(function () {
     if(!localStorage.getItem("localdate1")){
      $('.datefrom').datetimepicker({
        defaultDate:new Date(),
-       format: 'YYYY-MM-DD HH:mm:ss',
+       format: 'YYYY-MM-DD ',
        locale: 'en',
        sideBySide: true
       })
@@ -13,7 +13,7 @@ $(document).ready(function () {
     if(!localStorage.getItem("localdate2")){
        $('.dateto').datetimepicker({
          defaultDate:new Date(),
-         format: 'YYYY-MM-DD HH:mm:ss',
+         format: 'YYYY-MM-DD ',
        locale: 'en',
        sideBySide: true
         })
@@ -21,13 +21,13 @@ $(document).ready(function () {
     
 $('.datetime1').datetimepicker({
   defaultDate: dateFrom, // someVardate
-  format: 'YYYY-MM-DD HH:mm:ss',
+  format: 'YYYY-MM-DD ',
   locale: 'en',
   sideBySide: true
 })
 $('.datetime2').datetimepicker({
   defaultDate: dateTo, // someVardate
-  format: 'YYYY-MM-DD HH:mm:ss',
+  format: 'YYYY-MM-DD ',
   locale: 'en',
   sideBySide: true
 })
@@ -132,12 +132,14 @@ $('.datetime2').datetimepicker({
     date2 = jQuery('.dateto').val();
     room_quantity = jQuery('.room_quantity').val();
     person_quantity = jQuery('.person_quantity').val();
-    
+    destination = jQuery('.destination').val();
 
+  
     localStorage.setItem("localdate1", date1); 
     localStorage.setItem("localdate2", date2); 
     localStorage.setItem("localdate3",  room_quantity ); 
     localStorage.setItem("localdate4",  person_quantity ); 
+    localStorage.setItem("localdate5",  destination ); 
 
     //days calculator
   dt1 = new Date(date1);
@@ -154,7 +156,9 @@ $('.datetime2').datetimepicker({
     dateFrom = localStorage.getItem("localdate1");
     dateTo= localStorage.getItem("localdate2");
     room_quantity = localStorage.getItem("localdate3");
-    person_quantity= localStorage.getItem("localdate4");
+    person_quantity = localStorage.getItem("localdate4");
+    des = localStorage.getItem("localdate5");
+
     diffrence= localStorage.getItem("day");
     
     jQuery('.datefrom1').append(dateFrom ); //console.log(axe);
@@ -165,7 +169,7 @@ $('.datetime2').datetimepicker({
       
     jQuery('.room_quantity').val( room_quantity);
     jQuery('.person_quantity').val( person_quantity);
-
+    jQuery('.destination').val( des);
       
    jQuery('.diffrence').text(diffrence);
    
