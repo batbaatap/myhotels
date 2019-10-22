@@ -35,7 +35,7 @@ public function roomsearch(Request $request){
 
         $rooms= DB::select(DB::raw(
            
-            " 		SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
+            "SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
             FROM `pm_room`
             INNER JOIN `pm_booking_room`
             ON pm_room.id = pm_booking_room.id_room

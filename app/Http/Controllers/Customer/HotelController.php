@@ -43,18 +43,18 @@ class HotelController extends Controller
                   ORDER BY rank ")); 
       
 
-
-
       
         return view('customer/hotel.index', compact('destination','hotel','facility'));
     }
+
+
 
     public function hotelsearch(Request $request){
         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
         // if($request->ajax())
         // {
         //     $output="";
- if($request->isMethod('post')){
+        if($request->isMethod('post')){
      
         $datefrom =  strtotime($request->datefrom);
         $dateto =  strtotime($request->dateto);
@@ -115,7 +115,7 @@ class HotelController extends Controller
 
             return view('customer/hotel.index', compact('hotel','destination'));
         }
-}
+    }
 
     
  
