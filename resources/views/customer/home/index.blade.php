@@ -7,15 +7,15 @@
 @csrf <!-- {{ csrf_field() }} -->
   <div class="row">
 
-        <div class="col">
-          <select id="searchR" name="destination" class="form-control destination">
+        <div class="col-lg-4 col-md-12  col-sm-12">
+          <select id="searchR" name="destination" class="form-control destination" >
             @foreach ($destination  as $des)
-              <option value="{{$des->id}}" >{{ $des->name }}</option>
+              <option value="{{$des->id}}" >{{ $des->name }} </option>
             @endforeach
           </select>
         </div>
 
-        <div class="col">
+        <div class="col-lg-4 col-md-6  col-sm-12">
             {{-- <input id="searchA" type="date" name="datefrom" class="form-control datefrom float-right  datetime1" > --}}
               
                      <div class="form-group">
@@ -31,7 +31,7 @@
                     </div>
         </div>
 
-        <div class="col">
+        <div class="col-lg-4 col-md-6  col-sm-12">
             {{-- <input id="searchB" type="date" name="dateto" class="form-control dateto float-right  datetime2" > --}}
                  <div class="form-group">
                         {{-- Booking Out: --}}
@@ -49,14 +49,17 @@
   
 </div>      
 <div class="row">
-        <div class="col">
+        <div class="col-lg-5 col-md-5  col-sm-12">
           <input id="searchC" type="number" class="form-control room_quantity"  name="room_quantity" min="1" max="5" placeholder="өрөөний тоо">
         </div>
 
-        <div class="col">
+        <div class="col-lg-5 col-md-5  col-sm-12">
           <input id="searchD" type="number" class="form-control person_quantity"  name="person_quantity" min="1" max="5" placeholder="хүний тоо">
         </div>
-    <button type="submit" onclick="getDate()" class="btn btn-primary">Хайх</button>
+
+        <div class="col-lg-2 col-md-2  col-sm-12">
+           <button type="submit" onclick="getDate()" class="btn btn-primary btn-block">Хайх</button>
+        </div>
 </div>
 
 </form>
