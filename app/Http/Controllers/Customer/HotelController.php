@@ -42,8 +42,6 @@ class HotelController extends Controller
              where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
                   ORDER BY rank ")); 
       
-
-      
         return view('customer/hotel.index', compact('destination','hotel','facility'));
     }
 

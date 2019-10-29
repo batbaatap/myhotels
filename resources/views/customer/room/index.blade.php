@@ -27,9 +27,10 @@
 
   @foreach ($rooms as $r)
 
-    <div class="jumbotron"  >  
-        <div class="row">  
-           
+      <div class="row">  
+           <div class="col-md-10 bg-light p-3 mb-3">
+
+            <div class="row">
             <div class="col">
                 {{-- <img src={{ $h->file }} height="42" width="42"><br/> --}}
                 <p>end zurag bga</p>
@@ -56,6 +57,8 @@
             </div>
 
         </div>  
+        </div>  
+
     </div>
   @endforeach
 
@@ -70,5 +73,6 @@
     </form>
 
 </div>  
+
 
 @endsection
