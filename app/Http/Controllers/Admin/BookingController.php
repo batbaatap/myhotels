@@ -150,24 +150,22 @@ class BookingController extends Controller
         $width = (($to_time-$from_time+86400)/86400)*50;
         
         $time_1d_before = $from_time-86400; 
-        echo '$time_1d_before: '.$time_1d_before.'<br>';
+        // echo '$time_1d_before: '.$time_1d_before.'<br>';
 
         $time_1d_before = $this->gm_strtotime(gmdate('Y', $time_1d_before).'-'.gmdate('n', $time_1d_before).'-'.gmdate('j', $time_1d_before).' 00:00:00');
-        echo '$time_1d_before: '.$time_1d_before.'<br>';
+        // echo '$time_1d_before: '.$time_1d_before.'<br>';
         
         $time_1d_after = $to_time+86400;$time_1d_after = $this->gm_strtotime(gmdate('Y', $time_1d_after).'-'.gmdate('n', $time_1d_after).'-'.gmdate('j', $time_1d_after).' 00:00:00');
-        echo '$time_1d_after: '.$time_1d_after.'<br>';
+        // echo '$time_1d_after: '.$time_1d_after.'<br>';
         
         $from_time = $this->gm_strtotime(gmdate('Y', $from_time).'-'.gmdate('n', $from_time).'-'.gmdate('j', $from_time).' 00:00:00');
-        echo '$from_time: '.$from_time.'<br>';
+        // echo '$from_time: '.$from_time.'<br>';
        
         $to_time = $this->gm_strtotime(gmdate('Y', $to_time).'-'.gmdate('n', $to_time).'-'.gmdate('j', $to_time).' 00:00:00');
-        echo '$to_time: '.$to_time.'<br>';
+        // echo '$to_time: '.$to_time.'<br>';
         
         $today = $this->gm_strtotime(gmdate('Y').'-'.gmdate('n').'-'.gmdate('j').' 00:00:00');
-        echo '$today: '.$today;
-
-
+        // echo '$today: '.$today;
 
 
         // $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total
@@ -179,6 +177,7 @@ class BookingController extends Controller
         //             AND to_date >= ".$time_1d_before."
         //             AND id_room = 20
         //         ORDER BY bookid"));
+
 
         $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total
                 FROM pm_booking as b, pm_booking_room as br
@@ -199,7 +198,7 @@ class BookingController extends Controller
                     // echo var_dump($query_room);
 
 
-        return view('admin.booking.view_calendar')->with(compact( 'rooms', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
+        return view('admin.booking.view_calendar')->with(compact(  'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
     }
 
     

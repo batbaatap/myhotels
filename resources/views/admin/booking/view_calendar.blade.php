@@ -11,9 +11,12 @@
                         // if($result_room !== false){
 
                             foreach($result_room as $j => $row){
-                                $room_id = $row->room_id; echo $room_id;
-                                $room_title = $row->room_title; echo $room_title;
-                                $stock = $row->stock; echo $stock;
+                                $room_id = $row->room_id;
+                                //  echo $room_id;
+                                $room_title = $row->room_title; 
+                                // echo $room_title;
+                                $stock = $row->stock; 
+                                // echo $stock;
                                 
                                 $rooms[$room_id] = $row;
                                 
@@ -23,9 +26,9 @@
 
                                     foreach($result_book as $i => $row){
                                         $start_date = $row->from_date;    
-                                        echo '$start_date'.$start_date.'<br>';
+                                        // echo '$start_date'.$start_date.'<br>';
                                         $end_date   = $row->to_date;     
-                                        echo '$end_date'.$end_date.'<br>';
+                                        // echo '$end_date'.$end_date.'<br>';
                                         
                                         // $start_date = strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
                                         // $end_date = strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
@@ -33,8 +36,8 @@
                                         $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
                                         $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
                                         
-                                        echo '$start'.$start.'<br>';
-                                        echo '$end'.$end.'<br>';
+                                        // echo '$start'.$start.'<br>';
+                                        // echo '$end'.$end.'<br>';
 
                                         $n = 0;
                                         for($date = $start; $date < $end; $date += 86400){
@@ -56,12 +59,11 @@
 
                                         for($date = $start; $date < $end; $date += 86400)
                                             $bookings[$room_id][$date][$n] = $row;
-                                            var_dump(isset($bookings[$room_id][$date][$n]));
+                                            // var_dump(isset($bookings[$room_id][$date][$n]));
                                     }
                                 // }
 
                             } 
-                            
                             ?>
 
                         
@@ -74,8 +76,10 @@
                                             <!-- part 2 -->
                                             <?php
                                             foreach($rooms as $room_id => $row){
-                                                $room_title = $row->room_title;   echo $room_title;
-                                                $hotel_id = $row->id_hotel;       echo $hotel_id;
+                                                $room_title = $row->room_title;   
+                                                // echo $room_title;
+                                                $hotel_id = $row->id_hotel;       
+                                                // echo $hotel_id;
                                                 ?>
                                             
                                                 <div class="room-row">
@@ -117,7 +121,6 @@
                                                                 $prev_status = '';
                                                                 $status = '';
                                                               
-
                                                                 if($is_booked){
                                                                     $class .= ' booked';
                                                                     if($prev_closed || ($prev_booked && $bookings[$room_id][$date][$n]->bookid != $bookings[$room_id][$prev_date][$n]->bookid)) $class .= ' start-end-d';
