@@ -60,8 +60,11 @@
                                         for($date = $start; $date < $end; $date += 86400)
                                             $bookings[$room_id][$date][$n] = $row;
                                             // var_dump(isset($bookings[$room_id][$date][$n]));
+
+                                            if($n > $max_n) $max_n = $n;
                                     }
                                 // }
+                                $rooms[$room_id]->n = $max_n;
 
                             } 
                             ?>
@@ -79,7 +82,7 @@
                                                 </div>
                                                 <?php
                                                 $initials = $row->room_title;
-                                                for($n = 1; $n <= $row->stock; $n++){ ?>
+                                                for($n = 0; $n <= $row->n; $n++){ ?>
                                                     <div class="room-label">
                                                         <span id="room-num-<?php echo $room_id; ?>-<?php echo $n; ?>"><?php echo $initials.' #'.($n+1); ?></span>
                                                         <?php if($n+1 > $row->stock) echo '<div class="label label-danger"><i class="fas fa-fw fa-exclamation-circle"></i> '.'OVERBOOKING'.'</div>'; ?>

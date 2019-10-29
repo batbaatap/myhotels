@@ -141,11 +141,9 @@ class BookingController extends Controller
         $bookings = Booking::get();
         $rooms = Room::get();
 
-        
         $from_time = time();
         $to_time = time()+(86400*31);
 
-           
         if(($to_time-$from_time+86400) > (86400*31)) $to_time = $from_time+(86400*30);
         $width = (($to_time-$from_time+86400)/86400)*50;
         
@@ -168,17 +166,6 @@ class BookingController extends Controller
         // echo '$today: '.$today;
 
 
-        // $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total
-        //         FROM pm_booking as b, pm_booking_room as br
-        //         WHERE
-        //             br.id_booking = b.id
-        //             AND (status = 4 OR (status = 1 AND (add_date > '.(time()-900).' OR payment_option IN('arrival','check'))))
-        //             AND from_date <= ".$to_time."
-        //             AND to_date >= ".$time_1d_before."
-        //             AND id_room = 20
-        //         ORDER BY bookid"));
-
-
         $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total
                 FROM pm_booking as b, pm_booking_room as br
                 WHERE
@@ -195,8 +182,6 @@ class BookingController extends Controller
                  WHERE r.checked = 1
                     AND r.lang = 2"));
 
-                    // echo var_dump($query_room);
-
 
         $date = 0;
         $day = '(^|,)0(,|$)';
@@ -210,11 +195,7 @@ class BookingController extends Controller
             AND start_date <= '$date' AND end_date >= '$date'
         ORDER BY price DESC
         LIMIT 1"));
-        // $result_rate->bindParam(':room_id', $room_id);
-        // $result_rate->bindParam(':date', $date);
-        // $result_rate->bindParam(':day', $day);
-
-
+     
         return view('admin.booking.view_calendar')->with(compact( 'result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
     }
     
