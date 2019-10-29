@@ -198,11 +198,25 @@ class BookingController extends Controller
                     // echo var_dump($query_room);
 
 
-        return view('admin.booking.view_calendar')->with(compact(  'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
+        $date = 0;
+        $day = '(^|,)0(,|$)';
+        $room_id = 0;
+        $result_rate = DB::select(DB::raw("SELECT DISTINCT(price), r.id as rate_id, start_date, end_date
+        FROM pm_rate as r, pm_package as p
+        WHERE id_package = p.id
+            AND min_nights IN(0,1)
+            AND days REGEXP '$day'
+            AND id_room = '$room_id'
+            AND start_date <= '$date' AND end_date >= '$date'
+        ORDER BY price DESC
+        LIMIT 1"));
+        // $result_rate->bindParam(':room_id', $room_id);
+        // $result_rate->bindParam(':date', $date);
+        // $result_rate->bindParam(':day', $day);
+
+
+        return view('admin.booking.view_calendar')->with(compact( 'result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
     }
-
-    
-
     
     
     // edit 
