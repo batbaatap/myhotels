@@ -17,6 +17,16 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function gm_strtotime($date)
+    {
+        date_default_timezone_set('UTC');
+        $time = strtotime($date.' GMT');
+        // date_default_timezone_set(TIME_ZONE);
+        return $time;
+    }
+
     public function viewBookings()
     {
         $bookings = DB::table('pm_booking')
@@ -122,18 +132,77 @@ class BookingController extends Controller
             $rooms_drop_down .= "<option value='".$r->id."'>".$r->title."</option>";
         }
         
-        return view('admin.booking.add_booking')->with(compact('hotels_drop_down', 'rooms_drop_down'));;
+        return view('admin.booking.add_booking')->with(compact('hotels_drop_down', 'rooms_drop_down'));
     } // end of ..addBooking()..
 
-    public function viewCalendar()
+    
+    public function viewCalendar(Request $request)
     {
-        return view('admin.booking.view_calendar');
+        $bookings = Booking::get();
+        $rooms = Room::get();
+
+        $from_time = time();
+        $to_time = time()+(86400*31);
+
+        if(($to_time-$from_time+86400) > (86400*31)) $to_time = $from_time+(86400*30);
+        $width = (($to_time-$from_time+86400)/86400)*50;
+        
+        $time_1d_before = $from_time-86400; 
+        // echo '$time_1d_before: '.$time_1d_before.'<br>';
+
+        $time_1d_before = $this->gm_strtotime(gmdate('Y', $time_1d_before).'-'.gmdate('n', $time_1d_before).'-'.gmdate('j', $time_1d_before).' 00:00:00');
+        // echo '$time_1d_before: '.$time_1d_before.'<br>';
+        
+        $time_1d_after = $to_time+86400;$time_1d_after = $this->gm_strtotime(gmdate('Y', $time_1d_after).'-'.gmdate('n', $time_1d_after).'-'.gmdate('j', $time_1d_after).' 00:00:00');
+        // echo '$time_1d_after: '.$time_1d_after.'<br>';
+        
+        $from_time = $this->gm_strtotime(gmdate('Y', $from_time).'-'.gmdate('n', $from_time).'-'.gmdate('j', $from_time).' 00:00:00');
+        // echo '$from_time: '.$from_time.'<br>';
+       
+        $to_time = $this->gm_strtotime(gmdate('Y', $to_time).'-'.gmdate('n', $to_time).'-'.gmdate('j', $to_time).' 00:00:00');
+        // echo '$to_time: '.$to_time.'<br>';
+        
+        $today = $this->gm_strtotime(gmdate('Y').'-'.gmdate('n').'-'.gmdate('j').' 00:00:00');
+        // echo '$today: '.$today;
+
+
+        $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total
+                FROM pm_booking as b, pm_booking_room as br
+                WHERE
+                    br.id_booking = b.id
+                    AND (status = 4 OR (status = 1 AND (add_date > '.(time()-900).' OR payment_option IN('arrival','check'))))
+                    AND from_date <= '1574812800'
+                    AND to_date >= '1572134400'
+                    AND id_room = 20
+                ORDER BY bookid"));
+
+
+        $result_room = DB::select(DB::raw("SELECT DISTINCT(r.id) as room_id, id_hotel, r.title as room_title, stock, price, start_lock, end_lock
+                 FROM pm_room as r
+                 WHERE r.checked = 1
+                    AND r.lang = 2"));
+
+
+        $date = 0;
+        $day = '(^|,)0(,|$)';
+        $room_id = 0;
+        $result_rate = DB::select(DB::raw("SELECT DISTINCT(price), r.id as rate_id, start_date, end_date
+        FROM pm_rate as r, pm_package as p
+        WHERE id_package = p.id
+            AND min_nights IN(0,1)
+            AND days REGEXP '$day'
+            AND id_room = '$room_id'
+            AND start_date <= '$date' AND end_date >= '$date'
+        ORDER BY price DESC
+        LIMIT 1"));
+     
+        return view('admin.booking.view_calendar')->with(compact( 'result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
     }
     
-
+    
     // edit 
     public function editBooking(Request $request, $id){
-        
+
         // if($request->isMethod('post')){
         //     $data = $request->all();
 
@@ -144,7 +213,6 @@ class BookingController extends Controller
         // $categoryDetails = Category::where(['id'=>$id])->first();
         // $levels = Category::where(['parent_id'=>0])->get();
         // return view('admin.categories.edit_category')->with(compact('categoryDetails','levels'));
-
 
         if($request->isMethod('post')){
             
@@ -254,4 +322,7 @@ class BookingController extends Controller
     {
         //
     }
+
+
+    
 }

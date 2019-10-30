@@ -37,7 +37,7 @@ class HotelController extends Controller
 
        
         $hotel=DB::select(DB::raw( "SELECT * FROM `pm_hotel` "));
-        $fac=$fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
+        $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
                                     FROM 
                                     `pm_facility`,`pm_hotel`
                                     where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
