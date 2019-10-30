@@ -8,8 +8,8 @@
                   
                     <?php
                         
-                        // if($result_room !== false){
-
+                        if($result_room !== false){
+                            
                             foreach($result_room as $j => $row){
                                 $room_id = $row->room_id;
                                 //  echo $room_id;
@@ -23,6 +23,38 @@
                                 $max_n = $stock-1; echo $max_n;
                                
                                 // if($result_book !== false){
+                                    
+                                    // if($result_closing->execute() !== false){
+                                    foreach($result_closing as $i => $row){
+                                        $start_date = $row->from_date;
+                                        $end_date = $row->to_date;
+                                        $stock = $row->stock;
+                                        
+                                        $start_date = gm_strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
+                                        $end_date = gm_strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
+                                        
+                                        $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
+                                        $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
+                                        
+                                        for($s = 0; $s < $stock; $s++){
+                                            $n = 0;
+                                            for($date = $start; $date < $end; $date += 86400){
+                                                
+                                                $k = null;
+                                                $c = 0;
+                                                while(is_null($k)){
+                                                    if(!isset($closing[$room_id][$date][$c])) $k = $c;
+                                                    else $c++;
+                                                }
+                                                if($c > $n) $n = $c;
+                                            }
+                                            for($date = $start; $date < $end; $date += 86400)
+                                                $closing[$room_id][$date][$n] = $row;
+                                            
+                                            if($n > $max_n) $max_n = $n;
+                                        }
+                                    }
+                                // }
 
                                     foreach($result_book as $i => $row){
                                         $start_date = $row->from_date;    
@@ -96,7 +128,6 @@
                                             <div class="timeline-row" style="width: <?php echo $width; ?>px;">
                                                 <?php
 
-
                                                 $stock = array_sum(array_column($rooms, 'stock'));
                                                 
                                                 $prev_date = $time_1d_before;
@@ -120,6 +151,7 @@
                                                                 if($booking->to_date == $date) $checkout++;
                                                         }
                                                     }
+                                                    
                                                     $occupancy = ($stock > 0) ? round($booked*100/$stock, 2) : 0;
                                                     
                                                     $d = gmdate('N', $date); ?>
@@ -149,6 +181,7 @@
                                                             <?php echo $occupancy; ?>%
                                                         </div>
                                                     </div>
+                                                    
                                                     <?php
                                                     $prev_date = $date;
                                                 } ?>
@@ -157,10 +190,13 @@
                                             <!-- part 2 -->
                                             <?php
                                             foreach($rooms as $room_id => $row){
-                                                $room_title = $row->room_title;   
-                                                // echo $room_title;
-                                                $hotel_id = $row->id_hotel;       
-                                                // echo $hotel_id;
+                                                $room_title = $row->room_title;
+                                                $hotel_id = $row->id_hotel;
+                                                $stock = $row->stock;
+                                                $min_price = $row->price;
+                                                $start_lock = $row->start_lock;
+                                                $end_lock = $row->end_lock;
+                                                $max_n = $row->n;
                                                 ?>
                                             
                                                 <div class="room-row">
@@ -175,15 +211,15 @@
                                                             
                                                             // price
                                                             $price = 0;
-                                                            if($result_rate !== false ){
+                                                            
+                                                            // if($result_rate !== false ){
+                                                            if($result_rate !== false && count($result_rate) > 0){
                                                                 // $row = $result_rate;
-                                                                
                                                                 foreach ($result_rate as $key => $row) {
-                                                                # code...
-                                                                $price = $row->price;
-                                                                
+                                                                    $price = $row->price;
+                                                                    // echo $row->price;
+                                                                }
                                                             }
-                                                        }
                                                             
                                                             // remaining rooms
                                                             $remain = $stock;
@@ -192,7 +228,7 @@
                                                                 $remain = ($stock <= $num_bookings) ? 0 : $stock-$num_bookings;
                                                             } ?>
                                                             <div class="timeline-cel timeline-price<?php if($d == 6 || $d == 7) echo ' bg-warning'; ?><?php if($date == $today) echo ' today'; ?>">
-                                                                <div><?php if($price > 0) echo formatPrice($price*CURRENCY_RATE); ?></div>
+                                                                <div><?php if($price > 0) echo $price; ?></div>
                                                                 <span class="text-muted"><?php echo $remain;/* ?> / <?php echo $stock;*/ ?></span>
                                                             </div>
                                                             <?php
@@ -242,7 +278,7 @@
                                                                     $prev_status .= ' closed';
                                                                 }elseif($prev_booked){
                                                                     if(!$is_booked && !$is_closed) $class .= ' end-d';
-                                                                    if($bookings[$room_id][$prev_date][$n]->to_date < time()) $prev_status .= ' checked-out';
+                                                                    if    ($bookings[$room_id][$prev_date][$n]->to_date    < time()) $prev_status .= ' checked-out';
                                                                     elseif($bookings[$room_id][$prev_date][$n]->from_date <= time()) $prev_status .= ' in-house';
                                                                     elseif($bookings[$room_id][$prev_date][$n]->status == 1) $prev_status .= ' pending';
                                                                     elseif($bookings[$room_id][$prev_date][$n]->status == 4) $prev_status .= ' confirmed';
@@ -306,7 +342,7 @@
                                                     } ?>
                                                 </div>
                                                 <?php
-                                            } ?>
+                                            } }?>
                                         </div>
                                     </div>
                             

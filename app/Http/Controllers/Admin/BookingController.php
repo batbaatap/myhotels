@@ -144,6 +144,8 @@ class BookingController extends Controller
         $from_time = time();
         $to_time = time()+(86400*31);
 
+
+        if($to_time > $from_time){
         if(($to_time-$from_time+86400) > (86400*31)) $to_time = $from_time+(86400*30);
         $width = (($to_time-$from_time+86400)/86400)*50;
         
@@ -165,7 +167,8 @@ class BookingController extends Controller
         $today = $this->gm_strtotime(gmdate('Y').'-'.gmdate('n').'-'.gmdate('j').' 00:00:00');
         // echo '$today: '.$today;
 
-
+        // result_book
+        $room_id = 0;
         $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total
                 FROM pm_booking as b, pm_booking_room as br
                 WHERE
@@ -177,15 +180,20 @@ class BookingController extends Controller
                 ORDER BY bookid"));
 
 
-        $result_room = DB::select(DB::raw("SELECT DISTINCT(r.id) as room_id, id_hotel, r.title as room_title, stock, price, start_lock, end_lock
-                 FROM pm_room as r
-                 WHERE r.checked = 1
-                    AND r.lang = 2"));
+        // result closing
+        $result_closing = DB::select(DB::raw("SELECT stock, from_date, to_date
+        FROM pm_room_closing
+        WHERE
+            from_date <= '.$to_time.'
+            AND to_date >= '.$time_1d_before.'
+            AND id_room = '$room_id'
+        ORDER BY from_date"));
 
-
+                
         $date = 0;
         $day = '(^|,)0(,|$)';
-        $room_id = 0;
+
+        // result rate
         $result_rate = DB::select(DB::raw("SELECT DISTINCT(price), r.id as rate_id, start_date, end_date
         FROM pm_rate as r, pm_package as p
         WHERE id_package = p.id
@@ -195,8 +203,16 @@ class BookingController extends Controller
             AND start_date <= '$date' AND end_date >= '$date'
         ORDER BY price DESC
         LIMIT 1"));
-     
-        return view('admin.booking.view_calendar')->with(compact( 'result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
+
+
+        // query room
+        $result_room = DB::select(DB::raw("SELECT DISTINCT(r.id) as room_id, id_hotel, r.title as room_title, stock, price, start_lock, end_lock
+        FROM pm_room as r
+        WHERE r.checked = 1
+        AND r.lang = 2"));
+        }
+
+        return view('admin.booking.view_calendar')->with(compact( 'result_closing','result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
     }
     
     
