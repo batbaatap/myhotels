@@ -5,6 +5,9 @@
 
   <title>myhotel</title>
 
+{{-- custom css --}}
+
+ <link rel="stylesheet" href="{{url('customer/custom.css')}}">
         <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{url('admin/assets/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Font Awesome Icons -->
@@ -21,5 +24,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
      
     <link rel="stylesheet" href="/dist/plugins/daterangepicker/daterangepicker.css">
+
 
 </head>

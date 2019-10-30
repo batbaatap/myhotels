@@ -1,51 +1,52 @@
-<div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>map</h3>
-        </div>
+{{-- <div class="dropdown">
+  <button class="btn btn-block btn-info dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Од
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     
+                        @for ($k = 1,$ide = 5; $k <= 5; $k++,$ide-- )
 
-        <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Portfolio</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </nav>
+                            <a class="dropdown-item" href="#"> 
+                            
+                                <input type="checkbox"  id="defaultCheck" value="{{$ide}}" name="star"> 
+                                <label for="defaultCheck">
+                                
+                                    @for ($i =$k; $i <= 5; $i++)
+                                    <i class="far fa-star"></i>
+                                    @endfor
+                                </label>
+                            </a>
 
+                        @endfor    
+                            
+                        </div>
+</div><br/> --}}
+
+{{-- 
+<!-- COLUMNS -->
+<div class="dropdown">
+  <button class="btn btn-info dropdown-toggle btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Multi - columns
+  </button>
+  <div class="dropdown-menu dropdown-multicol2" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-col">
+      <a class="dropdown-item" href="#">Oranges</a>
+      <a class="dropdown-item" href="#">Bananas</a>
+      <a class="dropdown-item" href="#">Apples</a>
+          <input type="checkbox"  id="defaultCheck"  name="example2"> 
+    </div>
+    <div class="dropdown-col">
+      <a class="dropdown-item" href="#">Potatoes</a>
+      <a class="dropdown-item" href="#">Leeks</a>
+      <a class="dropdown-item" href="#">Cauliflowers</a>
+          <input type="checkbox"  id="defaultCheck"  name="example2"> 
+    </div>
+    <div class="dropdown-col">
+      <a class="dropdown-item" href="#">Beef</a>
+      <a class="dropdown-item" href="#">Pork</a>
+      <a class="dropdown-item" href="#">Venison</a>
+          <input type="checkbox"  id="defaultCheck"  name="example2"> 
+    </div>
+  </div>
 </div>
+ --}}

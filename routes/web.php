@@ -156,17 +156,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
 
 // Visiter
 Route::group(['as' => 'customer', 'namespace' => 'Customer'], function () {
+ // home page
   Route::resource('/', 'HomeController');
-
+ // hotel
   Route::resource('hotel', 'HotelController');
-  Route::match(['get', 'post'],'hotelsearch', 'HotelController@hotelsearch');
-
+  Route::match(['get', 'post'],'/hotelsearch', 'HotelController@hotelsearch');
+  
+ // room
   Route::resource('room', 'RoomController');
   Route::match(['get', 'post'],'roomsearch', 'RoomController@roomsearch');
-  Route::match(['get', 'post'],'roomcount', 'RoomController@roomcount');
   
-  // Route::resource('booking', 'BookingController');
-  // Route::resource('booking', 'BookingController');
   
   // Booking
   Route::get('/booking/booking-details',  'BookingController@bookingDetails')->name('comment');
