@@ -1,7 +1,7 @@
 @extends('layouts.frontLayout.front_design')
 @section('content')
  <div class="container">
-<form action="{{url('hotelsearch') }}"  method="POST" enctype="multipart/form-data">
+<form id="form" action="{{url('hotelsearch') }}"  method="POST" enctype="multipart/form-data" >
 @csrf <!-- {{ csrf_field() }} -->
   <div class="row">
 
@@ -24,7 +24,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input  id="searchA" type="text" name="datefrom" class="form-control datefrom float-right datetime1">
+                            <input  type="text" name="datefrom" class="form-control datefrom float-right datetime1">
                         </div>
                     </div>
         </div>
@@ -39,7 +39,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input  id="searchB" type="text" name="dateto" class="form-control dateto  float-right datetime2">
+                            <input   type="text" name="dateto" class="form-control dateto  float-right datetime2">
                         </div>
                     </div>
       
@@ -54,17 +54,109 @@
         </div>
         <div class="col-sm-12  col-md-12 col-lg-2"><button type="submit" onclick="getDate()" class="btn btn-primary btn-block">Хайх</button>    </div>
   </div>
-</form>
+{{-- </form> --}}
   </div>
 
 <div  class="container">
   <div  class="row">
 
         <div  class="col-sm-2">
-          @include('layouts.frontLayout.front_sidebar')
-        </div>
+
+                  {{-- <div class="dropdown">
+                      <button class="btn btn-block btn-info dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Од
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
+                        
+                     {{--   @for ($k = 1,$ide = 5; $k <= 5; $k++,$ide-- )
+                            
+                          <div class="checkbox">
+                             <label>
+                                <input type="checkbox" onchange="$('#form').submit();"  name="checkbox" value="{{$ide}}" class="checkbox"/>
+                                    @for ($i =$k; $i <= 5; $i++)
+                                    <i class="far fa-star"></i>
+                                    @endfor
+                                </label>
+                          </div>
+
+                        @endfor    
+                            
+
+
+                        </div>
+                  </div><br/> --}}
+                  
+                  {{-- dropdown  rating --}}
+{{-- rating --}}
+  {{-- <a name="" id="ratingClears" class="btn btn-primary" href="javascript:void(0);" role="button">clear</a> --}}
+                          <div class="checkbox">
+                             <label>
+                                <input type="checkbox" store="checkbox1"  onchange="$('#form').submit();"  id="searchA" name="check[]" value="05" class="checkbox"/>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </label>
+                          </div>
+                           <div class="checkbox">
+                             <label>
+                                <input type="checkbox" store="checkbox2" onchange="$('#form').submit();" id="searchA" name="check[]" value="04" class="checkbox"/>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </label>
+                          </div>
+                           <div class="checkbox">
+                             <label>
+                                <input type="checkbox" store="checkbox3" onchange="$('#form').submit();" id="searchA" name="check[]" value="03" class="checkbox"/>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </label>
+                          </div>
+                          <div class="checkbox">
+                             <label>
+                                <input type="checkbox" store="checkbox4" onchange="$('#form').submit();" id="searchA" name="check[]" value="02" class="checkbox"/>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </label>
+                          </div>
+                          <div class="checkbox">
+                             <label>
+                                <input type="checkbox" store="checkbox5" onchange="$('#form').submit();" id="searchA" name="check[]" value="01" class="checkbox"/>
+                                    <i class="far fa-star"></i>
+                                </label>
+                          </div>
+                         
+
+
+
+                          
+    {{-- бүх үйлчилгээ--}}
+  <a name="" id="clears" class="btn btn-primary" href="javascript:void(0);" role="button">clear</a>
+    
+  @foreach ($fac as $ee){{-- бүх үйлчилгээнүүдээ хэвлэж байгаа хэсэг --}}
+      <div class="checkbox">
+            <label>
+              <input type="checkbox" facility="{{$ee->id}}" onchange="$('#form').submit();" id="searchA" name="checkbox[]" value="{{$ee->id}}" class="checkbox"/>
+                  {{ $ee->name}}<br/>
+              </label>
+      </div>
+  @endforeach
+
+    </div>
+</form>
+
+  
+
+  
+
+
 
           <div  class="col-sm-10">
+
                 @foreach ($hotel as $h)
                   <div class="jumbotron" >
                     <div  class="row">
@@ -74,7 +166,11 @@
                         </div>
 
                         <div class="col-lg-6 col-md-5 col-sm-8">
-                            <h5>{{ $h->title }}</h5>
+                            <h5>{{ $h->title }}
+                              @for ($i =0; $i < $h->class; $i++)
+                                    <small>  <i class="far fa-star"></i></small>
+                              @endfor
+                            </h5>
                             {{ $h->subtitle }}<br/>
                               <i class="fa fa-map-marker" aria-hidden="true"></i> {{ $h->address }}<br/>
                             {{ $h->descr}}<br/>
@@ -110,5 +206,5 @@
      </div>
    </div>
  @endsection
- 
+ {{-- @stop --}}
 

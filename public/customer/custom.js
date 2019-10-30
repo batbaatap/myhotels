@@ -27,7 +27,7 @@ $('.datetime1').datetimepicker({
 })
 $('.datetime2').datetimepicker({
   defaultDate: dateTo, // someVardate
-  format: 'YYYY-MM-DD ',
+  format: 'YYYY-MM-DD ',//HH:mm:ss
   locale: 'en',
   sideBySide: true
 })
@@ -183,8 +183,62 @@ $('.datetime2').datetimepicker({
     //   localStorage.clear();
     // }
   
+
+
+    
+// rating
+(function() {
+  var boxes = document.querySelectorAll("input[type='checkbox']");
+  for (var i = 0; i < boxes.length; i++) {
+      var box = boxes[i];
+      if (box.hasAttribute("store")) {
+          setupBox(box);
+      }
+  }
   
+  function setupBox(box) {
+      var storageId = box.getAttribute("store");
+      var oldVal    = localStorage.getItem(storageId);
+      console.log(oldVal);
+      box.checked = oldVal === "true" ? true : false;
+      
+      box.addEventListener("change", function() {
+          localStorage.setItem(storageId, this.checked); 
+      });
+  }
+
+})();
+
+
+// service 
+(function() {
+  var boxes = document.querySelectorAll("input[type='checkbox']");
+  for (var i = 0; i < boxes.length; i++) {
+      var box2 = boxes[i];
+      if (box2.hasAttribute("facility")) {
+          setupBoxx(box2);
+      }
+  }
   
-  
-  
-  
+  function setupBoxx(box2) {
+      var storageIde = box2.getAttribute("facility");
+      var oldValue    = localStorage.getItem(storageIde);
+      console.log(oldValue);
+      box2.checked = oldValue === "true" ? true :box2.checked
+      box2.addEventListener("change", function() {
+        localStorage.setItem(storageIde, this.checked); 
+      });
+      
+      
+      jQuery('#clears').click(function(){
+        box2.checked = oldValue === "true" ? false :box2.checked
+      // box2.checked = false;
+      $('#form').submit();
+        localStorage.setItem(storageIde,null);
+      console.log('w');
+    });
+  }
+})();
+
+
+       
