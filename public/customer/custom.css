@@ -1,11 +1,14 @@
 
   
   /* Columns */
-  div.dropdown-multicol2{
+  /* div.dropdown-multicol2{
     width: 50em;
   }
   div.dropdown-multicol2>div.dropdown-col{
     display:inline-block;
   }
   
-  
+   */
+ .navbar{
+   margin:0.5em;
+ }

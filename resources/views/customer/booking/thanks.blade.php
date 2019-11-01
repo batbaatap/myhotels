@@ -18,6 +18,7 @@
 			{{-- <h3>YOUR COD ORDER HAS BEEN PLACED</h3> --}}
 			<h3>Таны захиалгыг хүлээн авлаа</h3>
 			{{-- <p>Your order number is {{ Session::get('order_id') }} and total payable about is INR {{ Session::get('grand_total') }}</p> --}}
+			<a href="/" class="btn btn-success float-left"><i class="fas fa-angle-double-left"></i> Нүүр хуудас руу буцах</a>
 		</div>
 	</div>
 </section>

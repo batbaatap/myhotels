@@ -19,6 +19,9 @@
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<!-- Custom Plugin me  -->
+<script src="{{url('customer/cus_plugin_me/jquery.validate.js')}}"></script>
+
 <!-- InputMask -->
 <script src="{{url('admin/assets/plugins/moment/moment.min.js')}}"></script>
 <script src="{{url('admin/assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script> 

@@ -242,3 +242,136 @@ $('.datetime2').datetimepicker({
 
 
        
+
+// Room
+
+// $('#booking_room').each( function(){
+//   var form = $(this);    // this is important, make the "form" local inside the function, otherwise $(this) changes scope each loop!
+//   form.validate({
+//       rules: {
+//           'uruu':{required:true,min:1 },
+//      },
+//      messages: {
+//       // room_title: "Required",
+//       // lastname: "Please enter your lastname",
+//   },
+
+//   errorElement: "em",
+//   errorPlacement: function ( error, element ) {
+//       // Add the `invalid-feedback` class to the error element
+//       error.addClass( "invalid-feedback" );
+
+//       if ( element.prop( "type" ) === "multiple" ) {
+//           error.insertAfter( element.next( "label" ) );
+//       } else {
+//           error.insertAfter( element );
+//       }
+//   },
+//   highlight: function ( element, errorClass, validClass ) {
+//       $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+//   },
+//   unhighlight: function (element, errorClass, validClass) {
+//       $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+//   }
+
+//   });
+// });
+
+
+
+// var arrData = [];
+
+//   $("input.custom-selects").each(function () {  
+//     var selText  = $(this).val();  
+//     if(selText != 0)
+    
+//       $(this).closest('tr').each(function () {
+        
+//       var currentRow=$(this);
+//           var idColeach = currentRow.find("td:eq(1)>.rnam").attr("data-id");
+//           var col1_value=currentRow.find("td:eq(1)").text();
+//           var col2_value=currentRow.find("td:eq(2)").text();
+//           var col3_value=currentRow.find("td:eq(3)").text();
+//           var col4_value=currentRow.find("td:eq(4) > input").val();
+
+//           var obj={};
+//               obj.col0=idColeach;
+//               obj.col1=col1_value;
+//               obj.col2=col2_value;
+//               obj.col3=col3_value;
+//               obj.col4=col4_value;
+
+//           arrData.push(obj);
+//       });
+//   });
+
+//   localStorage.setItem("seData", JSON.stringify(arrData));
+
+
+
+
+
+
+// $("#booking_room").validate({
+//   rules:{
+//     a:{required:true,min:1 },
+//     // 'hun':{required:true, min:1},
+//   },
+//   messages: {
+//       // room_title: "Required",
+//       // lastname: "Please enter your lastname",
+//   },
+
+//   errorElement: "em",
+//   errorPlacement: function ( error, element ) {
+//       // Add the `invalid-feedback` class to the error element
+//       error.addClass( "invalid-feedback" );
+
+//       if ( element.prop( "type" ) === "multiple" ) {
+//           error.insertAfter( element.next( "label" ) );
+//       } else {
+//           error.insertAfter( element );
+//       }
+//   },
+//   highlight: function ( element, errorClass, validClass ) {
+//       $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+//   },
+//   unhighlight: function (element, errorClass, validClass) {
+//       $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+//   }
+
+// });
+
+
+$("#user_register").validate({
+  rules:{
+    lastname:{required:true, },
+    email:{required:true, email: true,},
+    phone:{required:true, number: true,min:6},
+    // checkbox:{required:true,},
+    // 'hun':{required:true, min:1},
+  },
+  messages: {
+      // room_title: "Required",
+      // lastname: "Please enter your lastname",
+  },
+
+  errorElement: "em",
+  errorPlacement: function ( error, element ) {
+      // Add the `invalid-feedback` class to the error element
+      error.addClass( "invalid-feedback" );
+
+      if ( element.prop( "type" ) === "multiple" ) {
+          error.insertAfter( element.next( "label" ) );
+      } else {
+          error.insertAfter( element );
+      }
+  },
+  highlight: function ( element, errorClass, validClass ) {
+      $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+  },
+  unhighlight: function (element, errorClass, validClass) {
+      $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+  }
+
+});
