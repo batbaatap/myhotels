@@ -55,7 +55,7 @@ class RoomController extends Controller
             $room->price=$data['room_price'];
             $room->home=$data['homepage1'];
 
-            $room->checked=$data['pub1'];
+            $room->checked=$data['checked'];
             $room->rank=null;
             $room->start_lock=null;
             $room->end_lock=null;

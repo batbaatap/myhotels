@@ -147,13 +147,13 @@ $("#add-booking").validate({
         id_hotel: {required:true},
         date_from_and_date_to  : {required:true},
         firstname  : {required:true},
-        lastname  : {required:true},
-        email  : {required:true},
-        address  : {required:true},
-        postcode  : {required:true},
-        city  : {required:true},
-        phone  : {required:true},
-        country  : {required:true},
+        lastname  :  {required:true},
+        email  :     {required:true},
+        address  :   {required:true},
+        postcode  :  {required:true},
+        city  :      {required:true},
+        phone  :     {required:true},
+        country  :   {required:true},
     },
     messages: {
         // room_title: "Required",
@@ -180,6 +180,7 @@ $("#add-booking").validate({
 
 });
 
+    
 
 
 
@@ -215,8 +216,13 @@ $(function(){
     // if(isset($field_notice) && !empty($field_notice))
     //     foreach($field_notice as $field => $notice) echo '$(\'.field-notice[rel="'.$field.'"]\').html(\''.$notice.'\').fadeIn(\'slow\').parent().addClass(\'alert alert-danger\');'."\n"; ?>
 });
+
+
+
 // </script>
 // <script>
+
+
 
 $(function(){
     

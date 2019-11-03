@@ -138,82 +138,216 @@ class BookingController extends Controller
     
     public function viewCalendar(Request $request)
     {
-        $bookings = Booking::get();
+        // $booker = Booking::get();
         $rooms = Room::get();
-
+        
         $from_time = time();
         $to_time = time()+(86400*31);
-
-
-        if($to_time > $from_time){
-        if(($to_time-$from_time+86400) > (86400*31)) $to_time = $from_time+(86400*30);
-        $width = (($to_time-$from_time+86400)/86400)*50;
         
-        $time_1d_before = $from_time-86400; 
-        // echo '$time_1d_before: '.$time_1d_before.'<br>';
+        $from_date = gmdate('d/m/Y', $from_time);
+        $to_date = gmdate('d/m/Y', $to_time);
 
-        $time_1d_before = $this->gm_strtotime(gmdate('Y', $time_1d_before).'-'.gmdate('n', $time_1d_before).'-'.gmdate('j', $time_1d_before).' 00:00:00');
-        // echo '$time_1d_before: '.$time_1d_before.'<br>';
-        
-        $time_1d_after = $to_time+86400;$time_1d_after = $this->gm_strtotime(gmdate('Y', $time_1d_after).'-'.gmdate('n', $time_1d_after).'-'.gmdate('j', $time_1d_after).' 00:00:00');
-        // echo '$time_1d_after: '.$time_1d_after.'<br>';
-        
-        $from_time = $this->gm_strtotime(gmdate('Y', $from_time).'-'.gmdate('n', $from_time).'-'.gmdate('j', $from_time).' 00:00:00');
-        // echo '$from_time: '.$from_time.'<br>';
-       
-        $to_time = $this->gm_strtotime(gmdate('Y', $to_time).'-'.gmdate('n', $to_time).'-'.gmdate('j', $to_time).' 00:00:00');
-        // echo '$to_time: '.$to_time.'<br>';
-        
-        $today = $this->gm_strtotime(gmdate('Y').'-'.gmdate('n').'-'.gmdate('j').' 00:00:00');
-        // echo '$today: '.$today;
+        if($request->method('post')){
 
-        // result_book
-        $room_id = 0;
-        $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total
-                FROM pm_booking as b, pm_booking_room as br
-                WHERE
-                    br.id_booking = b.id
-                    AND (status = 4 OR (status = 1 AND (add_date > '.(time()-900).' OR payment_option IN('arrival','check'))))
-                    AND from_date <= '1574812800'
-                    AND to_date >= '1572134400'
-                    AND id_room = 20
-                ORDER BY bookid"));
+            $from_date = $request->from_date;
+            $to_date   = $request->to_date;
+            
+            if($from_date == '') echo 'required field';
+            else{
+                $time = explode('/', $from_date);
+                if(count($time) == 3) $time = $this->gm_strtotime($time[2].'-'.$time[1].'-'.$time[0].' 00:00:00');
+                if(!is_numeric($time)) echo 'required field';
+                else $from_time = $time;
+            }
+
+            if($to_date == '') echo 'required field';
+            else{
+                $time = explode('/', $to_date);
+                if(count($time) == 3) $time = $this->gm_strtotime($time[2].'-'.$time[1].'-'.$time[0].' 00:00:00');
+                if(!is_numeric($time)) echo 'required field';
+                else $to_time = $time;
+            }
 
 
-        // result closing
-        $result_closing = DB::select(DB::raw("SELECT stock, from_date, to_date
-        FROM pm_room_closing
-        WHERE
-            from_date <= '.$to_time.'
-            AND to_date >= '.$time_1d_before.'
-            AND id_room = '$room_id'
-        ORDER BY from_date"));
+            if($to_time > $from_time){
+                if(($to_time-$from_time+86400) > (86400*31)) $to_time = $from_time+(86400*30);
+                $width = (($to_time-$from_time+86400)/86400)*50;
+                
+                $time_1d_before = $from_time-86400; 
+                // echo '$time_1d_before: '.$time_1d_before.'<br>';
+
+                $time_1d_before = $this->gm_strtotime(gmdate('Y', $time_1d_before).'-'.gmdate('n', $time_1d_before).'-'.gmdate('j', $time_1d_before).' 00:00:00');
+                // echo '$time_1d_before: '.$time_1d_before.'<br>';
+                
+                $time_1d_after = $to_time+86400;$time_1d_after = $this->gm_strtotime(gmdate('Y', $time_1d_after).'-'.gmdate('n', $time_1d_after).'-'.gmdate('j', $time_1d_after).' 00:00:00');
+                // echo '$time_1d_after: '.$time_1d_after.'<br>';
+                
+                $from_time = $this->gm_strtotime(gmdate('Y', $from_time).'-'.gmdate('n', $from_time).'-'.gmdate('j', $from_time).' 00:00:00');
+                // echo '$from_time: '.$from_time.'<br>';
+            
+                $to_time = $this->gm_strtotime(gmdate('Y', $to_time).'-'.gmdate('n', $to_time).'-'.gmdate('j', $to_time).' 00:00:00');
+                // echo '$to_time: '.$to_time.'<br>';
+                
+                $today = $this->gm_strtotime(gmdate('Y').'-'.gmdate('n').'-'.gmdate('j').' 00:00:00');
+                // echo '$today: '.$today;
+
 
                 
-        $date = 0;
-        $day = '(^|,)0(,|$)';
+                // result closing
+                $result_closing = DB::select(DB::raw("SELECT stock, from_date, to_date
+                FROM pm_room_closing
+                WHERE
+                    from_date <= '.$to_time.'
+                    AND to_date >= '.$time_1d_before.'
+                    AND id_room = 26
+                ORDER BY from_date"));
 
-        // result rate
-        $result_rate = DB::select(DB::raw("SELECT DISTINCT(price), r.id as rate_id, start_date, end_date
-        FROM pm_rate as r, pm_package as p
-        WHERE id_package = p.id
-            AND min_nights IN(0,1)
-            AND days REGEXP '$day'
-            AND id_room = '$room_id'
-            AND start_date <= '$date' AND end_date >= '$date'
-        ORDER BY price DESC
-        LIMIT 1"));
+                        
+                $date = 0;
+                // $day = '(^|,)0(,|$)';
+                // result rate
+                $result_rate = DB::select(DB::raw("SELECT DISTINCT(price), r.id as rate_id, start_date, end_date
+                FROM pm_rate as r, pm_package as p
+                WHERE id_package = p.id
+                    AND min_nights IN(0,1)
+                    AND days REGEXP '(^|,)0(,|$)'
+                    AND id_room = 26
+                    AND start_date <= '$date' AND end_date >= '$date'
+                ORDER BY price DESC
+                LIMIT 1"));
 
 
-        // query room
-        $result_room = DB::select(DB::raw("SELECT DISTINCT(r.id) as room_id, id_hotel, r.title as room_title, stock, price, start_lock, end_lock
-        FROM pm_room as r
-        WHERE r.checked = 1
-        AND r.lang = 2"));
-        }
+                // query room = > result_room
+                $result_room = DB::select(DB::raw("SELECT DISTINCT(r.id) as room_id, id_hotel, r.title as room_title, stock, price, start_lock, end_lock
+                FROM pm_room as r
+                WHERE r.checked = 1
+                AND r.lang = 2
+                ORDER BY room_title"));
 
-        return view('admin.booking.view_calendar')->with(compact( 'result_closing','result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
-    }
+                // $room_id = 26;
+                // result_book
+                
+
+                $rooms = array();
+                $bookings = array();
+                $closing = array();
+                // if($result_room !== false){
+                // $curry = [28,20,27,26];
+                foreach($result_room as $j => $row){ 
+                    $room_id = $row->room_id;
+                    // echo $room_id;
+                    
+                    $room_title = $row->room_title; 
+                    $stock = $row->stock; 
+                    $min_price = $row->price; 
+                    $start_lock = $row->start_lock;
+                    $start_lock = $row->end_lock;
+                    
+                    $rooms[$room_id] = $row;
+                    
+                    $max_n = $stock-1;
+
+                    if($result_closing!== false){
+                        foreach($result_closing as $i => $row){
+                            $start_date = $row->from_date;
+                            $end_date = $row->to_date;
+                            $stock = $row->stock;
+                            
+                            $start_date = gm_strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
+                            $end_date = gm_strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
+                            
+                            $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
+                            $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
+                            
+                            for($s = 0; $s < $stock; $s++){
+                                $n = 0;
+                                for($date = $start; $date < $end; $date += 86400){
+                                    
+                                    $k = null;
+                                    $c = 0;
+                                    while(is_null($k)){
+                                        if(!isset($closing[$room_id][$date][$c])) $k = $c;
+                                        else $c++;
+                                    }
+                                    if($c > $n) $n = $c;
+                                }
+                                for($date = $start; $date < $end; $date += 86400)
+                                    $closing[$room_id][$date][$n] = $row;
+                                
+                                if($n > $max_n) $max_n = $n;
+                            }
+                        }
+                    }
+
+                    $result_book = DB::select(DB::raw("SELECT DISTINCT(b.id) as bookid, status, from_date, to_date, firstname, lastname, total, id_room
+                        FROM pm_booking as b, pm_booking_room as br
+                        WHERE
+                            br.id_booking = b.id
+                            AND (status = 4 OR (status = 1 AND (add_date > '.(time()-900).' OR payment_option IN('arrival','check'))))
+                            AND from_date <= '$to_time'
+                            AND to_date >= '$time_1d_before'
+                            AND id_room = '$room_id'
+                        ORDER BY bookid")
+                            
+                    );
+                    if($result_book !== false){
+                        foreach($result_book as $i => $row){
+                            // echo $row->id_room;
+                            $start_date = $row->from_date;    
+                            $end_date   = $row->to_date;     
+                            // echo '$start_date'.$start_date.'<br>';
+                            // echo '$end_date'.$end_date.'<br>';
+                            $start_date = strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
+                            $end_date = strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
+                            
+                            $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
+                            $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
+                            
+                            // echo '$start'.$start.'<br>';
+                            // echo '$end'.$end.'<br>';
+                            
+                            $n = 0;
+                            for($date = $start; $date < $end; $date += 86400){
+                                // echo date('Y/m/d',$date).'<br>';
+                                $k = null;
+                                $c = 0;
+                                while(is_null($k)){
+                                    if(!isset($bookings[$room_id][$date][$c]) && !isset($closing[$room_id][$date][$c])) 
+                                    {
+                                        // echo var_dump(!isset($bookings[$room_id][$date][$c]));
+                                        
+                                        $k = $c;
+                                        // echo $k;
+
+                                    } else {
+                                        $c++;
+                                        // echo '$c=>'.$c.'...';
+                                    }
+                                }
+
+                                if($c > $n) $n = $c;
+                            }
+
+                            for($date = $start; $date < $end; $date += 86400){
+                                $bookings[$room_id][$date][$n] = $row;
+                                // var_dump($bookings[$room_id][$date][$n] );
+                            }
+
+                            if($n > $max_n) $max_n = $n;
+                        }
+                    }
+
+                    // echo $max_n.'<br>';
+                    $rooms[$room_id]->n = $max_n;
+                } 
+
+
+
+                return view('admin.booking.view_calendar')->with(compact('rooms','result_closing', 'bookings',
+                'result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
+            }
+        }// ..request
+}
     
     
     // edit 

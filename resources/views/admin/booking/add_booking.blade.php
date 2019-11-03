@@ -207,10 +207,10 @@
                 <div class="col-sm-6">
                     <select class="form-control"  name="status" style="width: 100%;">
                         <option selected="selected">-</option>
-                        <option value="0">Хүлээгдэж байгаа</option>
-                        <option value="1">Цуцлагдсан</option>
-                        <option value="2">Payment rejected</option>
-                        <option value="3">Баталгаажсан</option>
+                        <option value="1">Хүлээгдэж байгаа</option>
+                        <option value="2">Цуцлагдсан</option>
+                        <option value="3">Payment rejected</option>
+                        <option value="4">Баталгаажсан</option>
                     </select>
                 </div>
             </div>

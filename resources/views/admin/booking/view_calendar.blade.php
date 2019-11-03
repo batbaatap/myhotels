@@ -3,109 +3,182 @@
 
 
 
-<div class="container-fluid">
-   
-                  
-                    <?php
+{{-- <div class="container-fluid"> --}}
+    <form action="/admin/booking/view-calendar" method="GET" enctype="multipart/form-data">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                        <label>Booking In:</label>
                         
-                        if($result_room !== false){
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text ">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                            </div>
+                            {{-- <input type="text"  class="form-control float-right" rel="to_picker" name="from_date" value="" > --}}
+                            {{-- <input type="text" class="form-control  from_date_cal" id="" rel="" name="from_date" value="30/10/2019"> --}}
+                            <input type="text" name="from_date" class="from_date_cal form-control  float-right " id="">
+                        </div>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+
+                        <!-- /.col -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>Booking Out:</label>
                             
-                            foreach($result_room as $j => $row){
-                                $room_id = $row->room_id;
-                                //  echo $room_id;
-                                $room_title = $row->room_title; 
-                                // echo $room_title;
-                                $stock = $row->stock; 
-                                // echo $stock;
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text ">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                                </div>
+                                {{-- <input type="text"  class="form-control float-right " rel="to_picker" name="to_date" value="" > --}}
+                                <input type="text" class="form-control to_date_cal" id="" rel="" name="to_date" value="30/11/2019">
+                            </div>
+                            
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="color:transparent;">=</label>
                                 
-                                $rooms[$room_id] = $row;
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    {{-- <span class="input-group-text "> --}}
+                                        {{-- <i class="far fa-calendar-alt"></i> --}}
+                                    {{-- </span> --}}
+                                    </div>
+                            <button type="submit" class="btn btn-primary btn-flat">ХАЙХ</button>
+                        </div>
+                        
+                    </div>
+                    <!-- /.form-group -->
+                        </div>    
+                </div>
+            </div> 
+
+
+
+                <?php
+                    // $rooms = array();
+                    // $bookings = array();
+                    // $closing = array();
+                    // // if($result_room !== false){
+                    // // $curry = [28,20,27,26];
+                    // foreach($result_room as $j => $row){ 
+                    //     $room_id = $row->room_id;
+                    //     // echo $room_id;
+                        
+                    //     $room_title = $row->room_title; 
+                    //     $stock = $row->stock; 
+                    //     $min_price = $row->price; 
+                    //     $start_lock = $row->start_lock;
+                    //     $start_lock = $row->end_lock;
+                        
+                    //     $rooms[$room_id] = $row;
+                        
+                    //     $max_n = $stock-1;
+
+                    //     if($result_closing!== false){
+                    //         foreach($result_closing as $i => $row){
+                    //             $start_date = $row->from_date;
+                    //             $end_date = $row->to_date;
+                    //             $stock = $row->stock;
                                 
-                                $max_n = $stock-1; echo $max_n;
-                               
-                                // if($result_book !== false){
+                    //             $start_date = gm_strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
+                    //             $end_date = gm_strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
+                                
+                    //             $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
+                    //             $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
+                                
+                    //             for($s = 0; $s < $stock; $s++){
+                    //                 $n = 0;
+                    //                 for($date = $start; $date < $end; $date += 86400){
+                                        
+                    //                     $k = null;
+                    //                     $c = 0;
+                    //                     while(is_null($k)){
+                    //                         if(!isset($closing[$room_id][$date][$c])) $k = $c;
+                    //                         else $c++;
+                    //                     }
+                    //                     if($c > $n) $n = $c;
+                    //                 }
+                    //                 for($date = $start; $date < $end; $date += 86400)
+                    //                     $closing[$room_id][$date][$n] = $row;
                                     
-                                    // if($result_closing->execute() !== false){
-                                    foreach($result_closing as $i => $row){
-                                        $start_date = $row->from_date;
-                                        $end_date = $row->to_date;
-                                        $stock = $row->stock;
-                                        
-                                        $start_date = gm_strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
-                                        $end_date = gm_strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
-                                        
-                                        $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
-                                        $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
-                                        
-                                        for($s = 0; $s < $stock; $s++){
-                                            $n = 0;
-                                            for($date = $start; $date < $end; $date += 86400){
-                                                
-                                                $k = null;
-                                                $c = 0;
-                                                while(is_null($k)){
-                                                    if(!isset($closing[$room_id][$date][$c])) $k = $c;
-                                                    else $c++;
-                                                }
-                                                if($c > $n) $n = $c;
-                                            }
-                                            for($date = $start; $date < $end; $date += 86400)
-                                                $closing[$room_id][$date][$n] = $row;
+                    //                 if($n > $max_n) $max_n = $n;
+                    //             }
+                    //         }
+                    //     }
+
+                    //     if($result_book !== false){
+                    //         foreach($result_book as $i => $row){
+                    //             // echo $row->id_room;
+                    //             $start_date = $row->from_date;    
+                    //             $end_date   = $row->to_date;     
+                    //             // echo '$start_date'.$start_date.'<br>';
+                    //             // echo '$end_date'.$end_date.'<br>';
+                    //             $start_date = strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
+                    //             $end_date = strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
+                                
+                    //             $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
+                    //             $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
+                                
+                    //             // echo '$start'.$start.'<br>';
+                    //             // echo '$end'.$end.'<br>';
+
+                    //             $n = 0;
+                    //             for($date = $start; $date < $end; $date += 86400){
+                    //                 // echo date('Y/m/d',$date).'<br>';
+                    //                 $k = null;
+                    //                 $c = 0;
+                    //                 while(is_null($k)){
+                    //                     if(!isset($bookings[$room_id][$date][$c]) && !isset($closing[$room_id][$date][$c])) 
+                    //                     {
+                    //                         // echo var_dump(!isset($bookings[$room_id][$date][$c]));
                                             
-                                            if($n > $max_n) $max_n = $n;
-                                        }
-                                    }
-                                // }
+                    //                         $k = $c;
+                    //                         // echo $k;
 
-                                    foreach($result_book as $i => $row){
-                                        $start_date = $row->from_date;    
-                                        // echo '$start_date'.$start_date.'<br>';
-                                        $end_date   = $row->to_date;     
-                                        // echo '$end_date'.$end_date.'<br>';
-                                        
-                                        // $start_date = strtotime(gmdate('Y', $start_date).'-'.gmdate('n', $start_date).'-'.gmdate('j', $start_date).' 00:00:00');
-                                        // $end_date = strtotime(gmdate('Y', $end_date).'-'.gmdate('n', $end_date).'-'.gmdate('j', $end_date).' 00:00:00');
-                                        
-                                        $start = ($start_date < $time_1d_before) ? $time_1d_before : $start_date;
-                                        $end = ($end_date > $time_1d_after) ? $time_1d_after : $end_date;
-                                        
-                                        // echo '$start'.$start.'<br>';
-                                        // echo '$end'.$end.'<br>';
+                    //                     } else {
+                    //                         $c++;
+                    //                         // echo '$c=>'.$c.'...';
+                    //                     }
+                    //                 }
 
-                                        $n = 0;
-                                        for($date = $start; $date < $end; $date += 86400){
-                                            
-                                            $k = null;
-                                            $c = 0;
-                                            while(is_null($k)){
-                                                // var_dump(!isset($bookings[$room_id][$date][$c]));
-                                                // var_dump(!isset($closing[$room_id][$date][$c]));
+                    //                 if($c > $n) $n = $c;
+                    //             }
 
-                                                if(!isset($bookings[$room_id][$date][$c]) && !isset($closing[$room_id][$date][$c]))
+                    //             for($date = $start; $date < $end; $date += 86400){
+                    //                 $bookings[$room_id][$date][$n] = $row;
+                    //                 // var_dump($bookings[$room_id][$date][$n] );
+                    //             }
 
-                                                $k = $c;
-                                            
-                                                else $c++;
-                                            }
-                                            if($c > $n) $n = $c;
-                                        }
+                    //             if($n > $max_n) $max_n = $n;
+                    //         }
+                    //     }
 
-                                        for($date = $start; $date < $end; $date += 86400)
-                                            $bookings[$room_id][$date][$n] = $row;
-                                            // var_dump(isset($bookings[$room_id][$date][$n]));
-
-                                            if($n > $max_n) $max_n = $n;
-                                    }
-                                // }
-                                $rooms[$room_id]->n = $max_n;
-
-                            } 
-                            ?>
+                    //     // echo $max_n.'<br>';
+                    //     $rooms[$room_id]->n = $max_n;
+                    // } 
+                ?>
 
                         
                             <div class="panel-body mb15">
                                 <div class="container-fluid">
                                     <div class="row">
                                       
+
+
+                                        {{-- =========== --}}
+                                        {{--    Өрөөнүүд --}}
+                                        {{-- =========== --}}
                                         <div class="col-lg-2 col-md-3 col-sm-4 rooms-title">
                                             <?php
                                             foreach($rooms as $room_id => $row){ ?>
@@ -123,8 +196,19 @@
                                                 }
                                             } ?>
                                         </div>
-                                        
+
+
+
+                                        {{-- =========== --}}
+                                        {{-- Захиалгууд, Өдөр --}}
+                                        {{-- =========== --}}
                                         <div class="col-lg-10 col-md-9 col-sm-8 timeline-wrapper">
+
+
+
+                                            {{-- =================== --}}
+                                            {{-- check in, check out, occupancy /Ачаалал/ --}}
+                                            {{-- =================== --}}
                                             <div class="timeline-row" style="width: <?php echo $width; ?>px;">
                                                 <?php
 
@@ -139,7 +223,7 @@
                                                     
                                                     $dat = (gmdate('Y', $date).'-'.gmdate('n', $date).'-'.gmdate('j', $date).' 00:00:00');
                                                     $date = strtotime($dat.' GMT');
-
+                                                    
                                                     foreach($bookings as $id_room => $dates){
                                                         if(isset($dates[$date])){
                                                             foreach($dates[$date] as $n => $booking)
@@ -187,7 +271,13 @@
                                                 } ?>
                                             </div>
 
-                                            <!-- part 2 -->
+
+
+
+
+                                            {{-- ====================== --}}
+                                            {{-- price, remaining room  --}}
+                                            {{-- ====================== --}}
                                             <?php
                                             foreach($rooms as $room_id => $row){
                                                 $room_title = $row->room_title;
@@ -200,8 +290,6 @@
                                                 ?>
                                             
                                                 <div class="room-row">
-                                                    
-                                                    {{-- price + remain rooms --}}
                                                     <div class="timeline-row" style="width: <?php echo $width; ?>px;">
                                                         <?php
                                                         for($date = $from_time; $date <= $to_time; $date += 86400){
@@ -211,14 +299,14 @@
                                                             
                                                             // price
                                                             $price = 0;
-                                                            
-                                                            // if($result_rate !== false ){
-                                                            if($result_rate !== false && count($result_rate) > 0){
-                                                                // $row = $result_rate;
-                                                                foreach ($result_rate as $key => $row) {
-                                                                    $price = $row->price;
-                                                                    // echo $row->price;
-                                                                }
+                                                            // if($result_rate !== false && last_row_count() > 0){
+                                                                // $row = $result_rate->fetch();
+                                                            //     $price = $result_rate->price;
+                                                            // }
+
+                                                            foreach ($result_rate as $key => $value) {
+                                                                # code...
+                                                                echo $value;
                                                             }
                                                             
                                                             // remaining rooms
@@ -233,15 +321,17 @@
                                                             </div>
                                                             <?php
                                                         } 
-                                                        
-                                                       
-
                                                         ?>
                                                     </div>
 
 
 
-                                                    {{-- color line --}}
+
+
+
+                                                    {{-- ====================== --}}
+                                                    {{-- Color line  --}}
+                                                    {{-- ====================== --}}
                                                     <?php
                                                     for($n = 0; $n <= $max_n; $n++){ ?>
                                                         <div class="timeline-row" style="width: <?php echo $width; ?>px;">
@@ -305,56 +395,56 @@
 
 
 
-<div id="cel-<?php echo $hotel_id.'-'.$room_id.'-'.$n.'-'.$date; ?>" class="timeline-cel timeline-default<?php echo $class.$status; ?><?php if($date == $today) echo ' today'; ?>">
-    <?php
-    if(!$is_closed && $prev_closed){
-        $details = '';
-        echo '<a data-html="true" data-container="body" class="tips ajax-popup-link '.$prev_status.'" href="popup-details.php" title="'.$details.'" data-params="id="></a>';
-        
-    }elseif((!$is_booked && $prev_booked) || ($is_booked && $prev_booked && $bookings[$room_id][$date][$n]->bookid != $bookings[$room_id][$prev_date][$n]->bookid)){
+                            <div id="cel-<?php echo $hotel_id.'-'.$room_id.'-'.$n.'-'.$date; ?>" class="timeline-cel timeline-default<?php echo $class.$status; ?><?php if($date == $today) echo ' today'; ?>">
+                                <?php
+                                if(!$is_closed && $prev_closed){
+                                    $details = '';
+                                    echo '<a data-html="true" data-container="body" class="tips ajax-popup-link '.$prev_status.'" href="popup-details.php" title="'.$details.'" data-params="id="></a>';
+                                    
+                                }elseif((!$is_booked && $prev_booked) || ($is_booked && $prev_booked && $bookings[$room_id][$date][$n]->bookid != $bookings[$room_id][$prev_date][$n]->bookid)){
 
-        $details = '<b>'.$bookings[$room_id][$prev_date][$n]->firstname.' '.$bookings[$room_id][$prev_date][$n]->lastname.'</b>
-        <br>#'.$bookings[$room_id][$prev_date][$n]->bookid.'
-        <br>'.$bookings[$room_id][$prev_date][$n]->from_date.' &rarr; '.$bookings[$room_id][$prev_date][$n]->to_date.'
-        <br>'.'TOTAL'.': '.$bookings[$room_id][$prev_date][$n]->total;
-        echo '<a data-html="true" data-container="body" class="tips ajax-popup-link '.$prev_status.'" href="popup-details.php" title="'.$details.'" data-params="id='.$bookings[$room_id][$prev_date][$n]->bookid.'"></a>';
-    }
-    if($is_closed){
-        $details = '';
-        echo '<a data-html="true" data-container="body" class="tips ajax-popup-link'.$status.'" href="popup-details.php" title="'.$details.'" data-params="id="></a>';
-    }elseif($is_booked){
-        $details = '<b>'.$bookings[$room_id][$date][$n]->firstname.' '.$bookings[$room_id][$date][$n]->lastname.
-        '</b><br>#'.$bookings[$room_id][$date][$n]->bookid.
-        '<br>'.$bookings[$room_id][$date][$n]->from_date.' &rarr; '.$bookings[$room_id][$date][$n]->to_date.
-        '<br>'.'TOTAL'.': '.$bookings[$room_id][$date][$n]->total;
-        echo '<a data-html="true" data-container="body" class="tips ajax-popup-link'.$status.'" href="popup-details.php" title="'.$details.'" data-params="id='.$bookings[$room_id][$date][$n]->bookid.'"></a>';
-    } 
+                                    $details = '<b>'.$bookings[$room_id][$prev_date][$n]->firstname.' '.$bookings[$room_id][$prev_date][$n]->lastname.'</b>
+                                    <br>#'.$bookings[$room_id][$prev_date][$n]->bookid.'
+                                    <br>'.$bookings[$room_id][$prev_date][$n]->from_date.' &rarr; '.$bookings[$room_id][$prev_date][$n]->to_date.'
+                                    <br>'.'TOTAL'.': '.$bookings[$room_id][$prev_date][$n]->total;
+                                    echo '<a data-html="true" data-container="body" class="tips ajax-popup-link '.$prev_status.'" href="popup-details.php" title="'.$details.'" data-params="id='.$bookings[$room_id][$prev_date][$n]->bookid.'"></a>';
+                                }
+                                if($is_closed){
+                                    $details = '';
+                                    echo '<a data-html="true" data-container="body" class="tips ajax-popup-link'.$status.'" href="popup-details.php" title="'.$details.'" data-params="id="></a>';
+                                }elseif($is_booked){
+                                    $details = '<b>'.$bookings[$room_id][$date][$n]->firstname.' '.$bookings[$room_id][$date][$n]->lastname.
+                                    '</b><br>#'.$bookings[$room_id][$date][$n]->bookid.
+                                    '<br>'.$bookings[$room_id][$date][$n]->from_date.' &rarr; '.$bookings[$room_id][$date][$n]->to_date.
+                                    '<br>'.'TOTAL'.': '.$bookings[$room_id][$date][$n]->total;
+                                    echo '<a data-html="true" data-container="body" class="tips ajax-popup-link'.$status.'" href="popup-details.php" title="'.$details.'" data-params="id='.$bookings[$room_id][$date][$n]->bookid.'"></a>';
+                                }
 
-    ?>
-</div>
-
-
-                                                                <?php
-                                                                $prev_date = $date;
-                                                            } ?>
-                                                        </div>
-                                                        <?php
-                                                    } ?>
-                                                </div>
-                                                <?php
-                                            } }?>
-                                        </div>
-                                    </div>
-                            
-                                </div>
+                                ?>
                             </div>
-                            <?php
-                        // }
-                         ?>
+
+
+                                        <?php
+                                        $prev_date = $date;
+                                    } ?>
+                                </div>
+                                <?php
+                            } ?>
+                        </div>
+                        <?php
+                    }
+                    //  }
+                     ?>
+                </div>
+            </div>
+    
+        </div>
+    </form>
+{{-- </div> --}}
+ 
                     
                     
             
-
 
             
 @endsection

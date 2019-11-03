@@ -31,6 +31,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::match(['get', 'post'], '/booking/add-booking',          'BookingController@addBooking');
     Route::match(['get', 'post'], '/booking/edit-booking/{id}',    'BookingController@editBooking');
     Route::match(['get', 'post'],'/booking/view-calendar', 'BookingController@viewCalendar');
+
+    Route::bind('post', function ($value) {
+      return App\Post::find($value)->where('status', '=', 'published')->first();
+  });
     
 
     Route::get('/booking/view-bookings',                           'BookingController@viewBookings');
@@ -165,7 +169,6 @@ Route::group(['as' => 'customer', 'namespace' => 'Customer'], function () {
  // room
   Route::resource('room', 'RoomController');
   Route::match(['get', 'post'],'roomsearch', 'RoomController@roomsearch');
-  
   
   // Booking
   Route::get('/booking/booking-details',  'BookingController@bookingDetails')->name('comment');

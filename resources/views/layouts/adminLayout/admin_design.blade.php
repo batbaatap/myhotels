@@ -159,12 +159,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{url('admin/assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
 
+
 {{-- swal --}}
 {{-- <script src="sweetalert2.all.min.js"></script> --}}
 <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
 {{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> --}}
 
 <script>
+
+
+
+
     $(function () {
       //Initialize Select2 Elements
       $('.select2bs4').select2({

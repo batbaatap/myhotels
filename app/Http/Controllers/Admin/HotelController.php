@@ -48,6 +48,8 @@ class HotelController extends Controller
             $hotel->descr=$data['hotel_description'];
             $hotel->facilities= $i;
             $hotel->id_destination=$data['id_destination'];
+            $hotel->checked=$data['checked'];
+
             $hotel->save();
 
         } 
