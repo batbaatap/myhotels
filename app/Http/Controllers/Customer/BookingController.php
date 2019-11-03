@@ -14,6 +14,16 @@ class BookingController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
 
+            $request->validate([
+                'lastname' => 'required|max:255',
+                'email' => 'required',
+                'phone' => 'required',
+                'checkbox' => 'required',
+               
+            ]);
+
+
+
             // echo "<pre>"; print_r($data); die;
             $booking = new Booking();
             
@@ -93,6 +103,8 @@ class BookingController extends Controller
 
     public function bookingDetails(Request $request)
     {
+  
+
         $hotelEyed = $request->hotelId;
         return view('customer.booking.booking_details', compact('hotelEyed'));
     }

@@ -2,8 +2,7 @@
 @section('content')
 <div class="container">
 
-
-<form action="{{url('/booking/payment')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="">
+<form action="{{url('/booking/payment')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="user_register">
         {{ csrf_field() }}
       
             <div class="row mt-4">
@@ -104,7 +103,7 @@
                         
                         <p>Нийт үнэ</p>
                         <div class="card" style="width: 7rem;">MNT 460,000</div><br/> --}}
-                        <span> <input type="checkbox" class="checkbox"> Үйлчилгээний нөхцөл хүлээн зөвшөөрөх </span>
+                        <span> <input type="checkbox" name="checkbox" class="checkbox"> Үйлчилгээний нөхцөл хүлээн зөвшөөрөх </span>
                         <input class="btn btn-outline-success " onclick="localdelete()" type="submit" value="Захиалах">
                 </div>
             </div>

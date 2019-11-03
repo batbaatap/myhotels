@@ -35,7 +35,6 @@ class HotelController extends Controller
         //  $aa= DB::select(DB::raw( "SELECT facilities FROM pm_hotel WHERE checked = 1 and id=1"));
         // $aa='1,2,3,4,5,6,7';
 
-       
         $hotel=DB::select(DB::raw( "SELECT * FROM `pm_hotel` "));
         $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
                                     FROM 
@@ -48,13 +47,14 @@ class HotelController extends Controller
     }
 
 
+    
 
     public function hotelsearch(Request $request){
 
 
         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
     
-    // if($request->isMethod('post')){
+    if($request->isMethod('post')){
      
         $datefrom =  strtotime($request->datefrom);
         $dateto =  strtotime($request->dateto);
@@ -301,7 +301,7 @@ $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
        
 
             return view('customer/hotel.index', compact('hotel','destination','fac'));
-        // }
+        }
     }
 
     

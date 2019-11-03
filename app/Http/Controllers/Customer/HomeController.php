@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Destination;
 use DB;
+use App\Hotel;
 class HomeController extends Controller
 {
     /**
@@ -16,12 +17,10 @@ class HomeController extends Controller
     public function index()
     {
         //
-        // return view('customer/home.index');
-        // $destination = Destination::all();
-    
-         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
+        $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
+        $hotel = Hotel::all();
 
-        return view('customer/home.index', compact('destination'));
+        return view('customer/home.index', compact('destination','hotel'));
 
     }
 

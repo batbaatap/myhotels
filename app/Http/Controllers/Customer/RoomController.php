@@ -17,20 +17,25 @@ class RoomController extends Controller
     public function index()
     {
         //
-        $room= Room::all();
-        return view('customer/room.index', compact('room'));
+        $rooms= Room::all();
+        $hotels= Hotel::all();
+        return view('customer/room.index', compact('rooms','hotels'));
     }
     
 public function roomsearch(Request $request){
     
     if($request->isMethod('post')){
+     
+       
+
 
         $datefrom22 =  strtotime($request->datefrom22);
         $dateto22 =  strtotime($request->dateto22);
         $room_quantity22 = $request->room_quantity22;
         $person_quantity22 = $request->person_quantity22;
         $hotel22 = $request->hotel;
-        
+       
+    
         $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
         // $hotels=DB::select(DB::raw( "  SELECT *  FROM `pm_hotel` LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
 

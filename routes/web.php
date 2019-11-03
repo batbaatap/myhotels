@@ -164,11 +164,11 @@ Route::group(['as' => 'customer', 'namespace' => 'Customer'], function () {
   Route::resource('/', 'HomeController');
  // hotel
   Route::resource('hotel', 'HotelController');
-  Route::match(['get', 'post'],'/hotelsearch', 'HotelController@hotelsearch');
+  Route::match(['get', 'post'],'hotel/search', 'HotelController@hotelsearch');
   
  // room
-  Route::resource('room', 'RoomController');
-  Route::match(['get', 'post'],'roomsearch', 'RoomController@roomsearch');
+  // Route::resource('room', 'RoomController');
+  Route::match(['get', 'post'],'room/search', 'RoomController@roomsearch');
   
   // Booking
   Route::get('/booking/booking-details',  'BookingController@bookingDetails')->name('comment');
