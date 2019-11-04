@@ -168,6 +168,7 @@
                             {{ $h->subtitle }}<br/>
                               <i class="fa fa-map-marker" aria-hidden="true"></i> {{ $h->address }}<br/>
                               {{str_limit($h->descr,130) }}<br/>
+                              
                                 {{ $h->facilities}}<br/>
                           
                           {{-- form --}}

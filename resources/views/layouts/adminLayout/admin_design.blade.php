@@ -159,6 +159,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{url('admin/assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
 
+{{-- panda --}}
+{{-- <script src="http://localhost/panda/admin/js/jquery-ui.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
 
 {{-- swal --}}
 {{-- <script src="sweetalert2.all.min.js"></script> --}}
@@ -197,11 +201,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
       //   }
       // })
       //Date range as a button
-      $('#reservation').daterangepicker(
+      $('#from_date_cus,#to_date_cus').daterangepicker(
         {
-          // singleDatePicker: true,
-          // showDropdowns: true,
+          singleDatePicker: true,
+          showDropdowns: true,
           minYear: 1901,
+          locale: {
+            format: 'DD/MM/YYYY'
+            // format: 'DD/MM/YYYY hh:mm A'
+          },
           maxYear: parseInt(moment().format('YYYY'),10)
         }, 
         function(start, end, label) {

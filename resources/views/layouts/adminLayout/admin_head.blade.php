@@ -28,6 +28,10 @@
    <!-- summernote -->
    <link rel="stylesheet" href="{{url('admin/assets/plugins/summernote/summernote-bs4.css')}}">
    <link rel="stylesheet" href="{{url('admin/cus_plugin_me/pms.css')}}">
+   
+   
+   {{-- panda --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
 
 </head>

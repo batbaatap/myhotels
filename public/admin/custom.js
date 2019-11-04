@@ -189,33 +189,33 @@ $("#add-booking").validate({
 
 // full calendar
 
-// $(function(){
-//     $('#from_picker, #start_picker').datepicker({
-//         dateFormat: 'dd/mm/yy',
-//         //minDate: 0,
-//         onClose: function (selectedDate, instance){
-//             if(selectedDate != '') {
-//                 var relPicker = $('#'+$(this).attr('rel'));
-//                 relPicker.datepicker('option', 'minDate', selectedDate);
-//                 var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
-//                 date.setMonth(date.getMonth() + 1);
-//                 relPicker.datepicker('option', 'minDate', selectedDate);
-//                 relPicker.datepicker('option', 'maxDate', date);
-//             }
-//         }
-//     });
-//     $('#to_picker, #end_picker').datepicker({
-//         dateFormat: 'dd/mm/yy',
-//         defaultDate: '+1w',
-//         onClose: function (selectedDate){
-//             var relPicker = $('#'+$(this).attr('rel'));
-//             relPicker.datepicker('option', 'maxDate', selectedDate);
-//         }
-//     });
-//     // <?php
-//     // if(isset($field_notice) && !empty($field_notice))
-//     //     foreach($field_notice as $field => $notice) echo '$(\'.field-notice[rel="'.$field.'"]\').html(\''.$notice.'\').fadeIn(\'slow\').parent().addClass(\'alert alert-danger\');'."\n"; ?>
-// });
+$(function(){
+    $('#from_picker, #start_picker').datepicker({
+        dateFormat: 'dd/mm/yy',
+        //minDate: 0,
+        onClose: function (selectedDate, instance){
+            if(selectedDate != '') {
+                var relPicker = $('#'+$(this).attr('rel'));
+                relPicker.datepicker('option', 'minDate', selectedDate);
+                var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
+                date.setMonth(date.getMonth() + 1);
+                relPicker.datepicker('option', 'minDate', selectedDate);
+                relPicker.datepicker('option', 'maxDate', date);
+            }
+        }
+    });
+    $('#to_picker, #end_picker').datepicker({
+        dateFormat: 'dd/mm/yy',
+        defaultDate: '+1w',
+        onClose: function (selectedDate){
+            var relPicker = $('#'+$(this).attr('rel'));
+            relPicker.datepicker('option', 'maxDate', selectedDate);
+        }
+    });
+    // <?php
+    // if(isset($field_notice) && !empty($field_notice))
+    //     foreach($field_notice as $field => $notice) echo '$(\'.field-notice[rel="'.$field.'"]\').html(\''.$notice.'\').fadeIn(\'slow\').parent().addClass(\'alert alert-danger\');'."\n"; ?>
+});
 
 
 

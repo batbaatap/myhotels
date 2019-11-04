@@ -40,7 +40,7 @@ table.dataTable thead > tr > th.sorting_desc
 
 
 /* full calendar */
-.badge {
+.badger {
     display: inline-block;
     min-width: 10px;
     padding: 3px 7px;
@@ -57,5 +57,9 @@ table.dataTable thead > tr > th.sorting_desc
 
 .shar_ungu{
     background-color: #fcf8e3!important;
+}
+
+.legend-label-cus{
+    margin-bottom: 0.5em!important;
 }
 /*  */

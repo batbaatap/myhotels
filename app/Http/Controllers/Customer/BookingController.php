@@ -22,8 +22,6 @@ class BookingController extends Controller
                
             ]);
 
-
-
             // echo "<pre>"; print_r($data); die;
             $booking = new Booking();
             

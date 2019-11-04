@@ -1,5 +1,10 @@
 @extends('layouts.adminLayout.admin_design') @section('content')
 
+@php
+    $from_date = gmdate('d/m/Y', $from_time);
+    $to_date = gmdate('d/m/Y', $to_time);
+
+@endphp
 <div class="card card-default">
     <form action="/admin/booking/view-calendar" method="GET" enctype="multipart/form-data">
         <div class="card-header">
@@ -13,7 +18,8 @@
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                             </div>
-                            <input type="text" name="from_date" class="from_date_cal form-control  float-right" id="">
+                            {{-- <input type="text" name="from_date" class="form-control  float-right" id="from_date_cus"> --}}
+                            <input type="text" name="from_date" class="form-control  float-right"id="from_picker" rel="to_picker"  value="<?php echo $from_date; ?>">
                         </div>
                     </div>
                 </div>
@@ -29,7 +35,8 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="text" class="form-control to_date_cal" id="" rel="" name="to_date" value="30/11/2019">
+                            {{-- <input type="text" class="form-control" id="to_date_cus"  name="to_date"> --}}
+                            <input type="text" class="form-control datepicker" id="to_picker" rel="from_picker" name="to_date" value="<?php echo $to_date; ?>">
                         </div>
 
                     </div>
@@ -119,26 +126,26 @@
                                     <?php
                                 if($checkin > 0){ ?>
                                         <a href="popup-check-in-out.php" class="ajax-popup-link" data-params="date=<?php echo $date; ?>">
-                                            <div class="badge badge-checkin">
+                                            <div class="badge badge-checkin badger">
                                                 <?php echo $checkin; ?>
                                             </div>
                                         </a>
                                         <?php
                                 }else{ ?>
-                                            <div class="badge">
+                                            <div class="badge badger">
                                                 <?php echo $checkin; ?>
                                             </div>
                                             <?php
                                 }
                                 if($checkout > 0){ ?>
                                                 <a href="popup-check-in-out.php" class="ajax-popup-link" data-params="date=<?php echo $date; ?>">
-                                                    <div class="badge badge-checkout">
+                                                    <div class="badge badger badge-checkout">
                                                         <?php echo $checkout; ?>
                                                     </div>
                                                 </a>
                                                 <?php
                                 }else{ ?>
-                                                    <div class="badge">
+                                                    <div class="badge badger">
                                                         <?php echo $checkout; ?>
                                                     </div>
                                                     <?php
@@ -307,13 +314,50 @@
         </div>
     
     <div class="card-footer">
-            <legend>Тайлбар</legend>
+            <h5>Тайлбар</h5>
+            <div class="row">
             <div class="col-xs-6 col-sm-5 col-md-4 col-lg-2">
-                    <div class="timeline-legend in-house"></div> <div class="legend-label mb5">In house</div>
-                    <div class="timeline-legend confirmed"></div> <div class="legend-label mb5">Confirmed</div>
-                    <div class="timeline-legend pending"></div> <div class="legend-label mb5">Pending</div>
-                    <div class="timeline-legend checked-out"></div> <div class="legend-label mb5">Checked out</div>
-                    <div class="timeline-legend closed"></div> <div class="legend-label mb5">Unavailable</div>
+                    <div class="timeline-legend in-house"></div> <div class="legend-label legend-label-cus mb5">Байршсан</div>
+                    <div class="timeline-legend confirmed"></div> <div class="legend-label  legend-label-cus mb5">Баталгаажсан</div>
+                    <div class="timeline-legend pending"></div> <div class="legend-label  legend-label-cus mb5">Хүлээгдэж байгаа</div>
+                    <div class="timeline-legend checked-out"></div> <div class="legend-label  legend-label-cus mb5">Checked out</div>
+                    <div class="timeline-legend closed"></div> <div class="legend-label  legend-label-cus mb5">Боломжгүй</div>
+                </div>
+
+                <div class="col-xs-6 col-sm-5 col-md-4 col-lg-4">
+                    <div class="timeline-cel timeline-d">
+                        <b>MON</b><br>29/10<br>
+                        <div class="badge badger badge-checkin">2</div>
+                        <div class="badge badger badge-checkout">1</div>
+                        <div>50%</div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="legend-label mt10 mb5  mb-2" style="margin-top:0.8em;">
+                            <svg class="svg-inline--fa fa-caret-left fa-w-6" aria-hidden="true" width= '.375em'; data-fa-processed="" data-prefix="fas" data-icon="caret-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"></path></svg>
+                             {{-- <i class="fas fa-caret-left"></i> --}}
+                             Өдөр</div>
+                        <div class="legend-label">
+                            <svg class="svg-inline--fa fa-caret-left fa-w-6" aria-hidden="true" width= '.375em'; data-fa-processed="" data-prefix="fas" data-icon="caret-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"></path></svg>
+                             {{-- <i class="fas fa-caret-left"></i>  --}}
+                             Захиалга хийгдсэн тоо</div>
+                        <div class="legend-label">
+                            <svg class="svg-inline--fa fa-caret-left fa-w-6" width= '.375em'; aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="caret-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"></path></svg>
+                            {{-- <i class="fas fa-caret-left"></i>  --}}
+                            Захиалга дуусах тоо</div>
+                        <div class="legend-label"><svg class="svg-inline--fa fa-caret-left fa-w-6" width= '.375em'; aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="caret-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"></path></svg><!-- <i class="fas fa-caret-left"></i> --> Occupancy rate</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    
+                    <div class="timeline-cel timeline-price">
+                        <div>$ 80</div>
+                        <span class="text-muted">1</span>
+                    </div>
+                    <div class="pull-left">
+                        <hr class="mt0 mb0 m-0">
+                        <div class="legend-label"><svg class="svg-inline--fa fa-caret-left fa-w-6" width= '.375em'; aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="caret-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"></path></svg><!-- <i class="fas fa-caret-left"></i> --> 1 шөнө / үнэ</div>
+                        <div class="legend-label"><svg class="svg-inline--fa fa-caret-left fa-w-6" aria-hidden="true"width= '.375em'; data-fa-processed="" data-prefix="fas" data-icon="caret-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"></path></svg><!-- <i class="fas fa-caret-left"></i> --> Сул өрөөний тоо</div>
+                    </div>
+                </div>
                 </div>
     </div>
     </form>
