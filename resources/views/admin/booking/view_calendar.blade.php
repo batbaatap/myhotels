@@ -13,7 +13,7 @@
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                             </div>
-                            <input type="text" name="from_date" class="from_date_cal form-control  float-right " id="">
+                            <input type="text" name="from_date" class="from_date_cal form-control  float-right" id="">
                         </div>
                     </div>
                 </div>
@@ -304,10 +304,20 @@
                             ?>
                 </div>
             </div>
-
-    </form>
+        </div>
+    
     <div class="card-footer">
-
+            <legend>Тайлбар</legend>
+            <div class="col-xs-6 col-sm-5 col-md-4 col-lg-2">
+                    <div class="timeline-legend in-house"></div> <div class="legend-label mb5">In house</div>
+                    <div class="timeline-legend confirmed"></div> <div class="legend-label mb5">Confirmed</div>
+                    <div class="timeline-legend pending"></div> <div class="legend-label mb5">Pending</div>
+                    <div class="timeline-legend checked-out"></div> <div class="legend-label mb5">Checked out</div>
+                    <div class="timeline-legend closed"></div> <div class="legend-label mb5">Unavailable</div>
+                </div>
     </div>
+    </form>
+</div>
+   
 
     @endsection
