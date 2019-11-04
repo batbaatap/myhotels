@@ -152,7 +152,7 @@ class BookingController extends Controller
             $from_date = $request->from_date;
             $to_date   = $request->to_date;
             
-            if($from_date == '') echo 'required field';
+            if($from_date == '') {}
             else{
                 $time = explode('/', $from_date);
                 if(count($time) == 3) $time = $this->gm_strtotime($time[2].'-'.$time[1].'-'.$time[0].' 00:00:00');
@@ -160,7 +160,7 @@ class BookingController extends Controller
                 else $from_time = $time;
             }
 
-            if($to_date == '') echo 'required field';
+            if($to_date == ''){}
             else{
                 $time = explode('/', $to_date);
                 if(count($time) == 3) $time = $this->gm_strtotime($time[2].'-'.$time[1].'-'.$time[0].' 00:00:00');
