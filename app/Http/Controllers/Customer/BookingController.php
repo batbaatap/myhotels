@@ -14,14 +14,7 @@ class BookingController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
 
-            $request->validate([
-                'lastname' => 'required|max:255',
-                'email' => 'required',
-                'phone' => 'required',
-                'checkbox' => 'required',
-               
-            ]);
-
+          
 
 
             // echo "<pre>"; print_r($data); die;
