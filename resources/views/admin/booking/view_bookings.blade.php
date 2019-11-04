@@ -55,6 +55,7 @@
                                 <td>{{ $item->adults}} tom hun</td> 
                                 <td>{{ $item->children}}</td>
                                 <td>{{ $item->amount}}</td>
+                                <td>@if ($item->status == 1) Хүлээгдэж байгаа @endif</td>
                                 
                                 <td></td>
                                 <td></td>

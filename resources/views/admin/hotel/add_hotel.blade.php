@@ -177,25 +177,25 @@
                 
                 <div class="col-sm-6">
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub1" name="hotel_pub1" checked="" value="0">
+                        <input type="radio" id="pub1" name="checked" checked="" value="1">
                         <label for="pub1">Published
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub2" name="hotel_pub1" value="1">
+                        <input type="radio" id="pub2" name="checked" value="2">
                         <label for="pub2"> Not published
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub3" name="hotel_pub1" value="2">
+                        <input type="radio" id="pub3" name="checked" value="0">
                         <label for="pub3">Awaiting
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="pub4" name="hotel_pub1" value="3">
+                        <input type="radio" id="pub4" name="checked" value="3">
                         <label for="pub4">Archived
                         </label>
                     </div>

@@ -28,4 +28,6 @@
    <!-- summernote -->
    <link rel="stylesheet" href="{{url('admin/assets/plugins/summernote/summernote-bs4.css')}}">
    <link rel="stylesheet" href="{{url('admin/cus_plugin_me/pms.css')}}">
+
+
 </head>
