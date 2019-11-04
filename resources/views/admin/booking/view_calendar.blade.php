@@ -24,6 +24,7 @@
                         </div>
                         <!-- /.form-group -->
                     </div>
+<<<<<<< HEAD
 
                         <!-- /.col -->
                         <div class="col-md-3">
@@ -167,6 +168,50 @@
                     //     // echo $max_n.'<br>';
                     //     $rooms[$room_id]->n = $max_n;
                     // } 
+=======
+
+                        <!-- /.col -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>Booking Out:</label>
+                            
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text ">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                                </div>
+                                {{-- <input type="text"  class="form-control float-right " rel="to_picker" name="to_date" value="" > --}}
+                                <input type="text" class="form-control to_date_cal" id="" rel="" name="to_date" value="30/11/2019">
+                            </div>
+                            
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="color:transparent;">=</label>
+                                
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    {{-- <span class="input-group-text "> --}}
+                                        {{-- <i class="far fa-calendar-alt"></i> --}}
+                                    {{-- </span> --}}
+                                    </div>
+                            <button type="submit" class="btn btn-primary btn-flat">ХАЙХ</button>
+                        </div>
+                        
+                    </div>
+                    <!-- /.form-group -->
+                        </div>    
+                </div>
+            </div> 
+
+
+                <?php
+                //   moved to controller
+>>>>>>> calendar color wokring
                 ?>
 
                         
