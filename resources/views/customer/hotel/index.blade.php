@@ -46,11 +46,11 @@
         </div>
 
         <div class="col-sm-6  col-md-6 col-lg-2">
-          <input id="searchC" type="number" class="form-control room_quantity"  name="room_quantity" min="1" max="5" placeholder="өрөөний тоо">
+          <input id="searchC" type="number" class="form-control room_quantity"  name="room_quantity" min="1" max="10" placeholder="өрөөний тоо">
         </div>
 
         <div class="col-sm-6  col-md-6 col-lg-2">
-          <input id="searchD" type="number" class="form-control person_quantity"  name="person_quantity" min="1" max="5" placeholder="хүний тоо">
+          <input id="searchD" type="number" class="form-control person_quantity"  name="person_quantity" min="1" max="10" placeholder="хүний тоо">
         </div>
         <div class="col-sm-12  col-md-12 col-lg-2"><button type="submit" onclick="getDate()" class="btn btn-primary btn-block">Хайх</button>    </div>
   </div>

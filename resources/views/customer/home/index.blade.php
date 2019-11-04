@@ -1,12 +1,15 @@
 @extends('layouts.frontLayout.front_design')
 @section('content')
 
-<div class="container p-3">
+<div>
+<div style="height:630px; display: flex;align-items: center;" class="bg">
+<div style="max-width:730px; margin:0 auto; min-width:580px; width:75%;" >
+  <div class="container p-3">
     <form action="{{url('hotel/search') }}"  method="POST" enctype="multipart/form-data">
        @csrf <!-- {{ csrf_field() }} -->
         <div class="row">
                 <div class="col-lg-4 col-md-12  col-sm-12">
-                  <select id="searchR" name="destination" class="form-control destination" >
+                  <select id="input_height" name="destination" class="rounded-0 form-control destination input_height" >
                     @foreach ($destination  as $des)
                       <option value="{{$des->id}}" >{{ $des->name }} </option>
                     @endforeach
@@ -23,7 +26,7 @@
                           <i class="far fa-calendar-alt"></i>
                         </span>
                       </div>
-                      <input  id="searchA" type="text" name="datefrom" class="form-control datefrom float-right datetime1">
+                      <input  id="input_height" type="text" name="datefrom" class="form-control datefrom float-right datetime1 input_height">
                     </div>
                   </div>
                 </div>
@@ -38,28 +41,49 @@
                               <i class="far fa-calendar-alt"></i>
                           </span>
                         </div>
-                        <input  id="searchB" type="text" name="dateto" class="form-control dateto  float-right datetime2">
+                        <input  id="input_height" type="text" name="dateto" class="form-control dateto  float-right datetime2 input_height">
                       </div>
                   </div>
                 </div>
         </div>    {{-- row end --}}
 
           <div class="row">
-                  <div class="col-lg-5 col-md-5  col-sm-12">
-                    <input id="searchC" type="number" class="form-control room_quantity"  name="room_quantity" min="1" max="5" placeholder="өрөөний тоо">
+                  {{-- <div class="input-group  col-lg-5 col-md-5  col-sm-12">
+                    <input id="input_height" type="number" class="form-control room_quantity input_height"  name="room_quantity" min="1" max="5" placeholder="өрөөний тоо">
+                  
+                  </div> --}}
+                  
+                  <div class="input-group quantity col-lg-5 col-md-5  col-sm-12">
+                       <div class="input-group-prepend" >
+                          <span class="input-group-text"  style="background: white; border:none;">Өрөө:</span>
+                        </div>
+                        <input  type="number1" readonly style="background:white;" class="room_quantity border-left-0 form-control" name="room_quantity" min="1" max="10" step="1" value="1" >
                   </div>
 
-                  <div class="col-lg-5 col-md-5  col-sm-12">
-                    <input id="searchD" type="number" class="form-control person_quantity"  name="person_quantity" min="1" max="5" placeholder="хүний тоо">
-                  </div>
+                  <div class="input-group quantity col-lg-5 col-md-5  col-sm-12">
+                      <div class="input-group-prepend" >
+                         <span class="input-group-text"  style="background: white; border:none;">Хүн:</span>
+                       </div>
+                       <input  type="number1" readonly style="background:white;" class="person_quantity border-left-0 form-control" name="person_quantity" min="1" max="10" step="1" value="1" >
+                 </div>
+
+                  {{-- <div class="col-lg-5 col-md-5  col-sm-12">
+                    <input id="input_height" type="number" class="form-control person_quantity input_height"  name="person_quantity" min="1" max="5" placeholder="хүний тоо">
+                  </div> --}}
 
                   <div class="col-lg-2 col-md-2  col-sm-12">
-                      <button type="submit" onclick="getDate()" class="btn btn-primary btn-block">Хайх</button>
+                      <button type="submit" onclick="getDate()" class="btn btn-primary btn-block input_height">Хайх</button>
                   </div>
+
+
+                  
+
           </div>
 
       </form>
   </div>
+</div>
+</div>
 
 
 <div class="container" style="margin-top:50px;">
@@ -113,5 +137,5 @@
 
 
   </div> {{-- div container --}}
- 
+</div>
  @endsection
