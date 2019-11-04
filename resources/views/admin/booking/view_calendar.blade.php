@@ -63,7 +63,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-4 rooms-title">
                     <?php
                         foreach($rooms as $room_id => $row){ ?>
-                        <div class="room-title bg-info text-info" id="room-title-<?php echo $room_id; ?>">
+                        <div class="room-title bg-info text-info" style="background-color: #d9edf7!important;color: #31708f!important;" id="room-title-<?php echo $room_id; ?>">
                             <?php echo $row->room_title; ?>
                         </div>
                         <?php
@@ -113,7 +113,7 @@
 
                             $d = gmdate('N', $date); ?>
 
-                            <div class="timeline-cel timeline-d<?php if($d == 6 || $d == 7) echo ' bg-warning'; ?><?php if($date == $today) echo ' today'; ?>">
+                            <div class="timeline-cel timeline-d<?php if($d == 6 || $d == 7) echo ' bg-warning shar_ungu'; ?><?php if($date == $today) echo ' today'; ?>">
                                 <?php echo mb_strtoupper(strftime('<b>%a</b><br>%d/%m', $date)); ?>
                                     <br>
                                     <?php
@@ -191,7 +191,7 @@
                                         $num_bookings = count($bookings[$room_id][$date]);
                                         $remain = ($stock <= $num_bookings) ? 0 : $stock-$num_bookings;
                                     } ?>
-                                    <div class="timeline-cel timeline-price<?php if($d == 6 || $d == 7) echo ' bg-warning'; ?><?php if($date == $today) echo ' today'; ?>">
+                                    <div class="timeline-cel timeline-price<?php if($d == 6 || $d == 7) echo ' bg-warning shar_ungu'; ?><?php if($date == $today) echo ' today'; ?>">
                                         <div>
                                             <?php if($price > 0) echo $price; ?>
                                         </div>
