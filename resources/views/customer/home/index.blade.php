@@ -19,10 +19,10 @@
                     <div class="card card-body">
                       <form autocomplete="off" class="row" action="{{url('hotel/search') }}"  method="POST" enctype="multipart/form-data">
                         @csrf <!-- {{ csrf_field() }} -->
-                            <div class="col-lg">
+                            <div class="col-lg-3">
                                 <div class="form-group mb-lg-0">
                                     <div class="input-group input-group-lg mb-lg-0">
-                                        {{-- <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-search"></i></span></div> --}}
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
                                         {{-- <input id="search-location" type="text" class="form-control autocomplete" placeholder="Байршил" tabindex="1" required> --}}
 
                                         <select name="destination" class=" form-control destination autocomplete" placeholder="Байршил" tabindex="1" required>
@@ -34,13 +34,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg">
+                            <div class="col-lg-2">
                                 <div class="input-group input-group-lg mb-3 mb-lg-0">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div>
                                     <input class="form-control datefrom datepicker datetime1" placeholder="Select date" name="datefrom"  type="text" required>
                                 </div>
                             </div>
-                            <div class="col-lg">
+                            <div class="col-lg-2">
                               <div class="input-group input-group-lg mb-3 mb-lg-0">
                                   <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div>
                                   <input class="form-control dateto datepicker datetime2" name="dateto" placeholder="Select date" type="text" required>
@@ -367,9 +367,14 @@
                               style="background-position: center;
                               background-size: cover;
                               background-image:url({{asset('customer/images/jasper.jpg')}}); ">
-                              <span class="badge badge-primary position-absolute listing-badge">
-                                  <span class="font-weight-normal font-xs">Хямдрал 30%</span>
-                              </span>
+
+                                @foreach ($rate as $hotel_rate) <!-- хямдралын мэдээлэл -->
+                                    @if($hotel_rate->id_hotel==$h->id)
+                                        <span class="badge badge-primary position-absolute listing-badge">
+                                                <span class="font-weight-normal font-xs">Хямдрал {{$hotel_rate->price}}%</span>   
+                                        </span>
+                                    @endif
+                                @endforeach
                           </a>
                         <div class="card-body"><a href="./html/pages/single-space.html"><h5 class="font-weight-normal">{{$h->title}}</h5></a>
                           <div class="post-meta"><span class="small lh-120"><i class="fas fa-map-marker-alt mr-2"></i>{{$h->address}}</span></div>
@@ -379,12 +384,12 @@
                                 <i class="star fas fa-star text-warning"></i>
                               @endfor
 
-                              @if( $h->class < 5)
+                              {{-- @if( $h->class < 5)
                                 @for ($i =$h->class; $i < 5; $i++)
                                   <i class="star fas fa-star text-gray-200"></i> 
                                 @endfor
-                              @endif
-                             <span class="badge badge-pill badge-secondary ml-2">{{$h->class}}.0</span>
+                              @endif --}}
+                             <span class="badge badge-pill badge-secondary ml-2">{{$h->class}}.0 одтой</span>
                           </div>
                          
                              <div class="d-flex justify-content-between">

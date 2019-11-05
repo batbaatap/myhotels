@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Destination;
 use DB;
 use App\Hotel;
+use App\Rate;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -17,10 +19,13 @@ class HomeController extends Controller
     public function index()
     {
         //
+        $today = Carbon::today();
+        
+        $todaydate=  strtotime($today);
         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
         $hotel = Hotel::all();
-
-        return view('customer/home.index', compact('destination','hotel'));
+        $rate = DB::select(DB::raw("SELECT * FROM `pm_rate` WHERE '$todaydate'<= end_date;"));
+        return view('customer/home.index', compact('destination','hotel','rate'));
 
     }
 
