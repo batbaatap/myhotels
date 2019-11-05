@@ -21,7 +21,7 @@ class HotelController extends Controller
     {
        
         
-        // $fac = DB::table('pm_facility')->get();
+        $facall = DB::table('pm_facility')->get();
 
         // $image=DB::select(DB::raw( "SELECT * FROM pm_hotel_file WHERE checked = 1 and id_item= ")); 
 
@@ -42,8 +42,9 @@ class HotelController extends Controller
                                     where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
                                     ORDER BY rank 
                                 ")); 
+                            
        
-        return view('customer/hotel.index', compact('destination','hotel','fac'));
+        return view('customer/hotel.index', compact('destination','hotel','facall','fac'));
     }
 
 
@@ -291,7 +292,7 @@ class HotelController extends Controller
         }  
     }
                             //бүх үйлчилгээнүүдээ хэвлэж байгаа
-$fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
+            $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
                             FROM 
                             `pm_facility`,`pm_hotel`
                             where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
@@ -305,72 +306,9 @@ $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
     }
 
     
-
+    public function show()
+    {
+        
+    }
     
- 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

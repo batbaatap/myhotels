@@ -16,6 +16,7 @@
 </div>
 
 
+
 <main>
     <section class="section pt-5 pt-lg-6">
         <div id="spaces-container" class="container">
@@ -105,28 +106,25 @@
 
                               
                             <div class="card shadow-sm border-soft mt-4 p-3">
-                                <h6 class="font-weight-bold">Үйлчилгээ</h6>
-                                <ul class="list-group list-group list-group-flush">
-                                    @foreach ($fac as $ee){{-- бүх үйлчилгээнүүдээ хэвлэж байгаа хэсэг --}}
-                                      
-                                      <li class="list-group-item border-0 py-1 px-0 d-flex align-items-center justify-content-between">
-                                        <div class="form-check">
-                                          <label class="form-check-label">
-                                              {{ $ee->name}}
-                                              <input type="checkbox" facility="{{$ee->id}}" onchange="$('#form').submit();" id="searchA" name="checkbox[]" value="{{$ee->id}}" class="form-check-input" />
-                                                <span class="form-check-sign"></span> 
-
-                                            </label>
-                                        </div>
+                              <h6 class="font-weight-bold">Үйлчилгээ</h6>
+                            <ul class="list-group list-group list-group-flush"> 
+                                   @foreach ($fac as $ee) 
+                                  {{-- бүх үйлчилгээнүүдээ хэвлэж байгаа хэсэг --}}
+                                    
+                                     <li class="list-group-item border-0 py-1 px-0 d-flex align-items-center justify-content-between">
+                                      <div class="form-check">
+                                        <label class="form-check-label">
+                                            {{ $ee->name}}
+                                            <input type="checkbox" facility="{{$ee->id}}" onchange="$('#form').submit();" id="searchA" name="checkbox[]" value="{{$ee->id}}" class="form-check-input" />
+                                              <span class="form-check-sign"></span> 
+                                        </label>
+                                      </div>
                                     </li>
-
-                                    @endforeach
-                                  
-                                </ul>
+                                  @endforeach 
+                               </ul>
                             </div>
 
-
-                            <button class="btn btn-sm btn-block btn-primary animate-up-2 mt-4" type="submit">Apply filters</button>
+                             <button class="btn btn-sm btn-block btn-primary animate-up-2 mt-4" type="submit">Apply filters</button> 
                         </form>
                     </div>
                 </aside>
@@ -144,15 +142,15 @@
                                 <li class="nav-item pr-0">
                                     <a class="nav-link text-sm-center active" id="tab-link-example-13" data-toggle="tab" href="#link-example-13" role="tab" aria-controls="link-example-13" aria-selected="true">
                                         <span class="nav-link-icon d-block">
-													<i class="fas fa-th-list"></i>
-												</span>
+                                      <i class="fas fa-th-list"></i>
+                                    </span>
                                     </a>
                                 </li>
                                 <li class="nav-item pr-0">
                                     <a class="nav-link text-sm-center" id="tab-link-example-14" data-toggle="tab" href="#link-example-14" role="tab" aria-controls="link-example-14" aria-selected="false">
                                         <span class="nav-link-icon d-block">
-													<i class="fas fa-th-large"></i>
-												</span>
+                                <i class="fas fa-th-large"></i>
+                              </span>
                                     </a>
                                 </li>
                             </ul>
@@ -163,6 +161,8 @@
                     <div class="tab-content mt-4" id="tabcontentexample-5">
                         <div class="tab-pane fade show active" id="link-example-13" role="tabpanel" aria-labelledby="tab-link-example-13">
                         
+                        
+                                              
                           @foreach ($hotel as $h)
                           <div class="row">
                             <div class="col-lg-12">
@@ -186,20 +186,64 @@
                                             </div>
                                             <div class="d-flex my-4">
                                               @php
-                                                  $i;
+                                                $i;
                                               @endphp
-                                               @for ($i =0; $i < $h->class; $i++)
+                                              @for ($i =0; $i < $h->class; $i++)
                                                 <i class="star fas fa-star text-warning"></i>
-                                                @endfor
-                                                <span class="badge badge-pill badge-secondary ml-2">
-                                                  @php
-                                                      echo $i.'.0';
-                                                  @endphp
+                                              @endfor
+                                              <span class="badge badge-pill badge-secondary ml-2">
+                                                @php
+                                                    echo $i.'.0';
+                                                @endphp
                                                 </span>
                                             </div>
                                             <div>
-                                                {{ $h->facilities}}
-                                            </div>
+                                              
+                                              @php
+
+                                                // $arh = [];
+                                                
+                                                // $a = str_split($h->facilities, 1);
+                                                // $f = explode('', $h->facilities);
+                                                // array_push($arrHotel, $a);
+
+                                                $arrFacOrig = [];
+                                                $result = '';
+
+                                                foreach ($facall as $value) {
+                                                  array_push($arrFacOrig, $value->id);
+                                                  echo $value->id;
+                                                }
+
+                                                // echo $f[1];
+                                                // str_replace(",",$h->facilities);
+
+
+                                                
+                                                // $axe = [];
+                                                // $output  = str_replace(',', '', $h->facilities);
+                                                // $splitter = str_split($output, 1);
+                                                $splitter = preg_split("/[\s,]+/", $h->facilities);
+                                                // array_push($axe, $splitter);
+
+                                                // echo $splitter[0];
+                                                // print_r($splitter);
+                                                // $diff_result = array_diff($arrFacOrig, $splitter);
+                                                // print_r ($arrFacOrig);
+                                                // echo '<br>';
+                                                // print_r ($splitter);
+
+                                                $result = array_intersect($arrFacOrig, $splitter);
+
+                                                print_r($result);
+
+                                                // print_r($result);
+
+                                              // print_r(array_diff_assoc($splitter, $arrFacOrig));
+                                              
+                                              @endphp
+
+                                          </div>
                                         </div>
 
                                         <div class="card-body d-flex flex-column justify-content-between col-md-3 p-4">
@@ -213,10 +257,20 @@
                                                   <span class="h5 text-dark font-weight-bold"> - </span>
                                                   
                                                   <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span> 
-                                                    <button type="button" class="btn btn-outline-primary btn-block my-2">Дэлгэрэнгүй</button>
-                                                    <input type="hidden" value="{{$h->id}}" name="hotel" />
-                                                    <button class="btn btn-primary btn-block">Захиалах</button>
-                                                </div>
+                                                  
+                                                    <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
+                                                      @csrf
+                                                      <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
+                                                      <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
+                                                      <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
+                                                      <input id="searchD" type="hidden" class="form-control person_quantity" name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
+
+                                                      <button type="button" class="btn btn-outline-primary btn-block my-2">Дэлгэрэнгүй</button>
+                                                      <input type="hidden" value="{{$h->id}}" name="hotel" />
+                                                      <button class="btn btn-primary btn-block">Захиалах</button>
+
+                                                    </form>
+                                                  </div>
                                             </div>
 
                                         </div>
@@ -325,6 +379,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 <div class="container p-3">
         <!-- {{ csrf_field() }} -->
         <div class="row">
@@ -415,22 +478,10 @@
                     <img src="hotelpicture/hotel.jpg" alt="hotel_image" width="250" height="150">
                 </div>
                 <div class="col-lg-6 col-md-5 col-sm-8">
-                    <h5>{{ $h->title }}
-                            @for ($i =0; $i < $h->class; $i++)
-
-                              <small>
-                                <i class="far fa-star"></i>
-                              </small>
-
-                            @endfor
-
-                      </h5> {{ $h->subtitle }}
-                    <br/>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{ $h->address }}
+                  
 
                     <br/> {{-- {{str_limit($h->descr,130) }}
 
-                    <br/> --}} {{ $h->facilities}}
 
                     <br/> {{-- form --}} {{-- form --}} {{-- form --}}
 
