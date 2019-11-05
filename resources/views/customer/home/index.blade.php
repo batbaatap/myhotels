@@ -368,10 +368,10 @@
                               background-size: cover;
                               background-image:url({{asset('customer/images/jasper.jpg')}}); ">
 
-                                @foreach ($rate as $hotel_rate) <!-- хямдралын мэдээлэл -->
-                                    @if($hotel_rate->id_hotel==$h->id)
+                                @foreach ($discount as $hotel_discount) <!-- буудлын хямдрал -->
+                                    @if($hotel_discount->id_hotel==$h->id)
                                         <span class="badge badge-primary position-absolute listing-badge">
-                                                <span class="font-weight-normal font-xs">Хямдрал {{$hotel_rate->price}}%</span>   
+                                                <span class="font-weight-normal font-xs">Хямдрал {{$hotel_discount->discount}}%</span>   
                                         </span>
                                     @endif
                                 @endforeach
@@ -392,11 +392,28 @@
                              <span class="badge badge-pill badge-secondary ml-2">{{$h->class}}.0 одтой</span>
                           </div>
                          
-                             <div class="d-flex justify-content-between">
-                              <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Monthly</span> <span class="h5 text-dark font-weight-bold">100$</span></div>
-                              <div class="col"><span class="text-muted font-small d-block mb-2">People</span> <span class="h5 text-dark font-weight-bold">1</span></div>
-                              <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Sq.Ft</span> <span class="h5 text-dark font-weight-bold">10</span></div>
-                          </div>
+
+                          
+                          {{-- <div class="d-flex justify-content-between">
+                            <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
+                            <div class="col"><span class="text-muted font-small d-block mb-2">People</span> <span class="h5 text-dark font-weight-bold">1</span></div>
+                            <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">10</span></div>
+                        </div> --}}
+                           
+                            <div class="d-flex justify-content-between">
+                                @foreach ($rate as $hotel_rate) <!-- буудлын нийт үнийн мэдээлэл-->
+                                    @if($hotel_rate->id_hotel==$h->id)
+                                        <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
+                                    @endif
+                                @endforeach
+
+                                @foreach ($rate as $hotel_discount) <!-- буудлын нийт үнийн мэдээлэл-->
+                                    @if($hotel_discount->id_hotel==$h->id)
+                                      <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">Хямдрал {{$hotel_discount->discount}}%</span></div>
+                                    @endif
+                                @endforeach
+
+                            </div>
                       </div>
                   </div>
                   <!-- End of Card -->

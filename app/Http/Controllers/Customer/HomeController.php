@@ -24,8 +24,9 @@ class HomeController extends Controller
         $todaydate=  strtotime($today);
         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
         $hotel = Hotel::all();
-        $rate = DB::select(DB::raw("SELECT * FROM `pm_rate` WHERE '$todaydate'<= end_date;"));
-        return view('customer/home.index', compact('destination','hotel','rate'));
+        $discount = DB::select(DB::raw("SELECT * FROM `pm_rate` WHERE '$todaydate'<= end_date;")); //hotel discount
+        $rate = Rate::all(); //hotel rate
+        return view('customer/home.index', compact('destination','hotel','discount','rate'));
 
     }
 
