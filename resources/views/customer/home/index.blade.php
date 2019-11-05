@@ -17,23 +17,52 @@
             <div class="row mt-4">
                 <div class="col">
                     <div class="card card-body">
-                        <form autocomplete="off" class="row" method="get" action="html/pages/all-spaces.html">
+                      <form autocomplete="off" class="row" action="{{url('hotel/search') }}"  method="POST" enctype="multipart/form-data">
+                        @csrf <!-- {{ csrf_field() }} -->
                             <div class="col-lg">
                                 <div class="form-group mb-lg-0">
                                     <div class="input-group input-group-lg mb-lg-0">
-                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
-                                        <input id="search-location" type="text" class="form-control autocomplete" placeholder="Search location" tabindex="1" required>
+                                        {{-- <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-search"></i></span></div> --}}
+                                        {{-- <input id="search-location" type="text" class="form-control autocomplete" placeholder="Байршил" tabindex="1" required> --}}
+
+                                        <select name="destination" class=" form-control destination autocomplete" placeholder="Байршил" tabindex="1" required>
+                                          @foreach ($destination  as $des)
+                                            <option value="{{$des->id}}" >{{ $des->name }} </option>
+                                          @endforeach
+                                        </select>
+                      
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg">
                                 <div class="input-group input-group-lg mb-3 mb-lg-0">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div>
-                                    <input class="form-control datepicker" placeholder="Select date" type="text" required>
+                                    <input class="form-control datefrom datepicker datetime1" placeholder="Select date" name="datefrom"  type="text" required>
                                 </div>
                             </div>
+                            <div class="col-lg">
+                              <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                  <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div>
+                                  <input class="form-control dateto datepicker datetime2" name="dateto" placeholder="Select date" type="text" required>
+                              </div>
+                            </div>
+                          <div class="col-lg">
+                            <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                <div class="input-group-prepend"><span class="input-group-text">Өрөө:</span></div>
+                                <input class="form-control room_quantity " type="number"   name="room_quantity" min="1" max="10" value="1" onkeyup = "this.value = minmaxfuncz(this.value, 1, 10)" required>
+                               
+                            </div>
+                          </div>
+
+                          <div class="col-lg">
+                            <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                <div class="input-group-prepend"><span class="input-group-text">Хүн:</span></div>
+                                <input class="form-control person_quantity" type="number" name="person_quantity" min="1" max="10" value="1" onkeyup = "this.value = minmaxfuncz(this.value, 1, 10)" required>
+                              </div>
+                          </div>
+
                             <div class="col-lg-auto">
-                                <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit">Find a desk</button>
+                                <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
                             </div>
                         </form>
                     </div>
@@ -55,21 +84,21 @@
                     <!-- Icon box -->
                     <div class="icon-box text-center">
                         <div class="icon icon-primary icon-xl"><i class="fas fa-tachometer-alt"></i></div>
-                        <h6 class="font-weight-normal text-gray mt-4 mb-3">Fast Internet</h6></div>
+                        <h6 class="font-weight-normal text-gray mt-4 mb-3">Хурдтай интернэт</h6></div>
                     <!-- End of Icon box -->
                 </div>
                 <div class="col-6 col-lg-3">
                     <!-- Icon box -->
                     <div class="icon-box text-center">
                         <div class="icon icon-primary icon-xl"><i class="fas fa-user-tie"></i></div>
-                        <h6 class="font-weight-normal text-gray mt-4 mb-3">Good Coworkers</h6></div>
+                        <h6 class="font-weight-normal text-gray mt-4 mb-3">Шилдэг ажилчид</h6></div>
                     <!-- End of Icon box -->
                 </div>
                 <div class="col-6 col-lg-3">
                     <!-- Icon box -->
                     <div class="icon-box text-center">
                         <div class="icon icon-primary icon-xl"><i class="fas fa-city"></i></div>
-                        <h6 class="font-weight-normal text-gray mt-4 mb-3">Modern Building</h6></div>
+                        <h6 class="font-weight-normal text-gray mt-4 mb-3">Орчин үеийн барилгууд</h6></div>
                     <!-- End of Icon box -->
                 </div>
             </div>
@@ -77,12 +106,20 @@
                 <div class="col-md-4">
                     <h2 class="h1 mb-5">Explore our <span class="font-weight-bold">available</span><br>office spaces.</h2></div>
                 <div class="col-md-4">
-                    <p class="lead">Coworking is not only about the physical place, but about establishing the coworking community first. Its benefits can already be experienced outside of its places, and it is recommended</p>
-                    <p class="lead mt-4">To start with building a coworking community first before considering opening a Coworking place.</p>
+                    {{-- <p class="lead">Coworking is not only about the physical place, but about establishing the coworking community first. Its benefits can already be experienced outside of its places, and it is recommended</p> --}}
+                    <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a ga</p>
+
+                    {{-- <p class="lead mt-4">To start with building a coworking community first before considering opening a Coworking place.</p> --}}
+                    <p class="lead mt-4">of type and scrambled it to make a type specimen book. It has survived not only five centuries, </p>
+
                 </div>
                 <div class="col-md-4">
-                    <p class="lead">However, some coworking places don’t build a community: they just get a part of an existing one by combining their opening with</p>
-                    <p class="lead mt-4">An event which attracts their target group. Real-estate centric coworking spaces are about selling desks first, with building community as a secondary goal.</p>
+                    {{-- <p class="lead">However, some coworking places don’t build a community: they just get a part of an existing one by combining their opening with</p> --}}
+                    <p class="lead"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with de</p>
+
+                    {{-- <p class="lead mt-4">An event which attracts their target group. Real-estate centric coworking spaces are about selling desks first, with building community as a secondary goal.</p> --}}
+                    <p class="lead mt-4">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 yea</p>
+
                 </div>
             </div>
             <div class="row mt-6">
@@ -94,7 +131,7 @@
                                 <div class="progress-wrapper mb-5">
                                     <div class="progress-info info-xl">
                                         <div class="progress-label">
-                                            <h6 class="font-weight-normal text-dark">Space occupancy level</h6></div>
+                                            <h6 class="font-weight-normal text-dark">Санал хүсэлт</h6></div>
                                         <div class="progress-percentage"><span class="text-dark">85%</span></div>
                                     </div>
                                     <div class="progress progress-lg">
@@ -103,13 +140,17 @@
                                 </div>
                                 <div class="d-flex flex-column flex-lg-row d-sm-flex justify-content-between align-items-center">
                                     <div class="mb-5 mb-lg-0">
-                                        <h4 class="font-weight-normal">Book your tour experience today!</h4>
-                                        <p class="lead mb-0">Schedule a tour, make an appointment to rent space
-                                            <br class="d-none d-lg-inline">at Themesberg, or ask for more information.</p>
+                                        {{-- <h4 class="font-weight-normal">Book your tour experience today!</h4> --}}
+                                        {{-- <p class="lead mb-0">Schedule a tour, make an appointment to rent space --}}
+                                        <p class="lead mb-0">Lorem Ipsum is simply dummy text of the printingss
+
+                                            {{-- <br class="d-none d-lg-inline">at Themesberg, or ask for more information.</p> --}}
+                                            <br class="d-none d-lg-inline">typesetting industry. Lorem Ipsum has been.</p>
+
                                     </div>
                                     <div class="align-content-end">
                                         <!-- Button Modal -->
-                                        <button type="button" class="btn btn-primary animate-up-2" data-toggle="modal" data-target="#modal-form">Schedule a tour</button>
+                                        <button type="button" class="btn btn-primary animate-up-2" data-toggle="modal" data-target="#modal-form">Санал хүсэлт илгээх</button>
                                     </div>
                                     <!-- Modal Content -->
                                     <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -170,7 +211,7 @@
             <div class="row mt-6">
                 <div class="col-12">
                     <h5 class="font-weight-normal mb-5">Эрэлттэй буудлууд</h5></div>
-                <div class="col-md-6 col-lg-4">
+                {{-- <div class="col-md-6 col-lg-4">
                     <!-- Card -->
                     <div class="card shadow-sm border-soft mb-4 animate-up-5">
                         <a href="./html/pages/single-space.html" class="position-relative">
@@ -314,8 +355,53 @@
                     </div>
                     <!-- End of Card -->
                 </div>
+ --}}
+
+
+              @foreach ($hotel as $h)
+                <div class="col-md-6 col-lg-4">
+                  <!-- Card -->
+                  <div class="card shadow-sm border-soft mb-4 animate-up-5">
+                          <a href="./html/pages/single-space.html" class="position-relative">
+                              <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
+                              style="background-position: center;
+                              background-size: cover;
+                              background-image:url({{asset('customer/images/jasper.jpg')}}); ">
+                              <span class="badge badge-primary position-absolute listing-badge">
+                                  <span class="font-weight-normal font-xs">Хямдрал 30%</span>
+                              </span>
+                          </a>
+                        <div class="card-body"><a href="./html/pages/single-space.html"><h5 class="font-weight-normal">{{$h->title}}</h5></a>
+                          <div class="post-meta"><span class="small lh-120"><i class="fas fa-map-marker-alt mr-2"></i>{{$h->address}}</span></div>
+
+                          <div class="d-flex my-4">
+                              @for ($i =0; $i < $h->class; $i++)
+                                <i class="star fas fa-star text-warning"></i>
+                              @endfor
+
+                              @if( $h->class < 5)
+                                @for ($i =$h->class; $i < 5; $i++)
+                                  <i class="star fas fa-star text-gray-200"></i> 
+                                @endfor
+                              @endif
+                             <span class="badge badge-pill badge-secondary ml-2">{{$h->class}}.0</span>
+                          </div>
+                         
+                             <div class="d-flex justify-content-between">
+                              <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Monthly</span> <span class="h5 text-dark font-weight-bold">100$</span></div>
+                              <div class="col"><span class="text-muted font-small d-block mb-2">People</span> <span class="h5 text-dark font-weight-bold">1</span></div>
+                              <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Sq.Ft</span> <span class="h5 text-dark font-weight-bold">10</span></div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- End of Card -->
+              </div>
+            @endforeach
+
+
+
                 <div class="col mt-6 d-flex flex-column text-center">
-                    <div><a href="html/pages/all-spaces.html" class="btn btn-primary animate-up-2 mb-2">Browse All</a></div><span class="font-xs">142 spaces in 6 countries</span></div>
+                    <div><a href="html/pages/all-spaces.html" class="btn btn-primary animate-up-2 mb-2">Бүгдийг харах </a></div><span class="font-xs">7 аймгийн 12 буудал </span></div>
             </div>
 
             {{-- Чиглэл --}}
@@ -324,7 +410,11 @@
                         <h5 class="font-weight-normal mb-5">Эрэлттэй чиглэл</h5></div>
                     <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
                         <!-- Card -->
-                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/newyork.jpg">
+                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="customer/images/huwsgul.jpg "
+                          style="background-position: center;
+                          background-size: cover;
+                          background-image:url({{asset('customer/images/huwsgul.jpg')}}); ">
+
                             <div class="inner-bg overlay-dark"></div>
                             <div class="card-img-overlay d-flex align-items-center">
                                 <div class="card-body text-white p-3">
@@ -335,7 +425,11 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
                         <!-- Card -->
-                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/paris.jpg">
+                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/paris.jpg"
+                        style="background-position: center;
+                          background-size: cover;
+                          background-image:url({{asset('customer/images/darhan.jpg')}}); ">
+
                             <div class="inner-bg overlay-dark"></div>
                             <div class="card-img-overlay d-flex align-items-center">
                                 <div class="card-body text-white p-3">
@@ -346,7 +440,10 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
                         <!-- Card -->
-                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/london.jpg">
+                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/london.jpg"
+                        style="background-position: center;
+                          background-size: cover;
+                          background-image:url({{asset('customer/images/bulgan.jpg')}}); ">
                             <div class="inner-bg overlay-dark"></div>
                             <div class="card-img-overlay d-flex align-items-center">
                                 <div class="card-body text-white p-3">
@@ -357,7 +454,10 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
                         <!-- Card -->
-                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/tokyo.jpg">
+                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/tokyo.jpg"
+                        style="background-position: center;
+                          background-size: cover;
+                          background-image:url({{asset('customer/images/ub.jpg')}}); ">
                             <div class="inner-bg overlay-dark"></div>
                             <div class="card-img-overlay d-flex align-items-center">
                                 <div class="card-body text-white p-3">

@@ -32,30 +32,30 @@ $('.datetime2').datetimepicker({
   sideBySide: true
 })
 
-})
+});
     
 
   
   
   // setting min max value :)
-//   function minmaxfuncz(value, min, max) 
-//   {
-//       if(parseInt(value) > 0) 
-//       {
-//           console.log('red');
-//       }
+  function minmaxfuncz(value, min, max) 
+  {
+      if(parseInt(value) > 0) 
+      {
+          console.log('red');
+      }
   
-//       if(parseInt(value) < min || isNaN(parseInt(value))) 
-//       {
-//           return min; 
-//       }
-//       else if(parseInt(value) > max) {
-//           return max; 
-//       }
-//       else{ 
-//           return value;
-//       }
-//   }
+      if(parseInt(value) < min || isNaN(parseInt(value))) 
+      {
+          return min; 
+      }
+      else if(parseInt(value) > max) {
+          return max; 
+      }
+      else{ 
+          return value;
+      }
+  }
   
   // function urgeljluulehtovch(){
   // $(".listen-room-too").on("change paste keyup", function() {
