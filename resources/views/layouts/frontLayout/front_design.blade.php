@@ -38,6 +38,9 @@
 {{-- date time picker --}}
    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
+{{-- template  --}}
+   <script src="{{url('customer/template_assets/spaces.js')}}"></script>
+
    
 
 </body>
