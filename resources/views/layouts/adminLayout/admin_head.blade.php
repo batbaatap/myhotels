@@ -31,7 +31,7 @@
    
    
    {{-- panda --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+<link rel="stylesheet" href="{{url('admin/cus_plugin_me/jquery-ui/jquery-ui.css')}}">
 
 
 </head>

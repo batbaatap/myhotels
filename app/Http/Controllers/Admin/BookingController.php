@@ -156,7 +156,7 @@ class BookingController extends Controller
             else{
                 $time = explode('/', $from_date);
                 if(count($time) == 3) $time = $this->gm_strtotime($time[2].'-'.$time[1].'-'.$time[0].' 00:00:00');
-                if(!is_numeric($time)) echo 'required field';
+                if(!is_numeric($time)) echo 'Үсэг оруулж болохгүй';
                 else $from_time = $time;
             }
 
@@ -164,7 +164,7 @@ class BookingController extends Controller
             else{
                 $time = explode('/', $to_date);
                 if(count($time) == 3) $time = $this->gm_strtotime($time[2].'-'.$time[1].'-'.$time[0].' 00:00:00');
-                if(!is_numeric($time)) echo 'required field';
+                if(!is_numeric($time)) echo 'Үсэг оруулж болохгүй';
                 else $to_time = $time;
             }
 

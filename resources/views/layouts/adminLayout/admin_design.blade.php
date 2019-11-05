@@ -159,9 +159,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{url('admin/assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
 
-{{-- panda --}}
-{{-- <script src="http://localhost/panda/admin/js/jquery-ui.js"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+{{-- custom --}}
+<script src="{{url('admin/cus_plugin_me/jquery-ui/jquery-ui.js')}}" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
 
 {{-- swal --}}
@@ -201,25 +200,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
       //   }
       // })
       //Date range as a button
-      $('#from_date_cus,#to_date_cus').daterangepicker(
-        {
-          singleDatePicker: true,
-          showDropdowns: true,
-          minYear: 1901,
-          locale: {
-            format: 'DD/MM/YYYY'
-            // format: 'DD/MM/YYYY hh:mm A'
-          },
-          maxYear: parseInt(moment().format('YYYY'),10)
-        }, 
-        function(start, end, label) {
-          // alert(start);
-          // alert(end);
+      // $('#from_date_cus,#to_date_cus').daterangepicker(
+      //   {
+      //     singleDatePicker: true,
+      //     showDropdowns: true,
+      //     minYear: 1901,
+      //     locale: {
+      //       format: 'DD/MM/YYYY'
+      //       // format: 'DD/MM/YYYY hh:mm A'
+      //     },
+      //     maxYear: parseInt(moment().format('YYYY'),10)
+      //   }, 
+      //   function(start, end, label) {
+      //     // alert(start);
+      //     // alert(end);
 
-          var days = Math.floor((end - start)/1000/60/60/24);
-          $('#honog').val(days);  
+      //     var days = Math.floor((end - start)/1000/60/60/24);
+      //     $('#honog').val(days);  
 
-        });
+      //   });
         // function(start, end, label) {
         //   var years = moment().diff(start, 'years');
         //   alert("You are " + years + " years old!");
