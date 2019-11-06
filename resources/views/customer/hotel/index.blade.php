@@ -199,7 +199,7 @@
                                             </div>
                                             <div>
                                               
-                                              @php
+                                              {{-- @php
 
                                                 // $arh = [];
                                                 
@@ -241,7 +241,7 @@
 
                                               // print_r(array_diff_assoc($splitter, $arrFacOrig));
                                               
-                                              @endphp
+                                              @endphp --}}
 
                                           </div>
                                         </div>
