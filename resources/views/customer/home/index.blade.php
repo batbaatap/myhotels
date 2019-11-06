@@ -5,15 +5,21 @@
     <!-- Hero -->
     <section class="section section-xl bg-primary overlay-dark text-white rounded" data-background="" style="background-size:cover;background-image:url({{asset('customer/images/ub_20170414053231.jpg')}})">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 text-md-center">
-                    <!-- Heading -->
-                    <h1 class="display-2">Find your perfect <span class="font-weight-bolder">coworking</span> space.</h1>
-                    <!-- Text -->
-                    <p class="lead text-muted mt-4"><span class="font-weight-bold">12,000+</span> coworking spaces with desks, offices & meeting rooms in <span class="font-weight-bold">165+</span> countries.
-                        <br>Discover and reserve space today.</p>
-                </div>
-            </div>
+                <div class="row justify-content-center">
+                        <div class="col-12 text-md-center">
+                            <!-- Heading -->
+                            <h1 class="display-2">Find your perfect <span class="font-weight-bolder">coworking</span> space.</h1>
+                            {{-- <h1 class="display-2">Онлайнаар захиалбал<span class="font-weight-bolder">50% хүртэлх</span> хямдралтай.</h1> --}}
+        
+                            <!-- Text -->
+                            {{-- <p class="lead text-muted mt-4"><span class="font-weight-bold">12,000+</span> coworking spaces with desks, offices & meeting rooms in <span class="font-weight-bold">165+</span> countries. --}}
+                            <p class="lead text-muted mt-4"><span class="font-weight-bold">  Хамгийн хямд </span>  шуурхай найдвартай онлайн буудал захиалгыг <span class="font-weight-bold">бид таньд </span> болгож байна.
+        
+                                {{-- <br>Discover and reserve space today.</p> --}}
+                                <br>Онлайнаар захиалбал 50% хүртэлх хямдралтай.</p>
+                                
+                        </div>
+                    </div>
             <div class="row mt-4">
                 <div class="col">
                     <div class="card card-body">
@@ -395,7 +401,7 @@
 
                           
                           {{-- <div class="d-flex justify-content-between">
-                            <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
+                            <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">$</span></div>
                             <div class="col"><span class="text-muted font-small d-block mb-2">People</span> <span class="h5 text-dark font-weight-bold">1</span></div>
                             <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">10</span></div>
                         </div> --}}
@@ -404,12 +410,12 @@
                                 @foreach ($rate as $hotel_rate) <!-- буудлын нийт үнийн мэдээлэл-->
                                     @if($hotel_rate->id_hotel==$h->id)
                                         <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
-                                    @endif
+                                   @endif
                                 @endforeach
 
-                                @foreach ($rate as $hotel_discount) <!-- буудлын нийт үнийн мэдээлэл-->
+                                @foreach ($discount as $hotel_discount) <!-- буудлын хямдрал -->
                                     @if($hotel_discount->id_hotel==$h->id)
-                                      <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">Хямдрал {{$hotel_discount->discount}}%</span></div>
+                                      <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp $</span></div>
                                     @endif
                                 @endforeach
 
