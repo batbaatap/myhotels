@@ -59,11 +59,10 @@ class HotelController extends Controller
                                                         
                                                             //бүх буудлуудаа харуулна(тухайн хэрэглэгчийн оруулсан өдрүүд болон өдөр хүний тоог авч шалгасан query)
             $hotel=DB::select(DB::raw( "SELECT *
-            FROM `pm_hotel`
-            
-            where  id_destination=$dest and id in(SELECT w.id_hotel
-            FROM 
-            (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
+                FROM `pm_hotel`
+                            where  id_destination=$dest and id in(SELECT w.id_hotel
+                FROM 
+                (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                         FROM `pm_room`
                         INNER JOIN `pm_booking_room`
                         ON pm_room.id = pm_booking_room.id_room
@@ -78,7 +77,7 @@ class HotelController extends Controller
                         OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
                         OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
                         )
-                            )
+                        )
                             
                             GROUP BY `pm_booking_room`.id_room
                             HAVING uruunii_zuruu>=$room_quantity  and max_people>=$person_quantity
@@ -86,6 +85,7 @@ class HotelController extends Controller
                             UNION 
                             
                             SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
+
                         from `pm_room`
                         where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
                         FROM `pm_booking_room` AS rf
@@ -96,8 +96,9 @@ class HotelController extends Controller
                         OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
                         ))
                         )w
-            group by w.id_hotel
-                            ) ")); 
+                group by w.id_hotel
+                                ) ")
+            ); 
 
             }
             else
@@ -148,7 +149,9 @@ class HotelController extends Controller
                                 )
                 
                 "
-            ));
+                )
+            );
+            
             //  if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
             //      dd(123);
                 
@@ -276,7 +279,7 @@ class HotelController extends Controller
                             ORDER BY rank 
                         ")); 
 
-            return view('customer/hotel/view_hotels')->with(compact('hotel','destination','fac'));
+            return view('customer/hotel/view_hotels')->with(compact('hotel','destination','fac','facfile'));
         } // ..end of request
 
 

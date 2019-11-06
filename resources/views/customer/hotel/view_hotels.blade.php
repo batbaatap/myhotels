@@ -20,8 +20,72 @@
 
 
 <main>
-    <section class="section pt-5 pt-lg-6">
+   
+
+
+
+    <section class="section pt-2 pt-lg-6" style="padding-top:2em!important;">
         <div id="spaces-container" class="container">
+             {{-- hailt --}}
+           
+             <div class="row mt-1">
+                    <div class="col">
+                        <div class="card card-body" style="background-color:#efefef">
+                          <form autocomplete="off" class="row" action="{{url('hotel/search') }}"  method="POST" enctype="multipart/form-data">
+                            @csrf <!-- {{ csrf_field() }} -->
+                                <div class="col-lg-3">
+                                    <div class="form-group mb-lg-0">
+                                        <div class="input-group input-group-lg mb-lg-0">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
+                                            {{-- <input id="search-location" type="text" class="form-control autocomplete" placeholder="Байршил" tabindex="1" required> --}}
+    
+                                            <select name="destination" class=" form-control destination autocomplete" placeholder="Байршил" tabindex="1" required>
+                                              @foreach ($destination  as $des)
+                                                <option value="{{$des->id}}" >{{ $des->name }} </option>
+                                              @endforeach
+                                            </select>
+                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div>
+                                        <input class="form-control datefrom datepicker datetime1" placeholder="Select date" name="datefrom"  type="text" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                  <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div>
+                                      <input class="form-control dateto datepicker datetime2" name="dateto" placeholder="Select date" type="text" required>
+                                  </div>
+                                </div>
+                              <div class="col-lg">
+                                <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                    <div class="input-group-prepend"><span class="input-group-text">Өрөө:</span></div>
+                                    <input class="form-control room_quantity " type="number"   name="room_quantity" min="1" max="10" value="1" onkeyup = "this.value = minmaxfuncz(this.value, 1, 10)" required>
+                                   
+                                </div>
+                              </div>
+    
+                              <div class="col-lg">
+                                <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                    <div class="input-group-prepend"><span class="input-group-text">Хүн:</span></div>
+                                    <input class="form-control person_quantity" type="number" name="person_quantity" min="1" max="10" value="1" onkeyup = "this.value = minmaxfuncz(this.value, 1, 10)" required>
+                                  </div>
+                              </div>
+    
+                                <div class="col-lg-auto">
+                                    <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {{-- ../ end hailt --}}
+
+            
+            
             <div class="row">
                <aside class="col-12 col-lg-3 mt-3 mt-lg-0 d-none d-lg-block z-2">
                     <div id="filters-sidebar">
@@ -109,7 +173,7 @@
                               
                             <div class="card shadow-sm border-soft mt-4 p-3">
                               <h6 class="font-weight-bold">Үйлчилгээ</h6>
-                            <ul class="list-group list-group list-group-flush"> 
+                                <ul class="list-group list-group list-group-flush"> 
                                    @foreach ($fac as $ee) 
                                   {{-- бүх үйлчилгээнүүдээ хэвлэж байгаа хэсэг --}}
                                     
@@ -117,7 +181,9 @@
                                       <div class="form-check">
                                         <label class="form-check-label">
                                             {{ $ee->name}}
-                                            <input type="checkbox" facility="{{$ee->id}}" onchange="$('#form').submit();" id="searchA" name="checkbox[]" value="{{$ee->id}}" class="form-check-input" />
+                                            <input type="checkbox" facility="{{$ee->id}}" onchange="$('#form').submit();" id="searchA" 
+                                            name="checkbox[]"
+                                             value="{{$ee->id}}" class="form-check-input" />
                                               <span class="form-check-sign"></span> 
                                         </label>
                                       </div>
@@ -370,127 +436,5 @@
     </section>
     <!-- End of section -->
 </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container p-3">
-        <!-- {{ csrf_field() }} -->
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-2 ">
-                <select id="searchR" name="destination" class="form-control destination" placeholder="очих газар">
-                    @foreach ($destination as $des)
-                      <option value="{{$des->id}}">{{ $des->name }} </option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="col-sm-6  col-md-6 col-lg-2">
-                {{-- <input id="searchA" type="date" name="datefrom" class="form-control datefrom float-right  datetime1"> --}}
-                <div class="form-group">
-                    {{-- Booking In: --}}
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text ">
-                              <i class="far fa-calendar-alt"></i>
-                            </span>
-                        </div>
-                        <input type="text" name="datefrom" class="form-control datefrom float-right datetime1">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6  col-md-6 col-lg-2">
-                {{--
-
-                <input id="searchB" type="date" name="dateto" class="form-control dateto float-right  datetime2"> --}}
-
-                <div class="form-group">
-                    {{-- Booking Out: --}}
-
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text ">
-																			<i class="far fa-calendar-alt"></i>
-																		</span>
-                        </div>
-                        <input type="text" name="dateto" class="form-control dateto  float-right datetime2">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6  col-md-6 col-lg-2">
-                <input id="searchC" type="number" class="form-control room_quantity" name="room_quantity" min="1" max="10" placeholder="өрөөний тоо">
-            </div>
-            <div class="col-sm-6  col-md-6 col-lg-2">
-                <input id="searchD" type="number" class="form-control person_quantity" name="person_quantity" min="1" max="10" placeholder="хүний тоо">
-            </div>
-            <div class="col-sm-12  col-md-12 col-lg-2">
-                <button type="submit" onclick="getDate()" class="btn btn-primary btn-block">Хайх</button>
-            </div>
-        </div>
-        {{--
-
-    </form> --}}
-
-    </div>
-
-      
-
-        {{-- бүх үйлчилгээ--}}
-
-        {{-- <a name="" id="clears" class="btn btn-link float-right" href="javascript:void(0);" role="button">clear	</i></a> --}}
-         {{-- үйлчилгээ clear--}} 
-        {{-- @foreach ($fac as $ee) --}}
-        {{-- бүх үйлчилгээнүүдээ хэвлэж байгаа хэсэг --}}
-        {{-- <div class="checkbox">
-            <label>
-                <input type="checkbox" facility="{{$ee->id}}" onchange="$('#form').submit();" id="searchA" name="checkbox[]" value="{{$ee->id}}" class="checkbox" /> {{ $ee->name}}
-
-                <br/>
-            </label>
-        </div>
-        @endforeach --}}
-
-    </div>
-    </form>
-
-
-
-    <div class="col-sm-10">
-
-        @foreach ($hotel as $h)
-
-        <div class="jumbotron  p-5 mb-4">
-            <div class="row">
-                <div class="col-lg-4 col-md-4  col-sm-12">
-                    <img src="hotelpicture/hotel.jpg" alt="hotel_image" width="250" height="150">
-                </div>
-                <div class="col-lg-6 col-md-5 col-sm-8">
-                  
-
-                    <br/> {{-- {{str_limit($h->descr,130) }}
-
-
-                    <br/> {{-- form --}} {{-- form --}} {{-- form --}}
-
-                   
-
-            </div> {{-- row div --}}
-
-        </div>
-        @endforeach
-
-    </div>
-</div>
 </div>
 @endsection
