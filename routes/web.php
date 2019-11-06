@@ -162,8 +162,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
 Route::group(['as' => 'customer', 'namespace' => 'Customer'], function () {
  // home page
   Route::resource('/', 'HomeController');
- // hotel
-  Route::resource('hotel', 'HotelController');
+ 
+  // hotel
   Route::match(['get', 'post'],'hotel/search', 'HotelController@hotelsearch');
   
  // room

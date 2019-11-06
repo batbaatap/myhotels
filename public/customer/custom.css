@@ -116,4 +116,23 @@ input[type=number1]
   background-color: transparent!important;
 }
 
+
+
+
 /* ../ */
+
+
+
+/* facility */
+.facility-icon {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #ddd;
+  color: #777;
+border-radius: 5px;
+    display: inline-block;
+    margin: 2px 2px 2px 0;
+    padding: 5px;
+    width: 31px;
+    height: 31px;
+    text-align: center;
+}

@@ -16,6 +16,8 @@
 </div>
 
 
+      
+
 
 <main>
     <section class="section pt-5 pt-lg-6">
@@ -178,71 +180,64 @@
                                             <a href="single-space.html">
                                                 <h4 class="font-weight-normal mb-0">{{ $h->title }}</h4>
                                             </a>
+
                                             <div class="post-meta">
                                                 <span class="small lh-120">
-                                                  <i class="fas fa-map-marker-alt mr-2"></i>
-                                                  {{ $h->address }}
-															                  </span>   
+                                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                                    {{ $h->address }}
+                                                </span>   
                                             </div>
+
                                             <div class="d-flex my-4">
-                                              @php
-                                                $i;
-                                              @endphp
-                                              @for ($i =0; $i < $h->class; $i++)
-                                                <i class="star fas fa-star text-warning"></i>
-                                              @endfor
-                                              <span class="badge badge-pill badge-secondary ml-2">
+                                                
                                                 @php
-                                                    echo $i.'.0';
+                                                    $i;
                                                 @endphp
+
+                                                @for ($i =0; $i < $h->class; $i++)
+                                                    <i class="star fas fa-star text-warning"></i>
+                                                @endfor
+
+                                                <span class="badge badge-pill badge-secondary ml-2">
+                                                    @php
+                                                        echo $i.' Одтой';
+                                                    @endphp
                                                 </span>
+
                                             </div>
+
+
                                             <div>
-                                              
-                                              @php
-
-                                                // $arh = [];
+                                                @php
+                                                $arrA = [];
+                                                $arrB = preg_split("/[\s,]+/", $h->facilities);
                                                 
-                                                // $a = str_split($h->facilities, 1);
-                                                // $f = explode('', $h->facilities);
-                                                // array_push($arrHotel, $a);
+                                                @endphp 
 
-                                                $arrFacOrig = [];
-                                                $result = '';
+                                                @foreach ($arrB as $item)
+                                                @foreach($facfile as $key=>$value)
+                                                    
+                                                    {{-- {{ $item }} --}}
 
-                                                foreach ($facall as $value) {
-                                                  array_push($arrFacOrig, $value->id);
-                                                  echo $value->id;
-                                                }
+                                                    {{-- @if ($key <= 10) --}}
+                                                        @if ($item == $value->id_item )
+                                                                <span class="facility-icon"> 
+                                                                <img alt="{{$value->name}}" src="{{asset('customer/images/facility/'.$value->file )}}"  style="    
+                                                                    width: 19px;
+                                                                    height: 19px;
+                                                                    display: block;
+                                                                    opacity: 0.7;">
+                                                                </span>
+                                                        @endif
+                                                    {{-- @endif --}}
+                                                @endforeach
+                                                @endforeach
 
-                                                // echo $f[1];
-                                                // str_replace(",",$h->facilities);
-
-
-                                                
-                                                // $axe = [];
-                                                // $output  = str_replace(',', '', $h->facilities);
-                                                // $splitter = str_split($output, 1);
-                                                $splitter = preg_split("/[\s,]+/", $h->facilities);
-                                                // array_push($axe, $splitter);
-
-                                                // echo $splitter[0];
-                                                // print_r($splitter);
-                                                // $diff_result = array_diff($arrFacOrig, $splitter);
-                                                // print_r ($arrFacOrig);
-                                                // echo '<br>';
-                                                // print_r ($splitter);
-
-                                                $result = array_intersect($arrFacOrig, $splitter);
-
-                                                print_r($result);
-
-                                                // print_r($result);
-
-                                              // print_r(array_diff_assoc($splitter, $arrFacOrig));
-                                              
-                                              @endphp
-
+                                                <a href="#">
+                                                    <div class="facility-icon" style="display:table-caption;">
+                                                        ... 
+                                                    </div>
+                                                </a>
                                           </div>
                                         </div>
 
@@ -452,16 +447,18 @@
 
         {{-- бүх үйлчилгээ--}}
 
-        <a name="" id="clears" class="btn btn-link float-right" href="javascript:void(0);" role="button">clear	</i></a> {{-- үйлчилгээ clear--}} 
-        @foreach ($fac as $ee){{-- бүх үйлчилгээнүүдээ хэвлэж байгаа хэсэг --}}
-        <div class="checkbox">
+        {{-- <a name="" id="clears" class="btn btn-link float-right" href="javascript:void(0);" role="button">clear	</i></a> --}}
+         {{-- үйлчилгээ clear--}} 
+        {{-- @foreach ($fac as $ee) --}}
+        {{-- бүх үйлчилгээнүүдээ хэвлэж байгаа хэсэг --}}
+        {{-- <div class="checkbox">
             <label>
                 <input type="checkbox" facility="{{$ee->id}}" onchange="$('#form').submit();" id="searchA" name="checkbox[]" value="{{$ee->id}}" class="checkbox" /> {{ $ee->name}}
 
                 <br/>
             </label>
         </div>
-        @endforeach
+        @endforeach --}}
 
     </div>
     </form>
@@ -485,22 +482,7 @@
 
                     <br/> {{-- form --}} {{-- form --}} {{-- form --}}
 
-                    <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
-                        <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
-                        <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
-                        <input id="searchD" type="hidden" class="form-control person_quantity" name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
-                        </div>
-
-                        <div class="col-lg-2 col-md-3 col-sm-2">
-                            <p>From $8 / night</p>
-                            <button type="button" class="btn btn-outline-primary btn-block">Дэлгэрэнгүй</button>
-                            <br/>
-                            <input type="hidden" value="{{$h->id}}" name="hotel" />
-                            <button class="btn  btn-success btn-block">Захиалах</button>
-                        </div>
-                    </form>
+                   
 
             </div> {{-- row div --}}
 
