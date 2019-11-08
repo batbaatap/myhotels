@@ -347,7 +347,7 @@ class BookingController extends Controller
                 'result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
             }
         }// ..request
-}
+    }
     
     
     // edit 

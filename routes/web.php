@@ -32,9 +32,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::match(['get', 'post'], '/booking/edit-booking/{id}',    'BookingController@editBooking');
     Route::match(['get', 'post'],'/booking/view-calendar', 'BookingController@viewCalendar');
 
-    Route::bind('post', function ($value) {
-      return App\Post::find($value)->where('status', '=', 'published')->first();
-  });
+  //   Route::bind('post', function ($value) {
+  //     return App\Post::find($value)->where('status', '=', 'published')->first();
+  // });
     
 
     Route::get('/booking/view-bookings',                           'BookingController@viewBookings');
@@ -53,6 +53,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::match(['get', 'post'], '/room/edit-room/{id}',    'RoomController@editRoom');
     Route::get('/room/view-rooms',                           'RoomController@viewRoom');
     Route::get('/room/delete-room/{id}',                     'RoomController@deleteRoom');
+
+       
+    // Facility
+    Route::match(['get', 'post'], '/facility/add-facility',          'FacilityController@addFacility');
+    Route::match(['get', 'post'], '/facility/edit-facility/{id}',    'FacilityController@editFacility');
+    Route::get('/facility/view-facilities',                           'FacilityController@viewFacilities');
+    Route::get('/facility/delete-facility/{id}',                     'FacilityController@deleteFacility');
 
 
     Route::get('dashboard', 'AdminController@dashboard');
