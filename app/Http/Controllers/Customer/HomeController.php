@@ -8,6 +8,7 @@ use App\Destination;
 use DB;
 use App\Hotel;
 use App\Rate;
+use App\Room;
 use Carbon\Carbon;
 class HomeController extends Controller
 {
@@ -24,9 +25,30 @@ class HomeController extends Controller
         $todaydate=  strtotime($today);
         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
         $hotel = Hotel::all();
-        $discount = DB::select(DB::raw("SELECT * FROM `pm_rate` WHERE '$todaydate'>= start_date and '$todaydate'<= end_date;")); //hotel discount
-        $rate = Rate::all(); //hotel rate
-        return view('customer/home.index', compact('destination','hotel','discount','rate'));
+        $discount = DB::select(DB::raw("SELECT  `pm_rate`.*
+                                            FROM `pm_rate` 
+                                            WHERE discount IN (SELECT MAX(discount)
+                                                FROM `pm_rate` 
+                                                where '$todaydate'>= start_date and '$todaydate'<= end_date
+                                                GROUP BY id_hotel
+                                                )
+                                            GROUP BY id_hotel")); // rate доторхи хамгийн их хямдарсан өрөөний буудлынх  үнэ
+       
+         $rate= DB::select(DB::raw( "SELECT *
+                                    from `pm_rate` 
+                                    where price in (SELECT  MIN(price)
+                                    FROM `pm_rate` 
+                                    where id_hotel NOT IN (SELECT  id_hotel
+                                    FROM `pm_rate` 
+                                    WHERE discount  IN (SELECT MAX(discount)
+                                    FROM `pm_rate` 
+                                    where '$todaydate'>= start_date and '$todaydate'<= end_date
+                                    GROUP BY id_hotel)
+                                    )
+                                    GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
+        $room = Room::all();
+
+        return view('customer/home.index', compact('destination','hotel','discount','rate','room'));
 
     }
 

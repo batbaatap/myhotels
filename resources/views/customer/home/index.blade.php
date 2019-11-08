@@ -381,6 +381,8 @@
                                         </span>
                                     @endif
                                 @endforeach
+
+                               
                           </a>
                         <div class="card-body"><a href="./html/pages/single-space.html"><h5 class="font-weight-normal">{{$h->title}}</h5></a>
                           <div class="post-meta"><span class="small lh-120"><i class="fas fa-map-marker-alt mr-2"></i>{{$h->address}}</span></div>
@@ -407,17 +409,54 @@
                         </div> --}}
                            
                             <div class="d-flex justify-content-between">
-                                @foreach ($rate as $hotel_rate) <!-- буудлын нийт үнийн мэдээлэл-->
-                                    @if($hotel_rate->id_hotel==$h->id)
-                                        <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
-                                   @endif
-                                @endforeach
+                              
+                              
 
-                                @foreach ($discount as $hotel_discount) <!-- буудлын хямдрал -->
-                                    @if($hotel_discount->id_hotel==$h->id)
-                                      <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp $</span></div>
+                <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
+                                @foreach ($discount as $hotel_discount) <!--хямдралтай буудлын үнэ, буудлын хямдрал тооцох-->
+                                    @if($h->id==$hotel_discount->id_hotel)
+                                         <?php $k++;  ?>
+                                            <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_discount->price}}$</span></div>
+                                            <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp $</span></div>
+                                   
+                                    @endif
+                                @endforeach   
+
+                                @foreach ($rate as $hotel_rate) <!--хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан -->
+                                    @if($hotel_rate->id_hotel==$h->id)
+                                                 <?php $k++;  ?>
+                                    <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
                                     @endif
                                 @endforeach
+                <?php
+             
+                   if($k==0){?>
+                        
+                        <!--herwee rate dotor hotel id нь байхгүй бол хамгийн хямд өрөөний үнийн мэдээллийг харуулах-->
+                        <?php  $tooluur=0;  $arr =[];?>  
+                        @foreach ($room as $room_price) 
+                            @if($h->id==$room_price->id_hotel)
+                                <?php $arr[]=$room_price->price; $tooluur++;  ?> 
+                            @endif
+                        @endforeach
+                        <?php  
+                            if($tooluur>=1){
+                                $price=$arr[0];
+                                for ($i=0; $i < count($arr); $i++ ) { 
+                                    if($price > $arr[$i]){ 
+                                        $price=$arr[$i];
+                                    }
+                                }
+                              // echo $price;//hamgiin baga uniin dun
+                            ?> 
+                                
+                                <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold"> <?php echo $price; ?> $</span></div>
+
+                        <?php }?> 
+                        
+                <?php }?>
+                               
+                               
 
                             </div>
                       </div>

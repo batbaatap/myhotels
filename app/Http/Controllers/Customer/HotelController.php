@@ -18,7 +18,7 @@ class HotelController extends Controller
     public function hotelsearch(Request $request){
 
         $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
-        
+        // dd($request->all());
 
         $facfile = DB::table('pm_facility')
             ->join('pm_facility_file', 'pm_facility.id', '=', 'pm_facility_file.id_item')
