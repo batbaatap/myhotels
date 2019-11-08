@@ -50,6 +50,27 @@ class HotelController extends Controller
             $hotel->id_destination=$data['id_destination'];
             $hotel->checked=$data['checked'];
 
+            // upload image
+            if($request->hasFile('filename')){
+                $image_tmp = $request->file('filename');
+                    if($image_tmp->isValid()){
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $filename =  rand(111, 99999).".".$extension;
+                        $large_image_path = 'admin/images/hotels/large/'.$filename;
+                        $medium_image_path = 'admin/images/hotels/medium/'.$filename;
+                        $small_image_path = 'admin/images/hotels/small/'.$filename;
+
+                        // resize image
+                        Image::make($image_tmp)->save($large_image_path);
+                        Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                        Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+
+                        //  store image name in products table
+                        $hotel->file = $filename;
+                    }
+                }
+
+
             $hotel->save();
 
         } 

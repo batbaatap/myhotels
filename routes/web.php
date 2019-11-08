@@ -58,8 +58,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     // Facility
     Route::match(['get', 'post'], '/facility/add-facility',          'FacilityController@addFacility');
     Route::match(['get', 'post'], '/facility/edit-facility/{id}',    'FacilityController@editFacility');
-    Route::get('/facility/view-facilities',                           'FacilityController@viewFacilities');
-    Route::get('/facility/delete-facility/{id}',                     'FacilityController@deleteFacility');
+    Route::get('/facility/view-facilities',                          'FacilityController@viewFacilities');
+    Route::get('/facility/delete-facility-image/{id}',               'FacilityController@deleteFacImage');
+    Route::get('/facility/delete-facility/{id}',                     'FacilityController@deleteFac');
 
 
     Route::get('dashboard', 'AdminController@dashboard');

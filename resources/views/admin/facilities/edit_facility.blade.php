@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Нэр </label>
                 <div class="col-sm-6">
-                    <input type="text" name="firstname" class="form-control" value="{{$facDetails->name}}" placeholder="">
+                    <input type="text" name="facility_name" class="form-control" value="{{$facDetails->name}}" placeholder="">
                 </div>
             </div>
 
@@ -42,14 +42,14 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label text-right">Зураг</label>
                 <div class="col-sm-6">
-                    <input type="file" name="image" id="image"> 
+                    <input type="file" name="filename" id="filename"> 
                         @if(!empty($facfileDetails->file))
                             <input type="hidden" name="current_image" value="{{ $facfileDetails->file }}">
                             
                             <img src="{{ asset('admin/images/facility/'.$facfileDetails->file) }}"> |
                             
-                            <a href="{{ url('/admin/delete-facility-image/'.$facfileDetails->id) }}">Зураг устгах</a> 
-                    @endif
+                            <a href="{{ url('/admin/facility/delete-facility-image/'.$facfileDetails->id_item) }}">Зураг устгах</a> 
+                        @endif
                 </div>
             </div>
         

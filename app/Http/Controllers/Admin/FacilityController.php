@@ -63,7 +63,7 @@ class FacilityController extends Controller
 
     
 
-    // edit
+    // edit fac
     public function editFacility(Request $request, $id=null){
         if($request->isMethod('post')){
             // getting info from user
@@ -85,45 +85,25 @@ class FacilityController extends Controller
                         // Image::make($image_tmp)->resize(300,300)->save($small_image_path);
 
                         //  store image name in products table
-                        $facilityFile->file = $filename;
+                        // $facilityFile->file = $filename;
                     }
                 } else if(!empty($data['current_image'])){
                     $filename = $data['current_image'];
                 } else {
                     $filename = '';
                 }
-
-             
-            $facility->lang = 2;
-            $facility->name = $data['facility_name'];
-            $facility->save();
-
-
-            // facility file save
-            $facilityFile->lang = 2;
-            $facilityFile->id_item = $facility->id;
-            $facilityFile->home = 0;
-            $facilityFile->checked = 1;
-            $facilityFile->rank = $facility->id;
-
             
             Facility::where(['id'=>$id])->update([
-                'status'=>$status,
-                'category_id'  =>$data['category_id'],
-                'post_title' =>$data['post_title'],
-                'post_content'  =>$data['post_content'],
-                'image'  => $filename
-                ]);
-                return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
+                'name' =>$data['facility_name'],
+            ]);
+
+            FacilityFile::where(['id_item'=>$id])->update([
+                'file'  => $filename
+            ]);
+            
+            return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
         }
-        // ..request
-      
-        // get details
-        // $facDetails = DB::table('pm_facility')
-        // ->join('pm_facility_file', 'pm_facility.id', '=', 'pm_facility_file.id_item')
-        // ->select('pm_facility.*', 'pm_facility_file.*')
-        // ->get();
- 
+
         // get details
         $facDetails = Facility::where(['id'=>$id])->first();
         $facfileDetails = FacilityFile::where(['id_item'=>$id])->first();
@@ -132,48 +112,65 @@ class FacilityController extends Controller
     }
 
 
-// view posts
+    // view posts
     public function viewFacilities(Request $request){
         $fac = DB::table('pm_facility')
             ->join('pm_facility_file', 'pm_facility.id', '=', 'pm_facility_file.id_item')
             ->select('pm_facility.id', 'pm_facility.name', 'pm_facility_file.file')
             ->get();
 
-      
-
         return view('admin.facilities.view_facilities')->with(compact('fac'));
     }
 
 
-// delete product image
-    public function deletePostImage($id=null) {
+    // delete product image
+    public function deleteFacImage($id=null) {
 
         // get post image name
-        $postImage = Post::where(['id'=>$id])->first();
+        $facImage = FacilityFile::where(['id_item'=>$id])->first();
 
         // Get Post image Paths
-        $large_image_path = 'images/backend_images/posts/large/';
-        $medium_image_path = 'images/backend_images/posts/medium/';
-        $small_image_path = 'images/backend_images/posts/small/';
+        $large_image_path = 'admin/images/facility/';
+        // $medium_image_path = 'images/backend_images/posts/medium/';
+        // $small_image_path = 'images/backend_images/posts/small/';
 
         // Delete large image if not exists in folder
-        if(file_exists($large_image_path.$postImage->image)){
-            unlink($large_image_path.$postImage->image);
-        }
-        if(file_exists($medium_image_path.$postImage->image)){
-            unlink($medium_image_path.$postImage->image);
-        }
-        if(file_exists($small_image_path.$postImage->image)){
-            unlink($small_image_path.$postImage->image);
+        if(file_exists($large_image_path.$facImage->file)){
+            unlink($large_image_path.$facImage->file);
         }
 
-        Post::where(['id'=>$id])->update(['image'=>'']);
-        return redirect()->back()->with('flash_message_success', 'Зураг устгагдлаа');
-        }
+        // if(file_exists($medium_image_path.$postImage->image)){
+        //     unlink($medium_image_path.$postImage->image);
+        // }
+
+        // if(file_exists($small_image_path.$postImage->image)){
+        //     unlink($small_image_path.$postImage->image);
+        // }
+
+        FacilityFile::where(['id_item'=>$id])->update(['file'=>'']);
+            return redirect()->back()->with('flash_message_success', 'Зураг устгагдлаа');
+            
+    }
     
+    
+    // delete fac
+    public function deleteFac($id=null) {
+       
+        // get post image name
+        $facImage = FacilityFile::where(['id_item'=>$id])->first();
 
-    public function deletePost($id=null) {
-        Post::where(['id'=>$id])->delete();
+        // Get Post image Paths
+        $large_image_path = 'admin/images/facility/';
+        // $medium_image_path = 'images/backend_images/posts/medium/';
+        // $small_image_path = 'images/backend_images/posts/small/';
+
+        // Delete large image if not exists in folder
+        if(file_exists($large_image_path.$facImage->file)){
+            unlink($large_image_path.$facImage->file);
+        }
+
+        Facility::where(['id'=>$id])->delete();
+
         return redirect()->back()->with('flash_message_success', 'Нийтлэл устгагдлаа');
     }
 
