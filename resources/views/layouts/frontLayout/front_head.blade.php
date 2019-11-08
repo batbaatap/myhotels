@@ -23,7 +23,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
      
-    <link rel="stylesheet" href="/dist/plugins/daterangepicker/daterangepicker.css">
+    {{-- <link rel="stylesheet" href="/dist/plugins/daterangepicker/daterangepicker.css"> --}}
     
     
     <link rel="stylesheet" href="{{url('customer/template_assets/spaces.css')}}">

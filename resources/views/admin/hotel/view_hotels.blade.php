@@ -5,7 +5,16 @@
 {{-- <div class="row"> --}}
 <div class="card">
     <div class="card-header">
-        {{-- <h3 class="card-title">DataTable with default features</h3> --}}
+        <h1 style="float:left; font-weight:100; font-size:24px;">
+            <svg style="width:19px;" class="svg-inline--fa fa-h-square fa-w-14 fa-fw" aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="h-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 80v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48zm-112 48h-32c-8.837 0-16 7.163-16 16v80H160v-80c0-8.837-7.163-16-16-16h-32c-8.837 0-16 7.163-16 16v224c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16v-80h128v80c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16V144c0-8.837-7.163-16-16-16z"></path></svg>
+            Зочид буудал &nbsp;  
+        </h1>    
+        <a href="/admin/hotel/add-hotel" class="btn btn-danger rounded-0 btn-sm">
+            <i class="fas fa-plus"></i>  &nbsp;Нэмэх
+        </a>
+        {{-- <a href="/admin/hotel/view-hotels" class="btn btn-primary rounded-0 btn-sm">
+            <i class="fas fa-reply"></i>  &nbsp;Буцах
+        </a> --}}
     </div>
     <!-- /.card-header -->
     <div class="card-body">

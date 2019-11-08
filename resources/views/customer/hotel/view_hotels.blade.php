@@ -102,7 +102,7 @@
                                             <label class="form-check-label">
                                                 {{-- <input class="form-check-input" type="checkbox"> --}}
                                                 
-                                                <input type="checkbox" store="checkbox1"  class="form-check-input" onchange="$('#form').submit();" id="searchA" name="check[]" value="05"  />
+                                                <input type="checkbox" store="checkbox1"  class="form-check-input" onchange="" id="searchA" name="check[]" value="05"  />
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
@@ -395,9 +395,8 @@
                                             </a>
                                             <div class="post-meta">
                                                 <span class="small lh-120">
-																	<i class="fas fa-map-marker-alt mr-2"></i>New York, Manhattan, USA
-
-																</span>
+                                                    <i class="fas fa-map-marker-alt mr-2"></i>New York, Manhattan, USA
+                                                </span>
                                             </div>
                                             <div class="d-flex my-4">
                                                 <i class="star fas fa-star text-warning"></i>
