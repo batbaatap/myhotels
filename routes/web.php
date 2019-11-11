@@ -175,6 +175,7 @@ Route::group(['as' => 'customer', 'namespace' => 'Customer'], function () {
   Route::match(['get', 'post'],'hotel/search', 'HotelController@hotelsearch');
   
  // room
+ Route::resource('/room', 'RoomController');
   // Route::resource('room', 'RoomController');
   Route::match(['get', 'post'],'room/search', 'RoomController@roomsearch');
   

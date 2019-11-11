@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Hotel;
 use App\Room;
 use DB;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class RoomController extends Controller
 {
     /**
@@ -17,8 +20,26 @@ class RoomController extends Controller
     public function index()
     {
         //
-        $rooms= Room::all();
-        $hotels= Hotel::all();
+       
+$page = 2;
+$size = 2;
+        // dd($rooms);
+        // $rooms= Room::all();
+        // $hotels =DB::table('pm_hotel')->get();
+        // $hotels =DB::table('pm_hotel')->paginate(1);
+        $hotel=DB::select(DB::raw( "SELECT * FROM `pm_hotel` ")); 
+        $collect = collect($hotel);
+        $hotels = new LengthAwarePaginator(
+            $collect->forPage($page, $size),
+            $collect->count(), 
+            $size, 
+            $page
+          );
+        // $hotels=  Hotel::all();
+       
+        // dd($hotels);
+        
+        $rooms = Room::paginate(2);
         return view('customer/room.index', compact('rooms','hotels'));
     }
     
@@ -36,7 +57,7 @@ public function roomsearch(Request $request){
         $hotel22 = $request->hotel;
        
     
-        $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
+        // $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
         // $hotels=DB::select(DB::raw( "  SELECT *  FROM `pm_hotel` LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
 
 

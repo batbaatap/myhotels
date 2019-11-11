@@ -25,14 +25,15 @@ class HotelController extends Controller
             ->select('pm_facility.*', 'pm_facility_file.*')
             ->get();
 
-        $hotel=DB::select(DB::raw( "SELECT * FROM `pm_hotel` "));
-        $fac  =DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
-                                    FROM 
-                                    `pm_facility`,`pm_hotel`
-                                    where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
-                                    ORDER BY rank 
-                                   ")); 
-        
+       
+       
+        //бүх үйлчилгээнүүдээ хэвлэж байгаа
+        $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
+        FROM 
+        `pm_facility`,`pm_hotel`
+        where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
+        ORDER BY rank 
+            ")); 
         // Searching hotel..
         if($request->isMethod('post')){
             
@@ -271,13 +272,7 @@ class HotelController extends Controller
                     
                 }  
             }
-                                //бүх үйлчилгээнүүдээ хэвлэж байгаа
-            $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
-                            FROM 
-                            `pm_facility`,`pm_hotel`
-                            where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
-                            ORDER BY rank 
-                        ")); 
+                        
 
             return view('customer/hotel/view_hotels')->with(compact('hotel','destination','fac','facfile'));
         } // ..end of request

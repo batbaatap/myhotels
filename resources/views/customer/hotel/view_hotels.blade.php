@@ -102,7 +102,7 @@
                                             <label class="form-check-label">
                                                 {{-- <input class="form-check-input" type="checkbox"> --}}
                                                 
-                                                <input type="checkbox" store="checkbox1"  class="form-check-input" onchange="" id="searchA" name="check[]" value="05"  />
+                                                <input type="checkbox" store="checkbox1"  onchange="$('#form').submit();"  class="form-check-input"id="searchA" name="check[]" value="05"  />
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
@@ -231,7 +231,7 @@
                     <div class="tab-content mt-4" id="tabcontentexample-5">
                         <div class="tab-pane fade show active" id="link-example-13" role="tabpanel" aria-labelledby="tab-link-example-13">
                         
-                        
+            
                                               
                           @foreach ($hotel as $h)
                           <div class="row">
@@ -342,7 +342,7 @@
                               </div>
                             </div>
                             @endforeach
-
+                           
                             <div class="row">
                                 <div class="col mt-3 d-flex justify-content-center">
                                     <nav aria-label="Page navigation example">
