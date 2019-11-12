@@ -48,7 +48,7 @@
 
        </div>
   @endforeach
-
+  {{ $hotels->links() }}
 <form id="booking_room"  action="/booking/booking-details" >
   @foreach ($rooms as $r)
 
@@ -86,7 +86,7 @@
 
        </div>  {{-- row div --}}
   @endforeach
-
+  {{ $rooms->links() }}
 <div class="row">  
               <div class="col-md-10  p-3 mb-3">
 

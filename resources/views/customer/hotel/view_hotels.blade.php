@@ -31,8 +31,9 @@
              <div class="row mt-1">
                     <div class="col">
                         <div class="card card-body" style="background-color:#efefef">
-                          <form autocomplete="off" class="row" action="{{url('hotel/search') }}"  method="POST" enctype="multipart/form-data">
-                            @csrf <!-- {{ csrf_field() }} -->
+                            
+<form id="form"  class="row" action="{{url('hotel/search') }}"  method="POST"  enctype="multipart/form-data">
+@csrf <!-- {{ csrf_field() }} -->
                                 <div class="col-lg-3">
                                     <div class="form-group mb-lg-0">
                                         <div class="input-group input-group-lg mb-lg-0">
@@ -77,8 +78,9 @@
     
                                 <div class="col-lg-auto">
                                     <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
+                                    
                                 </div>
-                            </form>
+{{-- </form> --}}
                         </div>
                     </div>
                 </div>
@@ -89,8 +91,8 @@
             <div class="row">
                <aside class="col-12 col-lg-3 mt-3 mt-lg-0 d-none d-lg-block z-2">
                     <div id="filters-sidebar">
-                        <form id="form" action="{{url('hotel/search') }}" method="POST" class="sidebar-inner" enctype="multipart/form-data">
-                          @csrf
+ {{-- <form id="form" action="{{url('hotel/search') }}" method="POST" class="sidebar-inner" enctype="multipart/form-data">
+  @csrf --}}
 
                             <div class="card shadow-sm border-soft mt-4 p-3">
                                 <h6 class="font-weight-bold">Зэрэглэл</h6>
@@ -100,7 +102,7 @@
                                             <label class="form-check-label">
                                                 {{-- <input class="form-check-input" type="checkbox"> --}}
                                                 
-                                                <input type="checkbox" store="checkbox1"  class="form-check-input" onchange="" id="searchA" name="check[]" value="05"  />
+                                                <input type="checkbox" store="checkbox1"  onchange="$('#form').submit();"  class="form-check-input"id="searchA" name="check[]" value="05"  />
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
                                                 <i class="far fa-star"></i>
@@ -193,7 +195,7 @@
                             </div>
 
                              <button class="btn btn-sm btn-block btn-primary animate-up-2 mt-4" type="submit">Apply filters</button> 
-                        </form>
+</form>
                     </div>
                 </aside>
 
@@ -229,7 +231,7 @@
                     <div class="tab-content mt-4" id="tabcontentexample-5">
                         <div class="tab-pane fade show active" id="link-example-13" role="tabpanel" aria-labelledby="tab-link-example-13">
                         
-                        
+            
                                               
                           @foreach ($hotel as $h)
                           <div class="row">
@@ -340,7 +342,7 @@
                               </div>
                             </div>
                             @endforeach
-
+                           
                             <div class="row">
                                 <div class="col mt-3 d-flex justify-content-center">
                                     <nav aria-label="Page navigation example">

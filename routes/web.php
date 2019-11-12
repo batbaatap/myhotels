@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::match(['get', 'post'], '/hotel/edit-hotel/{id}',    'HotelController@editHotel');
     Route::get('/hotel/view-hotels',                           'HotelController@viewHotel');
     Route::get('/hotel/delete-hotel/{id}',                     'HotelController@deleteHotel');
+    Route::get('/hotel/delete-hotel-image/{id}',               'HotelController@deleteHotelImage');
     
     
     // Room
@@ -175,6 +176,7 @@ Route::group(['as' => 'customer', 'namespace' => 'Customer'], function () {
   Route::match(['get', 'post'],'hotel/search', 'HotelController@hotelsearch');
   
  // room
+ Route::resource('/room', 'RoomController');
   // Route::resource('room', 'RoomController');
   Route::match(['get', 'post'],'room/search', 'RoomController@roomsearch');
   

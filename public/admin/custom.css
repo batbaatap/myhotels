@@ -63,3 +63,16 @@ table.dataTable thead > tr > th.sorting_desc
     margin-bottom: 0.5em!important;
 }
 /*  */
+
+
+.alert-warning {
+    color: #8a6d3b!important;
+    background-color: #fcf8e3!important;
+    border-color: #faebcc!important;
+}
+
+.alert-success {
+    color: #3c763d!important;
+    background-color: #dff0d8!important;
+    border-color: #d6e9c6!important;
+}
