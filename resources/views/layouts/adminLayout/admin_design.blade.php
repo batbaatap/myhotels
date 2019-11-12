@@ -190,7 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       $('[data-mask]').inputmask()
   
       //Date range picker
-      // $('#reservation').daterangepicker()
+      $('#reservation').daterangepicker()
       //Date range picker with time picker
       // $('#reservationtime').daterangepicker({
       //   timePicker: true,

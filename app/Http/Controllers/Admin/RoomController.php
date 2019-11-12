@@ -72,7 +72,7 @@ class RoomController extends Controller
 
 
         $facilities = Facility::get();
-        $facilities_drop_down = "<option value='' selected> - </option>";
+        $facilities_drop_down = "";
         foreach($facilities as $h){
             $facilities_drop_down .= "<option value='".$h->id."'>".$h->name."</option>";
         }

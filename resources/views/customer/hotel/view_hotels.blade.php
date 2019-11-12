@@ -291,7 +291,7 @@
                                                         @if ($item == $value->id_item )
                                                                 <span class="facility-icon"> 
                                                                 <img data-toggle="tooltip" data-placement="top" title="{{$value->name}}" 
-                                                                src="{{asset('customer/images/facility/'.$value->file )}}"  style="    
+                                                                src="{{asset('admin/images/facility/'.$value->file )}}"  style="    
                                                                     width: 19px;
                                                                     height: 19px;
                                                                     display: block;

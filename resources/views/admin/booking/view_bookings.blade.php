@@ -59,7 +59,6 @@
                                 
                                 <td></td>
                                 <td></td>
-                                <td></td>
 
                                 <td class="project-actions text-center">
                                     <a href="{{ url('/admin/booking/edit-booking', $item->id ) }}" class="btn btn-info btn-sm" href="#">

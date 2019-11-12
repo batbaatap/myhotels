@@ -264,13 +264,13 @@
                 
                 <div class="col-sm-6">
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="homepage1" name="homepage1" @if($hotelDetails->home == "0") checked @endif   value="0">
+                        <input type="radio" id="homepage1" name="homepage1" @if($hotelDetails->home == "1") checked @endif   value="1">
                         <label for="homepage1">Тийм
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="homepage2" name="homepage1" @if($hotelDetails->home == "1") checked @endif value="1">
+                        <input type="radio" id="homepage2" name="homepage1" @if($hotelDetails->home == "0") checked @endif value="0">
                         <label for="homepage2"> Үгүй
                         </label>
                     </div>

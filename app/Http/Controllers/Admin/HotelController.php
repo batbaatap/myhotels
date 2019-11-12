@@ -50,6 +50,7 @@ class HotelController extends Controller
             $hotel->facilities= $i;
             $hotel->id_destination=$data['id_destination'];
             $hotel->checked=$data['checked'];
+            $hotel->checked=$data['homepage1'];
             $hotel->save();
 
 
@@ -155,6 +156,7 @@ class HotelController extends Controller
                 'facilities'=> $i,
                 'id_destination'=>$data['id_destination'],
                 'checked'=>$data['checked'],
+                'home'=>$data['homepage1'],
             ]);
 
             HotelFile::where(['id_item'=>$id])->update([

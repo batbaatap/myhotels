@@ -19,14 +19,14 @@
                             <?php echo $hotels_drop_down; ?>
                         </select>
                     </div>
-            </div>
+            </div>\
             
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Орох, Гарах өдөр</label>
                 <div class="col-sm-6">
                         <div id="reportrange">
-                                <span></span>
-                            </div>
+                            <span></span>
+                        </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                     <span class="input-group-text">
