@@ -1,7 +1,7 @@
 <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-dark navbar-theme-primary headroom py-lg-2 px-lg-6">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img class="navbar-brand-dark" src="{{asset('customer/images/logo.png')}}" alt="Logo light"> <img class="navbar-brand-light" 
+            <a class="navbar-brand" href="/"><img class="navbar-brand-dark" src="{{asset('customer/images/logo.png')}}" alt="Logo light"> <img class="navbar-brand-light" 
                 src="{{asset('customer/images/logo.png')}}" alt="Logo dark"></a>
             <div class="navbar-collapse collapse" id="navbar_global">
                 <div class="navbar-collapse-header">
@@ -15,8 +15,10 @@
                     </div>
                 </div>
                 <ul class="navbar-nav navbar-nav-hover ml-3">
-                    <li class="nav-item"><a href="index.html" class="nav-link"><span class="nav-link-inner-text">Нүүр</span></a></li>
-                    <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdown"><span class="nav-link-inner-text">Зочид буудлууд</span><i class="fas fa-angle-down nav-link-arrow"></i></a>
+                    <li class="nav-item"><a href="/" class="nav-link"><span class="nav-link-inner-text">Нүүр</span></a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><span class="nav-link-inner-text">Бидний тухай</span></a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><span class="nav-link-inner-text">Зочид буудлууд</span></a></li>
+                    {{-- <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdown"><span class="nav-link-inner-text">Зочид буудлууд</span><i class="fas fa-angle-down nav-link-arrow"></i></a>
                         <ul class="dropdown-menu">
                             <li class="nav-item"><a href="./html/pages/single-space.html" class="dropdown-item">Space details</a></li>
                             <li class="nav-item"><a href="./html/pages/all-spaces.html" class="dropdown-item">Listing spaces</a></li>
@@ -46,7 +48,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="nav-item"><a href="#" class="nav-link" >
                         <span class="nav-link-inner-text">Холбоо барих</span>
                         {{-- <i class="fas fa-angle-down nav-link-arrow"></i> --}}
@@ -59,7 +61,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="d-none d-lg-block"><a href="./html/pages/sign-in.html" class="btn btn-sm btn-primary animate-up-1 ml-3">Login</a> <a href="./html/pages/sign-up.html" class="btn btn-sm btn-white animate-up-1 ml-3">Sign up</a> <a href="./html/pages/submit-space.html" class="btn btn-sm btn-outline-white ml-3"><i class="fas fa-plus mr-2"></i>List a Space</a></div>
+            <div class="d-none d-lg-block"><a href="#" class="btn btn-sm btn-primary animate-up-1 ml-3">Нэвтрэх</a> <a href="#" class="btn btn-sm btn-white animate-up-1 ml-3">Бүртгүүлэх</a> <a href="./html/pages/submit-space.html" class="btn btn-sm btn-outline-white ml-3"><i class="fas fa-plus mr-2"></i>Буудал нэмэх</a></div>
             <div class="d-flex align-items-center">
                 <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             </div>
