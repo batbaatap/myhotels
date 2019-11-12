@@ -117,20 +117,20 @@
           <a href="#" class="nav-link ">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Хэрэглэл
+              Үйлчилгээ
               <i class="right fas fa-angle-left"></i>
               {{-- <span class="right badge badge-danger">1</span> --}}
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
+              <a href="/admin/facility/add-facility" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Нэмэх</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
+              <a href="/admin/facility/view-facilities" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Бүгд</p>
               </a>
