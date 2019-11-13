@@ -134,11 +134,14 @@ class RoomController extends Controller
         return view('admin.room.view_rooms')->with(compact('rooms'));
     }
 
+
+
     public function editRoom(Request $request, $id=null){
+        
+        // Update Mode
         if($request->isMethod('post')){
             // getting info from user
             $data = $request->all();
-
 
             $arr = $data['room_facilities'];
             $i =  implode(',', $arr);
@@ -166,7 +169,6 @@ class RoomController extends Controller
                 'rank'=>null,
                 'start_lock'=>null,
                 'end_lock'=>null,
-                'save'(),
             ]);
     
              // upload image
@@ -199,45 +201,85 @@ class RoomController extends Controller
                     
             return redirect()->back()->with('flash_message_success', 'Амжилттай засвар хийгдлээ');
         }
+        
 
 
+        // Edit Mode
         $facilities = Facility::get();
 
         // get details
         $roomDetails = Room::where(['id'=>$id])->first();
         $roomDetailsFile = RoomFile::where(['id_item'=>$id])->first();
 
+        
         $hotels = Hotel::get();
-        $hotels_drop_down = "<option value='' selected> - </option>";
-        foreach($hotels as $h){
-            $hotels_drop_down .= "<option value='".$h->id."'>".$h->title."</option>";
+
+       
+
+
+        $hotels_drop_down = "";
+		foreach($hotels as $h){
+			if($h->id==$roomDetails->id_hotel){
+				$selected = "selected";
+			}else{
+				$selected = "";
+			}
+			$hotels_drop_down .= "<option value='".$h->id."' ".$selected.">".$h->title."</option>";
         }
 
-
-        $facilities = Facility::get();
-        $facilities_drop_down = "";
-        foreach($facilities as $h){
-            $facilities_drop_down .= "<option value='".$h->id."'>".$h->name."</option>";
-        }
-
-
-        $destinations = Destination::get();
-        $destinations_drop_down = "<option value='' selected> - </option>";
-        foreach($destinations as $r){
-            $destinations_drop_down .= "<option value='".$r->id."'>".$r->name."</option>";
-        }
         
-        // $dest_drop_down = "<option value='' disabled>Select</option>";
-		// foreach($destinations as $dest){
-		// 	if($dest->id==$hotelDetails->id_destination){
-		// 		$selected = "selected";
-		// 	}else{
-		// 		$selected = "";
-		// 	}
-		// 	$dest_drop_down .= "<option value='".$dest->id."' ".$selected.">".$dest->name."</option>";
+        return view('admin.room.edit_room')->with(compact('roomDetails', 'roomDetailsFile', 'facilities', 'hotels_drop_down'));
+    }
+
+
+    // delete product image
+    public function deleteHotelImage($id=null) {
+
+        // get post image name
+        $facImage = HotelFile::where(['id_item'=>$id])->first();
+
+        // Get Post image Paths
+        $large_image_path = 'admin/images/hotels/large/';
+        // $medium_image_path = 'images/backend_images/posts/medium/';
+        // $small_image_path = 'images/backend_images/posts/small/';
+
+        // Delete large image if not exists in folder
+        if(file_exists($large_image_path.$facImage->file)){
+            unlink($large_image_path.$facImage->file);
+        }
+
+        // if(file_exists($medium_image_path.$postImage->image)){
+        //     unlink($medium_image_path.$postImage->image);
         // }
-        
-        return view('admin.hotel.edit_hotel')->with(compact('roomDetails', 'roomDetailsFile', 'facilities'));
+
+        // if(file_exists($small_image_path.$postImage->image)){
+        //     unlink($small_image_path.$postImage->image);
+        // }fa
+
+        HotelFile::where(['id_item'=>$id])->update(['file'=>'']);
+            return redirect()->back()->with('flash_message_success', 'Зураг устгагдлаа');
+            
+    }
+    
+     // delete fac
+     public function deleteRoom($id=null) {
+       
+        // // get post image name
+        // $hotelImage = HotelFile::where(['id_item'=>$id])->first();
+
+        // // Get Post image Paths
+        // $large_image_path = 'admin/images/facility/';
+        // // $medium_image_path = 'images/backend_images/posts/medium/';
+        // // $small_image_path = 'images/backend_images/posts/small/';
+
+        // // Delete large image if not exists in folder
+        // if(file_exists($large_image_path.$hotelImage->file)){
+        //     unlink($large_image_path.$hotelImage->file);
+        // }
+
+        Room::where(['id'=>$id])->delete();
+
+        return redirect()->back()->with('flash_message_success', 'Өрөө устгагдлаа');
     }
 
 

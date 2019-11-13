@@ -190,7 +190,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
       $('[data-mask]').inputmask()
   
       //Date range picker
-      $('#reservation').daterangepicker()
+      var minDate = new Date();
+      var maxDate = "+1M";
+      $('#reservation').daterangepicker(
+        {
+          // singleDatePicker: true,
+          showDropdowns: true,
+          minYear: 1901,
+          startDate: moment().startOf('hour'),
+        endDate: moment().startOf('hour').add(32, 'hour'),
+          locale: {
+            format: 'YYYY/MM/DD'
+            // format: 'DD/MM/YYYY hh:mm A'
+          },
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, 
+        function(start, end, label) {
+          // alert(start);
+          // alert(end);
+
+          var days = Math.floor((end - start)/1000/60/60/24);
+          $('#honog').val(days);  
+
+        });
+
       //Date range picker with time picker
       // $('#reservationtime').daterangepicker({
       //   timePicker: true,
@@ -199,6 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       //     format: 'MM/DD/YYYY hh:mm A'
       //   }
       // })
+
       //Date range as a button
       // $('#from_date_cus,#to_date_cus').daterangepicker(
       //   {
@@ -212,13 +236,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       //     maxYear: parseInt(moment().format('YYYY'),10)
       //   }, 
       //   function(start, end, label) {
-      //     // alert(start);
-      //     // alert(end);
+          // alert(start);
+          // alert(end);
 
-      //     var days = Math.floor((end - start)/1000/60/60/24);
-      //     $('#honog').val(days);  
+        //   var days = Math.floor((end - start)/1000/60/60/24);
+        //   $('#honog').val(days);  
 
-      //   });
+        // });
         // function(start, end, label) {
         //   var years = moment().diff(start, 'years');
         //   alert("You are " + years + " years old!");

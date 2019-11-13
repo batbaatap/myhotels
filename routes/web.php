@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::match(['get', 'post'], '/room/edit-room/{id}',    'RoomController@editRoom');
     Route::get('/room/view-rooms',                           'RoomController@viewRoom');
     Route::get('/room/delete-room/{id}',                     'RoomController@deleteRoom');
-    Route::get('/hotel/delete-room-image/{id}',               'RoomController@deleteRoomImage');
+    Route::get('/room/delete-room-image/{id}',               'RoomController@deleteRoomImage');
 
        
     // Facility

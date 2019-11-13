@@ -85,7 +85,7 @@
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                         </a>
-                                        <a href="{{ url('/admin/booking/delete-booking/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
+                                        <a href="{{ url('/admin/room/delete-room/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
                                             <i class="fas fa-trash">
                                             </i>
                                         </a>
