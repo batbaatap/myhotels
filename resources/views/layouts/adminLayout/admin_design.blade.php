@@ -160,7 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 {{-- custom --}}
-<script src="{{url('admin/cus_plugin_me/jquery-ui/jquery-ui.js')}}" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+<script src="{{url('admin/cus_plugin_me/jquery-ui/jquery-ui.js')}}" integrity="" crossorigin="anonymous"></script>
 
 
 {{-- swal --}}
