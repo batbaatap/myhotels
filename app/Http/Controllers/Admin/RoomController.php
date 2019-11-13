@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Image;
 use App\Room;
+use App\RoomFile;
 use App\destination;
 use App\Facility;
 use App\Hotel;
@@ -59,9 +61,41 @@ class RoomController extends Controller
             $room->rank=null;
             $room->start_lock=null;
             $room->end_lock=null;
-
-
             $room->save();
+
+
+             // h file save
+            $roomfile = new RoomFile;
+            $roomfile->lang = 2;
+            $roomfile->id_item = $room->id;
+            $roomfile->home = 0;
+            $roomfile->checked = 1;
+            $roomfile->rank = $room->id;
+
+            // upload image
+            if($request->hasFile('filename')){
+                $image_tmp = $request->file('filename');
+                    if($image_tmp->isValid()){
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $filename =  rand(111, 99999).".".$extension;
+                        $large_image_path = 'admin/images/rooms/large/'.$filename;
+                        // $medium_image_path = 'admin/images/hotels/medium/'.$filename;
+                        // $small_image_path = 'admin/images/hotels/small/'.$filename;
+
+                        // resize image
+                        Image::make($image_tmp)->resize(800,400)->save($large_image_path);
+                        // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                        // Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+
+                        //  store image name in products table
+                        $roomfile->file = $filename;
+                    }
+            }
+
+            $roomfile->save();
+
+            return redirect('admin/room/view-rooms')->with('flash_message_success', 'Өрөө нэмэгдлээ');
+
         } 
 
         $hotels = Hotel::get();
@@ -91,11 +125,120 @@ class RoomController extends Controller
     {
         $rooms = DB::table('pm_room')
         ->leftJoin('pm_hotel', 'pm_room.id_hotel', '=', 'pm_hotel.id')
+        ->leftJoin('pm_room_file', 'pm_room.id', '=', 'pm_room_file.id_item')
         ->select(DB::raw('pm_hotel.title as sameTitle'),  'pm_room.max_people', 'pm_room.checked', 'pm_room.id', 'pm_room.title',
-                 'pm_room.subtitle',  'pm_room.home',
+                 'pm_room.subtitle', 'pm_room_file.file', 'pm_room.home',
                  'pm_room.checked' )
         ->get();
 
         return view('admin.room.view_rooms')->with(compact('rooms'));
     }
+
+    public function editRoom(Request $request, $id=null){
+        if($request->isMethod('post')){
+            // getting info from user
+            $data = $request->all();
+
+
+            $arr = $data['room_facilities'];
+            $i =  implode(',', $arr);
+            
+            Room::where(['id'=>$id])->update([
+                'lang'=> 2,
+                'users'=>1,
+                'id_hotel'=>$data['room_id_hotel'],
+                'max_children'=>$data['room_max_children'],
+                'max_adults'=>$data['room_max_adults'],
+    
+                'max_people'=>$data['room_max_people'],
+                'min_people'=>$data['room_min_people'],
+                'title'=>$data['room_title'],
+                'subtitle'=>$data['room_subtitle'],
+                'alias'=>$data['room_alias'],
+    
+                'descr'=>$data['room_descr'],
+                'facilities'=> $i,
+                'stock'=>$data['room_stock'],
+                'price'=>$data['room_price'],
+                'home'=>$data['homepage1'],
+    
+                'checked'=>$data['checked'],
+                'rank'=>null,
+                'start_lock'=>null,
+                'end_lock'=>null,
+                'save'(),
+            ]);
+    
+             // upload image
+            if($request->hasFile('filename')){
+                $image_tmp = $request->file('filename');
+                    if($image_tmp->isValid()){
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $filename =  rand(111, 99999).".".$extension;
+                        $large_image_path = 'admin/images/rooms/large/'.$filename;
+                        // $medium_image_path = 'admin/images/facility/'.$filename;
+                        // $small_image_path = 'admin/images/facility/'.$filename;
+    
+                        // resize image
+                        Image::make($image_tmp)->resize(1000,600)->save($large_image_path);
+                        // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                        // Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+    
+                        //  store image name in products table
+                        // $facilityFile->file = $filename;
+                    }
+                } else if(!empty($data['current_image'])){
+                    $filename = $data['current_image'];
+                } else {
+                    $filename = '';
+                }
+    
+                RoomFile::where(['id_item'=>$id])->update([
+                    'file'  => $filename
+                ]);
+                    
+            return redirect()->back()->with('flash_message_success', 'Амжилттай засвар хийгдлээ');
+        }
+
+
+        $facilities = Facility::get();
+
+        // get details
+        $roomDetails = Room::where(['id'=>$id])->first();
+        $roomDetailsFile = RoomFile::where(['id_item'=>$id])->first();
+
+        $hotels = Hotel::get();
+        $hotels_drop_down = "<option value='' selected> - </option>";
+        foreach($hotels as $h){
+            $hotels_drop_down .= "<option value='".$h->id."'>".$h->title."</option>";
+        }
+
+
+        $facilities = Facility::get();
+        $facilities_drop_down = "";
+        foreach($facilities as $h){
+            $facilities_drop_down .= "<option value='".$h->id."'>".$h->name."</option>";
+        }
+
+
+        $destinations = Destination::get();
+        $destinations_drop_down = "<option value='' selected> - </option>";
+        foreach($destinations as $r){
+            $destinations_drop_down .= "<option value='".$r->id."'>".$r->name."</option>";
+        }
+        
+        // $dest_drop_down = "<option value='' disabled>Select</option>";
+		// foreach($destinations as $dest){
+		// 	if($dest->id==$hotelDetails->id_destination){
+		// 		$selected = "selected";
+		// 	}else{
+		// 		$selected = "";
+		// 	}
+		// 	$dest_drop_down .= "<option value='".$dest->id."' ".$selected.">".$dest->name."</option>";
+        // }
+        
+        return view('admin.hotel.edit_hotel')->with(compact('roomDetails', 'roomDetailsFile', 'facilities'));
+    }
+
+
 }

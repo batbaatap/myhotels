@@ -26,7 +26,6 @@ class HotelController extends Controller
             ->get();
 
        
-       
         //бүх үйлчилгээнүүдээ хэвлэж байгаа
         $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
         FROM 
