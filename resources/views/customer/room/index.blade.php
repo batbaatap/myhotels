@@ -243,8 +243,18 @@
                             <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
                                     <div class="col">
                                         <p> Багтаамж:   <i class="fa fa-male" aria-hidden="true"></i> x {{$r->max_people}}</p>
-                                        <input type="number" name="uruu" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}"  placeholder="өрөө" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>
-                                        <input type="number"  name="hun" class="form-control"   min="0" max="{{$r->max_people}}" placeholder="хүн"><br/>
+                                        <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                            <div class="input-group-prepend"><span class="input-group-text">Өрөө:</span></div>
+                                            <input type="number" name="uruu" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}" value="0"  onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>
+                                        </div><br/>
+                                        
+                                        <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                            <div class="input-group-prepend"><span class="input-group-text">Хүн:</span></div>
+                                            <input type="number"  name="hun" class="form-control"   min="0" max="{{$r->max_people}}" value="0" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->max_people}} )"><br/>
+                                        </div><br/>
+
+                                        {{-- <input type="number" name="uruu" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}" value="0"  placeholder="өрөө" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/> --}}
+                                        {{-- <input type="number"  name="hun" class="form-control"   min="0" max="{{$r->max_people}}" placeholder="хүн"><br/> --}}
                                         <button type="button" class="btn btn-outline-primary btn-block">Дэлгэрэнгүй</button>
                                     </div>
                             </div>
