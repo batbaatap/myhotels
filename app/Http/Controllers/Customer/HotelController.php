@@ -56,131 +56,188 @@ class HotelController extends Controller
 
 
             if( $checked->implode(',', ', ')==null ){ //үйлчилгээ орж ирсэн эсэхийг шалгаж байгаа
-            if( $checkStar->implode(',', ', ')==null ){ //rating орж ирсэн эсэхийг шалгаж байгаа
-                                                        
-                                                            //бүх буудлуудаа харуулна(тухайн хэрэглэгчийн оруулсан өдрүүд болон өдөр хүний тоог авч шалгасан query)
-            $hotel=DB::select(DB::raw( "SELECT *
-                FROM `pm_hotel`
-                            where  id_destination=$dest and id in(SELECT w.id_hotel
-                FROM 
-                (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
-                        FROM `pm_room`
-                        INNER JOIN `pm_booking_room`
-                        ON pm_room.id = pm_booking_room.id_room
-                        
-                        WHERE   id_room IN (
-                            
-                        SELECT  id_room
-                        FROM `pm_booking_room` AS rf
-                        WHERE rf.id_booking IN (
-                        select id  FROM `pm_booking`
-                        WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
-                        )
-                        )
-                            
-                            GROUP BY `pm_booking_room`.id_room
-                            HAVING uruunii_zuruu>=$room_quantity  and max_people>=$person_quantity
-                            
-                            UNION 
-                            
-                            SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
-
-                        from `pm_room`
-                        where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
-                        FROM `pm_booking_room` AS rf
-                        WHERE rf.id_booking IN (
-                        select id  FROM `pm_booking`
-                        WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
-                        ))
-                        )w
-                group by w.id_hotel
-                                ) ")
-            ); 
-
-            }
-            else
-            {
-            // dd($ratingChecked); 
-
-            $hotel=DB::select(DB::raw( 
-                                            // zowhon rating-tei buudluudaa haruulah
-                " SELECT *
-                FROM `pm_hotel`
-                
-                where `class` in ($ratingChecked) and  id_destination=$dest and id in(SELECT w.id_hotel
-                FROM 
-                (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
-                            FROM `pm_room`
-                            INNER JOIN `pm_booking_room`
-                            ON pm_room.id = pm_booking_room.id_room
-                            
-                            WHERE   id_room IN (
-                                
-                            SELECT  id_room
-                            FROM `pm_booking_room` AS rf
-                            WHERE rf.id_booking IN (
-                            select id  FROM `pm_booking`
-                            WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
-                            OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
-                            OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
-                            )
-                                )
-                                
-                                GROUP BY `pm_booking_room`.id_room
-                                HAVING uruunii_zuruu>=$room_quantity  and max_people>=$person_quantity
-                                
-                                UNION 
-                                
-                                SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
-                            from `pm_room`
-                            where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
-                            FROM `pm_booking_room` AS rf
-                            WHERE rf.id_booking IN (
-                            select id  FROM `pm_booking`
-                            WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
-                            OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
-                            OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
-                            ))
-                            )w
-                group by w.id_hotel
-                                )
-                
-                "
-                )
-            );
-            
-            //  if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
-            //      dd(123);
-                
-            //  }
-            }
-            }
-            else
-            {
-            if( $checkStar->implode(',', ', ')==null ){ //үйлчилгээ орж ирсэн ба од байхгүй 
-
-                $service= "SELECT * from `pm_hotel` WHERE";
-                $tot=count($servicessChecked );
-                $counter=1;
-                    foreach($servicessChecked  as $val)
-                    {
-                        // dd($counter) ;
-                        $service .= " find_in_set('$val', facilities)";
-                            if($counter !=$tot)
-                            {
-                            $service .=" and ";
-                            }
-                            $counter++;
-                    };
-                    $service .=" and id_destination=$dest and id in(SELECT w.id_hotel
-                    FROM 
-                    (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
+                if( $checkStar->implode(',', ', ')==null ){ //rating орж ирсэн эсэхийг шалгаж байгаа
+                                                            
+                                                                //бүх буудлуудаа харуулна(тухайн хэрэглэгчийн оруулсан өдрүүд болон өдөр хүний тоог авч шалгасан query)
+                    $hotel=DB::select(DB::raw( "SELECT *
+                        FROM `pm_hotel`
+                                    where  id_destination=$dest and id in(SELECT w.id_hotel
+                        FROM 
+                        (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                                 FROM `pm_room`
                                 INNER JOIN `pm_booking_room`
+                                ON pm_room.id = pm_booking_room.id_room
+                                
+                                WHERE   id_room IN (
+                                    
+                                SELECT  id_room
+                                FROM `pm_booking_room` AS rf
+                                WHERE rf.id_booking IN (
+                                select id  FROM `pm_booking`
+                                WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
+                                OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
+                                OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
+                                )
+                                )
+                                    
+                                    GROUP BY `pm_booking_room`.id_room
+                                    HAVING uruunii_zuruu>=$room_quantity  and max_people>=$person_quantity
+                                    
+                                    UNION 
+                                    
+                                    SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
+
+                                from `pm_room`
+                                where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
+                                FROM `pm_booking_room` AS rf
+                                WHERE rf.id_booking IN (
+                                select id  FROM `pm_booking`
+                                WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
+                                OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
+                                OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
+                                ))
+                                )w
+                        group by w.id_hotel
+                                        ) ")
+                    ); 
+                    if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
+                        back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                    }
+                }
+                else
+                {
+                    // dd($ratingChecked); 
+
+                    $hotel=DB::select(DB::raw( 
+                                                    // zowhon rating-tei buudluudaa haruulah
+                        " SELECT *
+                        FROM `pm_hotel`
+                        
+                        where `class` in ($ratingChecked) and  id_destination=$dest and id in(SELECT w.id_hotel
+                        FROM 
+                        (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
+                                    FROM `pm_room`
+                                    INNER JOIN `pm_booking_room`
+                                    ON pm_room.id = pm_booking_room.id_room
+                                    
+                                    WHERE   id_room IN (
+                                        
+                                    SELECT  id_room
+                                    FROM `pm_booking_room` AS rf
+                                    WHERE rf.id_booking IN (
+                                    select id  FROM `pm_booking`
+                                    WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
+                                    )
+                                        )
+                                        
+                                        GROUP BY `pm_booking_room`.id_room
+                                        HAVING uruunii_zuruu>=$room_quantity  and max_people>=$person_quantity
+                                        
+                                        UNION 
+                                        
+                                        SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
+                                    from `pm_room`
+                                    where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
+                                    FROM `pm_booking_room` AS rf
+                                    WHERE rf.id_booking IN (
+                                    select id  FROM `pm_booking`
+                                    WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
+                                    ))
+                                    )w
+                        group by w.id_hotel
+                                        )
+                        
+                        "
+                        )
+                    );
+                    
+                    if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
+                        back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                    }
+                }
+            }
+            else
+            {
+                if( $checkStar->implode(',', ', ')==null ){ //үйлчилгээ байгаа ба од байхгүй 
+
+                    $service= "SELECT * from `pm_hotel` WHERE";
+                    $tot=count($servicessChecked );
+                    $counter=1;
+                        foreach($servicessChecked  as $val)
+                        {
+                            // dd($counter) ;
+                            $service .= " find_in_set('$val', facilities)";
+                                if($counter !=$tot)
+                                {
+                                $service .=" and ";
+                                }
+                                $counter++;
+                        };
+                        $service .=" and id_destination=$dest and id in(SELECT w.id_hotel
+                        FROM 
+                        (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
+                                    FROM `pm_room`
+                                    INNER JOIN `pm_booking_room`
+                                    ON pm_room.id = pm_booking_room.id_room
+                                    
+                                    WHERE   id_room IN (
+                                        
+                                    SELECT  id_room
+                                    FROM `pm_booking_room` AS rf
+                                    WHERE rf.id_booking IN (
+                                    select id  FROM `pm_booking`
+                                    WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
+                                    )
+                                        )
+                                        
+                                        GROUP BY `pm_booking_room`.id_room
+                                        HAVING uruunii_zuruu>=$room_quantity  and max_people>=$person_quantity
+                                        
+                                        UNION 
+                                        
+                                        SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
+                                    from `pm_room`
+                                    where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
+                                    FROM `pm_booking_room` AS rf
+                                    WHERE rf.id_booking IN (
+                                    select id  FROM `pm_booking`
+                                    WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
+                                    OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
+                                    ))
+                                    )w
+                        group by w.id_hotel
+                                        ) ";
+                    $hotel=DB::select(DB::raw($service)); // үйлчилгээгээр хайж гарч ирсэн утгууд
+                    if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
+                        back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                    }
+                } 
+                else{ //үйлчилгээ болон од байгаа тохиолдолд 
+                    $service= "SELECT * from `pm_hotel` WHERE `class` in ($ratingChecked) and ";
+                    $tot=count($servicessChecked );
+                    $counter=1;
+                        foreach($servicessChecked  as $val)
+                        {
+                            // dd($counter) ;
+                            $service .= " find_in_set('$val', facilities)";
+                                if($counter !=$tot)
+                                {
+                                $service .=" and ";
+                                }
+                                $counter++;
+                        };
+                        $service .=" and id_destination=$dest and id in(SELECT w.id_hotel
+                        FROM 
+                        (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
+                                    FROM `pm_room`
+                                    INNER JOIN `pm_booking_room`
                                 ON pm_room.id = pm_booking_room.id_room
                                 
                                 WHERE   id_room IN (
@@ -213,73 +270,17 @@ class HotelController extends Controller
                                 )w
                     group by w.id_hotel
                                     ) ";
-                $hotel=DB::select(DB::raw($service)); // үйлчилгээгээр хайж гарч ирсэн утгууд
-    
-            } 
-            else{ //үйлчилгээ болон од байгаа тохиолдолд 
-            $service= "SELECT * from `pm_hotel` WHERE `class` in ($ratingChecked) and ";
-            $tot=count($servicessChecked );
-            $counter=1;
-                foreach($servicessChecked  as $val)
-                {
-                    // dd($counter) ;
-                    $service .= " find_in_set('$val', facilities)";
-                        if($counter !=$tot)
-                        {
-                        $service .=" and ";
-                        }
-                        $counter++;
-                };
-                $service .=" and id_destination=$dest and id in(SELECT w.id_hotel
-                FROM 
-                (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
-                            FROM `pm_room`
-                            INNER JOIN `pm_booking_room`
-                        ON pm_room.id = pm_booking_room.id_room
-                        
-                        WHERE   id_room IN (
-                            
-                        SELECT  id_room
-                        FROM `pm_booking_room` AS rf
-                        WHERE rf.id_booking IN (
-                        select id  FROM `pm_booking`
-                        WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
-                        )
-                            )
-                            
-                            GROUP BY `pm_booking_room`.id_room
-                            HAVING uruunii_zuruu>=$room_quantity  and max_people>=$person_quantity
-                            
-                            UNION 
-                            
-                            SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
-                        from `pm_room`
-                        where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
-                        FROM `pm_booking_room` AS rf
-                        WHERE rf.id_booking IN (
-                        select id  FROM `pm_booking`
-                        WHERE (`from_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR (`to_date` BETWEEN '$datefrom' AND '$dateto')
-                        OR ( `from_date`<= '$datefrom' AND `to_date`>='$dateto')
-                        ))
-                        )w
-            group by w.id_hotel
-                            ) ";
-            
-            $hotel=DB::select(DB::raw($service)); // үйлчилгээгээр хайж гарч ирсэн buudliin утгууд
                     
+                        $hotel=DB::select(DB::raw($service)); // үйлчилгээгээр хайж гарч ирсэн buudliin утгууд
+                            if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
+                                back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                            }
                 }  
             }
                         
 
-            return view('customer/hotel/view_hotels')->with(compact('hotel','destination','fac','facfile'));
         } // ..end of request
 
-
-       
-       
         return view('customer/hotel/view_hotels')->with(compact('hotel','destination','facfile','fac'));
 
     }

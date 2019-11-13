@@ -21,6 +21,7 @@
 
 <main>
    
+   
 
 
 
@@ -230,9 +231,16 @@
 
                     <div class="tab-content mt-4" id="tabcontentexample-5">
                         <div class="tab-pane fade show active" id="link-example-13" role="tabpanel" aria-labelledby="tab-link-example-13">
-                        
-            
-                                              
+                        {{-- =========message================= --}}
+                        @if($hotel==null)
+                            @if(Session::has('flash_message_success'))
+                                <div class="alert alert-primary alert-block">
+                                    {{-- <button type="button" class="close" data-dismiss="alert">×</button>  --}}
+                                        <strong>{!! session('flash_message_success') !!}</strong>
+                                </div>
+                            @endif
+                        @endif
+                         {{--===============================--}}               
                           @foreach ($hotel as $h)
                           <div class="row">
                             <div class="col-lg-12">
