@@ -233,10 +233,10 @@
                         <div class="tab-pane fade show active" id="link-example-13" role="tabpanel" aria-labelledby="tab-link-example-13">
                         {{-- =========message================= --}}
                         @if($hotel==null)
-                            @if(Session::has('flash_message_success'))
+                            @if(Session::has('flash_message_notice'))
                                 <div class="alert alert-primary alert-block">
                                     {{-- <button type="button" class="close" data-dismiss="alert">×</button>  --}}
-                                        <strong>{!! session('flash_message_success') !!}</strong>
+                                        <strong>{!! session('flash_message_notice') !!}</strong>
                                 </div>
                             @endif
                         @endif

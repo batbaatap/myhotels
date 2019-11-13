@@ -101,7 +101,7 @@ class HotelController extends Controller
                                         ) ")
                     ); 
                     if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
-                        back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                        back()->withInput()->with('flash_message_notice', 'Хайлтын үр дүн олдсонгүй!');
                     }
                 }
                 else
@@ -156,7 +156,7 @@ class HotelController extends Controller
                     );
                     
                     if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
-                        back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                        back()->withInput()->with('flash_message_notice', 'Хайлтын үр дүн олдсонгүй!');
                     }
                 }
             }
@@ -216,7 +216,7 @@ class HotelController extends Controller
                                         ) ";
                     $hotel=DB::select(DB::raw($service)); // үйлчилгээгээр хайж гарч ирсэн утгууд
                     if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
-                        back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                        back()->withInput()->with('flash_message_notice', 'Хайлтын үр дүн олдсонгүй!');
                     }
                 } 
                 else{ //үйлчилгээ болон од байгаа тохиолдолд 
@@ -273,7 +273,7 @@ class HotelController extends Controller
                     
                         $hotel=DB::select(DB::raw($service)); // үйлчилгээгээр хайж гарч ирсэн buudliin утгууд
                             if($hotel==null){ //hereglegchiin opuulsan utgatai hotel baihgu bol
-                                back()->withInput()->with('flash_message_success', 'Хайлтын үр дүн олдсонгүй!');
+                                back()->withInput()->with('flash_message_notice', 'Хайлтын үр дүн олдсонгүй!');
                             }
                 }  
             }
