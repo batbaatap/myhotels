@@ -2,8 +2,9 @@ $(document).ready(function () {
 
     if(!localStorage.getItem("localdate1")){
      $('.datefrom').datetimepicker({
-       defaultDate:new Date(),
+      //  defaultDate:new Date(),
        format: 'YYYY-MM-DD ',
+       minDate: { minDate: 0 },
        locale: 'en',
        sideBySide: true
       })
@@ -12,8 +13,9 @@ $(document).ready(function () {
   
     if(!localStorage.getItem("localdate2")){
        $('.dateto').datetimepicker({
-         defaultDate:new Date(),
+        // defaultDate:new Date(),
          format: 'YYYY-MM-DD ',
+         minDate: { minDate: 0 },
        locale: 'en',
        sideBySide: true
         })
@@ -22,15 +24,34 @@ $(document).ready(function () {
 $('.datetime1').datetimepicker({
   defaultDate: dateFrom, // someVardate
   format: 'YYYY-MM-DD ',
+  minDate:  { minDate: 0 },
   locale: 'en',
   sideBySide: true
-})
+});
+
 $('.datetime2').datetimepicker({
   defaultDate: dateTo, // someVardate
+  minDate: { minDate: 0 },
   format: 'YYYY-MM-DD ',//HH:mm:ss
   locale: 'en',
   sideBySide: true
 })
+ /* ========= dateto deer 1 odriig nemeh ========*/
+$(".datefrom").on("dp.change", function (e) {
+  if( e.date ){
+    e.date.add(1, 'day');
+  }
+  $('.dateto').data("DateTimePicker").minDate(e.date);
+});
+ /* ==============================================*/
+
+ /* ========= datefrom der max odriin zaah ========*/
+// $(".datetime2").on("dp.change", function (e) {
+//   $('.datetime1').data("DateTimePicker").maxDate(e.date);
+// });
+ /* ==============================================*/
+
+  
 
 });
     

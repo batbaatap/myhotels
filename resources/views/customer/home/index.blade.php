@@ -40,8 +40,9 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-2">
-                                <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                <div class="input-group input-group-lg mb-3 mb-lg-0" >
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-calendar-alt"></i></span></div>
                                     <input class="form-control datefrom datepicker datetime1" placeholder="Select date" name="datefrom"  type="text" required>
                                 </div>
