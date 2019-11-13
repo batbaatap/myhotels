@@ -119,10 +119,6 @@ input[type=number1]
 
 
 
-/* ../ */
-
-
-
 /* facility */
 .facility-icon {
   background: #fff none repeat scroll 0 0;
@@ -135,4 +131,18 @@ border-radius: 5px;
     width: 31px;
     height: 31px;
     text-align: center;
+}
+/* ./ */
+
+
+/* start */
+.carousel-control-prev-icon::before{
+  content: '\f137'!important;
+}
+.carousel-control-next-icon::before{
+  content: '\f138'!important;
+}
+
+.hotel-hr{
+  margin: 15px 0;
 }

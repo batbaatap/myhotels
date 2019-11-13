@@ -5,9 +5,7 @@
 
   <title>myhotel</title>
 
-{{-- custom css --}}
 
- <link rel="stylesheet" href="{{url('customer/custom.css')}}">
         <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{url('admin/assets/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Font Awesome Icons -->
@@ -28,6 +26,8 @@
     
     <link rel="stylesheet" href="{{url('customer/template_assets/spaces.css')}}">
 
+{{-- custom css --}}
 
+<link rel="stylesheet" href="{{url('customer/custom.css')}}">
 
 </head>

@@ -7,9 +7,8 @@
 <div class="card card-default">
     <div class="card-header">
         Захиалга оруулах
-
-        
     </div>
+    
     <div class="card-body  table-responsive ">
         
             <div class="form-group row">
@@ -19,7 +18,7 @@
                             <?php echo $hotels_drop_down; ?>
                         </select>
                     </div>
-            </div>\
+            </div>
             
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Орох, Гарах өдөр</label>

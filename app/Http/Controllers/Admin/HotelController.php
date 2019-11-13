@@ -112,29 +112,7 @@ class HotelController extends Controller
             // getting info from user
             $data = $request->all();
 
-            // upload image
-            if($request->hasFile('filename')){
-                $image_tmp = $request->file('filename');
-                    if($image_tmp->isValid()){
-                        $extension = $image_tmp->getClientOriginalExtension();
-                        $filename =  rand(111, 99999).".".$extension;
-                        $large_image_path = 'admin/images/hotels/large/'.$filename;
-                        // $medium_image_path = 'admin/images/facility/'.$filename;
-                        // $small_image_path = 'admin/images/facility/'.$filename;
-
-                        // resize image
-                        Image::make($image_tmp)->resize(19,19)->save($large_image_path);
-                        // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
-                        // Image::make($image_tmp)->resize(300,300)->save($small_image_path);
-
-                        //  store image name in products table
-                        // $facilityFile->file = $filename;
-                    }
-                } else if(!empty($data['current_image'])){
-                    $filename = $data['current_image'];
-                } else {
-                    $filename = '';
-                }
+         
 
             $arr = $data['hotel_facilities'];
             $i =  implode(',', $arr);
@@ -158,6 +136,32 @@ class HotelController extends Controller
                 'checked'=>$data['checked'],
                 'home'=>$data['homepage1'],
             ]);
+
+           
+
+            // upload image
+            if($request->hasFile('filename')){
+            $image_tmp = $request->file('filename');
+                if($image_tmp->isValid()){
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $filename =  rand(111, 99999).".".$extension;
+                    $large_image_path = 'admin/images/hotels/large/'.$filename;
+                    // $medium_image_path = 'admin/images/facility/'.$filename;
+                    // $small_image_path = 'admin/images/facility/'.$filename;
+
+                    // resize image
+                    Image::make($image_tmp)->resize(1000,600)->save($large_image_path);
+                    // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                    // Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+
+                    //  store image name in products table
+                    // $facilityFile->file = $filename;
+                }
+            } else if(!empty($data['current_image'])){
+                $filename = $data['current_image'];
+            } else {
+                $filename = '';
+            }
 
             HotelFile::where(['id_item'=>$id])->update([
                 'file'  => $filename
