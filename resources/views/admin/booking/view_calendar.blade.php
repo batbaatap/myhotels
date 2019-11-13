@@ -366,7 +366,7 @@
 
 {{-- @include('../partials/calendarpopup.blade.php') --}}
 
-<script>
+{{-- <script>
         function printElem(elem){
             var popup = window.open('', 'print', 'height=800,width=600');
             // popup.document.write('<html><head><title>'+document.title+'</title><link rel="stylesheet" href="/panda/admin/css/print.css"/></head><body>'+document.getElementById(elem).innerHTML+'</body></html>');
@@ -378,7 +378,7 @@
             }, 600);
             return true;
         }
-    <button title="Close (Esc)" type="button" class="mfp-close">×</button></script>
+    <button title="Close (Esc)" type="button" class="mfp-close">×</button></script> --}}
 
 <div class="white-popup-block" id="popup-booking-25">
 </div>

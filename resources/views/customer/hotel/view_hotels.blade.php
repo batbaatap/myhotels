@@ -322,13 +322,70 @@
                                             <div class="d-flex justify-content-between">
                                                 <div class="col pl-0">
                                                     <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
-                                                  <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
-                                                    240,000Ŧ
-                                                  </span>
+                                                
 
-                                                  <span class="h5 text-dark font-weight-bold"> - </span>
-                                                  
-                                                  <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span> 
+                                                    <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
+                                                    @foreach ($rate_discount as $hotel_discount) 
+                                                        @if($h->id == $hotel_discount->id_hotel)
+                                                        <?php $k++;  ?>
+                                                            <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                            {{$hotel_discount->price}}Ŧ <!-- хамгийн өндөр хөнгөлөлттэй буудлын үнийн мэдээлэл-->
+                                                            </span>
+                                                            <span class="h5 text-dark font-weight-bold"> - </span><br/>
+                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp Ŧ</span> 
+                                                        @endif
+                                                    @endforeach
+                                                   
+                                                    @foreach ($rate as $hotel_rate) <!--хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан -->
+                                                        @if($hotel_rate->id_hotel==$h->id)
+                                                                    <?php $k++;  ?>
+                                                        <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                            {{$hotel_rate->price}}Ŧ <!-- хамгийн өндөр хөнгөлөлттэй буудлын үнийн мэдээлэл-->
+                                                            </span>
+                                                            <span class="h5 text-dark font-weight-bold"> - </span><br/>
+                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;">@php echo $hotel_rate->price @endphp Ŧ</span> 
+                                                        @endif
+                                                    @endforeach
+
+
+                                                    <?php
+             
+                                            if($k==0){?>
+                                                    
+                                                    <!--herwee rate dotor hotel id нь байхгүй бол хамгийн хямд өрөөний үнийн мэдээллийг харуулах-->
+                                                    <?php  $tooluur=0;  $arr =[];?>  
+                                                    @foreach ($room as $room_price) 
+                                                        @if($h->id==$room_price->id_hotel)
+                                                            <?php $arr[]=$room_price->price; $tooluur++;  ?> 
+                                                        @endif
+                                                    @endforeach
+                                                    <?php  
+                                                        if($tooluur>=1){
+                                                            $price=$arr[0];
+                                                            for ($i=0; $i < count($arr); $i++ ) { 
+                                                                if($price > $arr[$i]){ 
+                                                                    $price=$arr[$i];
+                                                                }
+                                                            }
+                                                        // echo $price;//hamgiin baga uniin dun
+                                                        ?> 
+                                                            
+                                                            <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                                <?php echo $price; ?>Ŧ 
+                                                            </span>
+                                                            <span class="h5 text-dark font-weight-bold"> - </span><br/>
+                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;"><?php echo $price; ?> Ŧ</span> 
+                                                    <?php }?> 
+                                                    
+                                            <?php }?>
+
+                                                {{-- <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                    200,000Ŧ
+                                                </span> --}}
+
+
+                                                  {{-- <span class="h5 text-dark font-weight-bold"> - </span>
+                                                  <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
                                                   
                                                     <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
                                                       @csrf

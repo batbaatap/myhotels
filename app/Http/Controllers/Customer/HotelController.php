@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Destination;
 use Auth;
 use App\Hotel;
+use App\Rate;
 use App\Room;
 use App\Facility;
 use DB;
+use Carbon\Carbon;
 
 class HotelController extends Controller
 {
@@ -25,7 +27,35 @@ class HotelController extends Controller
             ->select('pm_facility.*', 'pm_facility_file.*')
             ->get();
 
-       
+
+        $today = Carbon::today();
+        $todaydate=  strtotime($today);
+        $rate_discount = DB::select(DB::raw("SELECT  `pm_rate`.*
+            FROM `pm_rate` 
+            WHERE discount IN (SELECT MAX(discount)
+                FROM `pm_rate` 
+                where '$todaydate'>= start_date and '$todaydate'<= end_date
+                GROUP BY id_hotel
+                )
+            GROUP BY id_hotel")); // rate доторхи хамгийн их хямдарсан өрөөний буудлынх  үнэ
+
+
+
+            $rate= DB::select(DB::raw( "SELECT *
+            from `pm_rate` 
+            where price in (SELECT  MIN(price)
+            FROM `pm_rate` 
+            where id_hotel NOT IN (SELECT  id_hotel
+            FROM `pm_rate` 
+            WHERE discount  IN (SELECT MAX(discount)
+            FROM `pm_rate` 
+            where '$todaydate'>= start_date and '$todaydate'<= end_date
+            GROUP BY id_hotel)
+            )
+            GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
+       $room = Room::all();
+
+
         //бүх үйлчилгээнүүдээ хэвлэж байгаа
         $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
         FROM 
@@ -33,6 +63,8 @@ class HotelController extends Controller
         where FIND_IN_SET(pm_facility.id, pm_hotel.facilities) 
         ORDER BY rank 
             ")); 
+
+
         // Searching hotel..
         if($request->isMethod('post')){
             
@@ -280,7 +312,7 @@ class HotelController extends Controller
 
         } // ..end of request
 
-        return view('customer/hotel/view_hotels')->with(compact('hotel','destination','facfile','fac'));
+        return view('customer/hotel/view_hotels')->with(compact('hotel','destination','facfile','fac','rate_discount','room','rate'));
 
     }
 }
