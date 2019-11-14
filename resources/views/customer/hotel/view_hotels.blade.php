@@ -2,7 +2,7 @@
 
 
 <div class="section section-lg bg-primary overlay-dark text-white py-5"  data-background="../../img/hero.jpg" style="background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});">
-  <div class="container">
+  {{-- <div class="container">
       <div class="row justify-content-center pt-5">
           <div class="col-12">
               <!-- Heading -->
@@ -12,19 +12,10 @@
                   <br>Discover and reserve space today.</p>
           </div>
       </div>
-  </div>
+  </div> --}}
 </div>
 
-
-      
-
-
 <main>
-   
-   
-
-
-
     <section class="section pt-2 pt-lg-6" style="padding-top:2em!important;">
         <div id="spaces-container" class="container">
              {{-- hailt --}}
@@ -33,8 +24,8 @@
                     <div class="col">
                         <div class="card card-body" style="background-color:#efefef">
                             
-<form id="form"  class="row" action="{{url('hotel/search') }}"  method="POST"  enctype="multipart/form-data">
-@csrf <!-- {{ csrf_field() }} -->
+                            <form id="form"  class="row" action="{{url('hotel/search') }}"  method="POST"  enctype="multipart/form-data">
+                            {{ csrf_field() }} 
                                 <div class="col-lg-3">
                                     <div class="form-group mb-lg-0">
                                         <div class="input-group input-group-lg mb-lg-0">
@@ -81,7 +72,7 @@
                                     <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
                                     
                                 </div>
-{{-- </form> --}}
+                        {{-- </form> --}}
                         </div>
                     </div>
                 </div>
@@ -92,8 +83,8 @@
             <div class="row">
                <aside class="col-12 col-lg-3 mt-3 mt-lg-0 d-none d-lg-block z-2">
                     <div id="filters-sidebar">
- {{-- <form id="form" action="{{url('hotel/search') }}" method="POST" class="sidebar-inner" enctype="multipart/form-data">
-  @csrf --}}
+                     {{-- <form id="form" action="{{url('hotel/search') }}" method="POST" class="sidebar-inner" enctype="multipart/form-data">
+                          @csrf --}}
 
                             <div class="card shadow-sm border-soft mt-4 p-3">
                                 <h6 class="font-weight-bold">Зэрэглэл</h6>
@@ -169,7 +160,6 @@
                                             </label>
                                         </div>
                                     </li>
-
                                 </ul>
                             </div>
 
@@ -196,14 +186,13 @@
                             </div>
 
                              <button class="btn btn-sm btn-block btn-primary animate-up-2 mt-4" type="submit">Apply filters</button> 
-</form>
+                        </form>
                     </div>
                 </aside>
 
 
 
                 <div class="col-md-12 col-lg-9">
-                   
                     <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
                         <div class="mr-3">
                             {{-- <p class="mb-3 mb-md-0 font-small">Showing 0 - 8 of 62</p> --}}
@@ -322,7 +311,6 @@
                                             <div class="d-flex justify-content-between">
                                                 <div class="col pl-0">
                                                     <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
-                                                
 
                                                     <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
                                                     @foreach ($rate_discount as $hotel_discount) 
@@ -346,9 +334,8 @@
                                                             <span class="h5 text-dark font-weight-bold" style="color:red!important;">@php echo $hotel_rate->price @endphp Ŧ</span> 
                                                         @endif
                                                     @endforeach
-
-
-                                                    <?php
+                                                  
+                                                <?php
              
                                             if($k==0){?>
                                                     
@@ -438,8 +425,6 @@
                                     </nav>
                                 </div>
                             </div>
-
-
                         </div>
 
 

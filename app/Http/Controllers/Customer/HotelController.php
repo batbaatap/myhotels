@@ -27,7 +27,6 @@ class HotelController extends Controller
             ->select('pm_facility.*', 'pm_facility_file.*')
             ->get();
 
-
         $today = Carbon::today();
         $todaydate=  strtotime($today);
         $rate_discount = DB::select(DB::raw("SELECT  `pm_rate`.*

@@ -15,28 +15,26 @@
         </div>
         @endif
 
-
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             Тохирох зургийн хэмжээ: 1400 x 800px
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
-
-
         <div class="col-md-6">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        {{-- <li>{{ $error }}</li> --}}
-                        <li>Талбаруудыг бүтэн бөглөнө үү</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            {{-- <li>{{ $error }}</li> --}}
+                            <li>Талбаруудыг бүтэн бөглөнө үү</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
+
         <form action="{{ url('/admin/room/edit-room/'. $roomDetails->id) }}" method="POST" 
         enctype = "multipart/form-data" 
         class="form-horizontal" 

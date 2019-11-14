@@ -193,12 +193,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
       var minDate = new Date();
       var maxDate = "+1M";
       $('#reservation').daterangepicker(
-        {
+      {
           // singleDatePicker: true,
+          "maxSpan": {
+              "days": 31
+          },
+          "minDate": minDate,
+
           showDropdowns: true,
           minYear: 1901,
           startDate: moment().startOf('hour'),
-        endDate: moment().startOf('hour').add(32, 'hour'),
+          endDate: moment().startOf('hour').add(32, 'hour'),
           locale: {
             format: 'YYYY/MM/DD'
             // format: 'DD/MM/YYYY hh:mm A'

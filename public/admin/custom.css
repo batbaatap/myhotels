@@ -40,6 +40,11 @@ table.dataTable thead > tr > th.sorting_desc
 
 
 /* full calendar */
+#ui-datepicker-div
+{
+    z-index:999!important;
+}
+
 .badger {
     display: inline-block;
     min-width: 10px;
@@ -76,4 +81,5 @@ table.dataTable thead > tr > th.sorting_desc
     background-color: #dff0d8!important;
     border-color: #d6e9c6!important;
 }
+
 

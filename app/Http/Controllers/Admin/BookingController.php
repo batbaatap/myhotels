@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Booking;
+use App\BookingRoom;
 use App\Hotel;
 use App\Room;
-use App\BookingRoom;
 use DB;
 
 class BookingController extends Controller
@@ -118,6 +118,9 @@ class BookingController extends Controller
                     BookingRoom::insert($data2);
                 }
             }
+
+            return redirect('admin/booking/view-bookings')->with('flash_message_success', 'Амжилттай нэмэгдлээ');
+
         } // end of ...if($request->isMethod('post'))..
 
         $hotels = Hotel::get();
@@ -348,7 +351,7 @@ class BookingController extends Controller
                 'result_rate', 'result_book',  'result_room', 'time_1d_before', 'time_1d_after', 'width' , 'from_time', 'to_time', 'today'));
             }
         }// ..request
-}
+    }
     
     
     
@@ -440,20 +443,25 @@ class BookingController extends Controller
                 //         BookingRoom::insert($data2);
                 //     }
                 // }
-
-
-               
                 return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
 
             // Get Details
         }
+
+
         $bookingDetails = Booking::where(['id'=>$id])->first();
 
         $hotels = Hotel::get();
-        $hotels_drop_down = "<option value='' selected> - </option>";
-        foreach($hotels as $h){
-            $hotels_drop_down .= "<option value='".$h->id."'>".$h->title."</option>";
+        $hotels_drop_down = "";
+		foreach($hotels as $h){
+			if($h->id==$bookingDetails->id_hotel){
+				$selected = "selected";
+			}else{
+				$selected = "";
+			}
+			$hotels_drop_down .= "<option value='".$h->id."' ".$selected.">".$h->title."</option>";
         }
+
 
         $rooms = Room::get();
         $rooms_drop_down = "<option value='' selected> - </option>";
@@ -461,19 +469,42 @@ class BookingController extends Controller
             $rooms_drop_down .= "<option value='".$r->id."'>".$r->title."</option>";
         }
 
+
+        $bookingRooms = DB::table('pm_booking')
+        ->leftJoin('pm_booking_room', 'pm_booking.id', '=', 'pm_booking_room.id_booking')
+        ->select(DB::raw('pm_hotel.title as sameTitle'), 'pm_booking_room.name', 'pm_hotel.id', 'pm_hotel.title',
+                 'pm_hotel.subtitle','pm_hotel_file.file', 'pm_hotel.class', 'pm_hotel.home',
+                 'pm_hotel.checked')
+        ->get();
+
         //    $bookingDetails = Booking::all()->toArray();
 
         // cat dropdown end
-        return view('admin.booking.edit_booking')->with(compact('bookingDetails', 'hotels_drop_down', 'rooms_drop_down'));
+        return view('admin.booking.edit_booking')->with(compact('bookingDetails', 'hotels_drop_down', 'rooms_drop_down', 'bookingRooms'));
     
     }
 
 
-    // delete
-    public function deleteBooking($id)
-    {
-        //
-    }
+   // delete fac
+   public function deleteBooking($id=null) {
+       
+    // // get post image name
+    // $hotelImage = HotelFile::where(['id_item'=>$id])->first();
+
+    // // Get Post image Paths
+    // $large_image_path = 'admin/images/facility/';
+    // // $medium_image_path = 'images/backend_images/posts/medium/';
+    // // $small_image_path = 'images/backend_images/posts/small/';
+
+    // // Delete large image if not exists in folder
+    // if(file_exists($large_image_path.$hotelImage->file)){
+    //     unlink($large_image_path.$hotelImage->file);
+    // }
+
+    Booking::where(['id'=>$id])->delete();
+
+    return redirect()->back()->with('flash_message_success', 'Буудал устгагдлаа');
+}
 
 
     
