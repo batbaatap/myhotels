@@ -173,8 +173,9 @@
                                 background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
                             </a>
                             
-                            <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
-                                <a href="single-space.html">
+                            <div class="card-body ss d-flex flex-column justify-content-between col-auto p-4">
+                                <a href="single-space.html" class="aa">
+                                        <input type="hidden" value="{{$r->id}}" name="roome"/>
                                     <h4 class="font-weight-normal mb-0">{{ $r->title }}</h4>
                                 </a>
 
@@ -240,7 +241,7 @@
 
 
 
-                            <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
+                            <div class="card-body ss d-flex flex-column justify-content-between col-auto p-4">
                                     <div class="col">
                                         <p> Багтаамж:   <i class="fa fa-male" aria-hidden="true"></i> x {{$r->max_people}}</p>
                                         <div class="input-group input-group-lg mb-3 mb-lg-0">
@@ -259,18 +260,54 @@
                                     </div>
                             </div>
 
-                            <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
+                            <div class="card-body ss d-flex flex-column justify-content-between col-auto p-4">
                                 <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
-                                    <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
-                                        240,000Ŧ
-                                    </span>
 
-                                    <span class="h5 text-dark font-weight-bold"> - </span>
+                         <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
+                                @foreach ($rate_discount as $room_discount) 
+                                    @if($r->id == $room_discount->id_room)
+                                    <?php $k++;  ?>
+                                        <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                           {{$room_discount->price}}Ŧ
+                                        </span>
+                                        <span class="h5 text-dark font-weight-bold"> - </span>
+                                        <span class="h5 text-dark font-weight-bold" style="color:red!important;">@php echo $room_discount->price-(($room_discount->price*$room_discount->discount)/100 )@endphp Ŧ</span> 
                                     
-                                    <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span> 
+                                    @endif
+                                @endforeach
+
+                                @foreach ($rate as $room_rate) <!--хямдрал нь дууссан ч rate table-s хасагдаагүй өрөө тус бүрийн хамгийн бага үнэтэйг нь гаргасан -->
+                                    @if($r->id == $room_rate->id_room)
+                                                <?php $k++;  ?>
+                                            <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                            {{$room_rate->price}}Ŧ
+                                            </span>
+                                            <span class="h5 text-dark font-weight-bold"> - </span>
+                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;">{{$room_rate->price}}Ŧ</span> 
+                                            
+                                    @endif
+                                @endforeach
+                                <?php
+    
+                    if($k==0){?>
+                            
+                            <!--herwee rate dotor hotel id нь байхгүй бол хамгийн хямд өрөөний үнийн мэдээллийг харуулах-->
+                            <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                {{$r->price}}Ŧ
+                             </span>
+                             <span class="h5 text-dark font-weight-bold"> - </span>
+                             <span class="h5 text-dark font-weight-bold" style="color:red!important;">  {{$r->price}}Ŧ</span> 
+                         
+                            
+                    <?php }?>
+                                    {{-- <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                        240,0000Ŧ
+                                    </span>
+                                    <span class="h5 text-dark font-weight-bold"> - </span>
+                                    <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
                             </div>
 
-                            <div class="card-body d-flex flex-column justify-content-between col-md-3 p-4">
+                            <div class="card-body ss d-flex flex-column justify-content-between col-md-3 p-4">
                                 <div class="d-flex justify-content-between">
                                     <div class="col pl-0">
                                         
@@ -303,7 +340,7 @@
 
                         </div>
                   </div>
-                @endforeach
+        @endforeach
         </div>
     {{-- End of Section 2--}}
 
