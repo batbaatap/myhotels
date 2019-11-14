@@ -16,6 +16,7 @@ use DB;
 
 class HotelController extends Controller
 {
+    // add hotel
     public function addHotel(Request $request)
     {
         if($request->isMethod('post')){
@@ -106,7 +107,7 @@ class HotelController extends Controller
     }
 
 
-    // edit h
+    // edit hotel
     public function editHotel(Request $request, $id=null){
         if($request->isMethod('post')){
             // getting info from user
@@ -136,8 +137,6 @@ class HotelController extends Controller
                 'checked'=>$data['checked'],
                 'home'=>$data['homepage1'],
             ]);
-
-           
 
             // upload image
             if($request->hasFile('filename')){
@@ -191,7 +190,7 @@ class HotelController extends Controller
         return view('admin.hotel.edit_hotel')->with(compact('hotelDetails', 'hotelDetailsFile', 'facilities', 'dest_drop_down'));
     }
 
-
+    // view hotel
     public function viewHotel()
     {
         $hotels = DB::table('pm_hotel')

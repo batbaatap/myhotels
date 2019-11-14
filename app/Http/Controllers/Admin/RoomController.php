@@ -214,9 +214,6 @@ class RoomController extends Controller
         
         $hotels = Hotel::get();
 
-       
-
-
         $hotels_drop_down = "";
 		foreach($hotels as $h){
 			if($h->id==$roomDetails->id_hotel){
@@ -228,6 +225,8 @@ class RoomController extends Controller
         }
 
         
+        
+
         return view('admin.room.edit_room')->with(compact('roomDetails', 'roomDetailsFile', 'facilities', 'hotels_drop_down'));
     }
 
