@@ -81,15 +81,15 @@
                                 </td>
 
                                 <td class="project-actions text-center">
-                                        <a href="{{ url('/admin/room/edit-room', $item->id ) }}" class="btn btn-info btn-sm" href="#">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                        </a>
-                                        <a href="{{ url('/admin/room/delete-room/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                        </a>
-                                    </td>
+                                    <a href="{{ url('/admin/room/edit-room', $item->id ) }}" class="btn btn-info btn-sm" href="#">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                    </a>
+                                    <a href="{{ url('/admin/room/delete-room/'.$item->id ) }}" class="btn btn-danger btn-sm" href="javascript:" id="delRoom">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                    </a>
+                                </td>
 
                             </tr>
                             @endforeach

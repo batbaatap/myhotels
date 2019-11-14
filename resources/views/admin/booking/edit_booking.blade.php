@@ -4,8 +4,18 @@
 <form action="{{ url('/admin/booking/edit-booking/'. $bookingDetails->id) }}" method="POST" enctype = "multipart/form-data" novalidate="novalidate">
     {{ csrf_field() }}
 
-{{-- <form class="form-horizontal" method="post" action="{{ url('admin/edit-category/'.$categoryDetails->id) }}" 
-    name="add_category" id="add_category" novalidate="novalidate"> --}}
+    @if(Session::has('flash_message_error'))
+<div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+        <strong>{!! session('flash_message_error') !!}</strong>
+</div>
+@endif   
+@if(Session::has('flash_message_success'))
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+        <strong>{!! session('flash_message_success') !!}</strong>
+</div>
+@endif
 
 <div class="card card-default">
     <div class="card-header">

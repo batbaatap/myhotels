@@ -55,8 +55,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::get('/room/view-rooms',                           'RoomController@viewRoom');
     Route::get('/room/delete-room/{id}',                     'RoomController@deleteRoom');
     Route::get('/room/delete-room-image/{id}',               'RoomController@deleteRoomImage');
-
-       
+    
+    
     // Facility
     Route::match(['get', 'post'], '/facility/add-facility',          'FacilityController@addFacility');
     Route::match(['get', 'post'], '/facility/edit-facility/{id}',    'FacilityController@editFacility');
@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::get('/facility/delete-facility-image/{id}',               'FacilityController@deleteFacImage');
     Route::get('/facility/delete-facility/{id}',                     'FacilityController@deleteFac');
 
-
+    
     // Rate
     Route::match(['get', 'post'], '/rate/add-rate',          'RateController@addRate');
     Route::match(['get', 'post'], '/rate/edit-rate/{id}',    'RateController@editRate');
@@ -74,8 +74,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     // Dest
     Route::match(['get', 'post'], '/destination/add-destination',          'DestinationController@addDestination');
     Route::match(['get', 'post'], '/destination/edit-destination/{id}',    'DestinationController@editDestination');
-    Route::get('/destination/view-destinations',                          'DestinationController@viewDestinations');
+    Route::get('/destination/view-destinations',                          'DestinationController@viewDestination');
     Route::get('/destination/delete-destination/{id}',                     'DestinationController@deleteDestination');
+    Route::get('/destination/delete-destination-image/{id}',               'DestinationController@deleteDestinationImage');
 
 
     Route::get('dashboard', 'AdminController@dashboard');

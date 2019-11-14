@@ -137,13 +137,13 @@
 
             {{-- Тнаилцуулга --}}
             <div class="mt-2">
-                {{ str_limit(strip_tags($item->descr), 100) }};
+                {{ str_limit(strip_tags($item->descr), 100) }}
                 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     Дэлгэрэнгүй
                 </a>
             
                 <div class="collapse" id="collapseExample">
-                    {{ str_limit(strip_tags($item->descr), 100) }};
+                    {{ str_limit(strip_tags($item->descr), 100) }}
                 </div>
             </div>
             

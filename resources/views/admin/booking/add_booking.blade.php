@@ -4,6 +4,20 @@
 <form action="{{url('admin/booking/add-booking')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="add-booking">
     {{ csrf_field() }}
 
+
+    @if(Session::has('flash_message_error'))
+    <div class="alert alert-error alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+            <strong>{!! session('flash_message_error') !!}</strong>
+    </div>
+@endif   
+@if(Session::has('flash_message_success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+            <strong>{!! session('flash_message_success') !!}</strong>
+    </div>
+@endif
+
 <div class="card card-default">
     <div class="card-header">
         <h1 style="float:left; font-weight:100; font-size:24px;">

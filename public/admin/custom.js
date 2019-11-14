@@ -252,6 +252,76 @@ $("#edit-rate").validate({
 });
 
 
+// destination
+
+$("#add-destination").validate({
+    rules:{
+        destination_name: {required:true},
+        destination_title: {required:true},
+        destination_title_tag  : {required:true},
+        destination_lat  : {required:true},
+        destination_lng  :  {required:true},
+    },
+    messages: {
+        // room_title: "Required",
+        // lastname: "Please enter your lastname",
+    },
+
+    errorElement: "em",
+    errorPlacement: function ( error, element ) {
+        // Add the `invalid-feedback` class to the error element
+        error.addClass( "invalid-feedback" );
+
+        if ( element.prop( "type" ) === "multiple" ) {
+            error.insertAfter( element.next( "label" ) );
+        } else {
+            error.insertAfter( element );
+        }
+    },
+    highlight: function ( element, errorClass, validClass ) {
+        $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+    }
+
+});
+
+
+$("#edit-destination").validate({
+    rules:{
+        destination_name: {required:true},
+        destination_title: {required:true},
+        destination_title_tag  : {required:true},
+        destination_lat  : {required:true},
+        destination_lng  :  {required:true},
+    },
+    messages: {
+        // room_title: "Required",
+        // lastname: "Please enter your lastname",
+    },
+
+    errorElement: "em",
+    errorPlacement: function ( error, element ) {
+        // Add the `invalid-feedback` class to the error element
+        error.addClass( "invalid-feedback" );
+
+        if ( element.prop( "type" ) === "multiple" ) {
+            error.insertAfter( element.next( "label" ) );
+        } else {
+            error.insertAfter( element );
+        }
+    },
+    highlight: function ( element, errorClass, validClass ) {
+        $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+    }
+
+});
+
+
 
 
 
@@ -462,3 +532,35 @@ $(function(){
 
 
 
+$("#delDestination").click(function(){
+		if(confirm('Устгах уу?')){
+            return true;
+        }
+        return false;
+    });
+    
+$("#delRoom").click(function(){
+		if(confirm('Устгах уу?')){
+            return true;
+        }
+        return false;
+    });
+    
+$("#delRate").click(function(){
+		if(confirm('Устгах уу?')){
+            return true;
+        }
+        return false;
+	});
+$("#delHotel").click(function(){
+		if(confirm('Устгах уу?')){
+            return true;
+        }
+        return false;
+	});
+$("#delBooking").click(function(){
+		if(confirm('Устгах уу?')){
+            return true;
+        }
+        return false;
+	});

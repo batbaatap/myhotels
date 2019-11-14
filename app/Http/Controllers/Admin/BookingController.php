@@ -118,6 +118,9 @@ class BookingController extends Controller
                     BookingRoom::insert($data2);
                 }
             }
+
+            return redirect('admin/booking/view-bookings')->with('flash_message_success', 'Амжилттай нэмэгдлээ');
+
         } // end of ...if($request->isMethod('post'))..
 
         $hotels = Hotel::get();
@@ -482,11 +485,26 @@ class BookingController extends Controller
     }
 
 
-    // delete
-    public function deleteBooking($id)
-    {
-        //
-    }
+   // delete fac
+   public function deleteBooking($id=null) {
+       
+    // // get post image name
+    // $hotelImage = HotelFile::where(['id_item'=>$id])->first();
+
+    // // Get Post image Paths
+    // $large_image_path = 'admin/images/facility/';
+    // // $medium_image_path = 'images/backend_images/posts/medium/';
+    // // $small_image_path = 'images/backend_images/posts/small/';
+
+    // // Delete large image if not exists in folder
+    // if(file_exists($large_image_path.$hotelImage->file)){
+    //     unlink($large_image_path.$hotelImage->file);
+    // }
+
+    Booking::where(['id'=>$id])->delete();
+
+    return redirect()->back()->with('flash_message_success', 'Буудал устгагдлаа');
+}
 
 
     

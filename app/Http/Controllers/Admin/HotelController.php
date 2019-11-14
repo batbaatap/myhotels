@@ -72,12 +72,12 @@ class HotelController extends Controller
                         $filename =  rand(111, 99999).".".$extension;
                         $large_image_path = 'admin/images/hotels/large/'.$filename;
                         // $medium_image_path = 'admin/images/hotels/medium/'.$filename;
-                        // $small_image_path = 'admin/images/hotels/small/'.$filename;
+                        $small_image_path = 'admin/images/hotels/small/'.$filename;
 
                         // resize image
                         Image::make($image_tmp)->resize(800,400)->save($large_image_path);
                         // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
-                        // Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+                        Image::make($image_tmp)->resize(160,45)->save($small_image_path);
 
                         //  store image name in products table
                         $hotelfile->file = $filename;
@@ -113,11 +113,23 @@ class HotelController extends Controller
             // getting info from user
             $data = $request->all();
 
+            $request->validate([
+                'hotel_title'=> 'required',
+                'hotel_alias'  => 'required',
+                'hotel_address'  => 'required',
+                'hotel_lat'  => 'required',
+                'hotel_long'  => 'required',
+            ]);
          
-
             $arr = $data['hotel_facilities'];
             $i =  implode(',', $arr);
             
+            if(!empty($data['id_destination'])) {
+                $id_d = $data['id_destination'];
+            }else {
+                $id_d = null;
+            }
+
             Hotel::where(['id'=>$id])->update([
                 'lang'=>2,
                 'users'=>1,
@@ -133,7 +145,7 @@ class HotelController extends Controller
                 'web'=>$data['hotel_web'],
                 'descr'=>$data['hotel_description'],
                 'facilities'=> $i,
-                'id_destination'=>$data['id_destination'],
+                'id_destination'=>$id_d,
                 'checked'=>$data['checked'],
                 'home'=>$data['homepage1'],
             ]);
@@ -145,13 +157,13 @@ class HotelController extends Controller
                     $extension = $image_tmp->getClientOriginalExtension();
                     $filename =  rand(111, 99999).".".$extension;
                     $large_image_path = 'admin/images/hotels/large/'.$filename;
-                    // $medium_image_path = 'admin/images/facility/'.$filename;
-                    // $small_image_path = 'admin/images/facility/'.$filename;
+                    // $medium_image_path = 'admin/images/hotels/small/'.$filename;
+                    $small_image_path = 'admin/images/hotels/small/'.$filename;
 
                     // resize image
                     Image::make($image_tmp)->resize(1000,600)->save($large_image_path);
-                    // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
-                    // Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+                    // Image::make($image_tmp)->resize(300,370)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(160,45)->save($small_image_path);
 
                     //  store image name in products table
                     // $facilityFile->file = $filename;

@@ -92,7 +92,7 @@
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                     </a>
-                                    <a href="{{ url('/admin/rate/delete-rate/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
+                                    <a href="{{ url('/admin/rate/delete-rate/'.$item->id ) }}" class="btn btn-danger btn-sm" href="javascript:" id="delRate">
                                         <i class="fas fa-trash">
                                         </i>
                                     </a>

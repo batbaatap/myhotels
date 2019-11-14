@@ -63,7 +63,7 @@
                                    
                                 @if(!empty('$hotels->file'))
                                 <td style="overflow:hidden;" class="text-center">
-                                    <img src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" style="width:160px;margin: -92px 0px;">
+                                    <img src="{{ asset ('admin/images/hotels/small/'.$item->file) }}" style="width:160px;margin: -92px 0px;">
                                 </td>
                                 @endif
 
@@ -93,7 +93,7 @@
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                     </a>
-                                    <a href="{{ url('/admin/hotel/delete-hotel/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
+                                    <a href="{{ url('/admin/hotel/delete-hotel/'.$item->id ) }}" class="btn btn-danger btn-sm" href="javascript:" id='delHotel'>
                                         <i class="fas fa-trash">
                                         </i>
                                     </a>

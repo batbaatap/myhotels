@@ -111,6 +111,35 @@
 
 
         {{-- ======================================================
+          Үнэ 
+         --}}
+        <li class="nav-item has-treeview menu-close">
+          <a href="#" class="nav-link ">
+              <i class="fas fa-bed"></i> 
+            <p>
+              Үнэ
+              <i class="right fas fa-angle-left"></i>
+              {{-- <span class="right badge badge-danger">1</span> --}}
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/admin/rate/add-rate" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Нэмэх</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/admin/rate/view-rates" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Бүгд</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+        {{-- ======================================================
           Хэрэглэл 
          --}}
         <li class="nav-item has-treeview menu-close">
@@ -153,13 +182,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
+              <a href="/admin/destination/add-destination" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Нэмэх</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
+              <a href="/admin/destination/view-destinations" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Бүгд</p>
               </a>
@@ -167,142 +196,9 @@
           </ul>
         </li>
 
-        {{-- ======================================================
-          Цэс 
-         --}}
-        <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Цэс
-              <i class="right fas fa-angle-left"></i>
-              {{-- <span class="right badge badge-danger">1</span> --}}
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Нэмэх</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Бүгд</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        {{-- ======================================================
-          Цэс 
-         --}}
-        <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Хуудас
-              <i class="right fas fa-angle-left"></i>
-              {{-- <span class="right badge badge-danger">1</span> --}}
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Нэмэх</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Бүгд</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        {{-- ======================================================
-          Нийтлэл 
-         --}}
-        <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Нийтлэл
-              <i class="right fas fa-angle-left"></i>
-              {{-- <span class="right badge badge-danger">1</span> --}}
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Нэмэх</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Бүгд</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        {{-- ======================================================
-          Хэрэглэгч 
-         --}}
-        <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Хэрэглэгч
-              <i class="right fas fa-angle-left"></i>
-              {{-- <span class="right badge badge-danger">1</span> --}}
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Нэмэх</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Бүгд</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        {{-- ======================================================
-          Тохиргоо 
-         --}}
-        <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Тохиргоо
-              <i class="right fas fa-angle-left"></i>
-              {{-- <span class="right badge badge-danger">1</span> --}}
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/admin/add-hotel" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Нэмэх</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/view-hotels" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Бүгд</p>
-              </a>
-            </li>
-          </ul>
-        </li>
 
+      
+     
 
 
 
