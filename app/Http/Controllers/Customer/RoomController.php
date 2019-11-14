@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Hotel;
 use App\Room;
+use App\Rate;
 use DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Carbon\Carbon;
 
 class RoomController extends Controller
 {
@@ -49,6 +51,28 @@ class RoomController extends Controller
             ->select('pm_facility.*', 'pm_facility_file.*')
             ->get();
             
+        $today = Carbon::today();
+        $todaydate=  strtotime($today);
+        $rate_discount = DB::select(DB::raw(" SELECT *
+                                                FROM `pm_rate` 
+                                                WHERE discount IN (SELECT MAX(discount)
+                                                    FROM `pm_rate` 
+                                                    where '$todaydate'>= start_date and '$todaydate'<= end_date
+                                                    GROUP BY id_room
+                                                    )
+                                                GROUP BY id_room ")); // rate доторхи хамгийн их хямдарсан өрөөний буудлынх  үнэ
+        $rate= DB::select(DB::raw( "  SELECT *
+                                    from `pm_rate` 
+                                    where price in (SELECT  MIN(price)
+                                    FROM `pm_rate` 
+                                    where id_room NOT IN (SELECT  id_room
+                                    FROM `pm_rate` 
+                                    WHERE discount  IN (SELECT MAX(discount)
+                                    FROM `pm_rate` 
+                                    where '1573603200'>= start_date and '1573603200'<= end_date
+                                    GROUP BY id_room)
+                                    )
+                                    GROUP BY id_room)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
 
         if($request->isMethod('post')){
 
@@ -61,7 +85,7 @@ class RoomController extends Controller
         
             // $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
             $hotels=DB::select(DB::raw( "  SELECT *  FROM `pm_hotel` LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
-        
+            // $rate= Rate::all();
             $rooms= DB::select(DB::raw(
                 "SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                 FROM `pm_room`
@@ -72,6 +96,7 @@ class RoomController extends Controller
                     SELECT  id_room
                     FROM `pm_booking_room` AS rf
                     WHERE rf.id_booking IN (
+
                     select id  FROM `pm_booking`
                     WHERE (`from_date` BETWEEN '$datefrom22' AND ' $dateto22')
                     OR (`to_date` BETWEEN '$datefrom22' AND ' $dateto22')
@@ -96,7 +121,7 @@ class RoomController extends Controller
         }
 
 
-        return view('customer/room.index', compact('rooms','hotels', 'facfile'));
+        return view('customer/room.index', compact('rooms','hotels', 'facfile','rate_discount','rate'));
     }
 
     

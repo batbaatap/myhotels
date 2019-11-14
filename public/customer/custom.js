@@ -91,6 +91,40 @@ $(".datefrom").on("dp.change", function (e) {
   
   // START
 
+
+  // function getData2(){
+  //   var arrData = [];
+      
+  //   $("input.custom-selects").each(function () {  
+  //     var selText  = $(this).val();  
+  //     if(selText != 0)
+      
+  //       $(this).closest('div.row').each(function () {
+          
+  //           var currentRow=$(this);
+  //           var idColeach = currentRow.find("div.col:eq(1) .roome").val();
+  //           var col1_value=currentRow.find("div.col:eq(1)").text();
+  //           // var col2_value=currentRow.find("col:eq(2)").text();
+  //           var col2_value=currentRow.find("div.col:eq(2) > input").val();
+  //           var col3_value=currentRow.find("div.col:eq(3)").text();
+  //           // var col4_value=currentRow.find("col:eq(4) > input").val();
+  //           var col4_value=currentRow.find("div.col:eq(4)").text();
+
+
+  //           var obj={};
+  //               obj.col0=idColeach;
+  //               obj.col1=col1_value;
+  //               obj.col2=col2_value;
+  //               obj.col3=col3_value;
+  //               obj.col4=col4_value;
+
+  //           arrData.push(obj);
+  //       });
+  //   });
+  //   localStorage.setItem("seData", JSON.stringify(arrData));
+  // }
+
+
   function getData2(){
     var arrData = [];
       
@@ -98,16 +132,16 @@ $(".datefrom").on("dp.change", function (e) {
       var selText  = $(this).val();  
       if(selText != 0)
       
-        $(this).closest('div.row').each(function () {
+        $(this).closest('div.card').each(function () {
           
             var currentRow=$(this);
-            var idColeach = currentRow.find("div.col:eq(1) .roome").val();
-            var col1_value=currentRow.find("div.col:eq(1)").text();
+            var idColeach = currentRow.find("div.ss:eq(1) .roome").val();
+            var col1_value=currentRow.find("div.ss:eq(1)").text();
             // var col2_value=currentRow.find("col:eq(2)").text();
-            var col2_value=currentRow.find("div.col:eq(2) > input").val();
-            var col3_value=currentRow.find("div.col:eq(3)").text();
-            // var col4_value=currentRow.find("col:eq(4) > input").val();
-            var col4_value=currentRow.find("div.col:eq(4)").text();
+            var col2_value=currentRow.find("div.ss:eq(2) > input").val();
+            var col3_value=currentRow.find("div.ss:eq(3)").text();
+            // var col4_value=currentRow.find("col:eq(4) > input").val();a
+            var col4_value=currentRow.find("div.ss:eq(4)").text();
 
 
             var obj={};
@@ -122,8 +156,6 @@ $(".datefrom").on("dp.change", function (e) {
     });
     localStorage.setItem("seData", JSON.stringify(arrData));
   }
-
-
 
   // Assigning localstorage data to booking details inputs.. 
   (function(){
