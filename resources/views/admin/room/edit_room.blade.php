@@ -37,7 +37,7 @@
             </div>
         @endif
         </div>
-        <form action="{{url('admin/room/add-room')}}" method="POST" 
+        <form action="{{ url('/admin/room/edit-room/'. $roomDetails->id) }}" method="POST" 
         enctype = "multipart/form-data" 
         class="form-horizontal" 
         novalidate="novalidate" id="add-room">
@@ -73,7 +73,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Нэр</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="room_title" name="room_title" value="" >
+                    <input type="text" class="form-control" id="room_title" name="room_title" value="{{$roomDetails->title}}" >
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Subtitle</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="room_subtitle" name="room_subtitle" value="" >
+                        <input type="text" class="form-control" id="room_subtitle" name="room_subtitle" value="{{$roomDetails->subtitle}}" >
                     </div>
                 </div>
 
@@ -89,25 +89,35 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Alias</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="room_alias" name="room_alias" value="" >
+                        <input type="text" class="form-control" id="room_alias" name="room_alias" value="{{$roomDetails->alias}}">
                     </div>
                 </div>
 
                 {{-- children --}}
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Хүүхдийн тоо:</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" name="room_max_children" style="width: 100%;">
-                                <option value selected="selected">-</option>
-                                @php
-                                    $children = 20;
-                                @endphp
-                                @for ($i = 0; $i < $children; $i++)
-                                    <option value={{$i}}> {{$i}}</option>
-                                @endfor
-                            </select>
-                        </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="room_max_children" style="width: 100%;">
+                            <option value selected="selected">-</option>
+                            @php
+                                $children = 20;
+                            @endphp
+                            @for ($i = 0; $i < $children; $i++)
+                                @if ($roomDetails->max_children == $i)
+                                    @php
+                                            $selected = 'selected="selected"';
+                                    @endphp
+                                @else
+                                    @php
+                                        $selected = '';
+                                    @endphp
+                                @endif
+                                <option {{ $selected }} value={{$i}}>{{$i}}</option>
+                            @endfor
+                        </select>
+                    </div>
                 </div>
+          
 
                 {{-- ad --}}
                 <div class="form-group row">
@@ -119,8 +129,17 @@
                                     $ad = 20;
                                 @endphp
                                 @for ($i = 0; $i < $ad; $i++)
-                                    <option value={{$i}}>{{$i}}</option>
-                                @endfor
+                                @if ($roomDetails->max_adults == $i)
+                                    @php
+                                        $selected = 'selected="selected"';
+                                    @endphp
+                                @else
+                                    @php
+                                        $selected = '';
+                                    @endphp
+                                @endif
+                                <option {{ $selected }} value={{$i}}>{{$i}}</option>
+                            @endfor
                             </select>
                         </div>
                 </div>
@@ -135,7 +154,16 @@
                                     $maxpe = 20;
                                 @endphp
                                 @for ($i = 0; $i < $maxpe; $i++)
-                                    <option value={{$i}}>{{$i}}</option>
+                                @if ($roomDetails->max_people == $i)
+                                    @php
+                                        $selected = 'selected="selected"';
+                                    @endphp
+                                @else
+                                    @php
+                                        $selected = '';
+                                    @endphp
+                                @endif
+                                    <option {{ $selected }} value={{$i}}>{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
@@ -150,9 +178,20 @@
                                 @php
                                     $minpe = 20;
                                 @endphp
+
                                 @for ($i = 0; $i < $minpe; $i++)
-                                    <option value={{$i}}>{{$i}}</option>
+                                @if ($roomDetails->min_people == $i)
+                                    @php
+                                        $selected = 'selected="selected"';
+                                    @endphp
+                                @else
+                                    @php
+                                        $selected = '';
+                                    @endphp
+                                @endif
+                                    <option {{ $selected }} value={{$i}}>{{$i}}</option>
                                 @endfor
+
                             </select>
                         </div>
                 </div>
@@ -162,7 +201,7 @@
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Description</label>
                     <div class="col-sm-6">
                         <textarea class="textarea" name="room_descr" placeholder="Place some text here"
-                                style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$roomDetails->descr}}</textarea>
                     </div>
                 </div>
 
@@ -173,11 +212,40 @@
                             <div class="card-body">
                                 <div class="row">
                                 <div class="col-12">
-                                    <div class="form-group">
-                                    <select class="duallistbox" multiple="multiple" id="room_facilities" name="room_facilities[]">
-                                        <?php echo $facilities_drop_down; ?>
-                                    </select>
-                                    </div>
+                                        <div class="form-group">
+                                                <select class="duallistbox" multiple="multiple" name="room_facilities[]">
+                                                    {{-- @php
+                                                        $hotelFacValues = preg_split("/[\s,]+/", $hotelDetails->facilities);
+                                                    @endphp --}}
+                
+                                                    {{-- @foreach ($hotelFacValues as $facValue)
+                                                        @foreach ($facilities as $key=>$realFac)
+                                                            @if ($facValue == $realFac->id)
+                                                              
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach --}}
+                
+                                                    @php
+                                                    $arrB = preg_split("/[\s,]+/", $roomDetails->facilities);
+                                                    @endphp 
+                
+                                                    @foreach($arrB as $item)
+                                                    @foreach($facilities as $key=>$value)
+                                                        @php
+                                                            $selected = '';
+                                                        @endphp
+                                                        @if ($item == $value->id )
+                                                            @php
+                                                                $selected = 'selected="selected"';
+                                                            @endphp
+                                                        @endif
+                                                        <option value="{{ $value->id }}" {{ $selected }} />{{ $value->name }}</option>
+                                                    @endforeach
+                                                    @endforeach
+                
+                                                </select>
+                                            </div>
                                 </div>
                                 </div>
                             </div>
@@ -189,7 +257,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Өрөөний тоо</label>
                     <div class="col-sm-6">
-                        <input type="number" class="form-control" id="room_stock" name="room_stock" value="" >
+                    <input type="number" class="form-control" id="room_stock" name="room_stock" value="{{$roomDetails->stock}}" >
                     </div>
                 </div>
 
@@ -197,40 +265,40 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Өрөөний үнэ/1 шөнө</label>
                     <div class="col-sm-6">
-                        <input type="number" class="form-control" id="room_price" name="room_price" value="" >
+                        <input type="number" class="form-control" id="room_price" name="room_price" value="{{$roomDetails->price}}" >
                     </div>
                 </div>
 
-                
                 {{-- relase --}}
                 <div class="form-group row">.
                         <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Release</label>
                         
-                        <div class="col-sm-6">
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="pub1" name="checked" checked="" value="1">
-                                <label for="pub1">Published
-                                </label>
-                            </div>
-
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="pub2" name="checked" value="2">
-                                <label for="pub2"> Not published
-                                </label>
-                            </div>
-
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="pub3" name="checked" value="0">
-                                <label for="pub3">Awaiting
-                                </label>
-                            </div>
-
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="pub4" name="checked" value="3">
-                                <label for="pub4">Archived
-                                </label>
-                            </div>
+                         
+                <div class="col-sm-6">
+                        <div class="icheck-primary d-inline">
+                            <input type="radio" id="pub1" name="checked"  @if($roomDetails->checked == "1") checked @endif   value="1">
+                            <label for="pub1">Published
+                            </label>
                         </div>
+    
+                        <div class="icheck-primary d-inline">
+                            <input type="radio" id="pub2" name="checked"  @if($roomDetails->checked == "2") checked @endif  value="2">
+                            <label for="pub2"> Not published
+                            </label>
+                        </div>
+    
+                        <div class="icheck-primary d-inline">
+                            <input type="radio" id="pub3" name="checked" @if($roomDetails->checked == "0") checked @endif  value="0">
+                            <label for="pub3">Awaiting
+                            </label>
+                        </div>
+    
+                        <div class="icheck-primary d-inline">
+                            <input type="radio" id="pub4" name="checked" @if($roomDetails->checked == "3") checked @endif  value="3">
+                            <label for="pub4">Archived
+                            </label>
+                        </div>
+                    </div>
                     </div>
 
                 {{-- relase --}}
@@ -238,17 +306,17 @@
                         <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Нүүр хуудас дээр гаргах</label>
                         
                         <div class="col-sm-6">
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="homepage1" name="homepage1" checked="" value="0">
-                                <label for="homepage1">Тийм
-                                </label>
-                            </div>
-
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="homepage2" name="homepage1" value="1">
-                                <label for="homepage2"> Үгүй
-                                </label>
-                            </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="homepage1" name="homepage1" @if($roomDetails->home == "1") checked @endif   value="1">
+                                    <label for="homepage1">Тийм
+                                    </label>
+                                </div>
+            
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="homepage2" name="homepage1" @if($roomDetails->home == "0") checked @endif value="0">
+                                    <label for="homepage2"> Үгүй
+                                    </label>
+                                </div>
                         </div>
                     </div>
                     
@@ -256,9 +324,14 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зураг</label>
                     <div class="col-sm-6">
-                        <div class="controls">
-                            <input type="file" name="filename" id="filename">
-                        </div>
+                        <input type="file" name="filename" id="filename"> 
+                        @if(!empty($roomDetailsFile->file))
+                            <input type="hidden" name="current_image" value="{{ $roomDetailsFile->file }}" >
+                            
+                            <img src="{{ asset('admin/images/rooms/large/'.$roomDetailsFile->file) }}" style="width:100px;height:100px;" > |
+                            
+                            <a href="{{ url('/admin/room/delete-room-image/'.$roomDetailsFile->id_item) }}">Зураг устгах</a> 
+                        @endif
                     </div>
                 </div>
 

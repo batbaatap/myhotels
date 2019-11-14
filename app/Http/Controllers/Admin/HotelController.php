@@ -105,6 +105,7 @@ class HotelController extends Controller
         return view('admin.hotel.add_hotel')->with(compact('facilities_drop_down', 'destinations_drop_down'));
     }
 
+
     // edit h
     public function editHotel(Request $request, $id=null){
         if($request->isMethod('post')){
@@ -135,6 +136,8 @@ class HotelController extends Controller
                 'checked'=>$data['checked'],
                 'home'=>$data['homepage1'],
             ]);
+
+           
 
             // upload image
             if($request->hasFile('filename')){

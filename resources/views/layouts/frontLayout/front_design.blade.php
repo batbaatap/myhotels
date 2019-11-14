@@ -31,15 +31,18 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+{{-- date time picker --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
 {{-- custom js  --}}
 <script src="{{url('customer/custom.js')}}"></script>
 
 
-{{-- date time picker --}}
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 {{-- template  --}}
-   <script src="{{url('customer/template_assets/spaces.js')}}"></script>
+<script src="{{url('customer/template_assets/spaces.js')}}"></script>
 
    
 

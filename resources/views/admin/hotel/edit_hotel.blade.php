@@ -282,10 +282,6 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зураг</label>
             <div class="col-sm-6">
-                {{-- <div class="controls"> --}}
-                    {{-- <input type="file" name="filename" id="filename"> --}}
-                {{-- </div> --}}
-
                 <input type="file" name="filename" id="filename"> 
                 @if(!empty($hotelDetailsFile->file))
                     <input type="hidden" name="current_image" value="{{ $hotelDetailsFile->file }}" >
