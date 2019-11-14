@@ -54,10 +54,11 @@
                               </div>
                             </div>
                           <div class="col-lg">
+                              
                             <div class="input-group input-group-lg mb-3 mb-lg-0">
                                 <div class="input-group-prepend"><span class="input-group-text">Өрөө:</span></div>
-                                <input class="form-control room_quantity " type="number"   name="room_quantity" min="1" max="10" value="1" onkeyup = "this.value = minmaxfuncz(this.value, 1, 10)" required>
-                               
+                                <input class="form-control room_quantity " type="number"   name="room_quantity" min="1" max="10" value="1"  onkeyup = "this.value = minmaxfuncz(this.value, 1, 10)" required>
+                                    
                             </div>
                           </div>
 

@@ -1,8 +1,12 @@
 $(document).ready(function () {
 
+
+
+/* ==================== dateTo, dateFrom dahi localstorage-iin  utga baihgui ued =======================*/
+
     if(!localStorage.getItem("localdate1")){
      $('.datefrom').datetimepicker({
-      //  defaultDate:new Date(),
+       defaultDate:new Date(),
        format: 'YYYY-MM-DD ',
        minDate: { minDate: 0 },
        locale: 'en',
@@ -12,15 +16,33 @@ $(document).ready(function () {
   
   
     if(!localStorage.getItem("localdate2")){
+       
+          date = new Date();
+          tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));  /*==calculate tommorow ===*/
+
        $('.dateto').datetimepicker({
-        // defaultDate:new Date(),
-         format: 'YYYY-MM-DD ',
-         minDate: { minDate: 0 },
-       locale: 'en',
-       sideBySide: true
+          defaultDate:tomorrow,
+          format: 'YYYY-MM-DD ',
+          minDate: tomorrow,
+          locale: 'en',
+          sideBySide: true
+
         })
     }
+ /* ========= search hesgiin  uruu,hun,chiglel deer localstorage dahi utga baihgui bol ========*/
+
+    if(!localStorage.getItem("localdate3")){
+      jQuery('.room_quantity').val(1);
+    }
+    if(!localStorage.getItem("localdate4")){
+      jQuery('.person_quantity').val(1);
+    }
+    if(!localStorage.getItem("localdate5")){
+      jQuery('.destination').val(1);
+    }
     
+ /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
+
 $('.datetime1').datetimepicker({
   defaultDate: dateFrom, // someVardate
   format: 'YYYY-MM-DD ',
@@ -36,6 +58,7 @@ $('.datetime2').datetimepicker({
   locale: 'en',
   sideBySide: true
 })
+
  /* ========= dateto deer 1 odriig nemeh ========*/
 $(".datefrom").on("dp.change", function (e) {
   if( e.date ){
@@ -43,22 +66,19 @@ $(".datefrom").on("dp.change", function (e) {
   }
   $('.dateto').data("DateTimePicker").minDate(e.date);
 });
- /* ==============================================*/
+ 
 
  /* ========= datefrom der max odriin zaah ========*/
-// $(".datetime2").on("dp.change", function (e) {
-//   $('.datetime1').data("DateTimePicker").maxDate(e.date);
-// });
- /* ==============================================*/
 
-  
+      // $(".datetime2").on("dp.change", function (e) {
+      //   $('.datetime1').data("DateTimePicker").maxDate(e.date);
+      // });
 
 });
     
 
   
-  
-  // setting min max value :)
+  /* ========= setting min max value :)  ========*/
   function minmaxfuncz(value, min, max) 
   {
       if(parseInt(value) > 0) 
@@ -91,40 +111,7 @@ $(".datefrom").on("dp.change", function (e) {
   
   // START
 
-
-  // function getData2(){
-  //   var arrData = [];
-      
-  //   $("input.custom-selects").each(function () {  
-  //     var selText  = $(this).val();  
-  //     if(selText != 0)
-      
-  //       $(this).closest('div.row').each(function () {
-          
-  //           var currentRow=$(this);
-  //           var idColeach = currentRow.find("div.col:eq(1) .roome").val();
-  //           var col1_value=currentRow.find("div.col:eq(1)").text();
-  //           // var col2_value=currentRow.find("col:eq(2)").text();
-  //           var col2_value=currentRow.find("div.col:eq(2) > input").val();
-  //           var col3_value=currentRow.find("div.col:eq(3)").text();
-  //           // var col4_value=currentRow.find("col:eq(4) > input").val();
-  //           var col4_value=currentRow.find("div.col:eq(4)").text();
-
-
-  //           var obj={};
-  //               obj.col0=idColeach;
-  //               obj.col1=col1_value;
-  //               obj.col2=col2_value;
-  //               obj.col3=col3_value;
-  //               obj.col4=col4_value;
-
-  //           arrData.push(obj);
-  //       });
-  //   });
-  //   localStorage.setItem("seData", JSON.stringify(arrData));
-  // }
-
-
+//==================== room page-s booking details inputs utgiig awah..  ============================================
   function getData2(){
     var arrData = [];
       
@@ -132,16 +119,16 @@ $(".datefrom").on("dp.change", function (e) {
       var selText  = $(this).val();  
       if(selText != 0)
       
-        $(this).closest('div.card').each(function () {
+        $(this).closest('div > div > div >').each(function () {
           
             var currentRow=$(this);
             var idColeach = currentRow.find("div.ss:eq(1) .roome").val();
-            var col1_value=currentRow.find("div.ss:eq(1)").text();
-            // var col2_value=currentRow.find("col:eq(2)").text();
-            var col2_value=currentRow.find("div.ss:eq(2) > input").val();
-            var col3_value=currentRow.find("div.ss:eq(3)").text();
-            // var col4_value=currentRow.find("col:eq(4) > input").val();a
-            var col4_value=currentRow.find("div.ss:eq(4)").text();
+            var col1_value=currentRow.find("div.ss:eq(1).uruu").val();
+            var col2_value=currentRow.find("div.col:eq(2).uruu").val();
+            // var col2_value=currentRow.find("div.col:eq(2) > input").val();
+            var col3_value=currentRow.find("div.col:eq(3)").text();
+            // var col4_value=currentRow.find("col:eq(4) > input").val();
+            var col4_value=currentRow.find("div.col:eq(4)").text();
 
 
             var obj={};
@@ -156,6 +143,9 @@ $(".datefrom").on("dp.change", function (e) {
     });
     localStorage.setItem("seData", JSON.stringify(arrData));
   }
+
+
+  
 
   // Assigning localstorage data to booking details inputs.. 
   (function(){
@@ -178,7 +168,7 @@ $(".datefrom").on("dp.change", function (e) {
 
 
 
-
+//===localstorage-====================================
   function getDate(){
    
     date1 = jQuery('.datefrom').val();
@@ -194,7 +184,8 @@ $(".datefrom").on("dp.change", function (e) {
     localStorage.setItem("localdate4",  person_quantity ); 
     localStorage.setItem("localdate5",  destination ); 
 
-    //days calculator
+    //===days calculator====================================
+
   dt1 = new Date(date1);
   dt2 = new Date(date2);
   diff= Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24)); //difference
@@ -203,7 +194,7 @@ $(".datefrom").on("dp.change", function (e) {
   
 
   
-  
+  //================local dah utguudiig huwisagchind hadgalj bui heseg =======================
     (function(){
       
     dateFrom = localStorage.getItem("localdate1");
@@ -211,7 +202,6 @@ $(".datefrom").on("dp.change", function (e) {
     room_quantity = localStorage.getItem("localdate3");
     person_quantity = localStorage.getItem("localdate4");
     des = localStorage.getItem("localdate5");
-
     diffrence= localStorage.getItem("day");
     
     jQuery('.datefrom1').append(dateFrom ); //console.log(axe);
@@ -232,14 +222,12 @@ $(".datefrom").on("dp.change", function (e) {
   
   
   
-    // function localdelete() {
-    //   localStorage.clear();
-    // }
+    
   
 
 
     
-// rating
+//========= rating===========================================
 (function() {
   var boxes = document.querySelectorAll("input[type='checkbox']");
   for (var i = 0; i < boxes.length; i++) {
@@ -263,7 +251,7 @@ $(".datefrom").on("dp.change", function (e) {
 })();
 
 
-// service 
+//=================== service =======================================
 (function() {
   var boxes = document.querySelectorAll("input[type='checkbox']");
   for (var i = 0; i < boxes.length; i++) {
@@ -395,7 +383,7 @@ $(".datefrom").on("dp.change", function (e) {
 
 // });
 
-
+// ========== booking details -> user register =============================================
 $("#user_register").validate({
   rules:{
     lastname:{required:true, },
@@ -433,37 +421,3 @@ $("#user_register").validate({
 
 
 
-
-// jquery jishee
-jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-jQuery('.quantity').each(function() {
-  var spinner = jQuery(this),
-    input = spinner.find('input[type="number1"]'),
-    btnUp = spinner.find('.quantity-up'),
-    btnDown = spinner.find('.quantity-down'),
-    min = input.attr('min'),
-    max = input.attr('max');
-
-  btnUp.click(function() {
-    var oldValue = parseFloat(input.val());
-    if (oldValue >= max) {
-      var newVal = oldValue;
-    } else {
-      var newVal = oldValue + 1;
-    }
-    spinner.find("input").val(newVal);
-    spinner.find("input").trigger("change");
-  });
-
-  btnDown.click(function() {
-    var oldValue = parseFloat(input.val());
-    if (oldValue <= min) {
-      var newVal = oldValue;
-    } else {
-      var newVal = oldValue - 1;
-    }
-    spinner.find("input").val(newVal);
-    spinner.find("input").trigger("change");
-  });
-
-});

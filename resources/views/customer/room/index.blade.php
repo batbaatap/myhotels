@@ -244,7 +244,7 @@
                             <div class="card-body ss d-flex flex-column justify-content-between col-auto p-4">
                                     <div class="col">
                                         <p> Багтаамж:   <i class="fa fa-male" aria-hidden="true"></i> x {{$r->max_people}}</p>
-                                        <div class="input-group input-group-lg mb-3 mb-lg-0">
+                                        <div class="input-group input-group-lg mb-3 mb-lg-0 kk">
                                             <div class="input-group-prepend"><span class="input-group-text">Өрөө:</span></div>
                                             <input type="number" name="uruu" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}" value="0"  onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>
                                         </div><br/>
@@ -311,7 +311,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="col pl-0">
                                         
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis saepe cumque aspernatur voluptates
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis saepe 
 
                                         {{-- <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
                                         <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
