@@ -196,7 +196,7 @@ Route::group(['as' => 'customer', 'namespace' => 'Customer'], function () {
   Route::match(['get', 'post'],'room/search', 'RoomController@roomsearch');
   
   // Booking
-  Route::get('/booking/booking-details',  'BookingController@bookingDetails')->name('comment');
+  Route::get('/booking/booking-details',  'BookingController@bookingDetails');
   Route::match(['get', 'post'], '/booking/payment',  'BookingController@payment');
   
 });

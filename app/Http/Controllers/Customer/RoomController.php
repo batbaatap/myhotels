@@ -84,8 +84,9 @@ class RoomController extends Controller
         
         
             // $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
-            $hotels=DB::select(DB::raw( "  SELECT *  FROM `pm_hotel` LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
+            $hotels=DB::select(DB::raw( "  SELECT `pm_hotel`.*, `pm_hotel_file`.lang, `pm_hotel_file`.home, `pm_hotel_file`.`checked`, `pm_hotel_file`.rank, `pm_hotel_file`.file,`pm_hotel_file`.label, `pm_hotel_file`.type  FROM `pm_hotel` LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
             // $rate= Rate::all();
+        
             $rooms= DB::select(DB::raw(
                 "SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                 FROM `pm_room`

@@ -1,8 +1,12 @@
 $(document).ready(function () {
 
+
+
+/* ==================== dateTo, dateFrom dahi localstorage-iin  utga baihgui ued =======================*/
+
     if(!localStorage.getItem("localdate1")){
      $('.datefrom').datetimepicker({
-      //  defaultDate:new Date(),
+       defaultDate:new Date(),
        format: 'YYYY-MM-DD ',
        minDate: { minDate: 0 },
        locale: 'en',
@@ -12,15 +16,33 @@ $(document).ready(function () {
   
   
     if(!localStorage.getItem("localdate2")){
+       
+          date = new Date();
+          tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));  /*==calculate tommorow ===*/
+
        $('.dateto').datetimepicker({
-        // defaultDate:new Date(),
-         format: 'YYYY-MM-DD ',
-         minDate: { minDate: 0 },
-       locale: 'en',
-       sideBySide: true
+          defaultDate:tomorrow,
+          format: 'YYYY-MM-DD ',
+          minDate: tomorrow,
+          locale: 'en',
+          sideBySide: true
+
         })
     }
+ /* ========= search hesgiin  uruu,hun,chiglel deer localstorage dahi utga baihgui bol ========*/
+
+    if(!localStorage.getItem("localdate3")){
+      jQuery('.room_quantity').val(1);
+    }
+    if(!localStorage.getItem("localdate4")){
+      jQuery('.person_quantity').val(1);
+    }
+    if(!localStorage.getItem("localdate5")){
+      jQuery('.destination').val(1);
+    }
     
+ /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
+
 $('.datetime1').datetimepicker({
   defaultDate: dateFrom, // someVardate
   format: 'YYYY-MM-DD ',
@@ -36,6 +58,7 @@ $('.datetime2').datetimepicker({
   locale: 'en',
   sideBySide: true
 })
+
  /* ========= dateto deer 1 odriig nemeh ========*/
 $(".datefrom").on("dp.change", function (e) {
   if( e.date ){
@@ -43,22 +66,19 @@ $(".datefrom").on("dp.change", function (e) {
   }
   $('.dateto').data("DateTimePicker").minDate(e.date);
 });
- /* ==============================================*/
+ 
 
  /* ========= datefrom der max odriin zaah ========*/
-// $(".datetime2").on("dp.change", function (e) {
-//   $('.datetime1').data("DateTimePicker").maxDate(e.date);
-// });
- /* ==============================================*/
 
-  
+      // $(".datetime2").on("dp.change", function (e) {
+      //   $('.datetime1').data("DateTimePicker").maxDate(e.date);
+      // });
 
 });
     
 
   
-  
-  // setting min max value :)
+  /* ========= setting min max value :)  ========*/
   function minmaxfuncz(value, min, max) 
   {
       if(parseInt(value) > 0) 
@@ -91,71 +111,49 @@ $(".datefrom").on("dp.change", function (e) {
   
   // START
 
+//==================== room page-s booking details inputs utgiig awah..  ============================================
+// $("input.custom-selects").click(function () {  
 
-  // function getData2(){
-  //   var arrData = [];
-      
-  //   $("input.custom-selects").each(function () {  
-  //     var selText  = $(this).val();  
-  //     if(selText != 0)
-      
-  //       $(this).closest('div.row').each(function () {
-          
-  //           var currentRow=$(this);
-  //           var idColeach = currentRow.find("div.col:eq(1) .roome").val();
-  //           var col1_value=currentRow.find("div.col:eq(1)").text();
-  //           // var col2_value=currentRow.find("col:eq(2)").text();
-  //           var col2_value=currentRow.find("div.col:eq(2) > input").val();
-  //           var col3_value=currentRow.find("div.col:eq(3)").text();
-  //           // var col4_value=currentRow.find("col:eq(4) > input").val();
-  //           var col4_value=currentRow.find("div.col:eq(4)").text();
-
-
-  //           var obj={};
-  //               obj.col0=idColeach;
-  //               obj.col1=col1_value;
-  //               obj.col2=col2_value;
-  //               obj.col3=col3_value;
-  //               obj.col4=col4_value;
-
-  //           arrData.push(obj);
-  //       });
-  //   });
-  //   localStorage.setItem("seData", JSON.stringify(arrData));
-  // }
+//   alert("re");
 
 
   function getData2(){
+
+    
+
     var arrData = [];
       
-    $("input.custom-selects").each(function () {  
+    $(".custom-selects").each(function () {  
       var selText  = $(this).val();  
-      if(selText != 0)
       
-        $(this).closest('div.card').each(function () {
+
+      if(selText != 0) 
+      
+        $(this).closest('.card').each(function () {
           
             var currentRow=$(this);
-            var idColeach = currentRow.find("div.ss:eq(1) .roome").val();
-            var col1_value=currentRow.find("div.ss:eq(1)").text();
-            // var col2_value=currentRow.find("col:eq(2)").text();
-            var col2_value=currentRow.find("div.ss:eq(2) > input").val();
-            var col3_value=currentRow.find("div.ss:eq(3)").text();
-            // var col4_value=currentRow.find("col:eq(4) > input").val();a
-            var col4_value=currentRow.find("div.ss:eq(4)").text();
-
+        
+            // var idColeach = currentRow.find(".rnam").attr("data-id");
+            var idColeach = currentRow.find(" input[name='roome']").val();
+            var col1_value=currentRow.find(".card-body h4").text();
+            var col2_value=currentRow.find(".card-body input[name='uruu']").val();
+            var col3_value=currentRow.find(" .hongololttei_une").text();
 
             var obj={};
                 obj.col0=idColeach;
                 obj.col1=col1_value;
                 obj.col2=col2_value;
                 obj.col3=col3_value;
-                obj.col4=col4_value;
 
             arrData.push(obj);
         });
     });
     localStorage.setItem("seData", JSON.stringify(arrData));
   }
+// });
+
+
+  
 
   // Assigning localstorage data to booking details inputs.. 
   (function(){
@@ -163,11 +161,11 @@ $(".datefrom").on("dp.change", function (e) {
       var x = JSON.parse(localStorage.getItem("seData"));
       
       $.each(x, function(i, item){
-        console.log(x[i].col0);
+        // console.log(x[i].col0);
 
         $(".orderedUruu tbody").append(
           "<tr>", 
-            "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
+          "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
             "<td name='tooo'><input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[i].col2 + " ' >"+   x[i].col2 +" </td>",
             "<td name='une'>" +   x[i].col3 + "</td>",
           "</tr>" 
@@ -178,7 +176,7 @@ $(".datefrom").on("dp.change", function (e) {
 
 
 
-
+//===localstorage-====================================
   function getDate(){
    
     date1 = jQuery('.datefrom').val();
@@ -194,7 +192,8 @@ $(".datefrom").on("dp.change", function (e) {
     localStorage.setItem("localdate4",  person_quantity ); 
     localStorage.setItem("localdate5",  destination ); 
 
-    //days calculator
+    //===days calculator====================================
+
   dt1 = new Date(date1);
   dt2 = new Date(date2);
   diff= Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24)); //difference
@@ -203,7 +202,9 @@ $(".datefrom").on("dp.change", function (e) {
   
 
   
-  
+  //=======================================
+  //================local dah utguudiig huwisagchind hadgalj bui heseg =======================
+  //=======================================
     (function(){
       
     dateFrom = localStorage.getItem("localdate1");
@@ -211,7 +212,6 @@ $(".datefrom").on("dp.change", function (e) {
     room_quantity = localStorage.getItem("localdate3");
     person_quantity = localStorage.getItem("localdate4");
     des = localStorage.getItem("localdate5");
-
     diffrence= localStorage.getItem("day");
     
     jQuery('.datefrom1').append(dateFrom ); //console.log(axe);
@@ -232,14 +232,14 @@ $(".datefrom").on("dp.change", function (e) {
   
   
   
-    // function localdelete() {
-    //   localStorage.clear();
-    // }
+    
   
 
 
     
-// rating
+//========= ===========================================
+//========= rating===========================================
+//========= ===========================================
 (function() {
   var boxes = document.querySelectorAll("input[type='checkbox']");
   for (var i = 0; i < boxes.length; i++) {
@@ -263,7 +263,12 @@ $(".datefrom").on("dp.change", function (e) {
 })();
 
 
-// service 
+
+
+//==========================================================
+// service
+//==========================================================
+
 (function() {
   var boxes = document.querySelectorAll("input[type='checkbox']");
   for (var i = 0; i < boxes.length; i++) {
@@ -294,119 +299,23 @@ $(".datefrom").on("dp.change", function (e) {
 })();
 
 
-       
 
-// Room
-
-// $('#booking_room').each( function(){
-//   var form = $(this);    // this is important, make the "form" local inside the function, otherwise $(this) changes scope each loop!
-//   form.validate({
-//       rules: {
-//           'uruu':{required:true,min:1 },
-//      },
-//      messages: {
-//       // room_title: "Required",
-//       // lastname: "Please enter your lastname",
-//   },
-
-//   errorElement: "em",
-//   errorPlacement: function ( error, element ) {
-//       // Add the `invalid-feedback` class to the error element
-//       error.addClass( "invalid-feedback" );
-
-//       if ( element.prop( "type" ) === "multiple" ) {
-//           error.insertAfter( element.next( "label" ) );
-//       } else {
-//           error.insertAfter( element );
-//       }
-//   },
-//   highlight: function ( element, errorClass, validClass ) {
-//       $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
-//   },
-//   unhighlight: function (element, errorClass, validClass) {
-//       $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
-//   }
-
-//   });
-// });
-
-
-
-// var arrData = [];
-
-//   $("input.custom-selects").each(function () {  
-//     var selText  = $(this).val();  
-//     if(selText != 0)
-    
-//       $(this).closest('tr').each(function () {
-        
-//       var currentRow=$(this);
-//           var idColeach = currentRow.find("td:eq(1)>.rnam").attr("data-id");
-//           var col1_value=currentRow.find("td:eq(1)").text();
-//           var col2_value=currentRow.find("td:eq(2)").text();
-//           var col3_value=currentRow.find("td:eq(3)").text();
-//           var col4_value=currentRow.find("td:eq(4) > input").val();
-
-//           var obj={};
-//               obj.col0=idColeach;
-//               obj.col1=col1_value;
-//               obj.col2=col2_value;
-//               obj.col3=col3_value;
-//               obj.col4=col4_value;
-
-//           arrData.push(obj);
-//       });
-//   });
-
-//   localStorage.setItem("seData", JSON.stringify(arrData));
-
-
-
-
-
-
-// $("#booking_room").validate({
-//   rules:{
-//     a:{required:true,min:1 },
-//     // 'hun':{required:true, min:1},
-//   },
-//   messages: {
-//       // room_title: "Required",
-//       // lastname: "Please enter your lastname",
-//   },
-
-//   errorElement: "em",
-//   errorPlacement: function ( error, element ) {
-//       // Add the `invalid-feedback` class to the error element
-//       error.addClass( "invalid-feedback" );
-
-//       if ( element.prop( "type" ) === "multiple" ) {
-//           error.insertAfter( element.next( "label" ) );
-//       } else {
-//           error.insertAfter( element );
-//       }
-//   },
-//   highlight: function ( element, errorClass, validClass ) {
-//       $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
-//   },
-//   unhighlight: function (element, errorClass, validClass) {
-//       $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
-//   }
-
-// });
-
-
+// ========== booking details -> user register =============================================
 $("#user_register").validate({
   rules:{
     lastname:{required:true, },
     email:{required:true, email: true,},
-    phone:{required:true, number: true,min:6},
-    // checkbox:{required:true,},
+    phone:{required:true, number: true,minlength:6},
+    checkbox:{required:true,},
     // 'hun':{required:true, min:1},
   },
   messages: {
-      // room_title: "Required",
-      // lastname: "Please enter your lastname",
+     lastname: "Өөрийн нэрийг оруулна уу!",
+      email:"Имэйл хаягаа оруулна уу!",
+      phone:"Утасны дугаараа оруулна уу!",
+      checkbox: {
+        required: ""
+      }
   },
 
   errorElement: "em",
@@ -434,36 +343,6 @@ $("#user_register").validate({
 
 
 
-// jquery jishee
-jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-jQuery('.quantity').each(function() {
-  var spinner = jQuery(this),
-    input = spinner.find('input[type="number1"]'),
-    btnUp = spinner.find('.quantity-up'),
-    btnDown = spinner.find('.quantity-down'),
-    min = input.attr('min'),
-    max = input.attr('max');
-
-  btnUp.click(function() {
-    var oldValue = parseFloat(input.val());
-    if (oldValue >= max) {
-      var newVal = oldValue;
-    } else {
-      var newVal = oldValue + 1;
-    }
-    spinner.find("input").val(newVal);
-    spinner.find("input").trigger("change");
-  });
-
-  btnDown.click(function() {
-    var oldValue = parseFloat(input.val());
-    if (oldValue <= min) {
-      var newVal = oldValue;
-    } else {
-      var newVal = oldValue - 1;
-    }
-    spinner.find("input").val(newVal);
-    spinner.find("input").trigger("change");
-  });
-
-});
+function myFunction() {
+ localStorage.clear();
+}

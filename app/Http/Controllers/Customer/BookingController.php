@@ -101,8 +101,6 @@ class BookingController extends Controller
 
     public function bookingDetails(Request $request)
     {
-  
-
         $hotelEyed = $request->hotelId;
         return view('customer.booking.booking_details', compact('hotelEyed'));
     }
