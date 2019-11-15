@@ -21,6 +21,7 @@
 @endif --}}
 
 
+
     {{-- Section 1 --}}
     <div class="row">
         @foreach ($hotels as $item)
@@ -138,9 +139,14 @@
             {{-- Тнаилцуулга --}}
             <div class="mt-2">
                 {{ str_limit(strip_tags($item->descr), 100) }}
+               
                 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Дэлгэрэнгүй
+                       
+                    Дэлгэрэнгүй  
+                    {{-- <input type="button" value="{{$item->phone}}"  name="hotelId"> --}}
                 </a>
+         
+                
             
                 <div class="collapse" id="collapseExample">
                     {{ str_limit(strip_tags($item->descr), 100) }}
@@ -156,7 +162,14 @@
     </div>
     {{-- End Section 1 --}}
 
+  
 
+    {{-- <input type="number" name="hh" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}" placeholder="өрөө" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>
+         <input type="number"  name="pp" class="form-control"   min="0" max="{{$r->max_people}}" placeholder="хүн"><br/> --}}
+
+    
+       
+   
 
     {{-- Section 2 --}}
     <div class="row mt-2">     
@@ -378,15 +391,18 @@
     {{-- {{ $rooms->links() }} --}}
         <div class="row">  
               <div class="col-md-12  p-3 mb-3">
-                  <a href="javascript:history.back()" class="btn btn-primary float-left"> Буцах</a>
+                   
+                    <a href="javascript:history.back()" class="btn btn-primary float-left"> Буцах</a>
+
                     <form id="booking_room"  action="/booking/booking-details" >
-                      @foreach ($hotels as $h)
+                        @foreach ($hotels as $h)
 
                          {{-- <input type="number" name="hh" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}" placeholder="өрөө" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>
                               <input type="number"  name="pp" class="form-control"   min="0" max="{{$r->max_people}}" placeholder="хүн"><br/> --}}
 
+                            <input type="hidden" value="{{$h->id}}"  name="hotelId">
+                            
                         <button class="btn btn-primary float-right" onclick ="getData2();">Дараах</button>
-                          <input type="hidden" value="{{$h->id}}"  name="hotelId">
                         @endforeach
                     </form>
             </div>  

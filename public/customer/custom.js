@@ -305,13 +305,17 @@ $("#user_register").validate({
   rules:{
     lastname:{required:true, },
     email:{required:true, email: true,},
-    phone:{required:true, number: true,min:6},
-    // checkbox:{required:true,},
+    phone:{required:true, number: true,minlength:6},
+    checkbox:{required:true,},
     // 'hun':{required:true, min:1},
   },
   messages: {
-      // room_title: "Required",
-      // lastname: "Please enter your lastname",
+     lastname: "Өөрийн нэрийг оруулна уу!",
+      email:"Имэйл хаягаа оруулна уу!",
+      phone:"Утасны дугаараа оруулна уу!",
+      checkbox: {
+        required: ""
+      }
   },
 
   errorElement: "em",

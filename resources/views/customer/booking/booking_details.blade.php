@@ -1,6 +1,6 @@
 @extends('layouts.frontLayout.front_design')
 @section('content')
-<div class="container">
+<div class="container" id="booking_details_table">
 
 <form action="{{url('/booking/payment')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="user_register">
         {{ csrf_field() }}
@@ -103,7 +103,11 @@
                         
                         <p>Нийт үнэ</p>
                         <div class="card" style="width: 7rem;">MNT 460,000</div><br/> --}}
-                        <span> <input type="checkbox" name="checkbox" class="checkbox"> Үйлчилгээний нөхцөл хүлээн зөвшөөрөх </span>
+                        {{-- <span> <input type="checkbox" name="checkbox" class="checkbox"> Үйлчилгээний нөхцөл хүлээн зөвшөөрөх </span> --}}
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="checkbox">
+                            <label class="custom-control-label" for="customCheck">Үйлчилгээний нөхцөл хүлээн зөвшөөрөх</label>
+                        </div> 
                         <input class="btn btn-outline-success " onclick="localdelete()" type="submit" value="Захиалах">
                 </div>
             </div>
