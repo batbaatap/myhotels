@@ -415,29 +415,31 @@ class BookingController extends Controller
                 'trans' => 1,
                 'payment_date' => 1,
                 'payment_option' => $data['payment_option']
-    
             ]);
-                
-            if(count($request->id_hotel_sub) > 0)
-            {
-                foreach($request->id_hotel_sub as $item=>$v){
-                    $data2=array(
-                        'id_booking'=>$booking->id,
-                        'id_hotel'=>$request->id_hotel_sub[$item],
-                        'id_room'=>$request->room_id_sub[$item],
-                        'title'=>$request->description_r[$item],
-                        'num'=>null,
-
-                        'children' => $request->children_r[$item],
-                        'adults' => $request->adult_r[$item],
-                        'amount' => $request->amount_r[$item],
-                        'ex_tax' => null,
-                        'tax_rate' =>null,
-                    );
-                    BookingRoom::insert($data2);
-                }
-            }
+               
             
+            // if(count($request->id_hotel_sub) > 0)
+            // {
+            //     foreach($request->id_hotel_sub as $item=>$v)
+            //     {
+            //         $data2=array(
+            //             'id_booking'=>$id,
+            //             'id_hotel'=>$request->id_hotel_sub[$item],
+            //             'id_room'=>$request->room_id_sub[$item],
+            //             'title'=>$request->description_r[$item],
+            //             'num'=>null,
+
+            //             'children' => $request->children_r[$item],
+            //             'adults' => $request->adult_r[$item],
+            //             'amount' => $request->amount_r[$item],
+            //             'ex_tax' => null, 
+            //             'tax_rate' =>null,
+            //         );
+            //         BookingRoom::insert($data2);
+            //     }
+            // }
+            
+
             if(count($request->id_hotel_sub) > 0)
             {
                 foreach($request->id_hotel_sub as $item=>$v){
@@ -456,18 +458,16 @@ class BookingController extends Controller
                 }
             }
 
-           
-
-
-
             return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
 
-            // Get Details
         }
 
 
         // get hotel for only pm_booking table
         $bookingDetails = Booking::where(['id'=>$id])->first();
+
+
+
         $hotels = Hotel::get();
         $hotels_drop_down = "";
 		foreach($hotels as $h){
@@ -478,7 +478,6 @@ class BookingController extends Controller
 			}
 			$hotels_drop_down .= "<option value='".$h->id."' ".$selected.">".$h->title."</option>";
         }
-
 
 
         // getting hotel & room in pm_booking_room table
@@ -533,7 +532,7 @@ class BookingController extends Controller
 
     Booking::where(['id'=>$id])->delete();
 
-    return redirect()->back()->with('flash_message_success', 'Буудал устгагдлаа');
+    return redirect()->back()->with('flash_message_success', 'Захиалга устгагдлаа');
 }
 
 

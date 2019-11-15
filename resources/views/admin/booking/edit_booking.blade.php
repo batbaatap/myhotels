@@ -263,7 +263,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Tax rate</th>
                             <th scope="col">Amount</th>
-                            {{-- <th scope="col">Actions</th> --}}
+                            <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         
@@ -290,7 +290,12 @@
                                     <td><input type="text" name="no_r[]" class="form-control" value=""></td>
                                     <td><input type="text" name="taxrater[]" class="form-control" value="{{$item->ex_tax}}"></td>
                                     <td><input type="text" name="amount_r[]" class="form-control" value="{{$item->amount}}"></td>
-                                    {{-- <td><input type="text" name="actions_r" class="form-control" value="{{$item->ac}}" placeholder=""></td> --}}
+                                    <td>
+                                        <a href="javascript:" class="btn btn-danger btn-sm" href="javascript:" id="delBooking">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                        </a>
+                                    </td>
                                 </tr>
 
                             @endforeach

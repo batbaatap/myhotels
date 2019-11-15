@@ -1,7 +1,7 @@
 @extends('layouts.frontLayout.front_design') @section('content')
 
 
-<div class="section section-lg bg-primary overlay-dark text-white py-5"  data-background="../../img/hero.jpg" style="background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});">
+{{-- <div class="section section-lg bg-primary overlay-dark text-white py-5"  data-background="../../img/hero.jpg" style="background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});"> --}}
   {{-- <div class="container">
       <div class="row justify-content-center pt-5">
           <div class="col-12">
@@ -13,7 +13,7 @@
           </div>
       </div>
   </div> --}}
-</div>
+{{-- </div> --}}
 
 <main>
     <section class="section pt-2 pt-lg-6" style="padding-top:2em!important;">
@@ -22,7 +22,7 @@
            
              <div class="row mt-1">
                     <div class="col">
-                        <div class="card card-body" style="background-color:#efefef">
+                        <div class="card card-body p-0" style="background-color:#efefef">
                             
                             <form id="form"  class="row" action="{{url('hotel/search') }}"  method="POST"  enctype="multipart/form-data">
                             {{ csrf_field() }} 
@@ -426,59 +426,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="tab-pane fade" id="link-example-14" role="tabpanel" aria-labelledby="tab-link-example-14">
-                            <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    <!-- Card -->
-                                    <div class="card shadow-sm border-soft mb-4 animate-up-5">
-                                        <a href="./single-space.html" class="position-relative">
-                                            <img src="../../img/image-office.jpg" class="card-img-top" alt="image">
-                                            <span class="badge badge-primary position-absolute listing-badge">
-																<span class="font-weight-normal font-xs">Office Space</span>
-                                            </span>
-                                        </a>
-                                        <div class="card-body">
-                                            <a href="./single-space.html">
-                                                <h5 class="font-weight-normal">Collaborative Workspace</h5>
-                                            </a>
-                                            <div class="post-meta">
-                                                <span class="small lh-120">
-                                                    <i class="fas fa-map-marker-alt mr-2"></i>New York, Manhattan, USA
-                                                </span>
-                                            </div>
-                                            <div class="d-flex my-4">
-                                                <i class="star fas fa-star text-warning"></i>
-                                                <i class="star fas fa-star text-warning"></i>
-                                                <i class="star fas fa-star text-warning"></i>
-                                                <i class="star fas fa-star text-warning"></i>
-                                                <i class="star fas fa-star text-warning"></i>
-                                                <span class="badge badge-pill badge-secondary ml-2">5.0</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="col pl-0">
-                                                    <span class="text-muted font-small d-block mb-2">Monthly</span>
-                                                    <span class="h5 text-dark font-weight-bold">450$</span>
-                                                </div>
-                                                <div class="col">
-                                                    <span class="text-muted font-small d-block mb-2">People</span>
-                                                    <span class="h5 text-dark font-weight-bold">12</span>
-                                                </div>
-                                                <div class="col pr-0">
-                                                    <span class="text-muted font-small d-block mb-2">Sq.Ft</span>
-                                                    <span class="h5 text-dark font-weight-bold">1200</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End of Card -->
-                                </div>
-                                <div class="col mt-5 text-center">
-                                    <button class="btn btn-primary" type="submit">Show More</button>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                

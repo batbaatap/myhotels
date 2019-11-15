@@ -34,7 +34,10 @@ color:black!important;
 }
 
 
-
+.navbar-main 
+{
+  position: relative; 
+}
 
 /* heade3r menu */
 /* heade3r menu */

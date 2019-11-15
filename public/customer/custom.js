@@ -44,7 +44,7 @@ $(document).ready(function () {
  /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
 
 $('.datetime1').datetimepicker({
-  defaultDate: dateFrom, // someVardate
+  defaultDate: new Date(), // someVardate
   format: 'YYYY-MM-DD ',
   minDate:  { minDate: 0 },
   locale: 'en',
