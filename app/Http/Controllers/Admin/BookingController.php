@@ -30,7 +30,7 @@ class BookingController extends Controller
     public function viewBookings()
     {
         $bookings = DB::table('pm_booking')
-            ->join('pm_hotel', 'pm_booking.id_hotel', '=', 'pm_hotel.id')
+            ->leftJoin('pm_hotel', 'pm_booking.id_hotel', '=', 'pm_hotel.id')
             ->select('pm_booking.*', 'pm_hotel.title')
             ->get();
 
@@ -101,7 +101,6 @@ class BookingController extends Controller
             if(count($request->id_hotel_sub) > 0)
             {
                 foreach($request->id_hotel_sub as $item=>$v){
-                    
                     $data2=array(
                         'id_booking'=>$booking->id,
                         'id_hotel'=>$request->id_hotel_sub[$item],
@@ -110,7 +109,7 @@ class BookingController extends Controller
                         'num'=>null,
 
                         'children' => $request->children_r[$item],
-                        'adults' => $request->children_r[$item],
+                        'adults' => $request->adult_r[$item],
                         'amount' => $request->amount_r[$item],
                         'ex_tax' => null,
                         'tax_rate' =>null,
@@ -372,14 +371,13 @@ class BookingController extends Controller
         if($request->isMethod('post')){
             
             $data = $request->all();
-
+            
+            $dates = explode(' - ', $data['date_from_and_date_to']);
             Booking::where(['id'=>$id])->update([
                 'id_hotel' => $data['id_hotel'],
                 'add_date' => 1,
                 'edit_date' => 1,
                 
-                // өдрүүд daterange ашигласан учраас explode Хийсэн
-                $dates = explode(' - ', $data['date_from_and_date_to']),
                 'from_date' =>   strtotime($dates[0]),
                 'to_date' =>     strtotime($dates[1]),
                 
@@ -418,39 +416,58 @@ class BookingController extends Controller
                 'payment_date' => 1,
                 'payment_option' => $data['payment_option']
     
-                ]);
+            ]);
                 
-                // if(count($request->id_hotel_sub) > 0)
-                // {
-                //     foreach($request->id_hotel_sub as $item=>$v)
-                //     {
-                //         BookingRoom::where(['id'=>$id])->update([
-                //             $data2=array(
-                //                 'id_booking'=>$booking->id,
-                //                 'id_hotel'=>$request->id_hotel_sub[$item],
-                //                 'id_room'=>$request->room_id_sub[$item],
-                //                 'title'=>null,
-                //                 'num'=>null,
-        
-                //                 'children' => null,
-                //                 'adults' => null,
-                //                 'amount' => null,
-                //                 'ex_tax' => null,
-                //                 'tax_rate' =>null,
-                //             )
-                //         ]);
+            if(count($request->id_hotel_sub) > 0)
+            {
+                foreach($request->id_hotel_sub as $item=>$v){
+                    $data2=array(
+                        'id_booking'=>$booking->id,
+                        'id_hotel'=>$request->id_hotel_sub[$item],
+                        'id_room'=>$request->room_id_sub[$item],
+                        'title'=>$request->description_r[$item],
+                        'num'=>null,
 
-                //         BookingRoom::insert($data2);
-                //     }
-                // }
-                return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
+                        'children' => $request->children_r[$item],
+                        'adults' => $request->adult_r[$item],
+                        'amount' => $request->amount_r[$item],
+                        'ex_tax' => null,
+                        'tax_rate' =>null,
+                    );
+                    BookingRoom::insert($data2);
+                }
+            }
+            
+            if(count($request->id_hotel_sub) > 0)
+            {
+                foreach($request->id_hotel_sub as $item=>$v){
+                    BookingRoom::where(['id'=>$request->pm_booking_room_id[$item]])->update([
+                        'id_hotel'=>$request->id_hotel_sub[$item],
+                        'id_room'=>$request->room_id_sub[$item],
+                        'title'=>$request->description_r[$item],
+                        'num'=>null,
+
+                        'children' => $request->children_r[$item],
+                        'adults' => $request->adult_r[$item],
+                        'amount' => $request->amount_r[$item],
+                        'ex_tax' => null,
+                        'tax_rate' =>null,
+                    ]);
+                }
+            }
+
+           
+
+
+
+            return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
 
             // Get Details
         }
 
 
+        // get hotel for only pm_booking table
         $bookingDetails = Booking::where(['id'=>$id])->first();
-
         $hotels = Hotel::get();
         $hotels_drop_down = "";
 		foreach($hotels as $h){
@@ -463,26 +480,39 @@ class BookingController extends Controller
         }
 
 
+
+        // getting hotel & room in pm_booking_room table
+        $bookingRooms = DB::table('pm_booking_room')
+            ->where('id_booking', $id)
+            ->leftJoin('pm_room',  'pm_booking_room.id_room',  '=', 'pm_room.id')
+            ->leftJoin('pm_hotel', 'pm_booking_room.id_hotel', '=', 'pm_hotel.id')
+            // ->select(DB::raw('pm_hotel.title as sameTitle'), 'pm_booking_room.name', 'pm_hotel.id', 'pm_hotel.title',
+            //          'pm_hotel.subtitle','pm_hotel_file.file', 'pm_hotel.class', 'pm_hotel.home',
+            //          'pm_hotel.checked')
+            // ->select( 'pm_booking_room.*')
+            // ->select('pm_room.*', 'pm_booking_room.*', 'pm_hotel.*')
+            ->select(DB::raw('pm_room.title as uruutitle,  pm_room.descr as uruudescr'), 'pm_booking_room.*', DB::raw('pm_hotel.title as hoteltitle'))
+            ->get();
+
+            // dd($bookingRooms);
+            
+
         $rooms = Room::get();
-        $rooms_drop_down = "<option value='' selected> - </option>";
+        $rooms_drop_down = "";
         foreach($rooms as $r){
-            $rooms_drop_down .= "<option value='".$r->id."'>".$r->title."</option>";
+            // if($value->id_room == $r->id){
+            //     $selected = "selected";
+            // }else{
+            //     $selected = "";
+            // }
+            $rooms_drop_down .= "<option $selected value='".$r->id."'>".$r->title."</option>";
         }
 
-
-        $bookingRooms = DB::table('pm_booking')
-        ->leftJoin('pm_booking_room', 'pm_booking.id', '=', 'pm_booking_room.id_booking')
-        ->select(DB::raw('pm_hotel.title as sameTitle'), 'pm_booking_room.name', 'pm_hotel.id', 'pm_hotel.title',
-                 'pm_hotel.subtitle','pm_hotel_file.file', 'pm_hotel.class', 'pm_hotel.home',
-                 'pm_hotel.checked')
-        ->get();
-
-        //    $bookingDetails = Booking::all()->toArray();
-
-        // cat dropdown end
         return view('admin.booking.edit_booking')->with(compact('bookingDetails', 'hotels_drop_down', 'rooms_drop_down', 'bookingRooms'));
-    
     }
+
+
+
 
 
    // delete fac

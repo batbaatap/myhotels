@@ -8,21 +8,34 @@ table.dataTable thead > tr > th.sorting_desc
     text-align: center;
 }
 
-.main-sidebar {
+/* .main-sidebar {
     width: 200px!important;   
-}
+} */
 
 .sidebar {
     overflow-y: initial!important;
 }
 
-@media (min-width: 576px){
+/* @media (min-width: 576px){
     .content-wrapper {
         margin-left: 200px;
     }
     .main-header {
         margin-left: 200px;
     }
+} */
+
+.main-sidebar, .main-sidebar::before {
+    transition: margin-left .3s ease-in-out,width .3s ease-in-out;
+    width: 200px;
+}
+
+@media (min-width: 576px){
+.content-wrapper, .main-footer, .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 200px;
+    z-index: 3000;
+}
 }
 
 .form-control {

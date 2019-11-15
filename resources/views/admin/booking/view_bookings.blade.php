@@ -61,13 +61,13 @@
                             <tr style="font-size:12px;">
                                 <td></td>
                                 <td>{{ $item->title}}</td>
-                                <td>{{ $item->id_hotel}}</td>
+                                <td>Харилцагч</td>
                                 <td>@php echo date("Y-m-d",  ($item->from_date) ); @endphp </td>
                                 <td>@php echo date("Y-m-d",  ($item->to_date) ); @endphp</td>
                                 
                                 
                                 <td>{{ $item->nights}}</td>
-                                <td>{{ $item->adults}} tom hun</td> 
+                                <td>{{ $item->adults}} </td> 
                                 <td>{{ $item->children}}</td>
                                 <td>{{ $item->amount}}</td>
                                 <td>@if ($item->status == 1) Хүлээгдэж байгаа @endif</td>

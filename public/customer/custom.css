@@ -10,9 +10,14 @@
   
    */
  .navbar{
-   margin:0.5em;
+  margin: 0;
+  padding: 0!important;
  }
 
+ .navbar-dark .navbar-nav .nav-link {
+color:black!important;
+ }
+ 
  .bg {
   /* The image used */
   background-image: url("http://localhost/panda/medias/slide/big/3/slide1.jpg");
@@ -113,7 +118,7 @@ input[type=number1]
 /* heade3r menu */
 /* heade3r menu */
 .navbar-transparent {
-  background-color: transparent!important;
+  background-color: #ffffff!important;
 }
 
 

@@ -27,9 +27,9 @@
         <a href="/admin/booking/add-booking" class="btn btn-danger rounded-0 btn-sm">
             <i class="fas fa-plus"></i>  &nbsp;Нэмэх
         </a>
-        {{-- <a href="/admin/facility/view-facilities" class="btn btn-primary rounded-0 btn-sm">
+        <a href="/admin/booking/view-bookings" class="btn btn-primary rounded-0 btn-sm">
             <i class="fas fa-reply"></i>  &nbsp;Буцах
-        </a> --}}
+        </a>
     </div>
         
     

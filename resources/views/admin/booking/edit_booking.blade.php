@@ -269,7 +269,6 @@
                         
                         <tbody class="room_table_body">
                             @foreach ($bookingRooms as $item)
-                                
                                 <tr class="room_table_row">
                                     <th scope="row">
                                         {{-- <input type="number" name="linenum[]" class="form-control" > --}}
@@ -284,13 +283,14 @@
                                                 <?php echo $rooms_drop_down; ?>
                                         </select>
                                     </td>
-                                    <td><input type="text" name="description_r[]" class="form-control" value=""></td>
+                                    <input type="text" name="pm_booking_room_id[]" class="form-control" value="{{$item->id}}">
+                                    <td><input type="text" name="description_r[]" class="form-control" value="{{$item->uruudescr}}"></td>
                                     <td><input type="text" name="adult_r[]" class="form-control" value="{{$item->adults}}"></td>
                                     <td><input type="text" name="children_r[]" class="form-control" value="{{$item->children}}"></td>
                                     <td><input type="text" name="no_r[]" class="form-control" value=""></td>
-                                    {{-- <td><input type="text" name="taxrater[]" class="form-control" value="{{$item->ex_tax}}"></td> --}}
-                                    {{-- <td><input type="text" name="amount_r[]" class="form-control" value="{{$item->}}"></td> --}}
-                                    {{-- <td><input type="text" name="actions_r" class="form-control" placeholder=""></td> --}}
+                                    <td><input type="text" name="taxrater[]" class="form-control" value="{{$item->ex_tax}}"></td>
+                                    <td><input type="text" name="amount_r[]" class="form-control" value="{{$item->amount}}"></td>
+                                    {{-- <td><input type="text" name="actions_r" class="form-control" value="{{$item->ac}}" placeholder=""></td> --}}
                                 </tr>
 
                             @endforeach
@@ -305,8 +305,14 @@
         </div>
         
         <div class="card-footer">
-                <button type="submit">Хадгалах</button>
+            {{-- <button type="submit">Хадгалах</button> --}}
+            <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-4">
+                        <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
+                    </div>
+                </div>
         </div>
+
 </div>
 
 </form>
