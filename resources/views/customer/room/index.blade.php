@@ -2,10 +2,10 @@
 @section('content')
 
 
-<div class="section section-lg bg-primary overlay-dark text-white py-5"  data-background="../../img/hero.jpg" style="background-size:cover;background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});">
+{{-- <div class="section section-lg bg-primary overlay-dark text-white py-5"  data-background="../../img/hero.jpg" style="background-size:cover;background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});">
     <div class="container">
     </div>
-  </div>
+  </div> --}}
 
   
 <div class="container">  
@@ -166,17 +166,21 @@
             <div class="col-lg-12">
 
                         <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
-                            <a href="single-space.html" class="col-md-3 col-lg-3">
+                            <a href="single-space.html" class="col-md-3 ">
                                 <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
                                 style="background-position: center;
                                 background-size: cover;
                                 background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
                             </a>
                             
-                            <div class="card-body ss d-flex flex-column justify-content-between col-auto p-4">
-                                <a href="single-space.html" class="aa">
+                            <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-4">
+                                <a href="single-space.html" >
                                         <input type="hidden" value="{{$r->id}}" name="roome"/>
-                                    <h4 class="font-weight-normal mb-0">{{ $r->title }}</h4>
+                                        
+                                         {{-- <div class="rnam" data-id={{$r->id}}> --}}
+                                            <h4 class="font-weight-normal mb-0">{{ $r->title }}</h4>
+                                         {{-- </div> --}}
+                                   
                                 </a>
 
                                 <div class="post-meta">
@@ -241,7 +245,7 @@
 
 
 
-                            <div class="card-body ss d-flex flex-column justify-content-between col-auto p-4">
+                            <div class="card-body  d-flex flex-column justify-content-between col-auto p-4">
                                     <div class="col">
                                         <p> Багтаамж:   <i class="fa fa-male" aria-hidden="true"></i> x {{$r->max_people}}</p>
                                         <div class="input-group input-group-lg mb-3 mb-lg-0 kk">
@@ -260,54 +264,54 @@
                                     </div>
                             </div>
 
-                            <div class="card-body ss d-flex flex-column justify-content-between col-auto p-4">
+                            <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
                                 <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
 
-                         <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
-                                @foreach ($rate_discount as $room_discount) 
-                                    @if($r->id == $room_discount->id_room)
-                                    <?php $k++;  ?>
-                                        <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
-                                           {{$room_discount->price}}Ŧ
-                                        </span>
-                                        <span class="h5 text-dark font-weight-bold"> - </span>
-                                        <span class="h5 text-dark font-weight-bold" style="color:red!important;">@php echo $room_discount->price-(($room_discount->price*$room_discount->discount)/100 )@endphp Ŧ</span> 
-                                    
-                                    @endif
-                                @endforeach
+                                <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
+                                        @foreach ($rate_discount as $room_discount) 
+                                            @if($r->id == $room_discount->id_room)
+                                            <?php $k++;  ?>
+                                                <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                {{$room_discount->price}}Ŧ
+                                                </span>
+                                                <span class="h5 text-dark font-weight-bold"> - </span>
+                                                <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;">@php echo $room_discount->price-(($room_discount->price*$room_discount->discount)/100 )@endphp Ŧ</span> 
+                                            
+                                            @endif
+                                        @endforeach
 
-                                @foreach ($rate as $room_rate) <!--хямдрал нь дууссан ч rate table-s хасагдаагүй өрөө тус бүрийн хамгийн бага үнэтэйг нь гаргасан -->
-                                    @if($r->id == $room_rate->id_room)
-                                                <?php $k++;  ?>
-                                            <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
-                                            {{$room_rate->price}}Ŧ
+                                        @foreach ($rate as $room_rate) <!--хямдрал нь дууссан ч rate table-s хасагдаагүй өрөө тус бүрийн хамгийн бага үнэтэйг нь гаргасан -->
+                                            @if($r->id == $room_rate->id_room)
+                                                        <?php $k++;  ?>
+                                                    <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                    {{$room_rate->price}}Ŧ
+                                                    </span>
+                                                    <span class="h5 text-dark font-weight-bold"> - </span>
+                                                    <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;">{{$room_rate->price}}Ŧ</span> 
+                                                    
+                                            @endif
+                                        @endforeach
+                                        <?php
+            
+                                        if($k==0){?>
+                                                
+                                                <!--herwee rate dotor hotel id нь байхгүй бол хамгийн хямд өрөөний үнийн мэдээллийг харуулах-->
+                                                <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                    {{$r->price}}Ŧ
+                                                </span>
+                                                <span class="h5 text-dark font-weight-bold"> - </span>
+                                                <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;">  {{$r->price}}Ŧ</span> 
+                                            
+                                                
+                                        <?php }?>
+                                            {{-- <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
+                                                240,0000Ŧ
                                             </span>
                                             <span class="h5 text-dark font-weight-bold"> - </span>
-                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;">{{$room_rate->price}}Ŧ</span> 
-                                            
-                                    @endif
-                                @endforeach
-                                <?php
-    
-                    if($k==0){?>
-                            
-                            <!--herwee rate dotor hotel id нь байхгүй бол хамгийн хямд өрөөний үнийн мэдээллийг харуулах-->
-                            <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
-                                {{$r->price}}Ŧ
-                             </span>
-                             <span class="h5 text-dark font-weight-bold"> - </span>
-                             <span class="h5 text-dark font-weight-bold" style="color:red!important;">  {{$r->price}}Ŧ</span> 
-                         
-                            
-                    <?php }?>
-                                    {{-- <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
-                                        240,0000Ŧ
-                                    </span>
-                                    <span class="h5 text-dark font-weight-bold"> - </span>
-                                    <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
+                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
                             </div>
 
-                            <div class="card-body ss d-flex flex-column justify-content-between col-md-3 p-4">
+                            <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-4">
                                 <div class="d-flex justify-content-between">
                                     <div class="col pl-0">
                                         
@@ -389,7 +393,10 @@
         </div>  {{-- row div --}}
 </form>
 </div>  
-</div>  
+{{-- </div>   --}}
 
 
 @endsection
+
+
+

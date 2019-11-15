@@ -112,37 +112,45 @@ $(".datefrom").on("dp.change", function (e) {
   // START
 
 //==================== room page-s booking details inputs utgiig awah..  ============================================
+// $("input.custom-selects").click(function () {  
+
+//   alert("re");
+
+
   function getData2(){
+
+    
+
     var arrData = [];
       
-    $("input.custom-selects").each(function () {  
+    $(".custom-selects").each(function () {  
       var selText  = $(this).val();  
-      if(selText != 0)
       
-        $(this).closest('div > div > div >').each(function () {
+
+      if(selText != 0) 
+      
+        $(this).closest('.card').each(function () {
           
             var currentRow=$(this);
-            var idColeach = currentRow.find("div.ss:eq(1) .roome").val();
-            var col1_value=currentRow.find("div.ss:eq(1).uruu").val();
-            var col2_value=currentRow.find("div.col:eq(2).uruu").val();
-            // var col2_value=currentRow.find("div.col:eq(2) > input").val();
-            var col3_value=currentRow.find("div.col:eq(3)").text();
-            // var col4_value=currentRow.find("col:eq(4) > input").val();
-            var col4_value=currentRow.find("div.col:eq(4)").text();
-
+        
+            // var idColeach = currentRow.find(".rnam").attr("data-id");
+            var idColeach = currentRow.find(" input[name='roome']").val();
+            var col1_value=currentRow.find(".card-body h4").text();
+            var col2_value=currentRow.find(".card-body input[name='uruu']").val();
+            var col3_value=currentRow.find(" .hongololttei_une").text();
 
             var obj={};
                 obj.col0=idColeach;
                 obj.col1=col1_value;
                 obj.col2=col2_value;
                 obj.col3=col3_value;
-                obj.col4=col4_value;
 
             arrData.push(obj);
         });
     });
     localStorage.setItem("seData", JSON.stringify(arrData));
   }
+// });
 
 
   
@@ -153,11 +161,11 @@ $(".datefrom").on("dp.change", function (e) {
       var x = JSON.parse(localStorage.getItem("seData"));
       
       $.each(x, function(i, item){
-        console.log(x[i].col0);
+        // console.log(x[i].col0);
 
         $(".orderedUruu tbody").append(
           "<tr>", 
-            "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
+          "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
             "<td name='tooo'><input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[i].col2 + " ' >"+   x[i].col2 +" </td>",
             "<td name='une'>" +   x[i].col3 + "</td>",
           "</tr>" 
@@ -194,7 +202,9 @@ $(".datefrom").on("dp.change", function (e) {
   
 
   
+  //=======================================
   //================local dah utguudiig huwisagchind hadgalj bui heseg =======================
+  //=======================================
     (function(){
       
     dateFrom = localStorage.getItem("localdate1");
@@ -227,7 +237,9 @@ $(".datefrom").on("dp.change", function (e) {
 
 
     
+//========= ===========================================
 //========= rating===========================================
+//========= ===========================================
 (function() {
   var boxes = document.querySelectorAll("input[type='checkbox']");
   for (var i = 0; i < boxes.length; i++) {
@@ -251,7 +263,12 @@ $(".datefrom").on("dp.change", function (e) {
 })();
 
 
-//=================== service =======================================
+
+
+//==========================================================
+// service
+//==========================================================
+
 (function() {
   var boxes = document.querySelectorAll("input[type='checkbox']");
   for (var i = 0; i < boxes.length; i++) {
@@ -282,106 +299,6 @@ $(".datefrom").on("dp.change", function (e) {
 })();
 
 
-       
-
-// Room
-
-// $('#booking_room').each( function(){
-//   var form = $(this);    // this is important, make the "form" local inside the function, otherwise $(this) changes scope each loop!
-//   form.validate({
-//       rules: {
-//           'uruu':{required:true,min:1 },
-//      },
-//      messages: {
-//       // room_title: "Required",
-//       // lastname: "Please enter your lastname",
-//   },
-
-//   errorElement: "em",
-//   errorPlacement: function ( error, element ) {
-//       // Add the `invalid-feedback` class to the error element
-//       error.addClass( "invalid-feedback" );
-
-//       if ( element.prop( "type" ) === "multiple" ) {
-//           error.insertAfter( element.next( "label" ) );
-//       } else {
-//           error.insertAfter( element );
-//       }
-//   },
-//   highlight: function ( element, errorClass, validClass ) {
-//       $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
-//   },
-//   unhighlight: function (element, errorClass, validClass) {
-//       $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
-//   }
-
-//   });
-// });
-
-
-
-// var arrData = [];
-
-//   $("input.custom-selects").each(function () {  
-//     var selText  = $(this).val();  
-//     if(selText != 0)
-    
-//       $(this).closest('tr').each(function () {
-        
-//       var currentRow=$(this);
-//           var idColeach = currentRow.find("td:eq(1)>.rnam").attr("data-id");
-//           var col1_value=currentRow.find("td:eq(1)").text();
-//           var col2_value=currentRow.find("td:eq(2)").text();
-//           var col3_value=currentRow.find("td:eq(3)").text();
-//           var col4_value=currentRow.find("td:eq(4) > input").val();
-
-//           var obj={};
-//               obj.col0=idColeach;
-//               obj.col1=col1_value;
-//               obj.col2=col2_value;
-//               obj.col3=col3_value;
-//               obj.col4=col4_value;
-
-//           arrData.push(obj);
-//       });
-//   });
-
-//   localStorage.setItem("seData", JSON.stringify(arrData));
-
-
-
-
-
-
-// $("#booking_room").validate({
-//   rules:{
-//     a:{required:true,min:1 },
-//     // 'hun':{required:true, min:1},
-//   },
-//   messages: {
-//       // room_title: "Required",
-//       // lastname: "Please enter your lastname",
-//   },
-
-//   errorElement: "em",
-//   errorPlacement: function ( error, element ) {
-//       // Add the `invalid-feedback` class to the error element
-//       error.addClass( "invalid-feedback" );
-
-//       if ( element.prop( "type" ) === "multiple" ) {
-//           error.insertAfter( element.next( "label" ) );
-//       } else {
-//           error.insertAfter( element );
-//       }
-//   },
-//   highlight: function ( element, errorClass, validClass ) {
-//       $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
-//   },
-//   unhighlight: function (element, errorClass, validClass) {
-//       $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
-//   }
-
-// });
 
 // ========== booking details -> user register =============================================
 $("#user_register").validate({
@@ -421,3 +338,7 @@ $("#user_register").validate({
 
 
 
+
+function myFunction() {
+ localStorage.clear();
+}
