@@ -37,10 +37,16 @@ $(document).ready(function () {
     if(!localStorage.getItem("localdate4")){
       jQuery('.person_quantity').val(1);
     }
-    if(!localStorage.getItem("localdate5")){
-      jQuery('.destination').val(1);
-    }
-    
+    // if(!localStorage.getItem("localdate5")){
+    //   jQuery('.destination').val(1);
+    // }
+    $('.destination').change(function() {
+      localStorage.setItem('localdate5', this.value);
+  });
+  if(localStorage.getItem('localdate5')){
+      $('.destination').val(localStorage.getItem('localdate5'));
+  }
+
  /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
 
 $('.datetime1').datetimepicker({
@@ -202,9 +208,9 @@ $(".datefrom").on("dp.change", function (e) {
   
 
   
-  //=======================================
-  //================local dah utguudiig huwisagchind hadgalj bui heseg =======================
-  //=======================================
+  //==============================================================
+  // local dah utguudiig huwisagchind hadgalj bui heseg 
+  //==============================================================
     (function(){
       
     dateFrom = localStorage.getItem("localdate1");
@@ -222,7 +228,7 @@ $(".datefrom").on("dp.change", function (e) {
       
     jQuery('.room_quantity').val( room_quantity);
     jQuery('.person_quantity').val( person_quantity);
-    jQuery('.destination').val( des);
+    // jQuery('.destination').val( des);
       
    jQuery('.diffrence').text(diffrence);
    
@@ -238,7 +244,7 @@ $(".datefrom").on("dp.change", function (e) {
 
     
 //========= ===========================================
-//========= rating===========================================
+//    rating
 //========= ===========================================
 (function() {
   var boxes = document.querySelectorAll("input[type='checkbox']");
