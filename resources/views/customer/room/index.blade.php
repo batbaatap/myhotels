@@ -2,7 +2,7 @@
 @section('content')
 
 
-{{-- <div class="section section-lg bg-primary overlay-dark text-white py-5"  data-background="../../img/hero.jpg" style="background-size:cover;background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});">
+{{-- <div class="section section-lg bg-primary overlay-dark text-white pt-3"  data-background="../../img/hero.jpg" style="background-size:cover;background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});">
     <div class="container">
     </div>
   </div> --}}

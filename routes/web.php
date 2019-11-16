@@ -30,13 +30,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     // Booking
     Route::match(['get', 'post'], '/booking/add-booking',          'BookingController@addBooking');
     Route::match(['get', 'post'], '/booking/edit-booking/{id}',    'BookingController@editBooking');
-    Route::match(['get', 'post'],'/booking/view-calendar', 'BookingController@viewCalendar');
-
-  //   Route::bind('post', function ($value) {
-  //     return App\Post::find($value)->where('status', '=', 'published')->first();
-  // });
-    
-
+    Route::match(['get', 'post'], '/booking/view-calendar',        'BookingController@viewCalendar');
     Route::get('/booking/view-bookings',                           'BookingController@viewBookings');
     Route::get('/booking/delete-booking/{id}',                     'BookingController@deleteBooking');
 
