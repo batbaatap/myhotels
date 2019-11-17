@@ -321,4 +321,49 @@
 </div>
 
 </form>
+
+
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+</script>
+<script>
+         jQuery(document).ready(function(){
+            var urId = "<?php echo $bookingDetails->id; ?>";
+            jQuery('#uruu_nemeh').click(function(e){
+       
+                e.preventDefault();
+                $.ajaxSetup({
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                jQuery.ajax({
+                    url: "{{ url('/admin/booking/uruunemeh') }}",
+                    method: 'post',
+                    data: {
+                        urId: urId,
+                    },
+                    success: function(result){
+                        console.log(result);
+
+                        // $("#uruu_nemeh").on('click', function(){        
+                        var newRow = $('.room_table_row:last').clone().insertAfter('.room_table_body tr:last');
+                            // newRow.find('th:first').text($('.room_table_body tr').length - 1); //increment each row by 1
+                        // $('.room_table_body tr:last td :input').val(''); //clear form field values
+                        // $('#uruu_nemeh').prop('disabled', true);
+                        // setTimeout(function() {
+                        //     //your code to be executed after 1 second
+                        //     $('#uruu_nemeh').prop('disabled', false);
+                        //     }, 1000);
+                    // });
+
+                    }});
+                });
+            });
+</script>
+
+
+
 @endsection
