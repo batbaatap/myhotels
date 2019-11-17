@@ -179,8 +179,7 @@
                                 <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
                                 style="background-position: center;
                                 background-size: cover;
-                                background-image:url({{asset('admin/images/rooms/large/'.$r->file)}});
-                                
+                                background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
                             </a>
                             
                             <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-4">
