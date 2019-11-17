@@ -33,12 +33,8 @@
                             <div class="carousel-item active">
                             <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
                             </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="Third slide">
-                            </div>
+                           
+                           
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -183,7 +179,8 @@
                                 <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
                                 style="background-position: center;
                                 background-size: cover;
-                                background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
+                                background-image:url({{asset('admin/images/rooms/large/'.$r->file)}});
+                                
                             </a>
                             
                             <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-4">

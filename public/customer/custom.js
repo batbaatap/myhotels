@@ -230,7 +230,7 @@ $(".datefrom").on("dp.change", function (e) {
     jQuery('.person_quantity').val( person_quantity);
     // jQuery('.destination').val( des);
       
-   jQuery('.diffrence').text(diffrence);
+   jQuery('.diffrence').text(diffrence + ' хоног');
    
  
 

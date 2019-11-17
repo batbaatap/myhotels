@@ -95,13 +95,13 @@
                                                 {{-- <input class="form-check-input" type="checkbox"> --}}
                                                 
                                                 <input type="checkbox" store="checkbox1"  onchange="$('#form').submit();"  class="form-check-input"id="searchA" name="check[]" value="05"  />
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
                                                 
                                                 <span class="form-check-sign"></span> 
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
                                             </label>
                                         </div>
                                     </li>
@@ -111,12 +111,12 @@
                                             <label class="form-check-label">
                                                 
                                                 <input type="checkbox" store="checkbox2" onchange="$('#form').submit();" id="searchA" name="check[]" value="04" class="form-check-input" />
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
                                                 
                                                 <span class="form-check-sign"></span>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
                                             </label>
                                         </div>
                                     </li>
@@ -126,10 +126,10 @@
                                             <label class="form-check-label">
 
                                               <input type="checkbox" store="checkbox3" onchange="$('#form').submit();" id="searchA" name="check[]" value="03" class="form-check-input" />
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <span class="form-check-sign"></span>
+                                              <span class="form-check-sign"></span>
+                                              <i class="far fa-star"></i>
+                                              <i class="far fa-star"></i>
+                                              <i class="far fa-star"></i>
 
                                             </label>
                                         </div>
@@ -141,9 +141,9 @@
 
                                                 <input type="checkbox" store="checkbox4" onchange="$('#form').submit();" id="searchA" name="check[]" value="02" class="form-check-input
                                                 orm-check-input" />
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
                                                 <span class="form-check-sign"></span> 
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
 
                                             </label>
                                         </div>
@@ -154,8 +154,8 @@
                                             <label class="form-check-label">
                                                 
                                                 <input type="checkbox" store="checkbox5" onchange="$('#form').submit();" id="searchA" name="check[]" value="01" class="form-check-input" />
-                                                <i class="far fa-star"></i>
                                                 <span class="form-check-sign"></span> 
+                                                <i class="far fa-star"></i>
 
                                             </label>
                                         </div>

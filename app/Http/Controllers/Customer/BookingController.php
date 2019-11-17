@@ -18,8 +18,7 @@ class BookingController extends Controller
                 'lastname' => 'required|max:255',
                 'email' => 'required',
                 'phone' => 'required',
-                'checkbox' => 'required',
-               
+                // 'checkbox' => 'required',
             ]);
 
             // echo "<pre>"; print_r($data); die;

@@ -1,16 +1,16 @@
 // ====================
 // Clone down last row value
 // ==================-=
-// $("#uruu_nemeh").on('click', function(){        
-//     var newRow = $('.room_table_row:last').clone().insertAfter('.room_table_body tr:last');
-//         newRow.find('th:first').text($('.room_table_body tr').length - 1); //increment each row by 1
-//     $('.room_table_body tr:last td :input').val(''); //clear form field values
-//     $('#uruu_nemeh').prop('disabled', true);
-//     setTimeout(function() {
-//         //your code to be executed after 1 second
-//         $('#uruu_nemeh').prop('disabled', false);
-//         }, 1000);
-// });
+$("#uruu_nemeh").on('click', function(){        
+    var newRow = $('.room_table_row:last').clone().insertAfter('.room_table_body tr:last');
+        newRow.find('th:first').text($('.room_table_body tr').length - 1); //increment each row by 1
+    $('.room_table_body tr:last td :input').val(''); //clear form field values
+    // $('#uruu_nemeh').prop('disabled', true);
+    // setTimeout(function() {
+    //     //your code to be executed after 1 second
+    //     $('#uruu_nemeh').prop('disabled', false);
+    //     }, 1000);
+});
 
 // ====================
 // Calculcating

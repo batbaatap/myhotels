@@ -275,12 +275,12 @@
                                     </th>
                                     <td> 
                                         <select class="form-control" name="id_hotel_sub[]" style="width: 100%;">
-                                                <?php echo $hotels_drop_down; ?>
+                                            <?php echo $hotels_drop_down; ?>
                                         </select>
                                     </td>
                                     <td> 
                                         <select class="form-control" name="room_id_sub[]" style="width: 100px;">
-                                                <?php echo $rooms_drop_down; ?>
+                                            <?php echo $rooms_drop_down; ?>
                                         </select>
                                     </td>
                                     <input type="text" name="pm_booking_room_id[]" class="form-control" value="{{$item->id}}">
@@ -312,17 +312,17 @@
         <div class="card-footer">
             {{-- <button type="submit">Хадгалах</button> --}}
             <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-4">
-                        <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
-                    </div>
+                <div class="col-sm-9 col-sm-offset-4">
+                    <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
                 </div>
+            </div>
         </div>
 
 </div>
 
 </form>
 
-
+{{-- 
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -362,7 +362,7 @@
                     }});
                 });
             });
-</script>
+</script> --}}
 
 
 

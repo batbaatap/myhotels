@@ -1,57 +1,105 @@
 @extends('layouts.frontLayout.front_design')
 @section('content')
-<div class="container" id="booking_details_table">
+<div class="container" >
 
 <form action="{{url('/booking/payment')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="user_register">
         {{ csrf_field() }}
       
-            <div class="row mt-4">
-                <div class="col-8 border">
-                    <br/>
-                    
-                    <input type="hidden" value="{{$hotelEyed}}" name="hotelId">
+            <div class="row my-4  row my-4  pt-4 pb-7 bg-white">
+                <div class="col-8">
+                        <h5 class="font-weight-normal">Захиалгын мэдээлэл</h5>
+                        <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th class="h6 py-4" style="width: 40%">Ирэх өдөр</th>
+                                            <th class="h6 py-4 font-weight-light">Гарах Өдөр</th>
+                                            <th class="h6 py-4">Хугацаа</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="option h6 font-weight-light datefrom1">
+                                                <input style="border:none;background: white;display:none; " type="text" name="bookingfrom" class="datefrom11" />
+                                            </td>
+                                            <td class="dateto1">
+                                                {{-- <i class="fa fa-check text-success"></i> --}}
+                                                <input style="border:none;background: white;display:none; " type="text" name="bookingfrom" class="datefrom11" />
+                                            </td>
+                                            {{-- <td><i class="fa fa-check text-success"></i></td> --}}
+                                            <td class="diffrence"></td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                    <tfoot class="thead-inverse">
+                                        {{-- <tr>
+                                            <th class="w-25"></th>
+                                            <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-none d-md-inline-block">Buy Standard License - $49</a></th>
+                                            <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-none d-md-inline-block">Buy Extended License - $449</a></th>
+                                        </tr> --}}
+                                    </tfoot>
+                                </table>
+                                <div class="d-flex justify-content-between"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-md-none mr-3">Buy Standard License - $49</a> <a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-md-none">Buy Extended License - $449</a></div>
+                            </div>
 
-                    <div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Ирэх өдөр </th>
-                                    <th>Гарах өдөр</th>
-                                    <th>Хугацаа</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="datefrom1">
-                                        <input style="border:none;background: white;display:none; " type="text" name="bookingfrom" class="datefrom11" />
-                                    </td>
 
-                                    <td class="dateto1"> 
-                                        <input style="border:none;background: white;display:none; " type="text" name="bookingto" class="dateto11" />
-                                    </td>
-                                    <td class="diffrence"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+     
+                            <input type="hidden" value="{{$hotelEyed}}" name="hotelId">
+                            <br>
+                         
+                            <div class="table-responsive">
+                                <table class="table table-striped orderedUruu">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th class="h6 py-4" style="width: 40%">Төрөл</th>
+                                            <th class="h6 py-4 font-weight-light">Тоо ширхэг</th>
+                                            <th class="h6 py-4">Үнэ</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody class="bb" style="background-color: #f3f7fa;"></tbody>
+                                       
+                                    </tbody>
+                                    
+                                    <tfoot class="thead-inverse">
+                                        {{-- <tr>
+                                            <th class="w-25"></th>
+                                            <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-none d-md-inline-block">Buy Standard License - $49</a></th>
+                                            <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-none d-md-inline-block">Buy Extended License - $449</a></th>
+                                        </tr> --}}
+                                    </tfoot>
+                                </table>
+                                <div class="d-flex justify-content-between"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-md-none mr-3">Buy Standard License - $49</a> <a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-md-none">Buy Extended License - $449</a></div>
+                            </div>
+
+
+
+
+
+                    {{-- <br/> --}}
+               
+
+                    {{-- <div>
+                       
                         <br/>
 
                         <h5>Захиалсан өрөөнүүд</h5>
                         <br/>
                         <table class="table orderedUruu table-bordered">
                             <thead>
-                                <tr>
-                                    <th>Төрөл </th>
+                                <tr> --}}
+                                    {{-- <th>Төрөл </th> --}}
                                     {{-- <th>Буудал</th>
                                     <th>Өрөө</th> --}}
-                                    <th>Тоо ширхэг</th>
-                                    <th>Үнэ</th>
+                                    {{-- <th>Тоо ширхэг</th>
+                                    <th>Үнэ</th> --}}
                                     {{-- <th>Хямдарсан үнэ</th> --}}
-                                </tr>
+                                {{-- </tr>
                             </thead>
 
                             <tbody class="bb"></tbody>
                         </table>
-                        <br/>
+                        <br/> --}}
                         
                         {{-- <h6>ЦУЦЛАЛТЫН НӨХЦӨЛ</h6>
 
@@ -76,14 +124,40 @@
                             </tbody>
                         </table> --}}
 
-                    </div>
+                    {{-- </div> --}}
 
                 </div>
 
-                <div class="col-4 border">
-                        
-                        <h6 class="mt-3">Хэрэглэгчийн мэдээлэл</h6>
-                        
+                <div class="col-4 ">
+                        <div class="card   px-3 ">
+                                <h5 class="font-weight-normal">Хэрэглэгчийн мэдээлэл</h5>
+                                    <div class="form-group">
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-user"></i></span></div>
+                                            <input name="lastname" class="form-control" placeholder="Name" type="text" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-envelope"></i></span></div>
+                                            <input name="email" class="form-control" placeholder="Email" type="email" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-mobile"></i></span></div>
+                                            <input name="phone" class="form-control" placeholder="Phone" type="number" required="">
+                                        </div>
+                                    </div>
+                                    {{-- <div class="form-group">
+                                        <textarea class="form-control" placeholder="Write short message to host" id="message" rows="4" required=""></textarea>
+                                    </div> --}}
+                                    <div class="text-center">
+                                        <button type="submit" onclick="localdelete()" class="btn btn-block btn-primary mt-2">Захиалах</button>
+                                    </div>
+                            </div>
+
+{{--                         
                         <div class="form-group">
                             <input name="lastname" type="text" class="form-control" placeholder="Нэр" />
                         </div>
@@ -95,7 +169,7 @@
                         <div class="form-group">
                             <input name="phone" type="text" class="form-control" placeholder="Утас" />
                         </div>
-						
+						 --}}
                         {{-- <div class="form-group" >
                             <label for="exampleFormControlTextarea1">Хүсэлт</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="feedback" ></textarea>
@@ -104,11 +178,13 @@
                         <p>Нийт үнэ</p>
                         <div class="card" style="width: 7rem;">MNT 460,000</div><br/> --}}
                         {{-- <span> <input type="checkbox" name="checkbox" class="checkbox"> Үйлчилгээний нөхцөл хүлээн зөвшөөрөх </span> --}}
-                        <div class="custom-control custom-checkbox">
+                        {{-- <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="customCheck" name="checkbox">
                             <label class="custom-control-label" for="customCheck">Үйлчилгээний нөхцөл хүлээн зөвшөөрөх</label>
-                        </div> 
-                        <input class="btn btn-outline-success " onclick="localdelete()" type="submit" value="Захиалах">
+                        </div>  --}}
+                        {{-- <input class="btn btn-outline-success " onclick="localdelete()" type="submit" value="Захиалах"> --}}
+
+                        
                 </div>
             </div>
         </form>
