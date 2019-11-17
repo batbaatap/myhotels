@@ -17,7 +17,7 @@
                 <ul class="navbar-nav navbar-nav-hover ml-3">
                     <li class="nav-item"><a href="/" class="nav-link"><span class="nav-link-inner-text">Нүүр</span></a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><span class="nav-link-inner-text">Бидний тухай</span></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><span class="nav-link-inner-text">Зочид буудлууд</span></a></li>
+                    <li class="nav-item"><a href="/hotel" class="nav-link"><span class="nav-link-inner-text">Зочид буудлууд</span></a></li>
                     {{-- <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdown"><span class="nav-link-inner-text">Зочид буудлууд</span><i class="fas fa-angle-down nav-link-arrow"></i></a>
                         <ul class="dropdown-menu">
                             <li class="nav-item"><a href="./html/pages/single-space.html" class="dropdown-item">Space details</a></li>
