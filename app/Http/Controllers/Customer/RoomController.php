@@ -69,7 +69,7 @@ class RoomController extends Controller
                                     FROM `pm_rate` 
                                     WHERE discount  IN (SELECT MAX(discount)
                                     FROM `pm_rate` 
-                                    where '1573603200'>= start_date and '1573603200'<= end_date
+                                    where '$todaydate'>= start_date and '$todaydate'<= end_date
                                     GROUP BY id_room)
                                     )
                                     GROUP BY id_room)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
