@@ -14,6 +14,8 @@ class BookingController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
 
+            // dd($data);
+
             $request->validate([
                 'lastname' => 'required|max:255',
                 'email' => 'required',
@@ -29,8 +31,8 @@ class BookingController extends Controller
             $booking->edit_date = 1;
             
             // өдрүүд daterange ашигласан учраас explode Хийсэн
-            $booking->from_date =   0;
-            $booking->to_date =     0;
+            $booking->from_date =  strtotime( $data['bookingfrom']);
+            $booking->to_date =    strtotime( $data['bookingto']);
             
             $booking->nights = 0;
             $booking->adults = 0;

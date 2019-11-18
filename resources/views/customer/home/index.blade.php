@@ -8,7 +8,7 @@
                 <div class="row justify-content-center">
                         <div class="col-12 text-md-center">
                             <!-- Heading -->
-                            <h1 class="display-2">Find your perfect <span class="font-weight-bolder">coworking</span> space.</h1>
+                            <h1 class="display-2"> Зочид буудлаа захиалаарай<span class="font-weight-bolder"></span>. </h1>
                             {{-- <h1 class="display-2">Онлайнаар захиалбал<span class="font-weight-bolder">50% хүртэлх</span> хямдралтай.</h1> --}}
         
                             <!-- Text -->
@@ -98,7 +98,7 @@
                 <div class="col-6 col-lg-3">
                     <!-- Icon box -->
                     <div class="icon-box text-center">
-                        <div class="icon icon-primary icon-xl"><i class="fas fa-user-tie"></i></div>
+                        <div class="i con icon-primary icon-xl"><i class="fas fa-user-tie"></i></div>
                         <h6 class="font-weight-normal text-gray mt-4 mb-3">Шилдэг ажилчид</h6></div>
                     <!-- End of Icon box -->
                 </div>
@@ -112,7 +112,7 @@
             </div>
             <div class="row mt-6">
                 <div class="col-md-4">
-                    <h2 class="h1 mb-5">Explore our <span class="font-weight-bold">available</span><br>office spaces.</h2></div>
+                    <h2 class="h1 mb-5">Explore our <span class="font-weight-bold">available</span><br>Hotels .</h2></div>
                 <div class="col-md-4">
                     {{-- <p class="lead">Coworking is not only about the physical place, but about establishing the coworking community first. Its benefits can already be experienced outside of its places, and it is recommended</p> --}}
                     <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a ga</p>

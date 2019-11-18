@@ -24,7 +24,7 @@
                                             </td>
                                             <td class="dateto1">
                                                 {{-- <i class="fa fa-check text-success"></i> --}}
-                                                <input style="border:none;background: white;display:none; " type="text" name="bookingfrom" class="datefrom11" />
+                                                <input style="border:none;background: white;display:none; " type="text" name="bookingto" class="datefrom11" />
                                             </td>
                                             {{-- <td><i class="fa fa-check text-success"></i></td> --}}
                                             <td class="diffrence"></td>
