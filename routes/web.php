@@ -20,10 +20,8 @@
 // Route::group(['middleware' => ['auth']], function(){
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['adminlogin']], function () {
-  
-  Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
-    
-    Route::post ( '/booking/addItem', 'BookingController@addItem');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
 
     Route::get('/ss', function () {
       return view('welcome');
@@ -35,8 +33,8 @@
     Route::match(['get', 'post'], '/booking/view-calendar',        'BookingController@viewCalendar');
     Route::get('/booking/view-bookings',                           'BookingController@viewBookings');
     Route::get('/booking/delete-booking/{id}',                     'BookingController@deleteBooking');
-    Route::post('/booking/uruunemeh',                     'BookingController@uruuNemeh');
 
+    
     // Hotel
     Route::match(['get', 'post'], '/hotel/add-hotel',          'HotelController@addHotel');
     Route::match(['get', 'post'], '/hotel/edit-hotel/{id}',    'HotelController@editHotel');

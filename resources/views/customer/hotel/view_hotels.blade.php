@@ -69,7 +69,7 @@
                               </div>
     
                                 <div class="col-lg-auto">
-                                    <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
+                                    <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit"  >Хайх</button>
                                     
                                 </div>
                         {{-- </form> --}}
@@ -383,7 +383,7 @@
 
                                                       <button type="button" class="btn btn-outline-primary btn-block my-2">Дэлгэрэнгүй</button>
                                                       <input type="hidden" value="{{$h->id}}" name="hotel" />
-                                                      <button class="btn btn-primary btn-block">Захиалах</button>
+                                                      <button class="btn btn-primary btn-block" onclick="getDate()">Захиалах</button>
 
                                                     </form>
                                                   </div>

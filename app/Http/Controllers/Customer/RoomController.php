@@ -45,7 +45,7 @@ class RoomController extends Controller
 
     
     public function roomsearch(Request $request){
-    
+ 
         $facfile = DB::table('pm_facility')
             ->join('pm_facility_file', 'pm_facility.id', '=', 'pm_facility_file.id_item')
             ->select('pm_facility.*', 'pm_facility_file.*')

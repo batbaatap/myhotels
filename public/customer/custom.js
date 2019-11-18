@@ -206,14 +206,14 @@ $(".datefrom").on("dp.change", function (e) {
     date2 = jQuery('.dateto').val();
     room_quantity = jQuery('.room_quantity').val();
     person_quantity = jQuery('.person_quantity').val();
-    destination = jQuery('.destination').val();
+    // destination = jQuery('.destination').val();
 
   
     localStorage.setItem("localdate1", date1); 
     localStorage.setItem("localdate2", date2); 
     localStorage.setItem("localdate3",  room_quantity ); 
     localStorage.setItem("localdate4",  person_quantity ); 
-    localStorage.setItem("localdate5",  destination ); 
+    // localStorage.setItem("localdate5",  destination ); 
 
     //===days calculator====================================
 
