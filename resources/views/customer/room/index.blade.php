@@ -191,28 +191,28 @@
 
                                 <div class="post-meta">
                                     <span class="small lh-120">
-                                        <i class="fas fa-map-marker-alt mr-2"></i>
+                                        {{-- <i class="fas fa-map-marker-alt mr-2"></i> --}}
                                         {{-- {{ $r->address }} --}}
                                     </span>   
                                 </div>
-
+{{-- 
                                 <div class="d-flex my-2">
                                     
                                     @php
                                         $i;
-                                    @endphp
+                                    @endphp --}}
 
                                     {{-- @for ($i =0; $i < $r->class; $i++)
                                         <i class="star fas fa-star text-warning"></i>
                                     @endfor --}}
 
-                                    <span class="badge badge-pill badge-secondary ml-2">
+                                    {{-- <span class="badge badge-pill badge-secondary ml-2">
                                         @php
                                             echo $i.' Одтой';
                                         @endphp
                                     </span>
 
-                                </div>
+                                </div> --}}
 
 
                                 <div>
