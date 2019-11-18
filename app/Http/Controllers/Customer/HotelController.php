@@ -108,7 +108,8 @@ class HotelController extends Controller
             GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
 
             $room = Room::all();
-            return view('customer/hotel/view_hotels')->with(compact('hotel','destination','facfile','fac','rate_discount','room','rate'));
+            $hotelFile = HotelFile::get();
+            return view('customer/hotel/view_hotels')->with(compact('hotel','destination','facfile','fac','rate_discount','room','rate','hotelFile'));
             
     }
 
