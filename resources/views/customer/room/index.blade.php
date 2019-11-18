@@ -33,6 +33,9 @@
                         <div class="carousel-item active">
                         <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
                         </div>
+                        <div class="carousel-item active">
+                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
+                        </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
