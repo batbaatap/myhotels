@@ -14,7 +14,7 @@ class BookingController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
 
-            // dd($data);
+            dd($data);
 
             $request->validate([
                 'lastname' => 'required|max:255',

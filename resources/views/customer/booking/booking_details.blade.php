@@ -1,12 +1,13 @@
 @extends('layouts.frontLayout.front_design')
 @section('content')
-<div class="container" >
+<div class="container">
 
 <form action="{{url('/booking/payment')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="user_register">
         {{ csrf_field() }}
       
-            <div class="row my-4  row my-4  pt-4 pb-7 bg-white">
+            <div class="row my-4  row my-4  pt-4 ">
                 <div class="col-8">
+                    <div class="card p-3">
                         <h5 class="font-weight-normal">Захиалгын мэдээлэл</h5>
                         <div class="table-responsive">
                                 <table class="table table-striped">
@@ -73,11 +74,7 @@
                             </div>
 
 
-
-
-
                     {{-- <br/> --}}
-               
 
                     {{-- <div>
                        
@@ -127,9 +124,10 @@
                     {{-- </div> --}}
 
                 </div>
+                </div>
 
                 <div class="col-4 ">
-                        <div class="card   px-3 ">
+                        <div class="card p-3">
                                 <h5 class="font-weight-normal">Хэрэглэгчийн мэдээлэл</h5>
                                     <div class="form-group">
                                         <div class="input-group mb-1">
@@ -156,6 +154,10 @@
                                         <button type="submit" onclick="localdelete()" class="btn btn-block btn-primary mt-2">Захиалах</button>
                                     </div>
                             </div>
+
+
+
+
 
 {{--                         
                         <div class="form-group">
@@ -187,8 +189,27 @@
                         
                 </div>
             </div>
+
+            
+            <div class="row">  
+                <div class="col-md-12  p-3 mb-3">
+                     
+                      <a href="javascript:history.back()" class="btn btn-primary float-left"> Буцах</a>
+  
+  
+                           {{-- <input type="number" name="hh" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}" placeholder="өрөө" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>
+                                <input type="number"  name="pp" class="form-control"   min="0" max="{{$r->max_people}}" placeholder="хүн"><br/> --}}
+  
+                              
+                          {{-- <button class="btn btn-primary float-right" >Дараах</button> --}}
+                      </form>
+              </div>  
+          </div>  {{-- row div --}}
+
+
         </form>
 </div>
+
 <style>
     .turul {
         border: none;

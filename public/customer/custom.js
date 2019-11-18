@@ -172,8 +172,8 @@ $(".datefrom").on("dp.change", function (e) {
         $(".orderedUruu tbody").append(
           "<tr>", 
           "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
-            "<td name='tooo'><input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[i].col2 + " ' >"+   x[i].col2 +" </td>",
-            "<td name='une'>" +   x[i].col3 + "</td>",
+            "<td name='tooo'><input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[i].col2 + " ' >"+   x[i].col2 +" өрөө </td>",
+            "<td name='une'>" +   x[i].col3 + " </td>",
           "</tr>" 
         );
       

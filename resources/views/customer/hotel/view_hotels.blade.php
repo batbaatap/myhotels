@@ -234,30 +234,47 @@
                           <div class="row">
                             <div class="col-lg-12">
                                     <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
-                                        <a href="single-space.html" class="col-md-4 col-lg-4">
-                                            <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
-                                            style="background-position: center;
-                                            background-size: cover;
-                                            background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
+                                        
+                                        
+                                        <a href="javascript:" class="col-md-3">
+                                            @foreach ($hotelFile as $item)
+                                                @if ($item->id_item == $h->id)
+                                                    <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
+                                                    style="background-position: center;
+                                                    background-size: cover;
+                                                    background-image:url({{asset('admin/images/hotels/large/'.$item->file)}}); ">
+                                                @endif
+                                            @endforeach
                                         </a>
                                         
+
                                         <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
+
+                                            {{-- start title --}}
                                             <a href="single-space.html">
                                                 <h4 class="font-weight-normal mb-0">{{ $h->title }}</h4>
                                             </a>
+                                            {{-- end --}}
 
+
+
+                                            {{-- start address --}}
                                             <div class="post-meta">
                                                 <span class="small lh-120">
                                                     <i class="fas fa-map-marker-alt mr-2"></i>
                                                     {{ $h->address }}
                                                 </span>   
                                             </div>
+                                            {{-- end --}}
 
+
+
+                                            {{-- start star --}}
                                             <div class="d-flex my-4">
-                                                
                                                 @php
                                                     $i;
-                                                @endphp
+                                                    @endphp
+                                                    
 
                                                 @for ($i =0; $i < $h->class; $i++)
                                                     <i class="star fas fa-star text-warning"></i>
@@ -268,15 +285,16 @@
                                                         echo $i.' Одтой';
                                                     @endphp
                                                 </span>
-
                                             </div>
+                                            {{-- end  --}}
 
 
+
+                                            {{-- start fac --}}
                                             <div>
                                                 @php
                                                 $arrA = [];
                                                 $arrB = preg_split("/[\s,]+/", $h->facilities);
-                                                
                                                 @endphp 
 
                                                 @foreach ($arrB as $item)
@@ -305,7 +323,11 @@
                                                     </div>
                                                 </a>
                                           </div>
+                                          {{-- end --}}
+
+
                                         </div>
+
 
                                         <div class="card-body d-flex flex-column justify-content-between col-md-3 p-4">
                                             <div class="d-flex justify-content-between">
