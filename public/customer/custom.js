@@ -246,7 +246,7 @@ $(".datefrom").on("dp.change", function (e) {
     jQuery('.room_quantity').val( room_quantity);
     jQuery('.person_quantity').val( person_quantity);
       
-   jQuery('.diffrence').text(diffrence);
+   jQuery('.diffrence').text(diffrence + ' хоног');
    
  
 

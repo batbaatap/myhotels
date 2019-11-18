@@ -37,9 +37,8 @@ class BookingController extends Controller
         return view('admin.booking.view_bookings')->with(compact('bookings'));
     }
     
-    // Storing data to same time
-    // Below mentioned, at first we use 'addBooking' function in order to save values to 'pm_booking' table.
-    // Meanwhile, we save data to 'pm_booking_room' table as well.
+
+    // booking +
     public function addBooking(Request $request)
     {
         if($request->isMethod('post')){
@@ -418,6 +417,7 @@ class BookingController extends Controller
             ]);
                
             
+
             // if(count($request->id_hotel_sub) > 0)
             // {
             //     foreach($request->id_hotel_sub as $item=>$v)
