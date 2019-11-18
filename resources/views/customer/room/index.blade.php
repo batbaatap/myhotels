@@ -179,7 +179,7 @@
                                 background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
                             </a>
                             
-                            <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-2">
+                            <div class="card-body  d-flex flex-column col-md-3 p-2">
                                 <a href="single-space.html" >
                                         <input type="hidden" value="{{$r->id}}" name="roome"/>
                                         
@@ -251,7 +251,7 @@
 
 
 
-                            <div class="card-body  d-flex flex-column justify-content-between col-auto p-2">
+                            <div class="card-body  d-flex flex-column col-auto p-2">
                                     <div class="col">
                                         <p> Багтаамж:   <i class="fa fa-male" aria-hidden="true"></i> x {{$r->max_people}}</p>
                                         <div class="input-group input-group-lg mb-3 mb-lg-0 kk">
@@ -270,7 +270,7 @@
                                     </div>
                             </div>
 
-                            <div class="card-body d-flex flex-column justify-content-between col-auto p-2">
+                            <div class="card-body d-flex flex-column  col-auto p-2">
                                 <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
 
                                 <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
@@ -314,7 +314,7 @@
                                             <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
                             </div>
 
-                            <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-2">
+                            <div class="card-body  d-flex flex-column col-md-3 p-2">
                                 <div class="d-flex justify-content-between">
                                     <div class="col pl-0">
                                         

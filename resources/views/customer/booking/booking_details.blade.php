@@ -25,10 +25,12 @@
                                             </td>
                                             <td class="dateto1">
                                                 {{-- <i class="fa fa-check text-success"></i> --}}
-                                                <input style="border:none;background: white;display:none; " type="text" name="bookingto" class="datefrom11" />
+                                                <input style="border:none;background: white;display:none; " type="text" name="bookingto" class="dateto11" />
                                             </td>
                                             {{-- <td><i class="fa fa-check text-success"></i></td> --}}
-                                            <td class="diffrence"></td>
+                                            <td class="diffrence">
+                                            </td>
+                                            <input type="hidden" class="diffrence" name="honog" value="">
                                         </tr>
                                        
                                     </tbody>
