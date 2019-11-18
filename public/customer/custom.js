@@ -6,29 +6,36 @@ $(document).ready(function () {
 
     if(!localStorage.getItem("localdate1")){
      $('.datefrom').datetimepicker({
-       defaultDate:new Date(),
-       format: 'YYYY-MM-DD ',
+      //  defaultDate: moment().add(1, 'y'),
+      defaultDate: moment(),
+       format: 'YYYY-MM-DD',
        minDate: { minDate: 0 },
        locale: 'en',
        sideBySide: true
       })
     }
-  
-  
+   
     if(!localStorage.getItem("localdate2")){
        
-          date = new Date();
-          tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));  /*==calculate tommorow ===*/
+          // date = new Date();    
+          // tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));  /*==calculate tommorow ===*/
+          var df=$('.datefrom').val();
+          var dateObj = new Date(df);
+             var numberOfDaysToAdd = 1;
+          dateObj.setDate(dateObj.getDate() + numberOfDaysToAdd); 
 
        $('.dateto').datetimepicker({
-          defaultDate:tomorrow,
-          format: 'YYYY-MM-DD ',
-          minDate: tomorrow,
+          minDate: dateObj,
+          defaultDate: dateObj,
+          // minDate: { minDate: 0 },
+          format: 'YYYY-MM-DD',
           locale: 'en',
           sideBySide: true
 
         })
     }
+  
+
  /* ========= search hesgiin  uruu,hun,chiglel deer localstorage dahi utga baihgui bol ========*/
 
     if(!localStorage.getItem("localdate3")){
@@ -37,9 +44,7 @@ $(document).ready(function () {
     if(!localStorage.getItem("localdate4")){
       jQuery('.person_quantity').val(1);
     }
-    // if(!localStorage.getItem("localdate5")){
-    //   jQuery('.destination').val(1);
-    // }
+    
     $('.destination').change(function() {
       localStorage.setItem('localdate5', this.value);
   });
@@ -50,7 +55,7 @@ $(document).ready(function () {
  /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
 
 $('.datetime1').datetimepicker({
-  defaultDate: new Date(), // someVardate
+  // defaultDate: new Date(), // someVardate
   format: 'YYYY-MM-DD ',
   minDate:  { minDate: 0 },
   locale: 'en',
@@ -58,12 +63,21 @@ $('.datetime1').datetimepicker({
 });
 
 $('.datetime2').datetimepicker({
-  defaultDate: dateTo, // someVardate
+  // defaultDate: dateTo, // someVardate
   minDate: { minDate: 0 },
   format: 'YYYY-MM-DD ',//HH:mm:ss
   locale: 'en',
   sideBySide: true
 })
+
+if(localStorage.getItem("localdate1")){
+  jQuery('.datetime1').val(dateFrom);
+}
+if(localStorage.getItem("localdate2")){
+  jQuery('.datetime2').val(dateTo);
+}
+
+
 
  /* ========= dateto deer 1 odriig nemeh ========*/
 $(".datefrom").on("dp.change", function (e) {
@@ -73,6 +87,9 @@ $(".datefrom").on("dp.change", function (e) {
   $('.dateto').data("DateTimePicker").minDate(e.date);
 });
  
+//example
+
+
 
  /* ========= datefrom der max odriin zaah ========*/
 
@@ -217,9 +234,9 @@ $(".datefrom").on("dp.change", function (e) {
     dateTo= localStorage.getItem("localdate2");
     room_quantity = localStorage.getItem("localdate3");
     person_quantity = localStorage.getItem("localdate4");
-    des = localStorage.getItem("localdate5");
     diffrence= localStorage.getItem("day");
     
+    //booking-details blade
     jQuery('.datefrom1').append(dateFrom ); //console.log(axe);
       jQuery('.datefrom11').val(dateFrom);
   
@@ -228,7 +245,6 @@ $(".datefrom").on("dp.change", function (e) {
       
     jQuery('.room_quantity').val( room_quantity);
     jQuery('.person_quantity').val( person_quantity);
-    // jQuery('.destination').val( des);
       
    jQuery('.diffrence').text(diffrence + ' хоног');
    
