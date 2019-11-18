@@ -419,7 +419,20 @@
                                     @if($h->id==$hotel_discount->id_hotel)
                                          <?php $k++;  ?>
                                             <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_discount->price}}$</span></div>
-                                            <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдралтай үнэ</span> <span class="h5 text-dark font-weight-bold">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp $</span></div>
+                                            <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдарсан үнэ</span> <span class="h5 text-dark font-weight-bold">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp $</span></div>
+                                            <div class="col pr-0">
+                                                    <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
+                                                        <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
+                                                        <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
+                                                        <input id="searchD" type="hidden" class="form-control person_quantity" name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
+                
+                                                        <input type="hidden" value="{{$h->id}}" name="hotel" />
+                                                        <button class="btn btn-primary btn-block" onclick="getDate()"><span class="home_button font-small d-block ">Захиалах</span></button>
+                
+                                                    </form>
+                                            </div>
                                    
                                     @endif
                                 @endforeach   
@@ -427,7 +440,21 @@
                                 @foreach ($rate as $hotel_rate) <!--хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан -->
                                     @if($hotel_rate->id_hotel==$h->id)
                                                  <?php $k++;  ?>
-                                    <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
+                                        <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
+                                        <div class="col pr-0">
+                                                <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
+                                                    <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
+                                                    <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
+                                                    <input id="searchD" type="hidden" class="form-control person_quantity" name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
+            
+                                                    <input type="hidden" value="{{$h->id}}" name="hotel" />
+                                                    <button class="btn btn-primary btn-block" onclick="getDate()"><span class="home_button font-small d-block ">Захиалах</span></button>
+            
+                                                </form>
+                                        </div>
+
                                     @endif
                                 @endforeach
                 <?php
@@ -453,6 +480,20 @@
                             ?> 
                                 
                                 <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold"> <?php echo $price; ?> $</span></div>
+                                <div class="col pr-0">
+                                    <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
+                                        <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
+                                        <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
+                                        <input id="searchD" type="hidden" class="form-control person_quantity" name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
+
+                                        <input type="hidden" value="{{$h->id}}" name="hotel" />
+                                        <button class="btn btn-primary btn-block" onclick="getDate()"><span class=" home_button font-small d-block ">Захиалах</span></button>
+
+                                    </form>
+                                
+                                </div>
 
                         <?php }?> 
                         
