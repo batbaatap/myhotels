@@ -193,29 +193,7 @@
 
 
                 <div class="col-md-12 col-lg-9">
-                    <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
-                        <div class="mr-3">
-                            {{-- <p class="mb-3 mb-md-0 font-small">Showing 0 - 8 of 62</p> --}}
-                        </div>
-                        <div class="nav-wrapper position-relative p-0">
-                            <ul class="nav nav-pills nav-pill-rounded" id="tab-34" role="tablist">
-                                <li class="nav-item pr-0">
-                                    <a class="nav-link text-sm-center active" id="tab-link-example-13" data-toggle="tab" href="#link-example-13" role="tab" aria-controls="link-example-13" aria-selected="true">
-                                        <span class="nav-link-icon d-block">
-                                      <i class="fas fa-th-list"></i>
-                                    </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item pr-0">
-                                    <a class="nav-link text-sm-center" id="tab-link-example-14" data-toggle="tab" href="#link-example-14" role="tab" aria-controls="link-example-14" aria-selected="false">
-                                        <span class="nav-link-icon d-block">
-                                <i class="fas fa-th-large"></i>
-                              </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                  
 
 
                     <div class="tab-content mt-4" id="tabcontentexample-5">
@@ -234,30 +212,47 @@
                           <div class="row">
                             <div class="col-lg-12">
                                     <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
-                                        <a href="single-space.html" class="col-md-4 col-lg-4">
-                                            <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
-                                            style="background-position: center;
-                                            background-size: cover;
-                                            background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
+                                        
+                                        
+                                        <a href="javascript:" class="col-md-3">
+                                            @foreach ($hotelFile as $item)
+                                                @if ($item->id_item == $h->id)
+                                                    <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
+                                                    style="background-position: center;
+                                                    background-size: cover;
+                                                    background-image:url({{asset('admin/images/hotels/large/'.$item->file)}}); ">
+                                                @endif
+                                            @endforeach
                                         </a>
                                         
-                                        <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
+
+                                        <div class="card-body d-flex flex-column  col-auto p-2">
+
+                                            {{-- start title --}}
                                             <a href="single-space.html">
                                                 <h4 class="font-weight-normal mb-0">{{ $h->title }}</h4>
                                             </a>
+                                            {{-- end --}}
 
+
+
+                                            {{-- start address --}}
                                             <div class="post-meta">
                                                 <span class="small lh-120">
                                                     <i class="fas fa-map-marker-alt mr-2"></i>
                                                     {{ $h->address }}
                                                 </span>   
                                             </div>
+                                            {{-- end --}}
 
+
+
+                                            {{-- start star --}}
                                             <div class="d-flex my-4">
-                                                
                                                 @php
                                                     $i;
-                                                @endphp
+                                                    @endphp
+                                                    
 
                                                 @for ($i =0; $i < $h->class; $i++)
                                                     <i class="star fas fa-star text-warning"></i>
@@ -268,15 +263,16 @@
                                                         echo $i.' Одтой';
                                                     @endphp
                                                 </span>
-
                                             </div>
+                                            {{-- end  --}}
 
 
+
+                                            {{-- start fac --}}
                                             <div>
                                                 @php
                                                 $arrA = [];
                                                 $arrB = preg_split("/[\s,]+/", $h->facilities);
-                                                
                                                 @endphp 
 
                                                 @foreach ($arrB as $item)
@@ -305,9 +301,13 @@
                                                     </div>
                                                 </a>
                                           </div>
+                                          {{-- end --}}
+
+
                                         </div>
 
-                                        <div class="card-body d-flex flex-column justify-content-between col-md-3 p-4">
+
+                                        <div class="card-body d-flex flex-column  col-md-3 p-2">
                                             <div class="d-flex justify-content-between">
                                                 <div class="col pl-0">
                                                     <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>

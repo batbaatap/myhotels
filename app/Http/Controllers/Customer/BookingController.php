@@ -34,7 +34,7 @@ class BookingController extends Controller
             $booking->from_date =  strtotime( $data['bookingfrom']);
             $booking->to_date =    strtotime( $data['bookingto']);
             
-            $booking->nights = 0;
+            $booking->nights = $data['honog'];
             $booking->adults = 0;
             $booking->children = 0;
             $booking->amount = 0;
@@ -64,7 +64,7 @@ class BookingController extends Controller
             $booking->country = 'Mongolia';
             
             $booking->comments = null;
-            $booking->status = 0;
+            $booking->status = 1; //Хүлээгэдж байгаа
             $booking->trans = 1;
             $booking->payment_date = 1;
             $booking->payment_option = 0;

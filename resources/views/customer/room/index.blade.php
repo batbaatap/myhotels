@@ -26,31 +26,31 @@
     <div class="row">
         @foreach ($hotels as $item)
         <div class="col-lg-8 pr-0" >
-                @if(!empty('$hotels->file'))
-                    {{-- <div style="height:560px; background-image:url({{ asset ('admin/images/hotels/large/'.$item->file) }});background-size:cover;background-position:center center;" ></div> --}}
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
-                            </div>
-                           
-                           
+            @if(!empty('$hotels->file'))
+                {{-- <div style="height:560px; background-image:url({{ asset ('admin/images/hotels/large/'.$item->file) }});background-size:cover;background-position:center center;" ></div> --}}
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        <div class="carousel-item active">
+                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
+                        </div>
                     </div>
-                @endif   
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            @endif   
         </div>
 
         <div class="col-lg-4   pl-0 pt-0">
             <div class="bg-white" style="padding-left:15px; padding-top:15px; height:100%;">
-        
         
                 {{-- title --}}
                 <div class="title">
@@ -58,8 +58,6 @@
                     font-weight: 700;
                     color: #015bd4;">{{$item->title}}</p>
                 </div>
-                
-
 
 
                 {{-- star --}}
@@ -76,8 +74,7 @@
                     echo $i.' Одтой';
                     @endphp
                 </span>
-
-
+                
                 <hr class="hotel-hr">
 
 
@@ -182,7 +179,7 @@
                                 background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
                             </a>
                             
-                            <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-2">
+                            <div class="card-body  d-flex flex-column col-md-3 p-2">
                                 <a href="single-space.html" >
                                         <input type="hidden" value="{{$r->id}}" name="roome"/>
                                         
@@ -254,7 +251,7 @@
 
 
 
-                            <div class="card-body  d-flex flex-column justify-content-between col-auto p-2">
+                            <div class="card-body  d-flex flex-column col-auto p-2">
                                     <div class="col">
                                         <p> Багтаамж:   <i class="fa fa-male" aria-hidden="true"></i> x {{$r->max_people}}</p>
                                         <div class="input-group input-group-lg mb-3 mb-lg-0 kk">
@@ -273,7 +270,7 @@
                                     </div>
                             </div>
 
-                            <div class="card-body d-flex flex-column justify-content-between col-auto p-2">
+                            <div class="card-body d-flex flex-column  col-auto p-2">
                                 <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
 
                                 <?php $k=0; //rate dotor hotel id нь байгаа эсэхийг шалгаж буй тоолуур ?>
@@ -317,7 +314,7 @@
                                             <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
                             </div>
 
-                            <div class="card-body  d-flex flex-column justify-content-between col-md-3 p-2">
+                            <div class="card-body  d-flex flex-column col-md-3 p-2">
                                 <div class="d-flex justify-content-between">
                                     <div class="col pl-0">
                                         

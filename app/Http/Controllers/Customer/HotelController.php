@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Destination;
 use Auth;
 use App\Hotel;
+use App\HotelFile;
 use App\Rate;
 use App\Room;
 use App\Facility;
@@ -111,10 +112,12 @@ class HotelController extends Controller
             
     }
 
+
+
     // Зочид буудал хайлт
     public function hotelsearch(Request $request){
 
-        $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
+        $destination=DB::select(DB::raw("SELECT * FROM pm_destination WHERE checked = 1")); 
         // dd($request->all());
 
         $facfile = DB::table('pm_facility')
@@ -132,8 +135,6 @@ class HotelController extends Controller
                 GROUP BY id_hotel
                 )
             GROUP BY id_hotel")); // rate доторхи хамгийн их хямдарсан өрөөний буудлынх  үнэ
-
-
 
             $rate= DB::select(DB::raw( "SELECT *
             from `pm_rate` 
@@ -406,7 +407,9 @@ class HotelController extends Controller
 
         } // ..end of request
 
-        return view('customer/hotel/view_hotels')->with(compact('hotel','destination','facfile','fac','rate_discount','room','rate'));
+        $hotelFile = HotelFile::get();
+
+        return view('customer/hotel/view_hotels')->with(compact('hotelFile','hotel','destination','facfile','fac','rate_discount','room','rate'));
 
     }
 }

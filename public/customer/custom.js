@@ -189,8 +189,8 @@ $(".datefrom").on("dp.change", function (e) {
         $(".orderedUruu tbody").append(
           "<tr>", 
           "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
-            "<td name='tooo'><input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[i].col2 + " ' >"+   x[i].col2 +" </td>",
-            "<td name='une'>" +   x[i].col3 + "</td>",
+            "<td name='tooo'><input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[i].col2 + " ' >"+   x[i].col2 +" өрөө </td>",
+            "<td name='une'>" +   x[i].col3 + " </td>",
           "</tr>" 
         );
       
@@ -238,7 +238,7 @@ $(".datefrom").on("dp.change", function (e) {
     
     //booking-details blade
     jQuery('.datefrom1').append(dateFrom ); //console.log(axe);
-      jQuery('.datefrom11').val(dateFrom);
+    jQuery('.datefrom11').val(dateFrom);
   
     jQuery('.dateto1').append(dateTo ); //console.log(axe);
     jQuery('.dateto11').val(dateTo);
@@ -246,10 +246,8 @@ $(".datefrom").on("dp.change", function (e) {
     jQuery('.room_quantity').val( room_quantity);
     jQuery('.person_quantity').val( person_quantity);
       
-   jQuery('.diffrence').text(diffrence + ' хоног');
-   
- 
-
+    jQuery('.diffrence').attr("value", diffrence).text(diffrence);
+    
     }());
   
   
