@@ -69,7 +69,7 @@
                               </div>
     
                                 <div class="col-lg-auto">
-                                    <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit"  >Хайх</button>
+                                    <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
                                     
                                 </div>
                         {{-- </form> --}}
