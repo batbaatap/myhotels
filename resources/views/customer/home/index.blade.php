@@ -70,7 +70,7 @@
                           </div>
 
                             <div class="col-lg-auto">
-                                <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit"  >Хайх</button>
+                                <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
                             </div>
                         </form>
                     </div>
@@ -386,7 +386,7 @@
 
                                
                           </a>
-                        <div class="card-body"><a href="./html/pages/single-space.html"><h5 class="font-weight-normal">{{$h->title}}</h5></a>
+                        <div class="card-body"><a href="#"><h5 class="font-weight-normal">{{$h->title}}</h5></a>
                           <div class="post-meta"><span class="small lh-120"><i class="fas fa-map-marker-alt mr-2"></i>{{$h->address}}</span></div>
 
                           <div class="d-flex my-4">

@@ -17,17 +17,14 @@ $(document).ready(function () {
    
     if(!localStorage.getItem("localdate2")){
        
-          // date = new Date();    
-          // tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));  /*==calculate tommorow ===*/
           var df=$('.datefrom').val();
           var dateObj = new Date(df);
              var numberOfDaysToAdd = 1;
           dateObj.setDate(dateObj.getDate() + numberOfDaysToAdd); 
 
        $('.dateto').datetimepicker({
-          minDate: dateObj,
           defaultDate: dateObj,
-          // minDate: { minDate: 0 },
+          minDate: dateObj,
           format: 'YYYY-MM-DD',
           locale: 'en',
           sideBySide: true
@@ -53,19 +50,23 @@ $(document).ready(function () {
   }
 
  /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
+ var df2=localStorage.getItem("localdate1");
+ var dateObj2 = new Date(df2);
+    var numberOfDaysToAdd = 1;
+ dateObj2.setDate(dateObj2.getDate() + numberOfDaysToAdd); 
 
 $('.datetime1').datetimepicker({
   // defaultDate: new Date(), // someVardate
-  format: 'YYYY-MM-DD ',
-  minDate:  { minDate: 0 },
+  format: 'YYYY-MM-DD',
+  minDate: {min:0},//local dateform date min value
   locale: 'en',
   sideBySide: true
 });
 
 $('.datetime2').datetimepicker({
   // defaultDate: dateTo, // someVardate
-  minDate: { minDate: 0 },
-  format: 'YYYY-MM-DD ',//HH:mm:ss
+  minDate: dateObj2,//local dateto date min value
+  format: 'YYYY-MM-DD',//HH:mm:ss
   locale: 'en',
   sideBySide: true
 })
