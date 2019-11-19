@@ -265,12 +265,60 @@
 
                 <div class="col-sm-6">
                     <div class="controls">
-                        <input type="file" name="filename" id="filename">
-                    </div>
+                        {{-- <input type="file" name="filename" id="filename"> --}}
+                        <input type="file" id="filename" name="filename[]" class="form-control" multiple="">
+
+
+                        <div id='img_contain'><img stid="blah" align='middle' src="http://www.clker.com/cliparts/c/W/h/n/P/W/generic-image-file-icon-hi.png" alt="your image" title=''/></div> 
+
+                        <div class="custom-file">
+                            <input type="file" id="inputGroupFile01" class="imgInp custom-file-input" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
                 </div>
+
+                <div class="" id="preview_img"></div>
+
+
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+       <script type="text/javascript">
        
+       $("#inputGroupFile01").change(function(event) {  
+            RecurFadeIn();
+            readURL(this);    
+            });
+            $("#inputGroupFile01").on('click',function(event){
+            RecurFadeIn();
+            });
+            function readURL(input) {    
+            if (input.files && input.files[0]) {   
+                var reader = new FileReader();
+                var filename = $("#inputGroupFile01").val();
+                filename = filename.substring(filename.lastIndexOf('\\')+1);
+                reader.onload = function(e) {
+                debugger;      
+                $('#blah').attr('src', e.target.result);
+                $('#blah').hide();
+                $('#blah').fadeIn(500);      
+                $('.custom-file-label').text(filename);             
+                }
+                reader.readAsDataURL(input.files[0]);    
+            } 
+            $(".alert").removeClass("loading").hide();
+            }
+            function RecurFadeIn(){ 
+            console.log('ran');
+            FadeInAlert("Wait for it...");  
+            }
+            function FadeInAlert(text){
+            $(".alert").show();
+            $(".alert").text(text).addClass("loading");  
+        }
+
+ 
+ </script>
             
         </div>
         

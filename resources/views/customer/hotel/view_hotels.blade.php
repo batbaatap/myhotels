@@ -69,7 +69,7 @@
                               </div>
     
                                 <div class="col-lg-auto">
-                                    <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit"  >Хайх</button>
+                                    <button class="btn btn-lg btn-primary btn-block mt-3 mt-md-0 animate-up-2" type="submit" onclick="getDate()" >Хайх</button>
                                     
                                 </div>
                         {{-- </form> --}}
@@ -193,7 +193,29 @@
 
 
                 <div class="col-md-12 col-lg-9">
-                  
+                    <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
+                        <div class="mr-3">
+                            {{-- <p class="mb-3 mb-md-0 font-small">Showing 0 - 8 of 62</p> --}}
+                        </div>
+                        <div class="nav-wrapper position-relative p-0">
+                            <ul class="nav nav-pills nav-pill-rounded" id="tab-34" role="tablist">
+                                <li class="nav-item pr-0">
+                                    <a class="nav-link text-sm-center active" id="tab-link-example-13" data-toggle="tab" href="#link-example-13" role="tab" aria-controls="link-example-13" aria-selected="true">
+                                        <span class="nav-link-icon d-block">
+                                      <i class="fas fa-th-list"></i>
+                                    </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item pr-0">
+                                    <a class="nav-link text-sm-center" id="tab-link-example-14" data-toggle="tab" href="#link-example-14" role="tab" aria-controls="link-example-14" aria-selected="false">
+                                        <span class="nav-link-icon d-block">
+                                <i class="fas fa-th-large"></i>
+                              </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
 
                     <div class="tab-content mt-4" id="tabcontentexample-5">
@@ -226,7 +248,7 @@
                                         </a>
                                         
 
-                                        <div class="card-body d-flex flex-column  col-auto p-2">
+                                        <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
 
                                             {{-- start title --}}
                                             <a href="single-space.html">
@@ -307,7 +329,7 @@
                                         </div>
 
 
-                                        <div class="card-body d-flex flex-column  col-md-3 p-2">
+                                        <div class="card-body d-flex flex-column justify-content-between col-md-3 p-4">
                                             <div class="d-flex justify-content-between">
                                                 <div class="col pl-0">
                                                     <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
@@ -383,7 +405,7 @@
 
                                                       <button type="button" class="btn btn-outline-primary btn-block my-2">Дэлгэрэнгүй</button>
                                                       <input type="hidden" value="{{$h->id}}" name="hotel" />
-                                                      <button class="btn btn-primary btn-block" onclick="getDate()">Захиалах</button>
+                                                      <button class="btn btn-primary btn-block">Захиалах</button>
 
                                                     </form>
                                                   </div>
