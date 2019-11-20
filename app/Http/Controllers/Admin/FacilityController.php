@@ -23,7 +23,8 @@ class FacilityController extends Controller
                 $facility->name = $data['facility_name'];
                 $facility->save();
 
-                
+                // dd($data);
+
                 // facility file save
                 $facilityFile = new FacilityFile;
                 $facilityFile->lang = 2;
