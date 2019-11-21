@@ -185,7 +185,6 @@
                                </ul>
                             </div>
 
-                             <button class="btn btn-sm btn-block btn-primary animate-up-2 mt-4" type="submit">Apply filters</button> 
                         </form>
                     </div>
                 </aside>
@@ -193,29 +192,7 @@
 
 
                 <div class="col-md-12 col-lg-9">
-                    <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
-                        <div class="mr-3">
-                            {{-- <p class="mb-3 mb-md-0 font-small">Showing 0 - 8 of 62</p> --}}
-                        </div>
-                        <div class="nav-wrapper position-relative p-0">
-                            <ul class="nav nav-pills nav-pill-rounded" id="tab-34" role="tablist">
-                                <li class="nav-item pr-0">
-                                    <a class="nav-link text-sm-center active" id="tab-link-example-13" data-toggle="tab" href="#link-example-13" role="tab" aria-controls="link-example-13" aria-selected="true">
-                                        <span class="nav-link-icon d-block">
-                                      <i class="fas fa-th-list"></i>
-                                    </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item pr-0">
-                                    <a class="nav-link text-sm-center" id="tab-link-example-14" data-toggle="tab" href="#link-example-14" role="tab" aria-controls="link-example-14" aria-selected="false">
-                                        <span class="nav-link-icon d-block">
-                                <i class="fas fa-th-large"></i>
-                              </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                   
 
 
                     <div class="tab-content mt-4" id="tabcontentexample-5">
@@ -248,7 +225,7 @@
                                         </a>
                                         
 
-                                        <div class="card-body d-flex flex-column justify-content-between col-auto p-4">
+                                        <div class="card-body d-flex flex-column col-auto p-2">
 
                                             {{-- start title --}}
                                             <a href="single-space.html">
@@ -329,7 +306,7 @@
                                         </div>
 
 
-                                        <div class="card-body d-flex flex-column justify-content-between col-md-3 p-4">
+                                        <div class="card-body d-flex flex-column  col-md-3 p-2">
                                             <div class="d-flex justify-content-between">
                                                 <div class="col pl-0">
                                                     <span class="text-muted font-small d-block mb-2">Үнэ / Хоног</span>
@@ -403,9 +380,9 @@
                                                       <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
                                                       <input id="searchD" type="hidden" class="form-control person_quantity" name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
 
-                                                      <button type="button" class="btn btn-outline-primary btn-block my-2">Дэлгэрэнгүй</button>
+                                                      <button type="button" class="btn btn-outline-primary btn-block my-2 btn-sm">Дэлгэрэнгүй</button>
                                                       <input type="hidden" value="{{$h->id}}" name="hotel" />
-                                                      <button class="btn btn-primary btn-block">Захиалах</button>
+                                                      <button class="btn btn-primary btn-block btn-sm">Захиалах</button>
 
                                                     </form>
                                                   </div>

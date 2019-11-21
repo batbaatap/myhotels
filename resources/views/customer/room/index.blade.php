@@ -191,7 +191,7 @@
             <div class="mt-2">
                 {{ str_limit(strip_tags($item->descr), 100) }}
                
-                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                        
                     Дэлгэрэнгүй  
                     {{-- <input type="button" value="{{$item->phone}}"  name="hotelId"> --}}
