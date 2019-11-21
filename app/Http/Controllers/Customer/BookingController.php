@@ -91,7 +91,7 @@ class BookingController extends Controller
                         'tax_rate' => null,
                     );
 
-                    dd($data2);
+                    // dd($data2);
 
                     BookingRoom::insert($data2);
                 }

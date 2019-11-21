@@ -130,22 +130,22 @@ $(".datefrom").on("dp.change", function (e) {
   //         $('.urgeljluuleh').prop('disabled', true);
   //     }
   // });
-  // }
+  // // }
 
-  $(document).ready(function () {
-    // alert(123);
-    $('#button').prop('disabled', true);
-        $(".listen-room-too").on("change paste keyup", function() {
+  // $(document).ready(function () {
+  //   // alert(123);
+  //   $('#button').prop('disabled', true);
+  //       $(".listen-room-too").on("change paste keyup", function() {
        
-            if(this.value > 0 ){
-                $('#button').prop('disabled', false);
-            } else{
-                $('#button').prop('disabled', true);
-            }
-        });
+  //           if(this.value > 0 ){
+  //               $('#button').prop('disabled', false);
+  //           } else{
+  //               $('#button').prop('disabled', true);
+  //           }
+  //       });
 
 
-  });
+  // });
   
 
   // START
@@ -201,7 +201,6 @@ $(".datefrom").on("dp.change", function (e) {
       
       $.each(x, function(i, item){
         // console.log(x[i].col0);
-
         $(".orderedUruu tbody").append(
           "<tr>", 
           "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
@@ -209,8 +208,8 @@ $(".datefrom").on("dp.change", function (e) {
             "<td name='une'>" +   x[i].col3 + " </td>",
           "</tr>" 
         );
-      
       });
+      
   }());    
 
 

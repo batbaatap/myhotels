@@ -53,7 +53,7 @@
                             <div class="carousel-item  {{ $loop->first ? 'active' : '' }}">
                                     
                                         {{-- <p class="mt-3 font-weight-bold" style="display:inline-block;color:#0b3e59;">{{$info->title}} </p> --}}
-                                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$info->file) }}"  style="width:100%;height:334px;" alt="">
+                                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$info->file) }}"  style="width:100%;height:400px;" alt="">
                                         {{-- <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide"> --}}
                                         <div class="content">
                                             {{-- <p class="mt-3 fontss-weight-bold" style="display:inline-block;color:#0b3e59;">{{$info->small_title}}</p> --}}
@@ -364,7 +364,7 @@
                                                 <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
                                                     {{$r->price}}Ŧ
                                                 </span>
-                                                <span class="h5 text-dark font-weight-bold"> - </span>
+                                                {{-- <span class="h5 text-dark font-weight-bold"> - </span> --}}
                                                 <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;">  {{$r->price}}Ŧ</span> 
                                                 
                                         <?php }?>
