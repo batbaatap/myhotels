@@ -131,8 +131,23 @@ $(".datefrom").on("dp.change", function (e) {
   //     }
   // });
   // }
+
+  $(document).ready(function () {
+    // alert(123);
+    $('#button').prop('disabled', true);
+        $(".listen-room-too").on("change paste keyup", function() {
+       
+            if(this.value > 0 ){
+                $('#button').prop('disabled', false);
+            } else{
+                $('#button').prop('disabled', true);
+            }
+        });
+
+
+  });
   
-  
+
   // START
 
 //==================== room page-s booking details inputs utgiig awah..  ============================================
