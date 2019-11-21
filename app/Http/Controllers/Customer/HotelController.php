@@ -68,6 +68,8 @@ class HotelController extends Controller
                                         )w
                                 group by w.id_hotel)   ")); 
 
+                                
+
             $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
             // dd($request->all());
 
@@ -75,6 +77,7 @@ class HotelController extends Controller
                 ->join('pm_facility_file', 'pm_facility.id', '=', 'pm_facility_file.id_item')
                 ->select('pm_facility.*', 'pm_facility_file.*')
                 ->get();
+
             //бүх үйлчилгээнүүдээ хэвлэж байгаа
             $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
             FROM 
@@ -108,7 +111,10 @@ class HotelController extends Controller
             GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
 
             $room = Room::all();
-            $hotelFile = HotelFile::get();
+
+
+            $hotelFile = DB::select(DB::raw("SELECT * FROM `pm_hotel_file` GROUP BY id_item"));
+
             return view('customer/hotel/view_hotels')->with(compact('hotel','destination','facfile','fac','rate_discount','room','rate','hotelFile'));
             
     }
@@ -407,8 +413,8 @@ class HotelController extends Controller
                         
 
         } // ..end of request
-
-        $hotelFile = HotelFile::get();
+        
+        $hotelFile = DB::select(DB::raw("SELECT * FROM `pm_hotel_file` GROUP BY id_item"));
 
         return view('customer/hotel/view_hotels')->with(compact('hotelFile','hotel','destination','facfile','fac','rate_discount','room','rate'));
 

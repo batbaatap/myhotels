@@ -84,16 +84,21 @@ class RoomController extends Controller
             $hotel22 = $request->hotel;
         
         
-            // $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
-            $hotels=DB::select(DB::raw( "  SELECT `pm_hotel`.*, `pm_hotel_file`.lang,`pm_hotel_file`.home, `pm_hotel_file`.`checked`, `pm_hotel_file`.rank, 
-            `pm_hotel_file`.file,`pm_hotel_file`.label, 
-             `pm_hotel_file`.type  
-             FROM `pm_hotel` 
-             LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
+            $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
+            // $hotels=DB::select(DB::raw( "  SELECT `pm_hotel`.*, `pm_hotel_file`.lang,`pm_hotel_file`.home, `pm_hotel_file`.`checked`, `pm_hotel_file`.rank, 
+            // `pm_hotel_file`.file,`pm_hotel_file`.label,    `pm_hotel_file`.type  
+            //  FROM `pm_hotel` 
+            //  LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
+
+            $hotFile = DB::select(DB::raw("sELECT `pm_hotel_file`.file
+            FROM `pm_hotel` 
+            LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'
+            "));
+            
 
             // $hotels = DB::table('pm_hotel')
             // ->join('pm_hotel_file', 'pm_hotel.id', '=', 'pm_hotel_file.id_item')
-            // ->select('pm_hotel.*', 'pm_hotel_file.*')
+            // ->select(' `')
             // ->where('id', $hotel22)
             // ->get();
 
@@ -134,7 +139,7 @@ class RoomController extends Controller
         }
 
 
-        return view('customer/room.index', compact('rooms','hotels', 'facfile','rate_discount','rate'));
+        return view('customer/room.index', compact('hotels', 'rooms', 'facfile','rate_discount','rate', 'hotFile'));
     }
 
     

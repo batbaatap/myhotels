@@ -11,6 +11,7 @@ use App\Facility;
 use App\Destination;
 use App\Room;
 use App\BookingRoom;
+use Illuminate\Support\Facades\Storage; //Laravel Filesystem
 use DB;
 
 
@@ -57,36 +58,128 @@ class HotelController extends Controller
 
             
             // h file save
-            $hotelfile = new HotelFile;
-            $hotelfile->lang = 2;
-            $hotelfile->id_item = $hotel->id;
-            $hotelfile->home = 0;
-            $hotelfile->checked = 1;
-            $hotelfile->rank = $hotel->id;
+            // $hotelfile = new HotelFile;
+            // $hotelfile->lang = 2;
+            // $hotelfile->id_item = $hotel->id;
+            // $hotelfile->home = 0;
+            // $hotelfile->checked = 1;
+            // $hotelfile->rank = $hotel->id;
 
+
+            if ($files = $request->file('filename')) {
+                // Define upload path
+                 $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
+                 foreach($files as $img) {
+                     // Upload Orginal Image           
+                    $profileImage =$img->getClientOriginalName();
+                    $img->move($destinationPath, $profileImage);
+                     // Save In Database
+                     $hotelfile = new HotelFile;
+                     $hotelfile->lang = 2;
+                     $hotelfile->id_item = $hotel->id;
+                     $hotelfile->home = 0;
+                     $hotelfile->file = $profileImage;
+                     $hotelfile->checked = 1;
+                     $hotelfile->rank = $hotel->id;
+                     $hotelfile->save();
+                 }
+     
+             }
+
+
+            // Route::post('process', function (Request $request) {
+            //     $photos = $request->file('photos');
+            //     $paths  = [];
+            
+            //     foreach ($photos as $photo) {
+            //         $extension = $photo->getClientOriginalExtension();
+            //         $filename  = 'profile-photo-' . time() . '.' . $extension;
+            //         $paths[]   = $photo->storeAs('photos', $filename);
+            //     }
+            
+            //     dd($paths);
+            // });
+
+             
+
+            // if ( $request->hasFile( 'filename' ) ) {
+            //     $gImgs = $request->filename;
+            //     foreach ( $gImgs as $gImg ) {
+            //         if($gImg->isValid()){
+            //         $filename = time() . '.' . $gImg->getClientOriginalExtension();
+            //         // Image::make( $gImg )->resize( 1890, 1358 )->save( '/admin/images/hotels/large/' . $filename );
+            //         // Image::make( $gImg )->fit( 800, 600 )->save( '/admin/images/hotels/large/' . $filename );
+
+            //         Image::make( $gImg )->resize( 1000, 500 )->save( '/admin/images/hotels/large/' . $filename );
+            //         Image::make( $gImg )->fit( 646, 250 )->save( '/admin/images/hotels/large/' . $filename );
+
+            //         // $dcoImg       
+            //         $hotelfile = new HotelFile;
+            //         $hotelfile->lang = 2;
+            //         $hotelfile->id_item = $hotel->id;
+            //         $hotelfile->home = 0;
+            //         $dcoImg->file         = $filename;
+            //         $hotelfile->checked = 1;
+            //         $hotelfile->rank = $hotel->id;
+            //         $hotelfile->save();
+            //     }
+            //     }
+            // }
 
             // upload image
-            if($request->hasFile('filename')){
-                foreach($request->file('filename') as $file){
-                $image_tmp = $file->file('filename');
-                    if($image_tmp->isValid()){
-                        $extension = $image_tmp->getClientOriginalExtension();
-                        $filename =  rand(111, 99999).".".$extension;
-                        $large_image_path = 'admin/images/hotels/large/'.$filename;
-                        // $medium_image_path = 'admin/images/hotels/medium/'.$filename;
-                        $small_image_path = 'admin/images/hotels/small/'.$filename;
+            // if($request->hasFile('filename')){
+            //     $image_tmp = $request->filename;
+            //     foreach($image_tmp as $file){
+            //         if($image_tmp->isValid()){
+            //             $extension = $image_tmp->getClientOriginalExtension();
+            //             $filename =  rand(111, 99999).".".$extension;
+            //             $large_image_path = 'admin/images/hotels/large/'.$filename;
+            //             // $medium_image_path = 'admin/images/hotels/medium/'.$filename;
+            //             $small_image_path = 'admin/images/hotels/small/'.$filename;
 
-                        // resize image
-                        Image::make($image_tmp)->resize(800,400)->save($large_image_path);
-                        // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
-                        Image::make($image_tmp)->resize(160,45)->save($small_image_path);
+            //             // resize image
+            //             Image::make($image_tmp)->resize(800,400)->save($large_image_path);
+            //             // Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+            //             Image::make($image_tmp)->resize(160,45)->save($small_image_path);
 
-                        //  store image name in products table
-                        $hotelfile->file = $filename;
-                }
-            }
-            }   
+            //             //  store image name in products table
+            //             $hotelfile->file = $filename;
+            //     }
+            // }
+            // }   
 
+            // // public function store(Request $request)
+            // // {
+            //     if ($request->hasFile('filename')) {
+            
+            //         foreach($request->file('filename') as $file){
+            
+            //             //get filename with extension
+            //             $filenamewithextension = $file->getClientOriginalName();
+            
+            //             //get filename without extension
+            //             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            
+            //             //get file extension
+            //             $extension = $file->getClientOriginalExtension();
+            
+            //             //filename to store
+            //             $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+            
+            //             Storage::put('admin/images/hotels/large/'. $filenametostore, fopen($file, 'r+'));
+            //             Storage::put('admin/images/hotels/large/'. $filenametostore, fopen($file, 'r+'));
+            
+            //             //Resize image here
+            //             $thumbnailpath = public_path('storage/admin/images/hotels/large/'.$filenametostore);
+            //             $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
+            //                 $constraint->aspectRatio();
+            //             });
+            //             $img->save($thumbnailpath);
+            //         }
+            
+            //         return redirect('REDIRECT_URL')->with('status', "Image uploaded successfully.");
+            //     }
+            // // }
 
             // if($request->hasFile('filename'))
             // {
@@ -117,11 +210,7 @@ class HotelController extends Controller
             //         }
             //     }
             // }
-
-
-
-
-            // $hotelfile->save();
+           
             return redirect('admin/hotel/view-hotels')->with('flash_message_success', 'Буудал нэмэгдлээ');
             // return redirect()->back()->back()
         }
@@ -240,19 +329,34 @@ class HotelController extends Controller
     // view hotel
     public function viewHotel()
     {
-        $hotels = DB::table('pm_hotel')
-        ->leftJoin('pm_destination', 'pm_hotel.id_destination', '=', 'pm_destination.id')
-        ->leftJoin('pm_hotel_file', 'pm_hotel.id', '=', 'pm_hotel_file.id_item')
-        ->select('pm_destination.name', 'pm_hotel.id', 'pm_hotel.title',
-                 'pm_hotel.subtitle','pm_hotel_file.file', 'pm_hotel.class', 'pm_hotel.home',
-                 'pm_hotel.checked')
-        ->get();
+        // $hotels = DB::table('pm_hotel')
+        // ->leftJoin('pm_destination', 'pm_hotel.id_destination', '=', 'pm_destination.id')
+        // ->leftJoin('pm_hotel_file', 'pm_hotel.id', '=', 'pm_hotel_file.id_item')
+        // ->select(DB::raw('pm_hotel.id as hotelId, pm_hotel.class as hotelClass, pm_hotel.home as hotelHome, pm_hotel.checked as hotelChecked'),
+        //         'pm_destination.name',  'pm_hotel.title',
+        //         'pm_hotel.subtitle', DB::raw('pm_hotel_file.file'), 
+        // )
+        
+        // ->get();
 
-        // $hotels=Hotel::join('pm_hotel_file', 'pm_hotel.id', '=', 'pm_hotel_file.id_item')
-        //     ->select('pm_hotel.id', 'pm_hotel.title',
-        //          'pm_hotel.subtitle','pm_hotel_file.file', 'pm_hotel.class', 'pm_hotel.home',
-        //          'pm_hotel.checked')
-        //     ->get();
+
+        $hotels = DB::select(DB::raw("SELECT 
+        pm_hotel.id as hotelId, 
+        pm_hotel.class as hotelClass,
+        pm_hotel.home as hotelHome, 
+        pm_hotel.checked as hotelChecked,
+        pm_hotel.title, pm_hotel.subtitle,
+        b.file,
+        pm_destination.*
+            FROM pm_hotel 
+                LEFT JOIN 
+                 (SELECT id_item, file from pm_hotel_file GROUP BY id_item ) b
+                 ON pm_hotel.id = b.id_item 
+                 
+                LEFT JOIN pm_destination
+                    ON pm_hotel.id_destination = pm_destination.id
+                    GROUP BY id_item
+        "));
 
         return view('admin.hotel.view_hotels')->with(compact('hotels'));
     }

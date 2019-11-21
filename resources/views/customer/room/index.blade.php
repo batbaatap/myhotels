@@ -37,57 +37,70 @@
                             bottom: -5px;
                         }
                     </style>
-                       
+
+
+
+
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                      <ol class="carousel-indicators">
-                         @foreach( $hotels as $info )
+                         @foreach( $hotFile as $info )
                              <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
                          @endforeach
                      </ol>
      
                     <div class="carousel-inner">
-                        @foreach ($hotels as $info)
-                            <div class="carousel-slide  {{ $loop->first ? 'active' : '' }}">
+                        @foreach ($hotFile as $info)
+                            <div class="carousel-item  {{ $loop->first ? 'active' : '' }}">
                                     
-                                <div>
-                                    <div class="col">
                                         {{-- <p class="mt-3 font-weight-bold" style="display:inline-block;color:#0b3e59;">{{$info->title}} </p> --}}
-                                        <img class="img-fluid" src="{{ asset ('admin/images/hotels/large/'.$info->file) }}"  style="width:100%;height:334px;" alt="">
+                                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$info->file) }}"  style="width:100%;height:334px;" alt="">
                                         {{-- <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide"> --}}
-                                    </div>
-                                    <div class="col">
                                         <div class="content">
-                                            {{-- <p class="mt-3 font-weight-bold" style="display:inline-block;color:#0b3e59;">{{$info->small_title}}</p> --}}
+                                            {{-- <p class="mt-3 fontss-weight-bold" style="display:inline-block;color:#0b3e59;">{{$info->small_title}}</p> --}}
                                             {{-- <a class="mt-3" style="float: right;text-decoration: underline;" href="/info/{{$info->id}}">Дэлгэрэнгүй</a> --}}
                                             {{-- {!! str_limit($info->description, 1000)  !!}  --}}
                                         </div>
-                                    </div>
                                 </div>
 
-                            </div>
                         @endforeach
                     </div>
-                </div> {{--car--}}.
 
-               
-                {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
-                        </div>
-                        <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  
+
+
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      </a>
+                      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
-                    </a>
-                </div> --}}
+                      </a>
+
+                </div> {{--car--}}
+
+                  {{-- <ol class="carousel-indicators">
+                        <li data-target="#carousel-thumb" data-slide-to="0" class="active">
+                          <img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(88).jpg" width="100">
+                        </li>
+                        <li data-target="#carousel-thumb" data-slide-to="1">
+                          <img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(121).jpg" width="100">
+                        </li>
+                        <li data-target="#carousel-thumb" data-slide-to="2">
+                          <img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(31).jpg" width="100">
+                        </li>
+                      </ol> --}}
+
+
+                <script>
+                $('.carousel').carousel({
+  interval: 2000,
+  cycle: 2000
+
+})
+</script>
+
+             
 
             {{-- @endif    --}}
         </div>
