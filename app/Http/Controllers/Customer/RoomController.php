@@ -44,6 +44,7 @@ class RoomController extends Controller
     }
 
     
+
     public function roomsearch(Request $request){
  
         $facfile = DB::table('pm_facility')
@@ -54,13 +55,13 @@ class RoomController extends Controller
         $today = Carbon::today();
         $todaydate=  strtotime($today);
         $rate_discount = DB::select(DB::raw(" SELECT *
+                                            FROM `pm_rate` 
+                                            WHERE discount IN (SELECT MAX(discount)
                                                 FROM `pm_rate` 
-                                                WHERE discount IN (SELECT MAX(discount)
-                                                    FROM `pm_rate` 
-                                                    where '$todaydate'>= start_date and '$todaydate'<= end_date
-                                                    GROUP BY id_room
-                                                    )
-                                                GROUP BY id_room ")); // rate доторхи хамгийн их хямдарсан өрөөний буудлынх  үнэ
+                                                where '$todaydate'>= start_date and '$todaydate'<= end_date
+                                                GROUP BY id_room
+                                                )
+                                            GROUP BY id_room ")); // rate доторхи хамгийн их хямдарсан өрөөний буудлынх  үнэ
         $rate= DB::select(DB::raw( "  SELECT *
                                     from `pm_rate` 
                                     where price in (SELECT  MIN(price)
@@ -84,7 +85,18 @@ class RoomController extends Controller
         
         
             // $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
-            $hotels=DB::select(DB::raw( "  SELECT `pm_hotel`.*, `pm_hotel_file`.lang, `pm_hotel_file`.home, `pm_hotel_file`.`checked`, `pm_hotel_file`.rank, `pm_hotel_file`.file,`pm_hotel_file`.label, `pm_hotel_file`.type  FROM `pm_hotel` LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
+            $hotels=DB::select(DB::raw( "  SELECT `pm_hotel`.*, `pm_hotel_file`.lang,`pm_hotel_file`.home, `pm_hotel_file`.`checked`, `pm_hotel_file`.rank, 
+            `pm_hotel_file`.file,`pm_hotel_file`.label, 
+             `pm_hotel_file`.type  
+             FROM `pm_hotel` 
+             LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
+
+            // $hotels = DB::table('pm_hotel')
+            // ->join('pm_hotel_file', 'pm_hotel.id', '=', 'pm_hotel_file.id_item')
+            // ->select('pm_hotel.*', 'pm_hotel_file.*')
+            // ->where('id', $hotel22)
+            // ->get();
+
             // $rate= Rate::all();
         
             $rooms= DB::select(DB::raw(

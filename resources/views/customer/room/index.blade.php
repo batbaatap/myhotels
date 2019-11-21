@@ -1,12 +1,10 @@
 @extends('layouts.frontLayout.front_design')
 @section('content')
 
-
 {{-- <div class="section section-lg bg-primary overlay-dark text-white pt-3"  data-background="../../img/hero.jpg" style="background-size:cover;background-image: url({{asset('customer/images/ub_20170414053231.jpg')}});">
     <div class="container">
     </div>
   </div> --}}
-
   
 <div class="container">  
 
@@ -21,14 +19,58 @@
 @endif --}}
 
 
-
     {{-- Section 1 --}}
     <div class="row">
-        @foreach ($hotels as $item)
+       
         <div class="col-lg-8 pr-0" >
-            @if(!empty('$hotels->file'))
+            {{-- @if(!empty('$hotels->file')) --}}
                 {{-- <div style="height:560px; background-image:url({{ asset ('admin/images/hotels/large/'.$item->file) }});background-size:cover;background-position:center center;" ></div> --}}
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+                    <style>
+                        .carousel-indicators .active{
+                            background: #0b3e59;
+                        } 
+                        .carousel-indicators li{
+                            background: #868686;
+                        }
+                        .carousel-indicators{
+                            bottom: -5px;
+                        }
+                    </style>
+                       
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                     <ol class="carousel-indicators">
+                         @foreach( $hotels as $info )
+                             <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                         @endforeach
+                     </ol>
+     
+                    <div class="carousel-inner">
+                        @foreach ($hotels as $info)
+                            <div class="carousel-slide  {{ $loop->first ? 'active' : '' }}">
+                                    
+                                <div>
+                                    <div class="col">
+                                        {{-- <p class="mt-3 font-weight-bold" style="display:inline-block;color:#0b3e59;">{{$info->title}} </p> --}}
+                                        <img class="img-fluid" src="{{ asset ('admin/images/hotels/large/'.$info->file) }}"  style="width:100%;height:334px;" alt="">
+                                        {{-- <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide"> --}}
+                                    </div>
+                                    <div class="col">
+                                        <div class="content">
+                                            {{-- <p class="mt-3 font-weight-bold" style="display:inline-block;color:#0b3e59;">{{$info->small_title}}</p> --}}
+                                            {{-- <a class="mt-3" style="float: right;text-decoration: underline;" href="/info/{{$info->id}}">Дэлгэрэнгүй</a> --}}
+                                            {{-- {!! str_limit($info->description, 1000)  !!}  --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    </div>
+                </div> {{--car--}}.
+
+               
+                {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                         <img class="d-block w-100" src="{{ asset ('admin/images/hotels/large/'.$item->file) }}" alt="First slide">
@@ -45,9 +87,12 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
-                </div>
-            @endif   
+                </div> --}}
+
+            {{-- @endif    --}}
         </div>
+
+        @foreach ($hotels as $item)
 
         <div class="col-lg-4   pl-0 pt-0">
             <div class="bg-white" style="padding-left:15px; padding-top:15px; height:100%;">
@@ -172,6 +217,8 @@
             <div class="col-lg-12">
 
                         <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
+
+                            
                             <a href="single-space.html" class="col-md-3 ">
                                 <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
                                 style="background-position: center;
@@ -191,28 +238,28 @@
 
                                 <div class="post-meta">
                                     <span class="small lh-120">
-                                        <i class="fas fa-map-marker-alt mr-2"></i>
+                                        {{-- <i class="fas fa-map-marker-alt mr-2"></i> --}}
                                         {{-- {{ $r->address }} --}}
                                     </span>   
                                 </div>
-
+{{-- 
                                 <div class="d-flex my-2">
                                     
                                     @php
                                         $i;
-                                    @endphp
+                                    @endphp --}}
 
                                     {{-- @for ($i =0; $i < $r->class; $i++)
                                         <i class="star fas fa-star text-warning"></i>
                                     @endfor --}}
 
-                                    <span class="badge badge-pill badge-secondary ml-2">
+                                    {{-- <span class="badge badge-pill badge-secondary ml-2">
                                         @php
                                             echo $i.' Одтой';
                                         @endphp
                                     </span>
 
-                                </div>
+                                </div> --}}
 
 
                                 <div>

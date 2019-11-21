@@ -261,28 +261,91 @@
 
         {{-- image --}}
         <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зураг</label>
-
-                <div class="col-sm-6">
-                    <div class="controls">
-                        <input type="file" name="filename" id="filename">
-                    </div>
+            <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зураг</label>
+            <div class="col-md-6 ic">
+                <div class="input-group controls increment" >
+                     <input type="file" id="inputGroupFile01" name="filename[]" multiple  class="imgInp form-control" aria-describedby="inputGroupFileAddon01">
+                    {{-- <input type="file" name="filename[]" class="form-control">  --}}
                 </div>
-        </div>
-
-       
-            
+                
+                <div class="clone hide">
+                    <div class="control-group input-group" style="margin-top:10px">
+                        <input type="file" id="inputGroupFile01"  name="filename[]" multiple  class="imgInp form-control  aria-describedby="inputGroupFileAddon01">
+                        <div class="input-group-btn"> 
+                        <button class="btn btn-danger rounded-0 " type="button"><i class="glyphicon glyphicon-remove "></i> x </button>
+                        </div>
+                    </div>
+                </div> 
+                
+                <div class="input-group-btn mt-2"> 
+                    <button class="btn btn-primary add-primary-el" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                </div>
+            </div>
         </div>
         
+      
         <div class="card-footer">
-                
-                <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-4">
-                        <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-4">
+                    <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
                 </div>
+            </div>
         </div>
     </div>
 
 </form>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $(".add-primary-el").click(function(){ 
+            var html = $(".clone").html();
+            $(".increment").after(html);
+        });
+
+        $("body").on("click",".btn-danger",function(){ 
+            $(this).parents(".control-group").remove();
+        });
+
+    });
+
+
+// $("#inputGroupFile01").change(function(event) {  
+//     RecurFadeIn();
+//     readURL(this);    
+//     });
+//     $("#inputGroupFile01").on('click',function(event){
+//     RecurFadeIn();
+//     });
+//     function readURL(input) {    
+//     if (input.files && input.files[0]) {   
+//         var reader = new FileReader();
+//         var filename = $("#inputGroupFile01").val();
+//         filename = filename.substring(filename.lastIndexOf('\\')+1);
+//         reader.onload = function(e) {
+//         // debugger;      
+//         $('#blah').attr('src', e.target.result);
+//         $('#blah').hide();
+//         $('#blah').fadeIn(500);      
+//         $('.custom-file-label').text(filename);             
+//         }
+//         reader.readAsDataURL(input.files[0]);    
+//     } 
+//     $(".alert").removeClass("loading").hide();
+//     }
+//     function RecurFadeIn(){ 
+//     console.log('ran');
+//     FadeInAlert("Wait for it...");  
+//     }
+//     function FadeInAlert(text){
+//     $(".alert").show();
+//     $(".alert").text(text).addClass("loading");  
+// }
+
+
+</script>
+
 @endsection

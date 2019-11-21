@@ -8,4 +8,10 @@ class Hotel extends Model
 {
     protected $table = 'pm_hotel';
     public $timestamps = false;
+    protected $fillable = ['lang'];
+
+    public function brooms()
+    {
+        return $this->hasMany('App\HotelFile', 'id_item');
+    }
 }

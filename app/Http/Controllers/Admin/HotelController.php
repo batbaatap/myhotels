@@ -64,9 +64,11 @@ class HotelController extends Controller
             $hotelfile->checked = 1;
             $hotelfile->rank = $hotel->id;
 
+
             // upload image
             if($request->hasFile('filename')){
-                $image_tmp = $request->file('filename');
+                foreach($request->file('filename') as $file){
+                $image_tmp = $file->file('filename');
                     if($image_tmp->isValid()){
                         $extension = $image_tmp->getClientOriginalExtension();
                         $filename =  rand(111, 99999).".".$extension;
@@ -81,12 +83,45 @@ class HotelController extends Controller
 
                         //  store image name in products table
                         $hotelfile->file = $filename;
-                    }
                 }
-                
-            
+            }
+            }   
 
-            $hotelfile->save();
+
+            // if($request->hasFile('filename'))
+            // {
+            //     $allowedfileExtension=['pdf','jpg','png','docx'];
+            //     $files = $request->file('filename');
+
+            //     foreach($files as $file){
+
+            //         $filename = $file->getClientOriginalName();
+            //         $extension = $file->getClientOriginalExtension();
+            //         $check=in_array($extension,$allowedfileExtension);
+            //         // dd($check);
+
+            //         if($check)
+            //         { 
+            //             foreach ($request->filename as $photo) {
+            //             $filename = $photo->store('filename');
+            //                 HotelFile::create([
+            //                     'id_item' => $hotel->id,
+            //                     'file' => $filename
+            //                 ]);
+            //             }
+            //             echo "Upload Successfully";
+            //         }
+            //             else
+            //         {
+            //             echo '<div class="alert alert-warning"><strong>Warning!</strong> Sorry Only Upload png , jpg , doc</div>';
+            //         }
+            //     }
+            // }
+
+
+
+
+            // $hotelfile->save();
             return redirect('admin/hotel/view-hotels')->with('flash_message_success', 'Буудал нэмэгдлээ');
             // return redirect()->back()->back()
         }
