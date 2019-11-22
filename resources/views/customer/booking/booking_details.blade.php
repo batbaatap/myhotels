@@ -55,13 +55,12 @@
                                     <thead class="thead-inverse">
                                         <tr>
                                             <th class="h6 py-4" style="width: 40%">Төрөл</th>
-                                            <th class="h6 py-4 font-weight-light">Тоо ширхэг</th>
+                                            {{-- <th class="h6 py-4 font-weight-light">Тоо ширхэг</th> --}}
                                             <th class="h6 py-4">Үнэ</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody class="bb" style="background-color: #f3f7fa;"></tbody>
-                                       <tr></tr>
                                     </tbody>
                                     
                                     <tfoot class="thead-inverse">

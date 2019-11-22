@@ -198,16 +198,24 @@ $(".datefrom").on("dp.change", function (e) {
       // console.log(x);
       
       $.each(x, function(index, value){
-        // console.log(x[index].col0);
-        $(".orderedUruu tbody").append(
-          "<tr>", 
-            "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[index].col0 +" ' />"+ x[index].col1 +"</td>", 
-            "<td name='tooo'>   <input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[index].col2 + " ' >"+ x[index].col2 +" өрөө </td>",
-            "<td name='une'>" + x[index].col3 + " </td>",                                    
-          "</tr>" 
-        );
-      });
 
+        for (let i = 0; i < x[index].col2; i++) {
+          console.log(index);
+
+          console.log(x[index].col2);
+      
+          $(".orderedUruu tbody").append(
+            "<tr>", 
+            "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[index].col0 +" ' />"+ x[index].col1 +"</td>", 
+            // "<td name='tooo'>   <input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[index].col2 + " ' >"+ x[index].col2 +" өрөө </td>",
+            "<td name='une'>" + x[index].col3 + " </td>",                                    
+            "</tr>" 
+            );
+
+          }
+
+      });
+          
   }());    
 
 
@@ -262,8 +270,6 @@ $(".datefrom").on("dp.change", function (e) {
     jQuery('.diffrence').attr("value", diffrence).text(diffrence);
     
     }());
-  
-  
   
     
   
