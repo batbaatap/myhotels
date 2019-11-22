@@ -92,14 +92,7 @@
                       </ol> --}}
 
 
-                <script>
-                $('.carousel').carousel({
-  interval: 2000,
-  cycle: 2000
-
-})
-</script>
-
+          
              
 
             {{-- @endif    --}}
@@ -232,7 +225,7 @@
                         <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
 
                             
-                            <a href="single-space.html" class="col-md-3 ">
+                            <a href="javascript:" class="col-md-3 ">
                                 <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
                                 style="background-position: center;
                                 background-size: cover;
@@ -240,8 +233,8 @@
                             </a>
                             
                             <div class="card-body  d-flex flex-column col-md-3 p-2">
-                                <a href="single-space.html" >
-                                        <input type="hidden" value="{{$r->id}}" name="roome"/>
+                                <a href="javascript:" >
+                                        <input type="hidden" value="{{$r->id}}" name="room_id"/>
                                         
                                          {{-- <div class="rnam" data-id={{$r->id}}> --}}
                                             <h4 class="font-weight-normal mb-0">{{ $r->title }}</h4>

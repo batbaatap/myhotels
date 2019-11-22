@@ -209,14 +209,14 @@
                          {{--===============================--}}               
                           @foreach ($hotel as $h)
                           <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12"  >
                                     <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
                                         
                                         
                                         <a href="javascript:" class="col-md-3">
                                             @foreach ($hotelFile as $item)
                                                 @if ($item->id_item == $h->id)
-                                                    <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
+                                                    <img src="{{asset("/customer/images/trance-img.png")}}" class="card-img-top" alt="image" 
                                                     style="background-position: center;
                                                     background-size: cover;
                                                     background-image:url({{asset('admin/images/hotels/large/'.$item->file)}}); ">

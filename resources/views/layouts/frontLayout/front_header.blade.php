@@ -7,7 +7,7 @@
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
-                            <a href="index.html"><img src="img/brand/primary.svg" alt="menuimage"></a>
+                            {{-- <a href="index.html"><img src="img/brand/primary.svg" alt="menuimage"></a> --}}
                         </div>
                         <div class="col-6 collapse-close">
                             <a href="#navbar_global" class="fas fa-times" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"></a>

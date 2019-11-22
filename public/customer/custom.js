@@ -158,14 +158,11 @@ $(".datefrom").on("dp.change", function (e) {
 
   function getData2(){
 
-    
-
     var arrData = [];
       
     $(".custom-selects").each(function () {  
       var selText  = $(this).val();  
       
-
       if(selText != 0) 
       
         $(this).closest('.card').each(function () {
@@ -173,18 +170,20 @@ $(".datefrom").on("dp.change", function (e) {
             var currentRow=$(this);
         
             // var idColeach = currentRow.find(".rnam").attr("data-id");
-            var idColeach = currentRow.find(" input[name='roome']").val();
-            var col1_value=currentRow.find(".card-body h4").text();
-            var col2_value=currentRow.find(".card-body input[name='uruu']").val();
-            var col3_value=currentRow.find(" .hongololttei_une").text();
+            
+            var uruunii_id =             currentRow.find(" input[name='room_id']").val();
+            var uruunii_title=           currentRow.find(".card-body h4").text();
+            var uruunii_too=             currentRow.find(".card-body input[name='uruu']").val();
+            var unuunii_hungululttei_une=currentRow.find(".hongololttei_une").text();
 
             var obj={};
-                obj.col0=idColeach;
-                obj.col1=col1_value;
-                obj.col2=col2_value;
-                obj.col3=col3_value;
+                obj.col0=uruunii_id;
+                obj.col1=uruunii_title;
+                obj.col2=uruunii_too;
+                obj.col3=unuunii_hungululttei_une;
 
             arrData.push(obj);
+            
         });
     });
     localStorage.setItem("seData", JSON.stringify(arrData));
@@ -192,24 +191,23 @@ $(".datefrom").on("dp.change", function (e) {
 // });
 
 
-  
-
   // Assigning localstorage data to booking details inputs.. 
   (function(){
 
       var x = JSON.parse(localStorage.getItem("seData"));
+      // console.log(x);
       
-      $.each(x, function(i, item){
-        // console.log(x[i].col0);
+      $.each(x, function(index, value){
+        // console.log(x[index].col0);
         $(".orderedUruu tbody").append(
           "<tr>", 
-          "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[i].col0 +" ' />"+ x[i].col1 +"</td>", 
-            "<td name='tooo'><input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[i].col2 + " ' >"+   x[i].col2 +" өрөө </td>",
-            "<td name='une'>" +   x[i].col3 + " </td>",
+            "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[index].col0 +" ' />"+ x[index].col1 +"</td>", 
+            "<td name='tooo'>   <input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[index].col2 + " ' >"+ x[index].col2 +" өрөө </td>",
+            "<td name='une'>" + x[index].col3 + " </td>",                                    
           "</tr>" 
         );
       });
-      
+
   }());    
 
 
