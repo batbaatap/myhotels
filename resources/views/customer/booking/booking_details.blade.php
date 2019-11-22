@@ -55,13 +55,12 @@
                                     <thead class="thead-inverse">
                                         <tr>
                                             <th class="h6 py-4" style="width: 40%">Төрөл</th>
-                                            <th class="h6 py-4 font-weight-light">Тоо ширхэг</th>
+                                            {{-- <th class="h6 py-4 font-weight-light">Тоо ширхэг</th> --}}
                                             <th class="h6 py-4">Үнэ</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody class="bb" style="background-color: #f3f7fa;"></tbody>
-                                       
                                     </tbody>
                                     
                                     <tfoot class="thead-inverse">
@@ -129,33 +128,33 @@
                 </div>
 
                 <div class="col-4 ">
-                        <div class="card p-3">
-                                <h5 class="font-weight-normal">Хэрэглэгчийн мэдээлэл</h5>
-                                    <div class="form-group">
-                                        <div class="input-group mb-1">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-user"></i></span></div>
-                                            <input name="lastname" class="form-control" placeholder="Name" type="text" required="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group mb-1">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-envelope"></i></span></div>
-                                            <input name="email" class="form-control" placeholder="Email" type="email" required="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group mb-1">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-mobile"></i></span></div>
-                                            <input name="phone" class="form-control" placeholder="Phone" type="number" required="">
-                                        </div>
-                                    </div>
-                                    {{-- <div class="form-group">
-                                        <textarea class="form-control" placeholder="Write short message to host" id="message" rows="4" required=""></textarea>
-                                    </div> --}}
-                                    <div class="text-center">
-                                        <button type="submit" onclick="localdelete()" class="btn btn-block btn-primary mt-2">Захиалах</button>
-                                    </div>
+                    <div class="card p-3">
+                        <h5 class="font-weight-normal">Хэрэглэгчийн мэдээлэл</h5>
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-user"></i></span></div>
+                                    <input name="lastname" class="form-control" placeholder="Name" type="text" required="">
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-envelope"></i></span></div>
+                                    <input name="email" class="form-control" placeholder="Email" type="email" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-mobile"></i></span></div>
+                                    <input name="phone" class="form-control" placeholder="Phone" type="number" required="">
+                                </div>
+                            </div>
+                            {{-- <div class="form-group">
+                                <textarea class="form-control" placeholder="Write short message to host" id="message" rows="4" required=""></textarea>
+                            </div> --}}
+                            <div class="text-center">
+                                <button type="submit" onclick="localdelete()" class="btn btn-block btn-primary mt-2">Захиалах</button>
+                            </div>
+                    </div>
 
 
 
