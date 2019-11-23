@@ -70,8 +70,8 @@
                                 {{-- <td>@php echo date("Y-m-d",  ($item->from_date) ); @endphp </td>
                                 <td>@php echo date("Y-m-d",  ($item->to_date) ); @endphp</td> --}}
 
-                                <td>{{ $item->title}}</td>
-                                <td>{{ $item->subtitle}}</td> 
+                                <td>{{ $item->hTitle}}</td>
+                                <td>{{ $item->hSubTitle}}</td> 
                                 <td>{{ $item->hotelClass}}</td>
                                 {{-- <td>{{ $destination->id_destination}}</td> --}}
                                 <td>{{ $item->name}}</td>

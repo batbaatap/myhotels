@@ -293,6 +293,34 @@
             </div>
         </div>
 
+
+        {{-- image --}}
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зураг</label>
+                <div class="col-md-6 ic">
+                    <div class="input-group controls increment" >
+                        <input type="file" id="inputGroupFile01" name="filename[]" multiple  class="imgInp form-control" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+
+                    @for ($i = 0; $i < count($hotelDetailsFile); $i++)
+                    <div class="clone hide">
+                        <div class="control-group input-group" style="margin-top:10px">
+                                <input type="file" id="inputGroupFile01"  name="filename[]" multiple  class="imgInp form-control  aria-describedby="inputGroupFileAddon01">
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="glyphicon glyphicon-remove "></i> x </button>
+                                </div>
+                            </div>
+                        </div> 
+                    @endfor
+                    
+                    
+                    <div class="input-group-btn mt-2"> 
+                        <button class="btn btn-primary add-primary-el" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                    </div>
+                </div>
+        </div>  
+
        
             
         </div>

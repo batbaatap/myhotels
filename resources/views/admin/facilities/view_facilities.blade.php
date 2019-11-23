@@ -1,6 +1,18 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 
+@if(Session::has('flash_message_error'))
+<div class="alert alert-error alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+        <strong>{!! session('flash_message_error') !!}</strong>
+</div>
+@endif   
+@if(Session::has('flash_message_success'))
+<div class="alert alert-success alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+        <strong>{!! session('flash_message_success') !!}</strong>
+</div>
+@endif
 
 {{-- <div class="row"> --}}
 <div class="card">
@@ -39,6 +51,7 @@
                                     <img src="{{ asset ('admin/images/facility/'.$item->file) }}" style="width:19px;height:19px;">
                                 </td>
                                 @endif
+
                                 <td>{{ $item->name}}</td>
 
 
@@ -47,11 +60,12 @@
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                     </a>
-                                    <a href="{{ url('/admin/facility/delete-facility/'.$item->id ) }}" class="btn btn-danger btn-sm" href="#">
+                                    <a href="{{ url('/admin/facility/delete-facility/'.$item->id ) }}" id="delFac" class="btn btn-danger btn-sm" href="#">
                                         <i class="fas fa-trash">
                                         </i>
                                     </a>
                                 </td>
+
                             </tr>
                             @endforeach
                         </tbody>

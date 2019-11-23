@@ -68,11 +68,14 @@ class HotelController extends Controller
 
             if ($files = $request->file('filename')) {
                 // Define upload path
-                 $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
-                 foreach($files as $img) {
-                     // Upload Orginal Image           
+                $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
+                // Image::make($profileImage)->resize(800,400)->save($destinationPath);
+                foreach($files as $img) {
+                    // Upload Orginal Image           
                     $profileImage =$img->getClientOriginalName();
+
                     $img->move($destinationPath, $profileImage);
+                    
                      // Save In Database
                      $hotelfile = new HotelFile;
                      $hotelfile->lang = 2;
@@ -83,7 +86,6 @@ class HotelController extends Controller
                      $hotelfile->rank = $hotel->id;
                      $hotelfile->save();
                  }
-     
              }
 
 
@@ -102,7 +104,7 @@ class HotelController extends Controller
 
              
 
-            // if ( $request->hasFile( 'filename' ) ) {
+            // if ($request->hasFile( 'filename' ) ) {
             //     $gImgs = $request->filename;
             //     foreach ( $gImgs as $gImg ) {
             //         if($gImg->isValid()){
@@ -301,7 +303,6 @@ class HotelController extends Controller
             HotelFile::where(['id_item'=>$id])->update([
                 'file'  => $filename
             ]);
-            
             return redirect()->back()->with('flash_message_success', 'Амжилттай засвар хийгдлээ');
         }
 
@@ -311,7 +312,9 @@ class HotelController extends Controller
 
         // get details
         $hotelDetails = Hotel::where(['id'=>$id])->first();
-        $hotelDetailsFile = HotelFile::where(['id_item'=>$id])->first();
+        $hotelDetailsFile = DB::select(DB::raw("SELECT pm_hotel_file.* from pm_hotel_file where id_item = $id"));
+
+        // dd($hotelDetailsFile);
 
         $dest_drop_down = "<option value='' disabled>Select</option>";
 		foreach($destinations as $dest){
@@ -325,6 +328,7 @@ class HotelController extends Controller
         
         return view('admin.hotel.edit_hotel')->with(compact('hotelDetails', 'hotelDetailsFile', 'facilities', 'dest_drop_down'));
     }
+    
 
     // view hotel
     public function viewHotel()
@@ -339,27 +343,27 @@ class HotelController extends Controller
         
         // ->get();
 
-
         $hotels = DB::select(DB::raw("SELECT 
         pm_hotel.id as hotelId, 
         pm_hotel.class as hotelClass,
         pm_hotel.home as hotelHome, 
         pm_hotel.checked as hotelChecked,
-        pm_hotel.title, pm_hotel.subtitle,
+        pm_hotel.title as hTitle, pm_hotel.subtitle as hSubTitle,
         b.file,
         pm_destination.*
             FROM pm_hotel 
                 LEFT JOIN 
-                 (SELECT id_item, file from pm_hotel_file GROUP BY id_item ) b
-                 ON pm_hotel.id = b.id_item 
+                    (SELECT id_item, file from pm_hotel_file GROUP BY id_item ) b
+                    ON pm_hotel.id = b.id_item 
                  
                 LEFT JOIN pm_destination
                     ON pm_hotel.id_destination = pm_destination.id
-                    GROUP BY id_item
+                
         "));
 
         return view('admin.hotel.view_hotels')->with(compact('hotels'));
     }
+
 
     // delete product image
     public function deleteHotelImage($id=null) {
@@ -387,8 +391,8 @@ class HotelController extends Controller
 
         HotelFile::where(['id_item'=>$id])->update(['file'=>'']);
             return redirect()->back()->with('flash_message_success', 'Зураг устгагдлаа');
-            
     }
+
     
      // delete fac
      public function deleteHotel($id=null) {

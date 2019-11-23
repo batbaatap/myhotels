@@ -56,7 +56,7 @@ class FacilityController extends Controller
                 $facilityFile->save();
 
             // return redirect('/admin/view-facilities');
-            return view('admin.facilities.add_facility');
+            return redirect('/admin/facility/view-facilities')->with('flash_message_success', 'Амжилттай нэмэгдлээ');
         }
 
         return view('admin.facilities.add_facility');
@@ -115,10 +115,18 @@ class FacilityController extends Controller
 
     // view posts
     public function viewFacilities(Request $request){
-        $fac = DB::table('pm_facility')
-            ->join('pm_facility_file', 'pm_facility.id', '=', 'pm_facility_file.id_item')
-            ->select('pm_facility.id', 'pm_facility.name', 'pm_facility_file.file')
-            ->get();
+        // $fac = DB::table('pm_facility')
+        //     ->join('pm_facility_file', 'pm_facility.id', '=', 'pm_facility_file.id_item')
+        //     ->select('pm_facility.id', 'pm_facility.name', 'pm_facility_file.file')
+        //     ->get();
+
+        $fac = DB::select(DB::raw("SELECT 
+        pm_facility.id, 
+        pm_facility.name,
+        pm_facility_file.file 
+            FROM pm_facility 
+                LEFT JOIN pm_facility_file
+                    ON pm_facility.id = pm_facility_file.id_item"));
 
         return view('admin.facilities.view_facilities')->with(compact('fac'));
     }
@@ -158,21 +166,21 @@ class FacilityController extends Controller
     public function deleteFac($id=null) {
        
         // get post image name
-        $facImage = FacilityFile::where(['id_item'=>$id])->first();
+        // $facImage = FacilityFile::where(['id_item'=>$id])->first();
 
         // Get Post image Paths
-        $large_image_path = 'admin/images/facility/';
+        // $large_image_path = 'admin/images/facility/';
         // $medium_image_path = 'images/backend_images/posts/medium/';
         // $small_image_path = 'images/backend_images/posts/small/';
 
         // Delete large image if not exists in folder
-        if(file_exists($large_image_path.$facImage->file)){
-            unlink($large_image_path.$facImage->file);
-        }
+        // if(file_exists($large_image_path.$facImage->file)){
+        //     unlink($large_image_path.$facImage->file);
+        // }
 
         Facility::where(['id'=>$id])->delete();
 
-        return redirect()->back()->with('flash_message_success', 'Нийтлэл устгагдлаа');
+        return redirect()->back()->with('flash_message_success', 'Амжилттай устгагдлаа');
     }
 
 }
