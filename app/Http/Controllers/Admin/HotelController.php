@@ -22,6 +22,7 @@ class HotelController extends Controller
     {
         if($request->isMethod('post')){
             $data = $request->all();
+         
 
             $request->validate([
                 'hotel_title'=> 'required',
@@ -66,11 +67,13 @@ class HotelController extends Controller
             // $hotelfile->rank = $hotel->id;
 
 
-            if ($files = $request->file('filename')) {
+            if ($files = $request->file('upload_files')) {
                 // Define upload path
                 $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
                 // Image::make($profileImage)->resize(800,400)->save($destinationPath);
                 foreach($files as $img) {
+                    // dd($img);
+
                     // Upload Orginal Image           
                     $profileImage =$img->getClientOriginalName();
 
@@ -85,9 +88,8 @@ class HotelController extends Controller
                      $hotelfile->checked = 1;
                      $hotelfile->rank = $hotel->id;
                      $hotelfile->save();
-                 }
-             }
-
+                }
+            }
 
             // Route::post('process', function (Request $request) {
             //     $photos = $request->file('photos');
@@ -101,8 +103,6 @@ class HotelController extends Controller
             
             //     dd($paths);
             // });
-
-             
 
             // if ($request->hasFile( 'filename' ) ) {
             //     $gImgs = $request->filename;
@@ -344,21 +344,16 @@ class HotelController extends Controller
         // ->get();
 
         $hotels = DB::select(DB::raw("SELECT 
-        pm_hotel.id as hotelId, 
-        pm_hotel.class as hotelClass,
-        pm_hotel.home as hotelHome, 
-        pm_hotel.checked as hotelChecked,
-        pm_hotel.title as hTitle, pm_hotel.subtitle as hSubTitle,
+        h.id as hotelId, 
+        h.class as hotelClass,
+        h.home as hotelHome, 
+        h.checked as hotelChecked,
+        h.title as hTitle, h.subtitle as hSubTitle,
         b.file,
-        pm_destination.*
-            FROM pm_hotel 
-                LEFT JOIN 
-                    (SELECT id_item, file from pm_hotel_file GROUP BY id_item ) b
-                    ON pm_hotel.id = b.id_item 
-                 
-                LEFT JOIN pm_destination
-                    ON pm_hotel.id_destination = pm_destination.id
-                
+        d.name
+            FROM pm_hotel h
+                LEFT JOIN  (SELECT id_item, file from pm_hotel_file GROUP BY id_item ) b ON b.id_item  = h.id
+                LEFT JOIN pm_destination    d                                            ON d.id       = h.id_destination
         "));
 
         return view('admin.hotel.view_hotels')->with(compact('hotels'));

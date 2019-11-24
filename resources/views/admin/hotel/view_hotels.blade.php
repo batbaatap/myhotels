@@ -73,7 +73,7 @@
                                 <td>{{ $item->hTitle}}</td>
                                 <td>{{ $item->hSubTitle}}</td> 
                                 <td>{{ $item->hotelClass}}</td>
-                                {{-- <td>{{ $destination->id_destination}}</td> --}}
+                                {{-- <td>{{ $item->chiglelner}}</td> --}}
                                 <td>{{ $item->name}}</td>
                                 
                                 <td class="text-center">
