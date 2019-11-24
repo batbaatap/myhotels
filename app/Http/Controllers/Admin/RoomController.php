@@ -232,13 +232,13 @@ class RoomController extends Controller
 
 
     // delete product image
-    public function deleteHotelImage($id=null) {
+    public function deleteRoomImage($id=null) {
 
         // get post image name
-        $facImage = HotelFile::where(['id_item'=>$id])->first();
+        $facImage = RoomFile::where(['id_item'=>$id])->first();
 
         // Get Post image Paths
-        $large_image_path = 'admin/images/hotels/large/';
+        $large_image_path = 'admin/images/rooms/large/';
         // $medium_image_path = 'images/backend_images/posts/medium/';
         // $small_image_path = 'images/backend_images/posts/small/';
 
@@ -255,7 +255,7 @@ class RoomController extends Controller
         //     unlink($small_image_path.$postImage->image);
         // }fa
 
-        HotelFile::where(['id_item'=>$id])->update(['file'=>'']);
+        RoomFile::where(['id_item'=>$id])->update(['file'=>'']);
             return redirect()->back()->with('flash_message_success', 'Зураг устгагдлаа');
             
     }
