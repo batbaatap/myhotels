@@ -67,7 +67,7 @@ class HotelController extends Controller
             // $hotelfile->rank = $hotel->id;
 
 
-            if ($files = $request->file('filename')) {
+            if ($files = $request->file('upload_files')) {
                 // Define upload path
                 $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
                 // Image::make($profileImage)->resize(800,400)->save($destinationPath);

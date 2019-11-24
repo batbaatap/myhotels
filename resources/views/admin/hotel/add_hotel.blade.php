@@ -257,36 +257,31 @@
                     </div>
                 </div>
             </div>
-            
 
         {{-- image --}}
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Зураг</label>
             <div class="col-md-6 ic">
                 <div class="input-group controls increment" >
-                     <input type="file" id="inputGroupFile01" name="filename[]" multiple  class="imgInp form-control" aria-describedby="inputGroupFileAddon01">
-                    {{-- <input type="file" name="filename[]" class="form-control">  --}}
-                </div>
-                
-                <div class="clone hide">
-                    <div class="control-group input-group" style="margin-top:10px">
-                        <input type="file" id="inputGroupFile01"  name="filename[]" multiple  class="imgInp form-control  aria-describedby="inputGroupFileAddon01">
-                        <div class="input-group-btn"> 
-                        <button class="btn btn-danger rounded-0 " type="button"><i class="glyphicon glyphicon-remove "></i> x </button>
-                        </div>
-                    </div>
-                </div> 
-                
-                <div class="input-group-btn mt-2"> 
-                    <button class="btn btn-primary add-primary-el" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                    {{-- File --}}
+                    <input type="file" name="upload_files[]" id="upload_files"   multiple> 
                 </div>
             </div>
         </div>
-        
+
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label text-right"></label>
+            <div class="col-md-10 ic bg-light pb-3">
+                <div  id="preview_file_div">
+                    <ul class="ul-img pl-2"></ul>
+                </div>
+            </div>
+            </div>
+        </div>
       
         <div class="card-footer">
             <div class="form-group">
-                <div class="col-sm-9 col-sm-offset-4">
+                <div class="col-sm-10 col-sm-offset-4">
                     <button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Хадгалах</button>
                 </div>
             </div>
@@ -300,52 +295,121 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-
-        $(".add-primary-el").click(function(){ 
-            var html = $(".clone").html();
-            $(".increment").after(html);
+        // var aEL = "  <div class='clone mt-2'><div class='control-group input-group'><input type='file' name='filename[]' multiple class='imgInp form-control'><div class='input-group-btn'><button class='btn btn-danger rounded-0' type='button'><i class='glyphicon glyphicon-remove'></i> x </button></div></div></div>";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
 
-        $("body").on("click",".btn-danger",function(){ 
-            $(this).parents(".control-group").remove();
+        $(function () {
+            var input_file = document.getElementById('upload_files');
+            var deleted_file_ids = [];
+            var dynm_id = 0;
+
+            $("#upload_files").change(function (event) {
+                var len = input_file.files.length;
+                // $('#preview_file_div ul').html("");
+                
+                for(var j=0; j<len; j++) {
+                    var src = "";
+                    var name = event.target.files[j].name;
+                    var mime_type = event.target.files[j].type.split("/");
+
+                    if(mime_type[0] == "image") {
+                        src = URL.createObjectURL(event.target.files[j]);
+                    } else if(mime_type[0] == "video") {
+                        src = 'icons/video.png';
+                    } else {
+                        src = 'icons/file.png';
+                    }
+
+                    // $('.increment').append(" <input type='hidden' name='upload_files[]' id='upload_files' class='form-control'  multiple='multiple'>");
+
+                    // $('#list_name').append("<div id='" + dynm_id + "'>\
+                    //             <span class='filename'>"+name+"</span> <span class='fileinfo'> - Хуулагдаж дууслаа</span>");
+                    
+                    $('#preview_file_div ul').append("<li class='list-files' id='" + dynm_id + "'>\
+                        <div class='ic-sing-file'>\
+                            <img id='" + dynm_id + "' src='"+src+"' title='"+name+"'>\
+                        </div> \
+                        <a href='javascript:' class='remov' id='" + dynm_id + "'>\
+                            <i class='fas fa-trash-alt'></i>\
+                        </a>\
+                    </li>");
+                    
+                    dynm_id++;
+                }
+            });
+
+
+            $(document).on('click','a.remov', function() {
+                var id = $(this).attr('id');
+                deleted_file_ids.push(id);
+
+                // console.log(deleted_file_ids);
+
+                $('li#'+id).remove();
+
+                // $('#list_name').find('div#' + id).remove();   
+
+                if(("li").length == 0) document.getElementById('upload_files').value="";
+            });
+
+            });
         });
-
-    });
-
-
-// $("#inputGroupFile01").change(function(event) {  
-//     RecurFadeIn();
-//     readURL(this);    
-//     });
-//     $("#inputGroupFile01").on('click',function(event){
-//     RecurFadeIn();
-//     });
-//     function readURL(input) {    
-//     if (input.files && input.files[0]) {   
-//         var reader = new FileReader();
-//         var filename = $("#inputGroupFile01").val();
-//         filename = filename.substring(filename.lastIndexOf('\\')+1);
-//         reader.onload = function(e) {
-//         // debugger;      
-//         $('#blah').attr('src', e.target.result);
-//         $('#blah').hide();
-//         $('#blah').fadeIn(500);      
-//         $('.custom-file-label').text(filename);             
-//         }
-//         reader.readAsDataURL(input.files[0]);    
-//     } 
-//     $(".alert").removeClass("loading").hide();
-//     }
-//     function RecurFadeIn(){ 
-//     console.log('ran');
-//     FadeInAlert("Wait for it...");  
-//     }
-//     function FadeInAlert(text){
-//     $(".alert").show();
-//     $(".alert").text(text).addClass("loading");  
-// }
-
-
+        
 </script>
 
+<style>
+    ul.ul-img.pl-2 {
+    list-style: none;
+}
+
+    .list-files{
+        width: 200px;
+        height: 160px;
+        float: left;
+        margin: 10px 20px 0 0;
+        padding: 0;
+        background: #fff;
+        border: 1px solid #ddd;
+        color: #666;
+        font-size: 14px;
+        position: relative;
+    }
+    .ic-sing-file {
+        width: 198px;
+    height: 135px;
+    text-align: center;
+    background: #fff;
+    font-size: 14px;
+    }
+   .actions-file {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 16px;
+    }
+    .ic-sing-file img {
+    max-height: 135px;max-width: 198px;
+    }
+   .cus-close {
+        display: inline-block;
+        padding: 0 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    .remov{
+        position: absolute;
+    right: 3px;
+    top: 0;
+    color: #337ab7;
+    }
+</style>
+
 @endsection
+
+
+
+
