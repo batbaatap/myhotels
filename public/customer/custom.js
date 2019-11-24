@@ -24,7 +24,7 @@ $(document).ready(function () {
 
        $('.dateto').datetimepicker({
           defaultDate: dateObj,
-          minDate: dateObj,
+          minDate: new Date(df),
           format: 'YYYY-MM-DD',
           locale: 'en',
           sideBySide: true
@@ -52,8 +52,6 @@ $(document).ready(function () {
  /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
  var df2=localStorage.getItem("localdate1");
  var dateObj2 = new Date(df2);
-    var numberOfDaysToAdd = 1;
- dateObj2.setDate(dateObj2.getDate() + numberOfDaysToAdd); 
 
 $('.datetime1').datetimepicker({
   // defaultDate: new Date(), // someVardate
@@ -65,7 +63,7 @@ $('.datetime1').datetimepicker({
 
 $('.datetime2').datetimepicker({
   // defaultDate: dateTo, // someVardate
-  minDate: dateObj2,//local dateto date min value
+  minDate: dateObj2 ,//local dateto date min value
   format: 'YYYY-MM-DD',//HH:mm:ss
   locale: 'en',
   sideBySide: true
@@ -87,6 +85,8 @@ $(".datefrom").on("dp.change", function (e) {
   }
   $('.dateto').data("DateTimePicker").minDate(e.date);
 });
+
+
  
 //example
 
