@@ -41,13 +41,6 @@ $(document).ready(function () {
     if(!localStorage.getItem("localdate4")){
       jQuery('.person_quantity').val(1);
     }
-    
-    $('.destination').change(function() {
-      localStorage.setItem('localdate5', this.value);
-  });
-  if(localStorage.getItem('localdate5')){
-      $('.destination').val(localStorage.getItem('localdate5'));
-  }
 
  /* ===================== dateTo, dateFrom dahi localstorage utga bgaa bol ================================*/
  var df2=localStorage.getItem("localdate1");
@@ -227,14 +220,14 @@ $(".datefrom").on("dp.change", function (e) {
     date2 = jQuery('.dateto').val();
     room_quantity = jQuery('.room_quantity').val();
     person_quantity = jQuery('.person_quantity').val();
-    // destination = jQuery('.destination').val();
+    destination = jQuery('.destination').val();
 
   
     localStorage.setItem("localdate1", date1); 
     localStorage.setItem("localdate2", date2); 
     localStorage.setItem("localdate3",  room_quantity ); 
     localStorage.setItem("localdate4",  person_quantity ); 
-    // localStorage.setItem("localdate5",  destination ); 
+    localStorage.setItem("localdate5",  destination ); 
 
     //===days calculator====================================
 
@@ -255,8 +248,9 @@ $(".datefrom").on("dp.change", function (e) {
     dateTo= localStorage.getItem("localdate2");
     room_quantity = localStorage.getItem("localdate3");
     person_quantity = localStorage.getItem("localdate4");
+    destination= localStorage.getItem("localdate5");
     diffrence= localStorage.getItem("day");
-    
+   
     //booking-details blade
     jQuery('.datefrom1').append(dateFrom ); //console.log(axe);
     jQuery('.datefrom11').val(dateFrom);
@@ -266,7 +260,10 @@ $(".datefrom").on("dp.change", function (e) {
       
     jQuery('.room_quantity').val( room_quantity);
     jQuery('.person_quantity').val( person_quantity);
-      
+    if(localStorage.getItem('localdate5')){
+       jQuery('.destination').val( destination);
+    }
+
     jQuery('.diffrence').attr("value", diffrence).text(diffrence);
     
     }());
