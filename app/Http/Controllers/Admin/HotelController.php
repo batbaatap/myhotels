@@ -300,6 +300,8 @@ class HotelController extends Controller
                 $filename = '';
             }
 
+
+
             HotelFile::where(['id_item'=>$id])->update([
                 'file'  => $filename
             ]);
@@ -307,10 +309,10 @@ class HotelController extends Controller
         }
 
 
+        // getting data
         $facilities   = Facility::get();
         $destinations = Destination::get();
 
-        // get details
         $hotelDetails = Hotel::where(['id'=>$id])->first();
         $hotelDetailsFile = DB::select(DB::raw("SELECT pm_hotel_file.* from pm_hotel_file where id_item = $id"));
 
@@ -411,3 +413,4 @@ class HotelController extends Controller
     }
 
 }
+

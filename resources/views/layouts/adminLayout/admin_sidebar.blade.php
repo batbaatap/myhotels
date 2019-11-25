@@ -33,7 +33,7 @@
             <p>
               Захиалга
               <i class="right fas fa-angle-left"></i>
-              <span class="badge badge-info right">6</span>
+              {{-- <span class="badge badge-info right">6</span> --}}
             </p>
           </a>
           <ul class="nav nav-treeview">
