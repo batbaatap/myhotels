@@ -245,13 +245,13 @@
                 
                 <div class="col-sm-6">
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="homepage1" name="homepage1" checked="" value="0">
+                        <input type="radio" id="homepage1" name="homepage1" checked="" value="1">
                         <label for="homepage1">Тийм
                         </label>
                     </div>
 
                     <div class="icheck-primary d-inline">
-                        <input type="radio" id="homepage2" name="homepage1" value="1">
+                        <input type="radio" id="homepage2" name="homepage1" value="0">
                         <label for="homepage2"> Үгүй
                         </label>
                     </div>
@@ -275,7 +275,6 @@
                 <div  id="preview_file_div">
                     <ul class="ul-img pl-2"></ul>
                 </div>
-            </div>
             </div>
         </div>
       
