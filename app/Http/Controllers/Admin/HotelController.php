@@ -57,23 +57,15 @@ class HotelController extends Controller
             $hotel->save();
 
 
-            
-            // h file save
-            // $hotelfile = new HotelFile;
-            // $hotelfile->lang = 2;
-            // $hotelfile->id_item = $hotel->id;
-            // $hotelfile->home = 0;
-            // $hotelfile->checked = 1;
-            // $hotelfile->rank = $hotel->id;
 
 
             if ($files = $request->file('upload_files')) {
                 // Define upload path
                 $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
-                // Image::make($profileImage)->resize(800,400)->save($destinationPath);
                 foreach($files as $img) {
                     // dd($img);
-
+                    Image::make($profileImage)->resize(800,400)->save($destinationPath);
+                    
                     // Upload Orginal Image           
                     $profileImage =$img->getClientOriginalName();
 
@@ -276,35 +268,60 @@ class HotelController extends Controller
                 'home'=>$data['homepage1'],
             ]);
 
-            // upload image
-            if($request->hasFile('filename')){
-            $image_tmp = $request->file('filename');
-                if($image_tmp->isValid()){
-                    $extension = $image_tmp->getClientOriginalExtension();
-                    $filename =  rand(111, 99999).".".$extension;
-                    $large_image_path = 'admin/images/hotels/large/'.$filename;
-                    // $medium_image_path = 'admin/images/hotels/small/'.$filename;
-                    $small_image_path = 'admin/images/hotels/small/'.$filename;
 
-                    // resize image
-                    Image::make($image_tmp)->resize(1000,600)->save($large_image_path);
-                    // Image::make($image_tmp)->resize(300,370)->save($medium_image_path);
-                    Image::make($image_tmp)->resize(160,45)->save($small_image_path);
 
-                    //  store image name in products table
-                    // $facilityFile->file = $filename;
+            if ($files = $request->file('upload_files')) {
+                // Define upload path
+                $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
+                foreach($files as $img) {
+                    // dd($img);
+                    // Image::make($profileImage)->resize(800,400)->save($destinationPath);
+                    
+                    // Upload Orginal Image           
+                    $profileImage =$img->getClientOriginalName();
+
+                    $img->move($destinationPath, $profileImage);
+                    
+                     // Save In Database
+                     $hotelfile = new HotelFile;
+                     $hotelfile->lang = 2;
+                     $hotelfile->id_item = $id;
+                     $hotelfile->home = 0;
+                     $hotelfile->file = $profileImage;
+                     $hotelfile->checked = 1;
+                     $hotelfile->rank = $id;
+                     $hotelfile->save();
                 }
-            } else if(!empty($data['current_image'])){
-                $filename = $data['current_image'];
-            } else {
-                $filename = '';
             }
 
 
+            // upload image
+            // if($request->hasFile('filename')){
+            // $image_tmp = $request->file('filename');
+            //     if($image_tmp->isValid()){
+            //         $extension = $image_tmp->getClientOriginalExtension();
+            //         $filename =  rand(111, 99999).".".$extension;
+            //         $large_image_path = 'admin/images/hotels/large/'.$filename;
+            //         // $medium_image_path = 'admin/images/hotels/small/'.$filename;
+            //         $small_image_path = 'admin/images/hotels/small/'.$filename;
 
-            HotelFile::where(['id_item'=>$id])->update([
-                'file'  => $filename
-            ]);
+            //         // resize image
+            //         Image::make($image_tmp)->resize(1000,600)->save($large_image_path);
+            //         // Image::make($image_tmp)->resize(300,370)->save($medium_image_path);
+            //         Image::make($image_tmp)->resize(160,45)->save($small_image_path);
+
+            //         //  store image name in products table
+            //         // $facilityFile->file = $filename;
+            //     }
+            // } else if(!empty($data['current_image'])){
+            //     $filename = $data['current_image'];
+            // } else {
+            //     $filename = '';
+            // }
+
+            // HotelFile::where(['id_item'=>$id])->update([
+            //     'file'  => $filename
+            // ]);
             return redirect()->back()->with('flash_message_success', 'Амжилттай засвар хийгдлээ');
         }
 
@@ -366,7 +383,7 @@ class HotelController extends Controller
     public function deleteHotelImage($id=null) {
 
         // get post image name
-        $facImage = HotelFile::where(['id_item'=>$id])->first();
+        $facImage = HotelFile::where(['id'=>$id])->first();
 
         // Get Post image Paths
         $large_image_path = 'admin/images/hotels/large/';
@@ -384,9 +401,10 @@ class HotelController extends Controller
 
         // if(file_exists($small_image_path.$postImage->image)){
         //     unlink($small_image_path.$postImage->image);
-        // }fa
+        // }
 
-        HotelFile::where(['id_item'=>$id])->update(['file'=>'']);
+        // HotelFile::where(['id'=>$id])->update(['file'=>'']);
+        HotelFile::where(['id'=>$id])->delete();
             return redirect()->back()->with('flash_message_success', 'Зураг устгагдлаа');
     }
 
