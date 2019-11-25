@@ -26,7 +26,11 @@ class HomeController extends Controller
         $tomorrowdate=  strtotime($tomorrow);
 
        
-        $destination=DB::select(DB::raw( "SELECT * FROM pm_destination WHERE checked = 1 ")); 
+        $destination=DB::select(DB::raw( "SELECT `pm_destination`.`id`, `pm_destination`.name,`pm_destination`.`checked`, `pm_destination`.home, `pm_destination`.`text`,  `pm_destination_file`.file
+                                            FROM `pm_destination`
+                                            left JOIN `pm_destination_file` on `pm_destination`.`id`= `pm_destination_file`.`id_item`
+                                            limit 4
+                                            ")); 
 
         //=============================================================================
         // чиглэл харгалзахгүйгээр захиалах боломжтой бүх буудлуудыг гаргах

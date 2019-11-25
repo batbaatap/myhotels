@@ -61,7 +61,14 @@
                     </li>
                 </ul>
             </div>
-            <div class="d-none d-lg-block"><a href="#" class="btn btn-sm btn-primary animate-up-1 ml-3">Нэвтрэх</a> <a href="#" class="btn btn-sm btn-white animate-up-1 ml-3">Бүртгүүлэх</a> <a href="./html/pages/submit-space.html" class="btn btn-sm btn-outline-white ml-3"><i class="fas fa-plus mr-2"></i>Буудал нэмэх</a></div>
+            
+            {{-- <a href="./html/pages/submit-space.html" class="btn btn-sm btn-outline-white ml-3"><i class="fas fa-plus mr-2"></i>Буудал нэмэх</a> --}}
+            <div class="d-none d-lg-block">
+                <a href="#" class="btn btn-sm btn-primary animate-up-1 ml-3">Нэвтрэх</a>
+                <a href="#" class="btn btn-sm btn-white animate-up-1 ml-3">Бүртгүүлэх</a> 
+                <a href="#" class="btn btn-sm  btn-white animate-up-1 ml-3" ><i class="fas fa-plus mr-2"></i>Буудал нэмэх</a>
+            </div>
+
             <div class="d-flex align-items-center">
                 <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             </div>

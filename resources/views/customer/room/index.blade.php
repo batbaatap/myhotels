@@ -101,8 +101,8 @@
         @foreach ($hotels as $item)
 
         <div class="col-lg-4   pl-0 pt-0">
-            <div class="bg-white" style="padding-left:15px; padding-top:15px; height:100%;">
-        
+            <div class="bg-white" style="padding:15px; padding-bottom:35px; height:100%;">
+        {{-- style="padding-left:15px; padding-top:15px; height:100%;" --}}
                 {{-- title --}}
                 <div class="title">
                     <p class="m-0" style="font-size: 1.375rem;
@@ -184,7 +184,7 @@
             <div class="mt-2">
                 {{ str_limit(strip_tags($item->descr), 100) }}
                
-                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-outline-primary btn-sm" style="float:right; margin-top:7px;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                        
                     Дэлгэрэнгүй  
                     {{-- <input type="button" value="{{$item->phone}}"  name="hotelId"> --}}
@@ -233,7 +233,7 @@
                             </a>
                             
                             <div class="card-body  d-flex flex-column col-md-3 p-2">
-                                <a href="javascript:" >
+                                <a href="javascript:" style="margin-bottom: 12px;" >
                                         <input type="hidden" value="{{$r->id}}" name="room_id"/>
                                         
                                          {{-- <div class="rnam" data-id={{$r->id}}> --}}
@@ -335,7 +335,7 @@
                                                 {{$room_discount->price}}Ŧ
                                                 </span>
                                                 <span class="h5 text-dark font-weight-bold"> - </span>
-                                                <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;">@php echo $room_discount->price-(($room_discount->price*$room_discount->discount)/100 )@endphp Ŧ</span> 
+                                                <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;"><?php echo $room_discount->price-(($room_discount->price*$room_discount->discount)/100 )?>Ŧ</span> 
                                             
                                             @endif
                                         @endforeach
@@ -358,7 +358,7 @@
                                                     {{$r->price}}Ŧ
                                                 </span>
                                                 {{-- <span class="h5 text-dark font-weight-bold"> - </span> --}}
-                                                <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;">  {{$r->price}}Ŧ</span> 
+                                                <span class="h5 text-dark font-weight-bold hongololttei_une" style="color:red!important;">{{$r->price}}Ŧ</span> 
                                                 
                                         <?php }?>
                                             {{-- <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	

@@ -98,7 +98,7 @@
                 <div class="col-6 col-lg-3">
                     <!-- Icon box -->
                     <div class="icon-box text-center">
-                        <div class="i con icon-primary icon-xl"><i class="fas fa-user-tie"></i></div>
+                        <div class="icon icon-primary icon-xl"><i class="fas fa-user-tie"></i></div>
                         <h6 class="font-weight-normal text-gray mt-4 mb-3">Шилдэг ажилчид</h6></div>
                     <!-- End of Icon box -->
                 </div>
@@ -387,8 +387,8 @@
                                
                           </a>
                         <div class="card-body"><a href="#"><h5 class="font-weight-normal">{{$h->title}}</h5></a>
-                          <div class="post-meta"><span class="small lh-120"><i class="fas fa-map-marker-alt mr-2"></i>{{$h->address}}</span></div>
-
+                          <div class="post-meta"><span class="small lh-120"><i class="fas fa-map-marker-alt mr-2"></i>{{ str_limit(strip_tags($h->address), 40) }}</span></div>
+                          
                           <div class="d-flex my-4">
                               @for ($i =0; $i < $h->class; $i++)
                                 <i class="star fas fa-star text-warning"></i>
@@ -418,8 +418,11 @@
                                 @foreach ($discount as $hotel_discount) <!--хямдралтай буудлын үнэ, буудлын хямдрал тооцох-->
                                     @if($h->id==$hotel_discount->id_hotel)
                                          <?php $k++;  ?>
-                                            <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_discount->price}}$</span></div>
-                                            <div class="col pr-0"><span class="text-muted font-small d-block mb-2">Хямдарсан үнэ</span> <span class="h5 text-dark font-weight-bold">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp $</span></div>
+                                            <div class="col pl-0">
+                                                <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">{{$hotel_discount->price}}Ŧ</span>
+                                                <span class="h5 text-dark font-weight-bold" style="color:red!important;"><?php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )?>Ŧ</span>
+                                            </div>
+                            
                                             <div class="col pr-0">
                                                     <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
@@ -440,7 +443,7 @@
                                 @foreach ($rate as $hotel_rate) <!--хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан -->
                                     @if($hotel_rate->id_hotel==$h->id)
                                                  <?php $k++;  ?>
-                                        <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold">{{$hotel_rate->price}}$</span></div>
+                                        <div class="col pl-0"><span class="h5 text-dark font-weight-bold" style="color:red!important;">{{$hotel_rate->price}}Ŧ</span></div>
                                         <div class="col pr-0">
                                                 <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
@@ -479,7 +482,7 @@
                               // echo $price;//hamgiin baga uniin dun
                             ?> 
                                 
-                                <div class="col pl-0"><span class="text-muted font-small d-block mb-2">Нийт үнэ</span> <span class="h5 text-dark font-weight-bold"> <?php echo $price; ?> $</span></div>
+                                <div class="col pl-0"><span class="h5 text-dark font-weight-bold" style="color:red!important;"> <?php echo $price;?>Ŧ</span></div>
                                 <div class="col pr-0">
                                     <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
@@ -517,23 +520,28 @@
             {{-- Чиглэл --}}
             <div class="row mt-6">
                     <div class="col-12">
-                        <h5 class="font-weight-normal mb-5">Эрэлттэй чиглэл</h5></div>
-                    <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
-                        <!-- Card -->
-                        <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="customer/images/huwsgul.jpg "
-                          style="background-position: center;
-                          background-size: cover;
-                          background-image:url({{asset('customer/images/huwsgul.jpg')}}); ">
-
-                            <div class="inner-bg overlay-dark"></div>
-                            <div class="card-img-overlay d-flex align-items-center">
-                                <div class="card-body text-white p-3">
-                                    <h5 class="font-weight-normal text-uppercase text-center">Хөвсгөл</h5></div>
-                            </div>
-                        </a>
-                        <!-- End of Card -->
+                        <h5 class="font-weight-normal mb-5">Эрэлттэй чиглэл</h5>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
+
+
+                    @foreach ($destination as $des) 
+                        <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                            <!-- Card -->
+                            <a href="#" class="card img-card fh-400 border-0 outer-bg" data-background-inner="customer/images/huwsgul.jpg "
+                            style="background-position: center;
+                            background-size: cover;
+                            background-image:url({{asset('admin/images/destination/large/'.$des->file)}}); ">
+
+                                <div class="inner-bg overlay-dark"></div>
+                                <div class="card-img-overlay d-flex align-items-center">
+                                    <div class="card-body text-white p-3">
+                                        <h5 class="font-weight-normal text-uppercase text-center">{{$des->name}}</h5></div>
+                                </div>
+                            </a>
+                            <!-- End of Card -->
+                        </div>
+                    @endforeach
+                    {{-- <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
                         <!-- Card -->
                         <a href="./html/pages/all-spaces.html" class="card img-card fh-400 border-0 outer-bg" data-background-inner="img/paris.jpg"
                         style="background-position: center;
@@ -575,7 +583,7 @@
                             </div>
                         </a>
                         <!-- End of Card -->
-                    </div>
+                    </div> --}}
                 </div>
         </div>
     </section>

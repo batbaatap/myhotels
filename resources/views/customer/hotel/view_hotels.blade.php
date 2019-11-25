@@ -239,7 +239,7 @@
                                             <div class="post-meta">
                                                 <span class="small lh-120">
                                                     <i class="fas fa-map-marker-alt mr-2"></i>
-                                                    {{ $h->address }}
+                                                    {{ str_limit(strip_tags($h->address), 40) }}
                                                 </span>   
                                             </div>
                                             {{-- end --}}
@@ -248,20 +248,18 @@
 
                                             {{-- start star --}}
                                             <div class="d-flex my-4">
-                                                @php
+                                                <?php
                                                     $i;
-                                                    @endphp
-                                                    
+                                                    ?>                                                    
 
                                                 @for ($i =0; $i < $h->class; $i++)
                                                     <i class="star fas fa-star text-warning"></i>
                                                 @endfor
 
                                                 <span class="badge badge-pill badge-secondary ml-2">
-                                                    @php
+                                                    <?php
                                                         echo $i.' Одтой';
-                                                    @endphp
-                                                </span>
+                                                    ?>                                                </span>
                                             </div>
                                             {{-- end  --}}
 
@@ -269,10 +267,10 @@
 
                                             {{-- start fac --}}
                                             <div>
-                                                @php
+                                                <?php
                                                 $arrA = [];
                                                 $arrB = preg_split("/[\s,]+/", $h->facilities);
-                                                @endphp 
+                                                ?>
 
                                                 @foreach ($arrB as $item)
                                                 @foreach($facfile as $key=>$value)
@@ -319,7 +317,7 @@
                                                             {{$hotel_discount->price}}Ŧ <!-- хамгийн өндөр хөнгөлөлттэй буудлын үнийн мэдээлэл-->
                                                             </span>
                                                             <span class="h5 text-dark font-weight-bold"> - </span><br/>
-                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;">@php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )@endphp Ŧ</span> 
+                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;"><?php echo $hotel_discount->price-(($hotel_discount->price*$hotel_discount->discount)/100 )?>Ŧ</span> 
                                                         @endif
                                                     @endforeach
                                                    
@@ -330,7 +328,7 @@
                                                             {{$hotel_rate->price}}Ŧ <!-- хамгийн өндөр хөнгөлөлттэй буудлын үнийн мэдээлэл-->
                                                             </span>
                                                             <span class="h5 text-dark font-weight-bold"> - </span><br/>
-                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;">@php echo $hotel_rate->price @endphp Ŧ</span> 
+                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;"><?php echo $hotel_rate->price?>Ŧ</span> 
                                                         @endif
                                                     @endforeach
                                                   
@@ -357,10 +355,10 @@
                                                         ?> 
                                                             
                                                             <span class="h5 text-dark font-weight-bold" style="text-decoration: line-through;font-style:italic;">	
-                                                                <?php echo $price; ?>Ŧ 
+                                                                <?php echo $price;?>Ŧ 
                                                             </span>
                                                             <span class="h5 text-dark font-weight-bold"> - </span><br/>
-                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;"><?php echo $price; ?> Ŧ</span> 
+                                                            <span class="h5 text-dark font-weight-bold" style="color:red!important;"><?php echo $price;?>Ŧ</span> 
                                                     <?php }?> 
                                                     
                                             <?php }?>
