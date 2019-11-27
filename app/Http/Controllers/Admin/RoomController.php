@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Image;
 use App\Room;
 use App\RoomFile;
-use App\destination;
+use App\Destination;
 use App\Facility;
 use App\Hotel;
 use DB;

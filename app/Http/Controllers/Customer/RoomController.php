@@ -81,25 +81,25 @@ class RoomController extends Controller
             $dateto22 =    strtotime($request->dateto22);
             $room_quantity22 = $request->room_quantity22;
             $person_quantity22 = $request->person_quantity22;
-            $hotel22 = $request->hotel;
+            $hotel_id = $request->hotel;
         
         
-            $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel22' "));
+            $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel_id' "));
             // $hotels=DB::select(DB::raw( "  SELECT `pm_hotel`.*, `pm_hotel_file`.lang,`pm_hotel_file`.home, `pm_hotel_file`.`checked`, `pm_hotel_file`.rank, 
             // `pm_hotel_file`.file,`pm_hotel_file`.label,    `pm_hotel_file`.type  
             //  FROM `pm_hotel` 
-            //  LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'" )); 
+            //  LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel_id'" )); 
 
             $hotFile = DB::select(DB::raw("sELECT `pm_hotel_file`.file
             FROM `pm_hotel` 
-            LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel22'
+            LEFT JOIN `pm_hotel_file` ON `pm_hotel`.id = `pm_hotel_file` .id_item where `pm_hotel`.id='$hotel_id'
             "));
             
 
             // $hotels = DB::table('pm_hotel')
             // ->join('pm_hotel_file', 'pm_hotel.id', '=', 'pm_hotel_file.id_item')
             // ->select(' `')
-            // ->where('id', $hotel22)
+            // ->where('id', $hotel_id)
             // ->get();
 
             // $rate= Rate::all();
@@ -122,12 +122,12 @@ class RoomController extends Controller
                     )
                         )
                         GROUP BY `pm_booking_room`.id_room
-                        HAVING uruunii_zuruu>=$room_quantity22 and `pm_room`.id_hotel=$hotel22 and max_people>=$person_quantity22
+                        HAVING uruunii_zuruu>=$room_quantity22 and `pm_room`.id_hotel=$hotel_id and max_people>=$person_quantity22
                         
                         UNION 
                         SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
                     from `pm_room`
-                    where stock>=$room_quantity22 and id_hotel=$hotel22 and  max_people>=$person_quantity22 and  id NOT in (SELECT  id_room
+                    where stock>=$room_quantity22 and id_hotel=$hotel_id and  max_people>=$person_quantity22 and  id NOT in (SELECT  id_room
                     FROM `pm_booking_room` AS rf
                     WHERE rf.id_booking IN (
                     select id  FROM `pm_booking`
@@ -136,10 +136,18 @@ class RoomController extends Controller
                     OR ( `from_date`<= '$datefrom22' AND `to_date`>=' $dateto22')
                 ))"
             ));
+
+
+            $roomfile = DB::select(DB::raw(
+                "SELECT pm_room_file.file
+                FROM pm_room
+                left JOIN pm_room_file ON pm_room.id = pm_room_file.id_item
+                where id_hotel = $hotel_id
+                "));
         }
 
 
-        return view('customer/room.index', compact('hotels', 'rooms', 'facfile','rate_discount','rate', 'hotFile'));
+        return view('customer/room.index', compact('hotels', 'rooms', 'facfile','rate_discount','rate', 'hotFile', 'roomfile'));
     }
 
     

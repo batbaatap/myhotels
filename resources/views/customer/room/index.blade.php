@@ -38,9 +38,6 @@
                         }
                     </style>
 
-
-
-
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                      <ol class="carousel-indicators">
                          @foreach( $hotFile as $info )
@@ -64,9 +61,6 @@
 
                         @endforeach
                     </div>
-
-                  
-
 
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -224,14 +218,17 @@
 
                         <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
 
-                            
+                            @foreach ($roomfile as $item)
+                                
                             <a href="javascript:" class="col-md-3 ">
                                 <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
                                 style="background-position: center;
                                 background-size: cover;
-                                background-image:url({{asset('customer/images/narantuul.jpg')}}); ">
+                                background-image:url({{asset('admin/images/rooms/large/'.$item->file)}}); ">
                             </a>
                             
+                            @endforeach
+
                             <div class="card-body  d-flex flex-column col-md-3 p-2">
                                 <a href="javascript:" style="margin-bottom: 12px;" >
                                         <input type="hidden" value="{{$r->id}}" name="room_id"/>
