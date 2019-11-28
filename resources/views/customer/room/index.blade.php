@@ -176,18 +176,15 @@
 
             {{-- Тнаилцуулга --}}
             <div class="mt-2">
-                {{ str_limit(strip_tags($item->descr), 100) }}
+                <p style="word-wrap: break-word;">{{ str_limit(strip_tags($item->descr), 50) }}</p>
                
                 <a class="btn btn-outline-primary btn-sm" style="float:right; margin-top:7px;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                       
                     Дэлгэрэнгүй  
                     {{-- <input type="button" value="{{$item->phone}}"  name="hotelId"> --}}
                 </a>
-         
-                
             
                 <div class="collapse" id="collapseExample">
-                    {{ str_limit(strip_tags($item->descr), 100) }}
+                    {{ str_limit(strip_tags($item->descr), -100) }}
                 </div>
             </div>
             
