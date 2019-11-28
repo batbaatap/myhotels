@@ -219,7 +219,7 @@
                                                     <img src="{{asset("/customer/images/trance-img.png")}}" class="card-img-top" alt="image" 
                                                     style="background-position: center;
                                                     background-size: cover;
-                                                    background-image:url({{asset('admin/images/hotels/large/'.$item->file)}}); ">
+                                                    background-image:url({{asset('admin/images/hotels/small/'.$item->file)}}); ">
                                                 @endif
                                             @endforeach
                                         </a>

@@ -57,19 +57,27 @@ class HotelController extends Controller
             $hotel->save();
 
 
-
-
             if ($files = $request->file('upload_files')) {
+
+                // $image = $request->file('image');
+                // $upload = 'uploads/image';
+                // $filename = $image->getClientOriginalName();
+                /* You can also use the fit(w,h) method, which crops and resizes the image, instead of the resize(w,h) method... */
+                
                 // Define upload path
-                $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
+                $large_image_path = public_path('/admin/images/hotels/large/'); // upload path
+                $small_image_path = public_path('/admin/images/hotels/small/'); // upload path
                 foreach($files as $img) {
                     // dd($img);
-                    Image::make($profileImage)->resize(800,400)->save($destinationPath);
+                    // Image::make($profileImage)->resize(800,400)->save($large_image_path);
                     
                     // Upload Orginal Image           
                     $profileImage =$img->getClientOriginalName();
-
-                    $img->move($destinationPath, $profileImage);
+                    
+                    $imgr = Image::make($img);
+                    $imgr->save($large_image_path.'/'.$profileImage);
+                    $imgr->resize(200, 140)->save($small_image_path.'/'.$profileImage);
+                    // $img->move($large_image_path, $profileImage);
                     
                      // Save In Database
                      $hotelfile = new HotelFile;
@@ -271,16 +279,25 @@ class HotelController extends Controller
 
 
             if ($files = $request->file('upload_files')) {
+                // $image = $request->file('image');
+                // $upload = 'uploads/image';
+                // $filename = $image->getClientOriginalName();
+                /* You can also use the fit(w,h) method, which crops and resizes the image, instead of the resize(w,h) method... */
+                
                 // Define upload path
-                $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
+                $large_image_path = public_path('/admin/images/hotels/large/'); // upload path
+                $small_image_path = public_path('/admin/images/hotels/small/'); // upload path
                 foreach($files as $img) {
                     // dd($img);
-                    // Image::make($profileImage)->resize(800,400)->save($destinationPath);
+                    // Image::make($profileImage)->resize(800,400)->save($large_image_path);
                     
                     // Upload Orginal Image           
                     $profileImage =$img->getClientOriginalName();
-
-                    $img->move($destinationPath, $profileImage);
+                    
+                    $imgr = Image::make($img);
+                    $imgr->save($large_image_path.'/'.$profileImage);
+                    $imgr->resize(200, 140)->save($small_image_path.'/'.$profileImage);
+                    // $img->move($large_image_path, $profileImage);
                     
                      // Save In Database
                      $hotelfile = new HotelFile;
@@ -293,6 +310,30 @@ class HotelController extends Controller
                      $hotelfile->save();
                 }
             }
+
+            // if ($files = $request->file('upload_files')) {
+            //     // Define upload path
+            //     $destinationPath = public_path('/admin/images/hotels/large/'); // upload path
+            //     foreach($files as $img) {
+            //         // dd($img);
+            //         // Image::make($profileImage)->resize(800,400)->save($destinationPath);
+                    
+            //         // Upload Orginal Image           
+            //         $profileImage =$img->getClientOriginalName();
+
+            //         $img->move($destinationPath, $profileImage);
+                    
+            //          // Save In Database
+            //          $hotelfile = new HotelFile;
+            //          $hotelfile->lang = 2;
+            //          $hotelfile->id_item = $id;
+            //          $hotelfile->home = 0;
+            //          $hotelfile->file = $profileImage;
+            //          $hotelfile->checked = 1;
+            //          $hotelfile->rank = $id;
+            //          $hotelfile->save();
+            //     }
+            // }
 
 
             // upload image

@@ -5,7 +5,8 @@
          style="opacity: .8">
     {{-- <span class="brand-text font-weight-light">MYHOTEL</span> --}}
   </a>
-
+  
+  <?php $url = url()->current(); ?>
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
@@ -27,8 +28,10 @@
         {{-- =============================================
           Захиалга
          --}}
+
+
         <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link active">
+          <a href="#" <?php if(preg_match("/booking/i", $url) || preg_match("/booking/i", $url) ){ ?>class="nav-link active" <?php }?>  class="nav-link ">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Захиалга
@@ -52,11 +55,15 @@
           </ul>
         </li>
 
+
+
+
         {{-- ====================================================
           Зочид буудал 
          --}}
         <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
+          {{-- <a href="#" class="nav-link "> --}}
+              <a href="#" <?php if(preg_match("/hotel/i", $url) || preg_match("/hotel/i", $url) ){ ?>class="nav-link active" <?php }?>  class="nav-link ">
               <i class="fas fa-hotel"></i>
             <p>
               Зочид буудал
@@ -85,7 +92,8 @@
           Өрөө 
          --}}
         <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
+            <a href="#" <?php if(preg_match("/room/i", $url) || preg_match("/room/i", $url) ){ ?>class="nav-link active" <?php }?>  class="nav-link ">
+          {{-- <a href="#" class="nav-link "> --}}
               <i class="fas fa-bed"></i> 
             <p>
               Өрөө
@@ -114,7 +122,8 @@
           Үнэ 
          --}}
         <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
+          {{-- <a href="#" class="nav-link "> --}}
+            <a href="#" <?php if(preg_match("/rate/i", $url) || preg_match("/rate/i", $url) ){ ?>class="nav-link active" <?php }?>  class="nav-link ">
               <i class="fas fa-bed"></i> 
             <p>
               Үнэ
@@ -143,7 +152,8 @@
           Хэрэглэл 
          --}}
         <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
+          {{-- <a href="#" class="nav-link "> --}}
+            <a href="#" <?php if(preg_match("/facility/i", $url) || preg_match("/facility/i", $url) ){ ?>class="nav-link active" <?php }?>  class="nav-link ">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Үйлчилгээ
@@ -172,8 +182,8 @@
           Чиглэл 
          --}}
         <li class="nav-item has-treeview menu-close">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="#" <?php if(preg_match("/destination/i", $url) || preg_match("/destination/i", $url) ){ ?>class="nav-link active" <?php }?>  class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Чиглэл
               <i class="right fas fa-angle-left"></i>
