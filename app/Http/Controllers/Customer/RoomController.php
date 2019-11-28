@@ -139,11 +139,10 @@ class RoomController extends Controller
 
 
             $roomfile = DB::select(DB::raw(
-                "SELECT pm_room_file.file
-                FROM pm_room
-                left JOIN pm_room_file ON pm_room.id = pm_room_file.id_item
-                where id_hotel = $hotel_id
-                "));
+                "SELECT pm_room_file.* FROM pm_room_file
+                -- left JOIN pm_room_file ON pm_room.id = pm_room_file.id_item
+                -- where id_hotel = $hotel_id
+            "));
         }
 
 

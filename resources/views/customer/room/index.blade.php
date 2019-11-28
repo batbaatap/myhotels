@@ -219,6 +219,7 @@
                         <div class="card card-article-wide shadow-sm flex-md-row no-gutters border-soft mb-4 animate-up-5">
 
                             @foreach ($roomfile as $item)
+                            @if ($item->id_item == $r->id)
                                 
                             <a href="javascript:" class="col-md-3 ">
                                 <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
@@ -226,6 +227,7 @@
                                 background-size: cover;
                                 background-image:url({{asset('admin/images/rooms/large/'.$item->file)}}); ">
                             </a>
+                            @endif
                             
                             @endforeach
 
