@@ -10,6 +10,21 @@
                     <div class="card p-3">
                         <h5 class="font-weight-normal">Захиалгын мэдээлэл</h5>
                         <div class="table-responsive">
+                            @foreach($hotels as $value) 
+                        {{-- <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                        end zurag opj ipne
+                                </div>
+
+                                <div class="col-6">
+                                    <div><span><i class="fas fa-home"></i></span> <span>{{$value->hotel_name}}</span></div>
+                                    <div><span><i class="fas fa-map-marker-alt"></i></span> <span>{{$value->des_address}}</span></div>
+                                    <div><span><i class="fas fa-phone"></i></span> <span>{{$value->phone}}</span></div>
+                                </div>
+                            </div>
+                        </div> --}}
+                            @endforeach
                                 <table class="table table-striped">
                                     <thead class="thead-inverse">
                                         <tr>
@@ -35,11 +50,11 @@
                                        
                                     </tbody>
                                     <tfoot class="thead-inverse">
-                                        {{-- <tr>
+                                        {{--- <tr>
                                             <th class="w-25"></th>
                                             <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-none d-md-inline-block">Buy Standard License - $49</a></th>
                                             <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-none d-md-inline-block">Buy Extended License - $449</a></th>
-                                        </tr> --}}
+                                        </tr> ---}}
                                     </tfoot>
                                 </table>
                                 <div class="d-flex justify-content-between"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-md-none mr-3">Buy Standard License - $49</a> <a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-md-none">Buy Extended License - $449</a></div>
@@ -54,7 +69,7 @@
                                 <table class="table table-striped orderedUruu">
                                     <thead class="thead-inverse">
                                         <tr>
-                                            <th class="h6 py-4" style="width: 40%">Төрөл</th>
+                                            <th class="h6 py-4" style="width: 40%">Өрөөний төрөл</th>
                                             {{-- <th class="h6 py-4 font-weight-light">Тоо ширхэг</th> --}}
                                             <th class="h6 py-4">Үнэ</th>
                                         </tr>
@@ -64,11 +79,13 @@
                                     </tbody>
                                     
                                     <tfoot class="thead-inverse">
-                                        {{-- <tr>
-                                            <th class="w-25"></th>
+                                        <tr>
+                                                <th class="h6 py-4" style="width: 60%">Нийт үнэ</th>
+                                                <th class="h6 py-4">Үнэ</th>
+                                            {{-- <th class="w-25"></th>
                                             <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-none d-md-inline-block">Buy Standard License - $49</a></th>
-                                            <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-none d-md-inline-block">Buy Extended License - $449</a></th>
-                                        </tr> --}}
+                                            <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-none d-md-inline-block">Buy Extended License - $449</a></th> --}}
+                                        </tr>
                                     </tfoot>
                                 </table>
                                 <div class="d-flex justify-content-between"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-md-none mr-3">Buy Standard License - $49</a> <a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-md-none">Buy Extended License - $449</a></div>

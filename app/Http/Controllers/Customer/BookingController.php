@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Booking;
 use App\BookingRoom;
+use App\Hotel;
+use DB;
 
 class BookingController extends Controller
 {
@@ -106,10 +108,16 @@ class BookingController extends Controller
     public function bookingDetails(Request $request)
     {
         $hotelEyed = $request->hotelId;
-        return view('customer.booking.booking_details', compact('hotelEyed'));
+        $hotels=DB::select(DB::raw( "SELECT `pm_hotel`.`title` as hotel_name, `pm_destination`.name as des_address, `pm_hotel`.`phone` 
+                                            FROM `pm_hotel` 
+                                            LEFT join `pm_hotel_file` on `pm_hotel`.id= `pm_hotel_file`.`id_item`
+                                            LEFT join `pm_destination` on `pm_hotel`.`id_destination`= `pm_destination`.`id`
+                                            where `pm_hotel`.id = '$hotelEyed'")); 
+                                            
+        return view('customer.booking.booking_details', compact('hotelEyed','hotels'));
     }
     /**
-     * Show the form for creating a new resource.
+     ** Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
