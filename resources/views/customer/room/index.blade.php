@@ -135,7 +135,7 @@
                     @foreach ($arrB as $x)
                     @foreach($facfile as $key=>$value) 
                         {{-- {{ $item }}  --}}
-                            @if ($key <= 10) 
+                            @if ($key <= 3 )     
                                 @if ($x == $value->id_item )
                                     <span class="facility-icon" style="vertical-align:middle;"> 
                                         <img data-toggle="tooltip" data-placement="top" title="{{$value->name}}" 
@@ -151,12 +151,47 @@
                     @endforeach
 
                     <a href="#">
-                        <div class="facility-icon" style="">
+                        <div class="facility-icon more-del" style="">
                             ... 
                         </div>
                     </a>
                 </div>
-                
+
+                <div class="moreme">
+                        @foreach ($arrB as $x)
+                        @foreach($facfile as $key=>$value) 
+                        @if ($key > 3 )     
+                            @if ($x == $value->id_item )
+                                <span class="facility-icon" style="vertical-align:middle;"> 
+                                    <img data-toggle="tooltip" data-placement="top" title="{{$value->name}}" 
+                                    src="{{asset('admin/images/facility/'.$value->file )}}"  style="width: 19px; height: 19px; display: block; opacity: 0.7;">
+                                </span> 
+                                <span class="pr-3" style="vertical-align:middle;">
+                                        {{$value->name}}
+                                    </span>
+                            @endif 
+                        @endif 
+                        @endforeach
+                        @endforeach
+                </div>
+
+
+                <style>
+                    .moreme{
+                        z-index: 9999;
+                        position: absolute;
+                        background: white;
+                        padding: 0em;
+                        left: 23%;
+                        border: 1px solid #efefef;
+                        padding: 10px;
+                        width: 70%;
+                        display: none;
+                    
+                    }
+                </style>
+
+
                 <hr class="hotel-hr">
         
 
@@ -176,17 +211,47 @@
 
             {{-- Тнаилцуулга --}}
             <div class="mt-2">
-                <p style="word-wrap: break-word;">{{ str_limit(strip_tags($item->descr), 50) }}</p>
+                <p style="word-wrap: break-word;">{{ str_limit(strip_tags($item->descr), 30) }}</p>
                
-                <a class="btn btn-outline-primary btn-sm" style="float:right; margin-top:7px;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-outline-primary btn-sm" style="float:right; margin-top:7px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Дэлгэрэнгүй  
                     {{-- <input type="button" value="{{$item->phone}}"  name="hotelId"> --}}
                 </a>
             
                 <div class="collapse" id="collapseExample">
-                    {{ str_limit(strip_tags($item->descr), -100) }}
+                    {{-- {{ str_limit(strip_tags($item->descr), 100) }} --}}
+                    @php
+                        // $rest = substr((strip_tags($item->descr)), 30, strlen(strip_tags($item->descr))); 
+                    @endphp
+{{-- {{strip_tags($rest)}} --}}
+                    {{-- <p>{!!html_entity_decode($rest)!!}</p> --}}
+                    {{-- {{ str_limit(strip_tags($rest), 30) }} --}}
+                    {{-- {!! $rest !!} --}}
                 </div>
             </div>
+
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Зочид буудлын мэдээлэл</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>
+                {{strip_tags($item->descr) }}
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
             
 
         </div>
@@ -364,7 +429,7 @@
                                             <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
                             </div>
 
-                            <div class="card-body  d-flex flex-column col-md-3 p-2">
+                            <div class="card-body  d-flex flex-column col-md-2 p-2">
                                 <div class="d-flex justify-content-between">
                                     <div class="col pl-0">
                                         

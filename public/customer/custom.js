@@ -209,26 +209,43 @@ $(".datefrom").on("dp.change", function (e) {
 
       var x = JSON.parse(localStorage.getItem("seData"));
       // console.log(x);
-      
+  
+      var price=0;
       $.each(x, function(index, value){
 
         for (let i = 0; i < x[index].col2; i++) {
-          console.log(index);
-
-          console.log(x[index].col2);
+        
+          // console.log(x[index].col2);
       
           $(".orderedUruu tbody").append(
             "<tr>", 
             "<td name='toroltd'><input style='display: none;'class='turul' name='roomtypeid[]' type='text' value=' "+ x[index].col0 +" ' />"+ x[index].col1 +"</td>", 
-            // "<td name='tooo'>   <input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[index].col2 + " ' >"+ x[index].col2 +" өрөө </td>",
-            "<td name='une'>" + x[index].col3 + " </td>",                                    
+            /// "<td name='tooo'>   <input style='display: none; class='turul' name ='too[]' type='text' value='" +   x[index].col2 + " ' >"+ x[index].col2 +" өрөө </td>",
+            "<td name='une' class='a' >  " + x[index].col3 + " </td>", 
+            // "<td name='une' class='a' > "+localStorage.getItem("day")+ " хоног- " + parseInt(x[index].col3)*localStorage.getItem("day") + " </td>",                                   
             "</tr>" 
             );
-
-          }
-
-      });
+            
+            price = parseInt(x[index].col3)*localStorage.getItem("day") + parseInt(price);
           
+          }
+       
+        
+      });
+      /*================================== */
+      /*нийт үнийн дүнг тооцоолох*/
+      /*================================== */
+      $(".orderedUruu tfoot").append(
+        "<tr>", 
+          "<th class='h6 py-4' style='width:60%'><b>Хугацаа:</b></th>", 
+          "<th class='h6 py-4'><b>" + localStorage.getItem("day") + " хоног </b></th>", 
+        "</tr>",
+        "<tr>", 
+          "<th class='h6 py-4'><b><h5>Нийт үнэ:</h5></b></th>", 
+          "<th class='h6 py-4'><b><h5>" + price + "Ŧ </h5></b></th>",                                    
+        "</tr>" 
+        
+        );
   }());    
 
 
@@ -402,3 +419,12 @@ $("#user_register").validate({
 function myFunction() {
  localStorage.clear();
 }
+
+
+
+
+
+
+$('.facility-icon.more-del').hover(function(){
+  $('.moreme').toggle();
+});
