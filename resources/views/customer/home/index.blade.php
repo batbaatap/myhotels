@@ -370,14 +370,19 @@
                 <div class="col-md-6 col-lg-4">
                   <!-- Card -->
                   <div class="card shadow-sm border-soft mb-4 animate-up-5">
-                          <a href="./html/pages/single-space.html" class="position-relative">
-                              <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
-                              style="background-position: center;
-                              background-size: cover;
-                              background-image:url({{asset('customer/images/jasper.jpg')}}); ">
+                          <a href="#" class="position-relative">
 
-                                @foreach ($discount as $hotel_discount) <!-- буудлын хямдрал -->
-                                    @if($hotel_discount->id_hotel==$h->id)
+                            @foreach ($hotelFile as $item)  <!--- буудлын зураг-->
+                                @if ($item->id_item == $h->id)
+                                <img src="https://i.pinimg.com/originals/a2/ef/f5/a2eff5dcc55aae1c935b862abb07f8ca.png" class="card-img-top" alt="image" 
+                                style="background-position: center;
+                                background-size: cover;
+                                background-image:url({{asset('admin/images/hotels/small/'.$item->file)}}); ">
+                                @endif
+                            @endforeach
+
+                                @foreach ($discount as $hotel_discount) <!--- буудлын хямдрал -->
+                                    @if($hotel_discount->id_hotel == $h->id)
                                         <span class="badge badge-primary position-absolute listing-badge">
                                                 <span class="font-weight-normal font-xs">Хямдрал {{$hotel_discount->discount}}%</span>   
                                         </span>
@@ -514,7 +519,7 @@
 
 
                 <div class="col mt-6 d-flex flex-column text-center">
-                    <div><a href="html/pages/all-spaces.html" class="btn btn-primary animate-up-2 mb-2">Бүгдийг харах </a></div><span class="font-xs">7 аймгийн 12 буудал </span></div>
+                    <div><a href="/hotel" class="btn btn-primary animate-up-2 mb-2">Бүгдийг харах </a></div><span class="font-xs">7 аймгийн 12 буудал </span></div>
             </div>
 
             {{-- Чиглэл --}}

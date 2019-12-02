@@ -72,6 +72,7 @@
                                             <th class="h6 py-4" style="width: 40%">Өрөөний төрөл</th>
                                             {{-- <th class="h6 py-4 font-weight-light">Тоо ширхэг</th> --}}
                                             <th class="h6 py-4">Үнэ</th>
+                                            {{-- <th class="h6 py-4">Нийт хоногийн үнэ</th> --}}
                                         </tr>
                                     </thead>
                                     
@@ -79,13 +80,13 @@
                                     </tbody>
                                     
                                     <tfoot class="thead-inverse">
-                                        <tr>
+                                        {{-- <tr>
                                                 <th class="h6 py-4" style="width: 60%">Нийт үнэ</th>
-                                                <th class="h6 py-4">Үнэ</th>
+                                                <th class="h6 py-4">Үнэ</th> --}}
                                             {{-- <th class="w-25"></th>
                                             <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-none d-md-inline-block">Buy Standard License - $49</a></th>
                                             <th class="py-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-none d-md-inline-block">Buy Extended License - $449</a></th> --}}
-                                        </tr>
+                                        {{-- </tr> --}}
                                     </tfoot>
                                 </table>
                                 <div class="d-flex justify-content-between"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-primary font-weight-bold animate-up-2 d-md-none mr-3">Buy Standard License - $49</a> <a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-sm btn-outline-dark font-weight-bold d-md-none">Buy Extended License - $449</a></div>
@@ -150,19 +151,19 @@
                             <div class="form-group">
                                 <div class="input-group mb-1">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-user"></i></span></div>
-                                    <input name="lastname" class="form-control" placeholder="Name" type="text" required="">
+                                    <input name="lastname" class="form-control" placeholder="Нэр" type="text" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group mb-1">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-envelope"></i></span></div>
-                                    <input name="email" class="form-control" placeholder="Email" type="email" required="">
+                                    <input name="email" class="form-control" placeholder="Имэйл" type="email" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group mb-1">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-mobile"></i></span></div>
-                                    <input name="phone" class="form-control" placeholder="Phone" type="number" required="">
+                                    <input name="phone" class="form-control" placeholder="Утас" type="number" required="">
                                 </div>
                             </div>
                             {{-- <div class="form-group">

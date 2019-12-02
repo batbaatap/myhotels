@@ -228,7 +228,7 @@
                                         <div class="card-body d-flex flex-column col-auto p-2">
 
                                             {{-- start title --}}
-                                            <a href="single-space.html">
+                                            <a href="#">
                                                 <h4 class="font-weight-normal mb-0">{{ $h->title }}</h4>
                                             </a>
                                             {{-- end --}}
@@ -378,8 +378,9 @@
                                                         <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
                                                         <input id="searchD" type="hidden" class="form-control person_quantity" name="person_quantity22" min="1" max="5" placeholder="хүний тоо">
 
-                                                        <button type="button" class="btn btn-outline-primary btn-block my-2 btn-sm">Дэлгэрэнгүй</button>
+                                                        {{-- <button  class="btn btn-outline-primary btn-block my-2 btn-sm">Дэлгэрэнгүй</button> --}}
                                                         <input type="hidden" value="{{$h->id}}" name="hotel" />
+                                                        <br>
                                                         <button class="btn btn-primary btn-block btn-sm">Захиалах</button>
                                                     </form>
                                                   </div>

@@ -73,7 +73,8 @@ class HomeController extends Controller
                                                 OR ( `from_date`<= '$todaydate' AND `to_date`>='$tomorrowdate')
                                                 ))
                                                 )w
-                                        group by w.id_hotel)   ")); 
+                                        group by w.id_hotel)
+                                        limit 3   ")); 
 
         $discount = DB::select(DB::raw("SELECT  `pm_rate`.*
                                             FROM `pm_rate` 
@@ -96,10 +97,11 @@ class HomeController extends Controller
                                     where '$todaydate'>= start_date and '$todaydate'<= end_date
                                     GROUP BY id_hotel)
                                     )
-                                    GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
+                                    GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан /
         $room = Room::all();
+        $hotelFile = DB::select(DB::raw("SELECT * FROM `pm_hotel_file` GROUP BY id_item"));
 
-        return view('customer/home.index', compact('destination','hotel','discount','rate','room'));
+        return view('customer/home.index', compact('destination','hotel','discount','rate','room','hotelFile'));
 
     }
 
