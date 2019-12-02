@@ -162,7 +162,7 @@
 
             {{-- Address --}}
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5352.863954360801!2d106.922977966507!3d47.912775335772174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2db89d3695ee24a2!2sThe%20Continental%20Hotel!5e0!3m2!1sen!2sus!4v1573559160228!5m2!1sen!2sus" width="100%" height="55" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-            <div class="post-meta">
+                <div class="post-meta">
                     <span class="small lh-120">
                         <i class="fas fa-map-marker-alt mr-1"></i>
                         {{$item->address}}
