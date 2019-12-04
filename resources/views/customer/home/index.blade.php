@@ -29,7 +29,7 @@
                                 <div class="form-group mb-lg-0">
                                     <div class="input-group input-group-lg mb-lg-0">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
-                                        {{-- <input id="search-location" type="text" class="form-control autocomplete" placeholder="Байршил" tabindex="1" required> --}}
+                                        {{--- <input id="search-location" type="text" class="form-control autocomplete" placeholder="Байршил" tabindex="1" required> --}}
 
                                         <select name="destination" class=" form-control destination autocomplete" placeholder="Байршил" tabindex="1" required>
                                           @foreach ($destination  as $des)
@@ -533,15 +533,16 @@
                         <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
                             <!-- Card -->
                             <a href="#" class="card img-card fh-400 border-0 outer-bg" data-background-inner="customer/images/huwsgul.jpg "
-                            style="background-position: center;
-                            background-size: cover;
-                            background-image:url({{asset('admin/images/destination/large/'.$des->file)}}); ">
+                                style="background-position: center;
+                                background-size: cover;
+                                background-image:url({{asset('admin/images/destination/large/'.$des->file)}}); ">
 
-                                <div class="inner-bg overlay-dark"></div>
-                                <div class="card-img-overlay d-flex align-items-center">
-                                    <div class="card-body text-white p-3">
-                                        <h5 class="font-weight-normal text-uppercase text-center">{{$des->name}}</h5></div>
-                                </div>
+                                    <div class="inner-bg overlay-dark"></div>
+                                    <div class="card-img-overlay d-flex align-items-center">
+                                        <div class="card-body text-white p-3">
+                                            <h5 class="font-weight-normal text-uppercase text-center">{{$des->name}}</h5>
+                                        </div>
+                                    </div>
                             </a>
                             <!-- End of Card -->
                         </div>
@@ -648,7 +649,7 @@
                                     <!-- End of Icon box -->
                                 </div>
                             </div>
-                            <div class="col mt-6 text-center"><a href="/hotel/search" class="btn btn-primary animate-up-2"><i class="fas fa-search-location mr-2"></i>Буудал хайх</a></div>
+                            <div class="col mt-6 text-center"><a href="/hotel" class="btn btn-primary animate-up-2"><i class="fas fa-search-location mr-2"></i>Буудал хайх</a></div>
                         </div>
                         <div class="tab-pane fade" id="link-example-8" role="tabpanel" aria-labelledby="tab-link-example-8">
                             <div class="row">

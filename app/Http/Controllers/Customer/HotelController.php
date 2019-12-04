@@ -30,14 +30,14 @@ class HotelController extends Controller
         // ============================================================================
         $hotel = DB::select(DB::raw( "SELECT *
                                 FROM `pm_hotel`
-                                            where  id in(SELECT w.id_hotel
+                                            where checked=1  and id in(SELECT w.id_hotel
                                 FROM 
                                 (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                                         FROM `pm_room`
                                         INNER JOIN `pm_booking_room`
                                         ON pm_room.id = pm_booking_room.id_room
                                         
-                                        WHERE   id_room IN (
+                                        WHERE checked=1 and  id_room IN (
                                             
                                         SELECT  id_room
                                         FROM `pm_booking_room` AS rf
@@ -57,7 +57,7 @@ class HotelController extends Controller
                                             SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
 
                                         from `pm_room`
-                                        where stock>=1 and  max_people>=1 and  id NOT in (SELECT  id_room
+                                        where stock>=1 and  max_people>=1 and checked=1 and  id NOT in (SELECT  id_room
                                         FROM `pm_booking_room` AS rf
                                         WHERE rf.id_booking IN (
                                         select id  FROM `pm_booking`
@@ -110,8 +110,8 @@ class HotelController extends Controller
             )
             GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
 
-            $room = Room::all();
-
+            // $room = Room::all();
+            $room=DB::select(DB::raw("SELECT * FROM pm_room WHERE checked = 1")); 
 
             $hotelFile = DB::select(DB::raw("SELECT * FROM `pm_hotel_file` GROUP BY id_item"));
 
@@ -155,8 +155,7 @@ class HotelController extends Controller
             GROUP BY id_hotel)
             )
             GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан 
-       $room = Room::all();
-
+       $room=DB::select(DB::raw("SELECT * FROM pm_room WHERE checked = 1")); 
 
         //бүх үйлчилгээнүүдээ хэвлэж байгаа
         $fac=DB::select(DB::raw( "SELECT DISTINCT pm_facility.*
@@ -194,14 +193,14 @@ class HotelController extends Controller
                                                                 //бүх буудлуудаа харуулна(тухайн хэрэглэгчийн оруулсан өдрүүд болон өдөр хүний тоог авч шалгасан query)
                     $hotel=DB::select(DB::raw( "SELECT *
                         FROM `pm_hotel`
-                                    where  id_destination=$dest and id in(SELECT w.id_hotel
+                                    where  id_destination=$dest and checked=1 and id in(SELECT w.id_hotel
                         FROM 
                         (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                                 FROM `pm_room`
                                 INNER JOIN `pm_booking_room`
                                 ON pm_room.id = pm_booking_room.id_room
                                 
-                                WHERE   id_room IN (
+                                WHERE checked=1 and   id_room IN (
                                     
                                 SELECT  id_room
                                 FROM `pm_booking_room` AS rf
@@ -221,7 +220,7 @@ class HotelController extends Controller
                                     SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
 
                                 from `pm_room`
-                                where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
+                                where stock>=$room_quantity and  max_people>=$person_quantity and checked=1 and  id NOT in (SELECT  id_room
                                 FROM `pm_booking_room` AS rf
                                 WHERE rf.id_booking IN (
                                 select id  FROM `pm_booking`
@@ -246,14 +245,14 @@ class HotelController extends Controller
                         " SELECT *
                         FROM `pm_hotel`
                         
-                        where `class` in ($ratingChecked) and  id_destination=$dest and id in(SELECT w.id_hotel
+                        where `class` in ($ratingChecked) and  id_destination=$dest and checked=1 and id in(SELECT w.id_hotel
                         FROM 
                         (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                                     FROM `pm_room`
                                     INNER JOIN `pm_booking_room`
                                     ON pm_room.id = pm_booking_room.id_room
                                     
-                                    WHERE   id_room IN (
+                                    WHERE checked=1 and   id_room IN (
                                         
                                     SELECT  id_room
                                     FROM `pm_booking_room` AS rf
@@ -272,7 +271,7 @@ class HotelController extends Controller
                                         
                                         SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
                                     from `pm_room`
-                                    where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
+                                    where stock>=$room_quantity and  max_people>=$person_quantity and checked=1 and  id NOT in (SELECT  id_room
                                     FROM `pm_booking_room` AS rf
                                     WHERE rf.id_booking IN (
                                     select id  FROM `pm_booking`
@@ -310,14 +309,14 @@ class HotelController extends Controller
                                 }
                                 $counter++;
                         };
-                        $service .=" and id_destination=$dest and id in(SELECT w.id_hotel
+                        $service .=" and id_destination=$dest and checked=1 and  id in(SELECT w.id_hotel
                         FROM 
                         (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                                     FROM `pm_room`
                                     INNER JOIN `pm_booking_room`
                                     ON pm_room.id = pm_booking_room.id_room
                                     
-                                    WHERE   id_room IN (
+                                    WHERE checked=1 and id_room IN (
                                         
                                     SELECT  id_room
                                     FROM `pm_booking_room` AS rf
@@ -336,7 +335,7 @@ class HotelController extends Controller
                                         
                                         SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
                                     from `pm_room`
-                                    where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
+                                    where stock>=$room_quantity and  max_people>=$person_quantity and checked=1 and   id NOT in (SELECT  id_room
                                     FROM `pm_booking_room` AS rf
                                     WHERE rf.id_booking IN (
                                     select id  FROM `pm_booking`
@@ -366,14 +365,14 @@ class HotelController extends Controller
                                 }
                                 $counter++;
                         };
-                        $service .=" and id_destination=$dest and id in(SELECT w.id_hotel
+                        $service .=" and id_destination=$dest and checked=1 and id in(SELECT w.id_hotel
                         FROM 
                         (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                                     FROM `pm_room`
                                     INNER JOIN `pm_booking_room`
                                 ON pm_room.id = pm_booking_room.id_room
                                 
-                                WHERE   id_room IN (
+                                WHERE checked=1 and   id_room IN (
                                     
                                 SELECT  id_room
                                 FROM `pm_booking_room` AS rf
@@ -392,7 +391,7 @@ class HotelController extends Controller
                                     
                                     SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
                                 from `pm_room`
-                                where stock>=$room_quantity and  max_people>=$person_quantity and  id NOT in (SELECT  id_room
+                                where stock>=$room_quantity and  max_people>=$person_quantity and checked=1 and   id NOT in (SELECT  id_room
                                 FROM `pm_booking_room` AS rf
                                 WHERE rf.id_booking IN (
                                 select id  FROM `pm_booking`

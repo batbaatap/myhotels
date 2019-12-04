@@ -37,14 +37,14 @@ class HomeController extends Controller
         // ============================================================================
         $hotel = DB::select(DB::raw( "SELECT *
                                         FROM `pm_hotel`
-                                                    where id in(SELECT w.id_hotel
+                                                    where checked=1 and id in(SELECT w.id_hotel
                                         FROM 
                                         (SELECT  `pm_room`.stock-COUNT(`pm_booking_room`.id_room) as uruunii_zuruu, `pm_room`.*
                                                 FROM `pm_room`
                                                 INNER JOIN `pm_booking_room`
                                                 ON pm_room.id = pm_booking_room.id_room
                                                 
-                                                WHERE   id_room IN (
+                                                WHERE checked=1 and  id_room IN (
                                                     
                                                 SELECT  id_room
                                                 FROM `pm_booking_room` AS rf
@@ -64,7 +64,7 @@ class HomeController extends Controller
                                                     SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
 
                                                 from `pm_room`
-                                                where stock>=1 and  max_people>=1 and  id NOT in (SELECT  id_room
+                                                where stock>=1 and  max_people>=1 and checked=1 and id NOT in (SELECT  id_room
                                                 FROM `pm_booking_room` AS rf
                                                 WHERE rf.id_booking IN (
                                                 select id  FROM `pm_booking`
@@ -98,7 +98,8 @@ class HomeController extends Controller
                                     GROUP BY id_hotel)
                                     )
                                     GROUP BY id_hotel)")); //хямдрал нь дууссан ч rate table-s хасагдаагүй буудал тус бүрийн хамгийн бага үнэтэйг нь гаргасан /
-        $room = Room::all();
+        // $room = Room::all();
+        $room=DB::select(DB::raw("SELECT * FROM pm_room WHERE checked = 1")); 
         $hotelFile = DB::select(DB::raw("SELECT * FROM `pm_hotel_file` GROUP BY id_item"));
 
         return view('customer/home.index', compact('destination','hotel','discount','rate','room','hotelFile'));
