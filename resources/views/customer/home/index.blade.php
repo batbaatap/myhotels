@@ -29,10 +29,10 @@
                                 <div class="form-group mb-lg-0">
                                     <div class="input-group input-group-lg mb-lg-0">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-search"></i></span></div>
-                                        {{--- <input id="search-location" type="text" class="form-control autocomplete" placeholder="Байршил" tabindex="1" required> --}}
+                                        {{---е <input id="search-location" type="text" class="form-control autocomplete" placeholder="Байршил" tabindex="1" required> --}}
 
                                         <select name="destination" class=" form-control destination autocomplete" placeholder="Байршил" tabindex="1" required>
-                                          @foreach ($destination  as $des)
+                                          @foreach ($destinationSearch  as $des)
                                             <option value="{{$des->id}}" >{{ $des->name }} </option>
                                           @endforeach
                                         </select>

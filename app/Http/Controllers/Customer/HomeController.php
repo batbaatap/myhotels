@@ -31,6 +31,11 @@ class HomeController extends Controller
                                             left JOIN `pm_destination_file` on `pm_destination`.`id`= `pm_destination_file`.`id_item`
                                             limit 4
                                             ")); 
+            $destinationSearch=DB::select(DB::raw( "SELECT `pm_destination`.`id`, `pm_destination`.name,`pm_destination`.`checked`, `pm_destination`.home, `pm_destination`.`text`,  `pm_destination_file`.file
+            FROM `pm_destination`
+            left JOIN `pm_destination_file` on `pm_destination`.`id`= `pm_destination_file`.`id_item`
+           
+            ")); 
 
         //=============================================================================
         // чиглэл харгалзахгүйгээр захиалах боломжтой бүх буудлуудыг гаргах
@@ -102,7 +107,7 @@ class HomeController extends Controller
         $room=DB::select(DB::raw("SELECT * FROM pm_room WHERE checked = 1")); 
         $hotelFile = DB::select(DB::raw("SELECT * FROM `pm_hotel_file` GROUP BY id_item"));
 
-        return view('customer/home.index', compact('destination','hotel','discount','rate','room','hotelFile'));
+        return view('customer/home.index', compact('destination','hotel','discount','rate','room','hotelFile','destinationSearch'));
 
     }
 
