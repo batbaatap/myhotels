@@ -370,6 +370,8 @@ class BookingController extends Controller
         if($request->isMethod('post')){
             
             $data = $request->all();
+
+            // dd($data);
             
             $dates = explode(' - ', $data['date_from_and_date_to']);
             Booking::where(['id'=>$id])->update([
@@ -415,8 +417,7 @@ class BookingController extends Controller
                 'payment_date' => 1,
                 'payment_option' => $data['payment_option']
             ]);
-               
-            
+
 
             // if(count($request->id_hotel_sub) > 0)
             // {
@@ -439,34 +440,33 @@ class BookingController extends Controller
             //     }
             // }
             
-
             if(count($request->id_hotel_sub) > 0)
             {
-                foreach($request->id_hotel_sub as $item=>$v){
+                foreach($request->pm_booking_room_id as $item=>$needless){
                     BookingRoom::where(['id'=>$request->pm_booking_room_id[$item]])->update([
                         'id_hotel'=>$request->id_hotel_sub[$item],
                         'id_room'=>$request->room_id_sub[$item],
                         'title'=>$request->description_r[$item],
                         'num'=>null,
-
+                        
                         'children' => $request->children_r[$item],
-                        'adults' => $request->adult_r[$item],
-                        'amount' => $request->amount_r[$item],
+                        'adults'   => $request->adult_r[$item],
+                        'amount'   => $request->amount_r[$item],
                         'ex_tax' => null,
-                        'tax_rate' =>null,
+                        'tax_rate' => null,
                     ]);
                 }
+
+                // dd($needless);
+                
             }
 
             return redirect()->back()->with('flash_message_success','Амжилттай шинэчлэгдлээ');
-
         }
 
 
         // get hotel for only pm_booking table
         $bookingDetails = Booking::where(['id'=>$id])->first();
-
-
 
         $hotels = Hotel::get();
         $hotels_drop_down = "";
@@ -478,7 +478,6 @@ class BookingController extends Controller
 			}
 			$hotels_drop_down .= "<option value='".$h->id."' ".$selected.">".$h->title."</option>";
         }
-
 
         // getting hotel & room in pm_booking_room table
         $bookingRooms = DB::table('pm_booking_room')
@@ -494,7 +493,6 @@ class BookingController extends Controller
             ->get();
 
             // dd($bookingRooms);
-            
 
         $rooms = Room::get();
         $rooms_drop_down = "";
@@ -514,13 +512,15 @@ class BookingController extends Controller
 
 
 
+
+
    // delete fac
    public function deleteBooking($id=null) {
        
-    // // get post image name
+    // get post image name
     // $hotelImage = HotelFile::where(['id_item'=>$id])->first();
 
-    // // Get Post image Paths
+    // Get Post image Paths
     // $large_image_path = 'admin/images/facility/';
     // // $medium_image_path = 'images/backend_images/posts/medium/';
     // // $small_image_path = 'images/backend_images/posts/small/';
@@ -530,10 +530,10 @@ class BookingController extends Controller
     //     unlink($large_image_path.$hotelImage->file);
     // }
 
-    Booking::where(['id'=>$id])->delete();
+        Booking::where(['id'=>$id])->delete();
 
-    return redirect()->back()->with('flash_message_success', 'Захиалга устгагдлаа');
-}
+        return redirect()->back()->with('flash_message_success', 'Захиалга устгагдлаа');
+    }
 
 
     
