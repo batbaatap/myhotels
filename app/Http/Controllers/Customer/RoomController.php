@@ -84,7 +84,7 @@ class RoomController extends Controller
             $hotel_id = $request->hotel;
         
         
-            $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel_id' "));
+            $hotels= DB::select(DB::raw("  SELECT * FROM `pm_hotel` WHERE id='$hotel_id' and  checked=1 "));
             // $hotels=DB::select(DB::raw( "  SELECT `pm_hotel`.*, `pm_hotel_file`.lang,`pm_hotel_file`.home, `pm_hotel_file`.`checked`, `pm_hotel_file`.rank, 
             // `pm_hotel_file`.file,`pm_hotel_file`.label,    `pm_hotel_file`.type  
             //  FROM `pm_hotel` 
@@ -110,7 +110,7 @@ class RoomController extends Controller
                 INNER JOIN `pm_booking_room`
                 ON pm_room.id = pm_booking_room.id_room
                 
-                WHERE id_room IN (
+                WHERE checked=1 and id_room IN (
                     SELECT  id_room
                     FROM `pm_booking_room` AS rf
                     WHERE rf.id_booking IN (
@@ -127,7 +127,7 @@ class RoomController extends Controller
                         UNION 
                         SELECT `pm_room`.stock as uruunii_zuruu, `pm_room`.*
                     from `pm_room`
-                    where stock>=$room_quantity22 and id_hotel=$hotel_id and  max_people>=$person_quantity22 and  id NOT in (SELECT  id_room
+                    where stock>=$room_quantity22  and checked=1 and id_hotel=$hotel_id and  max_people>=$person_quantity22 and  id NOT in (SELECT  id_room
                     FROM `pm_booking_room` AS rf
                     WHERE rf.id_booking IN (
                     select id  FROM `pm_booking`
