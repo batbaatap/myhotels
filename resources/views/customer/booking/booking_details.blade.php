@@ -3,7 +3,7 @@
 <div class="container">
 
 <form action="{{url('/booking/payment')}}" method="POST" enctype = "multipart/form-data" novalidate="novalidate" id="user_register">
-        {{ csrf_field() }}
+    @csrf <!-- {{ csrf_field() }} -->
       
             <div class="row my-4  row my-4  pt-4 ">
                 <div class="col-8">

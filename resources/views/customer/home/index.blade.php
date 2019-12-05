@@ -430,7 +430,7 @@
                             
                                             <div class="col pr-0">
                                                     <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
+                                                        @csrf <!-- {{ csrf_field() }} -->
                                                         <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
                                                         <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
                                                         <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
@@ -451,7 +451,7 @@
                                         <div class="col pl-0"><span class="h5 text-dark font-weight-bold" style="color:red!important;">{{$hotel_rate->price}}Ŧ</span></div>
                                         <div class="col pr-0">
                                                 <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
-                                                    @csrf
+                                                     @csrf <!-- {{ csrf_field() }} -->
                                                     <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
                                                     <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
                                                     <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
@@ -490,7 +490,7 @@
                                 <div class="col pl-0"><span class="h5 text-dark font-weight-bold" style="color:red!important;"> <?php echo $price;?>Ŧ</span></div>
                                 <div class="col pr-0">
                                     <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
+                                        @csrf <!-- {{ csrf_field() }} -->
                                         <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
                                         <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
                                         <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">

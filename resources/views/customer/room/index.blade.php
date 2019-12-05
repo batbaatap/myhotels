@@ -445,7 +445,7 @@
                                       <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span> 
                                       
                                         <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
-                                          @csrf
+                                          @csrf <!-- {{ csrf_field() }} -->
                                           <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
                                           <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
                                           <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
@@ -469,6 +469,7 @@
 {{-- 
 
     <form id="booking_room"  action="/booking/booking-details" >
+         @csrf <!-- {{ csrf_field() }} -->
         @foreach ($rooms as $r)
             <div class="row">  
                 <div class="col-md-10 bg-light p-3  mb-3">
@@ -500,6 +501,7 @@
                     <a href="javascript:history.back()" class="btn btn-primary float-left"> Буцах</a>
 
                     <form id="booking_room"  action="/booking/booking-details" >
+                        @csrf <!-- {{ csrf_field() }} -->
                         @foreach ($hotels as $h)
 
                          {{-- <input type="number" name="hh" class="form-control custom-selects listen-room-too" min="0" max="{{$r->uruunii_zuruu}}" placeholder="өрөө" onkeyup = "this.value = minmaxfuncz(this.value, 0, {{$r->uruunii_zuruu}} )"><br/>

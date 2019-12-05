@@ -25,7 +25,7 @@
                         <div class="card card-body p-0" style="background-color:#efefef">
                             
                             <form id="form"  class="row" action="{{url('hotel/search') }}"  method="POST"  enctype="multipart/form-data">
-                            {{ csrf_field() }} 
+                                @csrf <!-- {{ csrf_field() }} -->
                                 <div class="col-lg-3">
                                     <div class="form-group mb-lg-0">
                                         <div class="input-group input-group-lg mb-lg-0">
@@ -84,7 +84,7 @@
                <aside class="col-12 col-lg-3 mt-3 mt-lg-0 d-none d-lg-block z-2">
                     <div id="filters-sidebar">
                      {{-- <form id="form" action="{{url('hotel/search') }}" method="POST" class="sidebar-inner" enctype="multipart/form-data">
-                          @csrf --}}
+                           @csrf <!-- {{ csrf_field() }} -->--}}
 
                             <div class="card shadow-sm border-soft mt-4 p-3">
                                 <h6 class="font-weight-bold">Зэрэглэл</h6>
@@ -372,7 +372,7 @@
                                                   <span class="h5 text-dark font-weight-bold" style="color:red!important;">168,000Ŧ</span>  --}}
                                                   
                                                     <form action="{{url('room/search') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
+                                                        @csrf <!-- {{ csrf_field() }} -->
                                                         <input id="searchA" type="hidden" name="datefrom22" class="form-control datefrom float-right datetime1 ">
                                                         <input id="searchB" type="hidden" name="dateto22" class="form-control dateto  float-right datetime2">
                                                         <input id="searchC" type="hidden" class="form-control room_quantity" name="room_quantity22" min="1" max="5" placeholder="өрөөний тоо">
@@ -381,7 +381,7 @@
                                                         {{-- <button  class="btn btn-outline-primary btn-block my-2 btn-sm">Дэлгэрэнгүй</button> --}}
                                                         <input type="hidden" value="{{$h->id}}" name="hotel" />
                                                         <br>
-                                                        <button class="btn btn-primary btn-block btn-sm">Захиалах</button>
+                                                        <button class="btn btn-primary btn-block btn-sm" onclick="getDate()" >Захиалах</button>
                                                     </form>
                                                   </div>
                                             </div>
