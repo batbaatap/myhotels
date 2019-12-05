@@ -270,26 +270,29 @@
                         <tbody class="room_table_body">
                             @foreach ($bookingRooms as $item)
                                 <tr class="room_table_row">
+
                                     <th scope="row">
-                                        {{-- <input type="number" name="linenum[]" class="form-control" > --}}
+                                        <input type="text" name="pm_booking_room_id[]" class="form-control" value="{{$item->id}}">
                                     </th>
+
                                     <td> 
                                         <select class="form-control" name="id_hotel_sub[]" style="width: 100%;">
                                             <?php echo $hotels_drop_down; ?>
                                         </select>
                                     </td>
+
                                     <td> 
                                         <select class="form-control" name="room_id_sub[]" style="width: 100px;">
                                             <?php echo $rooms_drop_down; ?>
                                         </select>
                                     </td>
-                                    <input type="text" name="pm_booking_room_id[]" class="form-control" value="{{$item->id}}">
-                                    <td><input type="text" name="description_r[]" class="form-control" value="{{$item->uruudescr}}"></td>
-                                    <td><input type="text" name="adult_r[]" class="form-control" value="{{$item->adults}}"></td>
-                                    <td><input type="text" name="children_r[]" class="form-control" value="{{$item->children}}"></td>
-                                    <td><input type="text" name="no_r[]" class="form-control" value=""></td>
-                                    <td><input type="text" name="taxrater[]" class="form-control" value="{{$item->ex_tax}}"></td>
-                                    <td><input type="text" name="amount_r[]" class="form-control" value="{{$item->amount}}"></td>
+
+                                    <td><input type="text" name="description_r[]" class="form-control"  value="{{$item->uruudescr}}"></td>
+                                    <td><input type="text" name="adult_r[]" class="form-control"        value="{{$item->adults}}"></td>
+                                    <td><input type="text" name="children_r[]" class="form-control"     value="{{$item->children}}"></td>
+                                    <td><input type="text" name="no_r[]" class="form-control"           value=""></td>
+                                    <td><input type="text" name="taxrater[]" class="form-control"       value="{{$item->ex_tax}}"></td>
+                                    <td><input type="text" name="amount_r[]" class="form-control"       value="{{$item->amount}}"></td>
                                     <td>
                                         <a href="javascript:" class="btn btn-danger btn-sm" href="javascript:" id="delBooking">
                                             <i class="fas fa-trash">
@@ -306,7 +309,6 @@
                 </div>
               
             </div>
-            
         </div>
         
         <div class="card-footer">
@@ -322,47 +324,6 @@
 
 </form>
 
-{{-- 
-
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous">
-</script>
-<script>
-         jQuery(document).ready(function(){
-            var urId = "<?php echo $bookingDetails->id; ?>";
-            jQuery('#uruu_nemeh').click(function(e){
-       
-                e.preventDefault();
-                $.ajaxSetup({
-                headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                jQuery.ajax({
-                    url: "{{ url('/admin/booking/uruunemeh') }}",
-                    method: 'post',
-                    data: {
-                        urId: urId,
-                    },
-                    success: function(result){
-                        console.log(result);
-
-                        // $("#uruu_nemeh").on('click', function(){        
-                        var newRow = $('.room_table_row:last').clone().insertAfter('.room_table_body tr:last');
-                            // newRow.find('th:first').text($('.room_table_body tr').length - 1); //increment each row by 1
-                        // $('.room_table_body tr:last td :input').val(''); //clear form field values
-                        // $('#uruu_nemeh').prop('disabled', true);
-                        // setTimeout(function() {
-                        //     //your code to be executed after 1 second
-                        //     $('#uruu_nemeh').prop('disabled', false);
-                        //     }, 1000);
-                    // });
-
-                    }});
-                });
-            });
-</script> --}}
 
 
 

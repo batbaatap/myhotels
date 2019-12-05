@@ -278,7 +278,8 @@ class HotelController extends Controller
 
 
 
-            if ($files = $request->file('upload_files')) {
+            if ($files = $request->file('upload_files'))
+            {
                 // $image = $request->file('image');
                 // $upload = 'uploads/image';
                 // $filename = $image->getClientOriginalName();
@@ -287,6 +288,7 @@ class HotelController extends Controller
                 // Define upload path
                 $large_image_path = public_path('/admin/images/hotels/large/'); // upload path
                 $small_image_path = public_path('/admin/images/hotels/small/'); // upload path
+
                 foreach($files as $img) {
                     // dd($img);
                     // Image::make($profileImage)->resize(800,400)->save($large_image_path);
@@ -299,15 +301,15 @@ class HotelController extends Controller
                     $imgr->resize(200, 140)->save($small_image_path.'/'.$profileImage);
                     // $img->move($large_image_path, $profileImage);
                     
-                     // Save In Database
-                     $hotelfile = new HotelFile;
-                     $hotelfile->lang = 2;
-                     $hotelfile->id_item = $id;
-                     $hotelfile->home = 0;
-                     $hotelfile->file = $profileImage;
-                     $hotelfile->checked = 1;
-                     $hotelfile->rank = $id;
-                     $hotelfile->save();
+                    // Save In Database
+                    $hotelfile = new HotelFile;
+                    $hotelfile->lang = 2;
+                    $hotelfile->id_item = $id;
+                    $hotelfile->home = 0;
+                    $hotelfile->file = $profileImage;
+                    $hotelfile->checked = 1;
+                    $hotelfile->rank = $id;
+                    $hotelfile->save();
                 }
             }
 
@@ -334,7 +336,6 @@ class HotelController extends Controller
             //          $hotelfile->save();
             //     }
             // }
-
 
             // upload image
             // if($request->hasFile('filename')){
@@ -363,6 +364,7 @@ class HotelController extends Controller
             // HotelFile::where(['id_item'=>$id])->update([
             //     'file'  => $filename
             // ]);
+            
             return redirect()->back()->with('flash_message_success', 'Амжилттай засвар хийгдлээ');
         }
 
